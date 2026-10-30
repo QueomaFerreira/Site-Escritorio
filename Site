@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contabilidade Líder | João Monlevade - MG</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-inter@5.0.0/index.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          lider: {
+            orange: '#E8871E',
+            darkOrange: '#C96F10',
+            brown: '#6B4E2E',
+            darkBrown: '#4A3520',
+            light: '#FFF8F0',
+            cream: '#FDF2E4'
+          }
+        },
+        fontFamily: {
+          sans: ['Inter', 'sans-serif']
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; }
+
+  .hero-bg {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #FDF2E4 0%, #FFF8F0 50%, #FDEBD0 100%);
+  }
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 15% 80%, rgba(232, 135, 30, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 85% 20%, rgba(107, 78, 46, 0.10) 0%, transparent 40%);
+    z-index: 0;
+  }
+  .hero-illustration {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .service-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(107, 78, 46, 0.15);
+  }
+  .service-card:hover .service-icon {
+    background: #E8871E;
+    color: white;
+    transform: rotate(-5deg) scale(1.1);
+  }
+  .service-icon {
+    transition: all 0.4s ease;
+  }
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .counter {
+    font-variant-numeric: tabular-nums;
+  }
+  .nav-link {
+    position: relative;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #E8871E;
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover::after {
+    width: 100%;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, #E8871E 0%, #C96F10 100%);
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #C96F10 0%, #A85A0A 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(232, 135, 30, 0.4);
+  }
+  .float-whatsapp {
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+    50% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+  }
+  .mobile-menu {
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+  .mobile-menu.open {
+    transform: translateX(0);
+  }
+  .logo-svg {
+    filter: drop-shadow(0 4px 12px rgba(107, 78, 46, 0.15));
+  }
+
+  .float-slow { animation: floatSlow 6s ease-in-out infinite; }
+  .float-medium { animation: floatMedium 4s ease-in-out infinite; }
+  .float-fast { animation: floatFast 3s ease-in-out infinite; }
+
+  @keyframes floatSlow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+  @keyframes floatMedium {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes floatFast {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .gear-rotate {
+    animation: gearSpin 20s linear infinite;
+  }
+  .gear-rotate-reverse {
+    animation: gearSpinReverse 25s linear infinite;
+  }
+  .gear-rotate-slow {
+    animation: gearSpin 35s linear infinite;
+  }
+  @keyframes gearSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes gearSpinReverse {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+  }
+
+  .navbar-dark {
+    background: linear-gradient(135deg, #4A3520 0%, #3A2A1A 100%);
+    box-shadow: 0 4px 20px rgba(74, 53, 32, 0.3);
+  }
+</style>
+</head>
+<body class="bg-white text-gray-800">
+
+<!-- Logo SVG Definition -->
+<svg style="display:none">
+  <defs>
+    <symbol id="logo-full" viewBox="0 0 700 260">
+     <!-- GEAR com dentes profissionais estilo doodle/magnific -->
+<g class="gear-rotate" style="transform-origin: 78px 104px;">
+  <!-- Engrenagem com 12 dentes bem proporcionados e simétricos -->
+  <path d="M 73.8 62.2 
+           L 82.2 62.2 L 83.7 72.5 L 88.8 73.9 
+           L 95.3 65.7 L 102.5 69.9 L 98.7 79.6 L 102.4 83.3 
+           L 112.1 79.5 L 116.3 86.7 L 108.1 93.2 L 109.5 98.3 
+           L 119.8 99.8 L 119.8 108.2 L 109.5 109.7 L 108.1 114.8 
+           L 116.3 121.3 L 112.1 128.5 L 102.4 124.7 L 98.7 128.4 
+           L 102.5 138.1 L 95.3 142.3 L 88.8 134.1 L 83.7 135.5 
+           L 82.2 145.8 L 73.8 145.8 L 72.3 135.5 L 67.2 134.1 
+           L 60.7 142.3 L 53.5 138.1 L 57.3 128.4 L 53.6 124.7 
+           L 43.9 128.5 L 39.7 121.3 L 47.9 114.8 L 46.5 109.7 
+           L 36.2 108.2 L 36.2 99.8 L 46.5 98.3 L 47.9 93.2 
+           L 39.7 86.7 L 43.9 79.5 L 53.6 83.3 L 57.3 79.6 
+           L 53.5 69.9 L 60.7 65.7 L 67.2 73.9 L 72.3 72.5 Z" 
+        fill="#E8871E" stroke="#C96F10" stroke-width="1.5"/>
+  
+  <!-- Corpo da engrenagem -->
+  <circle cx="78" cy="104" r="32" fill="#E8871E" stroke="#C96F10" stroke-width="1.5"/>
+  
+  <!-- Furo central -->
+  <circle cx="78" cy="104" r="14" fill="white" stroke="#E8871E" stroke-width="1.5"/>
+</g>
+      <!-- CADUCEU -->
+      <g>
+        <line x1="78" y1="30" x2="78" y2="200" stroke="#3A2A1A" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="78" cy="28" r="4" fill="#3A2A1A"/>
+        <line x1="70" y1="200" x2="86" y2="200" stroke="#3A2A1A" stroke-width="4" stroke-linecap="round"/>
+        <path d="M78 35 Q55 18 35 22 Q48 24 56 32 Q40 28 25 35 Q45 32 62 40 Q70 38 78 38" fill="#F8F8F8" stroke="#C0C0C0" stroke-width="0.8"/>
+        <path d="M78 35 Q101 18 121 22 Q108 24 100 32 Q116 28 131 35 Q111 32 94 40 Q86 38 78 38" fill="#F8F8F8" stroke="#C0C0C0" stroke-width="0.8"/>
+        <path d="M60 28 Q50 24 42 26" stroke="#D0D0D0" stroke-width="0.8" fill="none"/>
+        <path d="M96 28 Q106 24 114 26" stroke="#D0D0D0" stroke-width="0.8" fill="none"/>
+        <path d="M58 55 Q78 72 98 55 Q78 90 58 108 Q78 125 98 108" fill="none" stroke="#F5C518" stroke-width="5" stroke-linecap="round"/>
+        <path d="M98 55 Q78 72 58 55 Q78 90 98 108 Q78 125 58 108" fill="none" stroke="#F5C518" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="58" cy="55" r="5" fill="#F5C518"/>
+        <circle cx="98" cy="55" r="5" fill="#F5C518"/>
+        <circle cx="56" cy="53" r="1.2" fill="#3A2A1A"/>
+        <circle cx="100" cy="53" r="1.2" fill="#3A2A1A"/>
+      </g>
+      <text x="160" y="85" font-family="Inter, Arial, sans-serif" font-weight="900" font-size="46" fill="#E8871E" letter-spacing="1">CONTABILIDADE</text>
+      <text x="155" y="185" font-family="Inter, Arial, sans-serif" font-weight="900" font-size="110" fill="#6B4E2E" letter-spacing="2">LÍDER</text>
+      <text x="165" y="225" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="16" fill="#E8871E" letter-spacing="0.5">"O SUCESSO DA SUA EMPRESA COMEÇA AQUI"</text>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- Navbar escura -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 navbar-dark transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <a href="#home" class="flex items-center gap-2">
+        <svg class="logo-svg" width="230" height="85" viewBox="0 0 700 260">
+          <use href="#logo-full"/>
+        </svg>
+      </a>
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="#home" class="nav-link text-white font-semibold hover:text-lider-orange transition">Início</a>
+        <a href="#sobre" class="nav-link text-white font-semibold hover:text-lider-orange transition">Sobre</a>
+        <a href="#servicos" class="nav-link text-white font-semibold hover:text-lider-orange transition">Serviços</a>
+        <a href="#diferenciais" class="nav-link text-white font-semibold hover:text-lider-orange transition">Diferenciais</a>
+        <a href="#contato" class="nav-link text-white font-semibold hover:text-lider-orange transition">Contato</a>
+        <a href="#contato" class="btn-primary text-white px-6 py-2.5 rounded-full font-semibold">Fale Conosco</a>
+      </div>
+      <button id="menuBtn" class="lg:hidden text-white text-2xl">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-72 h-full bg-lider-darkBrown shadow-2xl lg:hidden z-50">
+    <div class="p-6">
+      <button id="closeMenu" class="absolute top-4 right-4 text-white text-2xl">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="flex justify-center mt-4">
+        <svg class="logo-svg" width="200" height="75" viewBox="0 0 700 260">
+          <use href="#logo-full"/>
+        </svg>
+      </div>
+      <div class="mt-8 flex flex-col gap-4">
+        <a href="#home" class="mobile-link text-white font-semibold text-lg py-2 border-b border-white/10">Início</a>
+        <a href="#sobre" class="mobile-link text-white font-semibold text-lg py-2 border-b border-white/10">Sobre</a>
+        <a href="#servicos" class="mobile-link text-white font-semibold text-lg py-2 border-b border-white/10">Serviços</a>
+        <a href="#diferenciais" class="mobile-link text-white font-semibold text-lg py-2 border-b border-white/10">Diferenciais</a>
+        <a href="#contato" class="mobile-link text-white font-semibold text-lg py-2 border-b border-white/10">Contato</a>
+        <a href="#contato" class="btn-primary text-white px-6 py-3 rounded-full font-semibold text-center mt-4">Fale Conosco</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero-bg min-h-screen flex items-center pt-20">
+  <!-- Ilustração SVG de fundo -->
+  <svg class="hero-illustration" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#E8871E" stop-opacity="0.6"/>
+        <stop offset="100%" stop-color="#E8871E" stop-opacity="0.1"/>
+      </linearGradient>
+    </defs>
+
+    <!-- Grande engrenagem decorativa (canto superior direito) - Estilo profissional -->
+    <g class="gear-rotate" style="transform-origin: 1250px 150px;" opacity="0.15">
+      <!-- Engrenagem grande com 16 dentes bem definidos -->
+      <path d="M 1243.4 30.3 
+           L 1256.6 30.3 L 1259.1 47.6 L 1266.3 49.1 
+           L 1275.2 34.0 L 1287.3 39.0 L 1283.0 56.0 L 1289.1 60.1 
+           L 1303.2 49.6 L 1312.4 58.8 L 1301.9 72.9 L 1306.0 79.0 
+           L 1323.0 74.7 L 1328.0 86.8 L 1312.9 95.7 L 1314.4 102.9 
+           L 1331.7 105.4 L 1331.7 118.6 L 1314.4 121.1 L 1312.9 128.3 
+           L 1328.0 137.2 L 1323.0 149.3 L 1306.0 145.0 L 1301.9 151.1 
+           L 1312.4 165.2 L 1303.2 174.4 L 1289.1 163.9 L 1283.0 168.0 
+           L 1287.3 185.0 L 1275.2 190.0 L 1266.3 174.9 L 1259.1 176.4 
+           L 1256.6 193.7 L 1243.4 193.7 L 1240.9 176.4 L 1233.7 174.9 
+           L 1224.8 190.0 L 1212.7 185.0 L 1217.0 168.0 L 1210.9 163.9 
+           L 1196.8 174.4 L 1187.6 165.2 L 1198.1 151.1 L 1194.0 145.0 
+           L 1177.0 149.3 L 1172.0 137.2 L 1187.1 128.3 L 1185.6 121.1 
+           L 1168.3 118.6 L 1168.3 105.4 L 1185.6 102.9 L 1187.1 95.7 
+           L 1172.0 86.8 L 1177.0 74.7 L 1194.0 79.0 L 1198.1 72.9 
+           L 1187.6 58.8 L 1196.8 49.6 L 1210.9 60.1 L 1217.0 56.0 
+           L 1212.7 39.0 L 1224.8 34.0 L 1233.7 49.1 L 1240.9 47.6 Z" 
+        fill="#E8871E" stroke="#C96F10" stroke-width="2"/>
+  
+  <!-- Corpo da engrenagem -->
+  <circle cx="1250" cy="112" r="65" fill="#E8871E" stroke="#C96F10" stroke-width="2"/>
+  
+  <!-- Furo central -->
+  <circle cx="1250" cy="112" r="35" fill="white" stroke="#E8871E" stroke-width="2"/>
+  
+  <!-- Detalhe interno -->
+  <circle cx="1250" cy="112" r="18" fill="#E8871E" opacity="0.3"/>
+</g>
+
+    <!-- Engrenagem menor (canto inferior esquerdo) - Estilo profissional -->
+    <g class="gear-rotate-reverse" style="transform-origin: 180px 750px;" opacity="0.12">
+      <!-- Engrenagem com 12 dentes -->
+      <path d="M 173.8 670.3 
+             L 186.2 670.3 L 188.6 685.3 L 196.2 687.3 
+             L 205.7 675.5 L 216.5 681.8 L 211.1 695.9 L 216.6 701.4 
+             L 230.7 696.0 L 237.0 706.8 L 225.2 716.3 L 227.2 723.9 
+             L 242.2 726.3 L 242.2 738.7 L 227.2 741.1 L 225.2 748.7 
+             L 237.0 758.2 L 230.7 769.0 L 216.6 763.6 L 211.1 769.1 
+             L 216.5 783.2 L 205.7 789.5 L 196.2 777.7 L 188.6 779.7 
+             L 186.2 794.7 L 173.8 794.7 L 171.4 779.7 L 163.8 777.7 
+             L 154.3 789.5 L 143.5 783.2 L 148.9 769.1 L 143.4 763.6 
+             L 129.3 769.0 L 123.0 758.2 L 134.8 748.7 L 132.8 741.1 
+             L 117.8 738.7 L 117.8 726.3 L 132.8 723.9 L 134.8 716.3 
+             L 123.0 706.8 L 129.3 696.0 L 143.4 701.4 L 148.9 695.9 
+             L 143.5 681.8 L 154.3 675.5 L 163.8 687.3 L 171.4 685.3 Z" fill="#6B4E2E" stroke="#4A3520" stroke-width="2"/>
+      <circle cx="180" cy="732.5" r="48" fill="#6B4E2E" stroke="#4A3520" stroke-width="2"/>
+      <circle cx="180" cy="732.5" r="24" fill="white" stroke="#6B4E2E" stroke-width="2"/>
+      <circle cx="180" cy="732.5" r="12" fill="#6B4E2E" opacity="0.3"/>
+    </g>
+
+    <!-- Engrenagem média (centro-direita) -->
+    <g class="gear-rotate-slow" style="transform-origin: 950px 600px;" opacity="0.10">
+      <path d="M 950.1 540.0 
+             L 960.9 540.0 L 963.0 553.0 L 969.6 554.8 
+             L 977.9 544.5 L 987.3 550.0 L 982.7 562.3 L 987.5 567.1 
+             L 999.7 562.5 L 1005.2 571.9 L 995.0 580.2 L 996.8 586.8 
+             L 1009.7 589.0 L 1009.7 600.0 L 996.8 602.2 L 995.0 608.8 
+             L 1005.2 617.1 L 999.7 626.5 L 987.5 621.9 L 982.7 626.7 
+             L 987.3 639.0 L 977.9 644.5 L 969.6 634.2 L 963.0 636.0 
+             L 960.9 649.0 L 950.1 649.0 L 948.0 636.0 L 941.4 634.2 
+             L 933.1 644.5 L 923.7 639.0 L 928.3 626.7 L 923.5 621.9 
+             L 911.3 626.5 L 905.8 617.1 L 916.0 608.8 L 914.2 602.2 
+             L 901.3 600.0 L 901.3 589.0 L 914.2 586.8 L 916.0 580.2 
+             L 905.8 571.9 L 911.3 562.5 L 923.5 567.1 L 928.3 562.3 
+             L 923.7 550.0 L 933.1 544.5 L 941.4 554.8 L 948.0 553.0 Z" 
+          fill="#6B4E2E" stroke="#4A3520" stroke-width="2"/>
+    
+    <!-- Corpo da engrenagem -->
+    <circle cx="955.5" cy="594.5" r="42" fill="#6B4E2E" stroke="#4A3520" stroke-width="2"/>
+    
+    <!-- Furo central (agora perfeitamente centrado) -->
+    <circle cx="955.5" cy="594.5" r="20" fill="#ffffff" stroke="#4A3520" stroke-width="2"/>
+    
+    <!-- Núcleo -->
+    <circle cx="955.5" cy="594.5" r="10" fill="#6B4E2E" opacity="0.35"/>
+  </g>
+
+    <!-- Gráfico de barras ascendente (lado direito) - Versão mais simétrica -->
+<g class="float-slow" opacity="0.25">
+  <!-- Barras com progresso linear perfeito -->
+  <rect x="1050" y="620" width="50" height="100" rx="8" fill="#E8871E"/>
+  <rect x="1120" y="545" width="50" height="175" rx="8" fill="#E8871E"/>
+  <rect x="1190" y="470" width="50" height="250" rx="8" fill="#6B4E2E"/>
+  <rect x="1260" y="395" width="50" height="325" rx="8" fill="#6B4E2E"/>
+  <rect x="1330" y="320" width="50" height="400" rx="8" fill="#E8871E"/>
+  
+  <!-- Linha de tendência perfeitamente centralizada no topo de cada barra -->
+  <path d="M1075 620 L1145 545 L1215 470 L1285 395 L1355 320" 
+        stroke="#E8871E" 
+        stroke-width="4" 
+        fill="none" 
+        stroke-linecap="round" 
+        stroke-dasharray="8 4"/>
+  
+  <!-- Ponto final -->
+  <circle cx="1355" cy="320" r="8" fill="#E8871E"/>
+</g>
+
+    <!-- Calculadora (canto inferior direito) -->
+    <g class="float-medium" opacity="0.20">
+      <rect x="980" y="680" width="120" height="160" rx="12" fill="#6B4E2E"/>
+      <rect x="992" y="692" width="96" height="36" rx="6" fill="#FDF2E4"/>
+      <text x="1040" y="718" font-family="Inter, Arial" font-size="18" font-weight="bold" fill="#6B4E2E" text-anchor="middle">1.250</text>
+      <rect x="992" y="740" width="22" height="22" rx="4" fill="#E8871E"/>
+      <rect x="1022" y="740" width="22" height="22" rx="4" fill="#E8871E"/>
+      <rect x="1052" y="740" width="22" height="22" rx="4" fill="#E8871E"/>
+      <rect x="1082" y="740" width="6" height="22" rx="3" fill="#FDF2E4"/>
+      <rect x="992" y="770" width="22" height="22" rx="4" fill="#E8871E"/>
+      <rect x="1022" y="770" width="22" height="22" rx="4" fill="#E8871E"/>
+      <rect x="1052" y="770" width="22" height="22" rx="4" fill="#E8871E"/>
+      <rect x="1082" y="770" width="6" height="22" rx="3" fill="#FDF2E4"/>
+      <rect x="992" y="800" width="22" height="22" rx="4" fill="#E8871E"/>
+      <rect x="1022" y="800" width="22" height="22" rx="4" fill="#E8871E"/>
+      <rect x="1052" y="800" width="22" height="22" rx="4" fill="#E8871E"/>
+      <rect x="1082" y="800" width="6" height="22" rx="3" fill="#FDF2E4"/>
+    </g>
+
+    <!-- Moedas empilhadas (canto inferior esquerdo) -->
+    <g class="float-fast" opacity="0.25">
+      <ellipse cx="280" cy="620" rx="55" ry="14" fill="#E8871E" stroke="#C96F10" stroke-width="2"/>
+      <ellipse cx="280" cy="605" rx="55" ry="14" fill="#E8871E" stroke="#C96F10" stroke-width="2"/>
+      <ellipse cx="280" cy="590" rx="55" ry="14" fill="#E8871E" stroke="#C96F10" stroke-width="2"/>
+      <ellipse cx="280" cy="575" rx="55" ry="14" fill="#E8871E" stroke="#C96F10" stroke-width="2"/>
+      <text x="280" y="580" font-family="Inter, Arial" font-size="20" font-weight="bold" fill="#6B4E2E" text-anchor="middle">$</text>
+    </g>
+
+    <!-- Documento com números (topo central-esquerda) -->
+    <g class="float-slow" opacity="0.18">
+      <rect x="420" y="120" width="140" height="180" rx="10" fill="white" stroke="#E8871E" stroke-width="3"/>
+      <line x1="440" y1="150" x2="540" y2="150" stroke="#E8871E" stroke-width="3" stroke-linecap="round"/>
+      <line x1="440" y1="175" x2="520" y2="175" stroke="#6B4E2E" stroke-width="3" stroke-linecap="round"/>
+      <line x1="440" y1="200" x2="530" y2="200" stroke="#6B4E2E" stroke-width="3" stroke-linecap="round"/>
+      <line x1="440" y1="225" x2="510" y2="225" stroke="#E8871E" stroke-width="3" stroke-linecap="round"/>
+      <line x1="440" y1="250" x2="540" y2="250" stroke="#6B4E2E" stroke-width="3" stroke-linecap="round"/>
+      <line x1="440" y1="275" x2="500" y2="275" stroke="#E8871E" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="540" cy="270" r="22" fill="#E8871E"/>
+      <path d="M532 270 L538 276 L550 264" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- Símbolo de porcentagem -->
+    <g class="float-medium" opacity="0.15">
+      <circle cx="700" cy="700" r="50" fill="#E8871E"/>
+      <text x="700" y="718" font-family="Inter, Arial" font-size="40" font-weight="900" fill="white" text-anchor="middle">%</text>
+    </g>
+
+    <!-- Símbolo de mais (+) decorativo -->
+    <g class="float-fast" opacity="0.20">
+      <rect x="600" y="200" width="8" height="40" rx="4" fill="#E8871E"/>
+      <rect x="584" y="216" width="40" height="8" rx="4" fill="#E8871E"/>
+    </g>
+
+    <!-- Gráfico de pizza -->
+    <g class="float-slow" opacity="0.18">
+      <circle cx="380" cy="400" r="60" fill="#E8871E"/>
+      <path d="M380 400 L380 340 A60 60 0 0 1 432 430 Z" fill="#6B4E2E"/>
+      <path d="M380 400 L432 430 A60 60 0 0 1 330 440 Z" fill="#FDF2E4" stroke="#6B4E2E" stroke-width="2"/>
+    </g>
+
+    <!-- Pontos decorativos espalhados -->
+    <circle cx="150" cy="200" r="6" fill="#E8871E" opacity="0.3"/>
+    <circle cx="800" cy="150" r="8" fill="#6B4E2E" opacity="0.2"/>
+    <circle cx="1100" cy="500" r="5" fill="#E8871E" opacity="0.3"/>
+    <circle cx="500" cy="650" r="7" fill="#6B4E2E" opacity="0.2"/>
+    <circle cx="900" cy="300" r="6" fill="#E8871E" opacity="0.25"/>
+    <circle cx="1350" cy="700" r="8" fill="#6B4E2E" opacity="0.2"/>
+
+    <!-- Linhas de conexão decorativas -->
+    <path d="M100 400 Q200 350 300 400 T500 400" stroke="#E8871E" stroke-width="2" fill="none" opacity="0.15" stroke-dasharray="6 4"/>
+    <path d="M900 100 Q1000 150 1100 100 T1300 100" stroke="#6B4E2E" stroke-width="2" fill="none" opacity="0.12" stroke-dasharray="6 4"/>
+  </svg>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 hero-content">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="inline-block bg-lider-orange/20 border border-lider-orange/40 text-lider-orange px-4 py-1.5 rounded-full text-sm font-semibold mb-6 backdrop-blur-sm">
+          <i class="fas fa-award mr-2"></i> Mais de 45 anos de experiência
+        </div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-6 text-lider-darkBrown">
+          O sucesso da sua empresa <span class="text-lider-orange">começa aqui</span>
+        </h1>
+        <p class="text-lg md:text-xl text-lider-brown/80 mb-8 leading-relaxed">
+          Escritório de Contabilidade Líder em João Monlevade - MG. Oferecemos soluções completas nas áreas contábil, fiscal, trabalhista e financeira para o crescimento do seu negócio.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#contato" class="btn-primary text-white px-8 py-4 rounded-full font-bold text-lg inline-flex items-center justify-center gap-2">
+            <i class="fas fa-phone"></i> Agende uma Consulta
+          </a>
+          <a href="#servicos" class="bg-lider-brown/10 backdrop-blur-sm border-2 border-lider-brown/30 text-lider-brown px-8 py-4 rounded-full font-bold text-lg hover:bg-lider-brown/20 transition inline-flex items-center justify-center gap-2">
+            Nossos Serviços <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-lider-brown/20">
+          <div>
+            <div class="text-3xl md:text-4xl font-black text-lider-orange counter" data-target="45">0</div>
+            <div class="text-lider-brown/70 text-sm mt-1">Anos de Experiência</div>
+          </div>
+          <div>
+            <div class="text-3xl md:text-4xl font-black text-lider-orange counter" data-target="500">0</div>
+            <div class="text-lider-brown/70 text-sm mt-1">Clientes Atendidos</div>
+          </div>
+          <div>
+            <div class="text-3xl md:text-4xl font-black text-lider-orange counter" data-target="100">0</div>
+            <div class="text-lider-brown/70 text-sm mt-1">% de Satisfação</div>
+          </div>
+        </div>
+      </div>
+      <div class="hidden lg:flex justify-center">
+        <div class="relative">
+          <div class="absolute inset-0 bg-lider-orange/10 rounded-full blur-3xl"></div>
+          <svg class="logo-svg relative z-10" width="490" height="182" viewBox="0 0 700 260">
+            <use href="#logo-full"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="sobre" class="py-20 lg:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="fade-in">
+        <div class="relative">
+          <div class="absolute -top-4 -left-4 w-24 h-24 bg-lider-orange/20 rounded-full"></div>
+          <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-lider-brown/10 rounded-full"></div>
+          <div class="relative bg-gradient-to-br from-lider-cream to-white p-8 rounded-3xl shadow-xl border border-lider-orange/10">
+            <div class="flex justify-center mb-6">
+              <svg class="logo-svg" width="320" height="120" viewBox="0 0 700 260">
+                <use href="#logo-full"/>
+              </svg>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-lider-orange text-white p-6 rounded-2xl">
+                <i class="fas fa-calendar-alt text-4xl mb-3"></i>
+                <div class="text-3xl font-black">45+</div>
+                <div class="text-sm opacity-90">Anos no mercado</div>
+              </div>
+              <div class="bg-lider-brown text-white p-6 rounded-2xl">
+                <i class="fas fa-users text-4xl mb-3"></i>
+                <div class="text-3xl font-black">500+</div>
+                <div class="text-sm opacity-90">Clientes atendidos</div>
+              </div>
+              <div class="bg-lider-brown text-white p-6 rounded-2xl">
+                <i class="fas fa-building text-4xl mb-3"></i>
+                <div class="text-3xl font-black">100%</div>
+                <div class="text-sm opacity-90">Comprometimento</div>
+              </div>
+              <div class="bg-lider-orange text-white p-6 rounded-2xl">
+                <i class="fas fa-handshake text-4xl mb-3"></i>
+                <div class="text-3xl font-black">4</div>
+                <div class="text-sm opacity-90">Áreas de atuação</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fade-in">
+        <div class="inline-block bg-lider-cream text-lider-orange px-4 py-1.5 rounded-full text-sm font-bold mb-4">
+          SOBRE NÓS
+        </div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-lider-brown mb-6 leading-tight">
+          Tradição e confiança em <span class="text-lider-orange">contabilidade</span>
+        </h2>
+        <p class="text-gray-600 text-lg leading-relaxed mb-6">
+          O <strong class="text-lider-brown">Escritório de Contabilidade Líder</strong> em João Monlevade (MG) atua há mais de <strong class="text-lider-orange">45 anos no mercado</strong>, oferecendo serviços nas áreas contábil, fiscal, trabalhista e financeira.
+        </p>
+        <p class="text-gray-600 text-lg leading-relaxed mb-8">
+          Nossa missão é ser o parceiro estratégico dos nossos clientes, proporcionando segurança, transparência e resultados que impulsionam o crescimento dos negócios.
+        </p>
+        <div class="space-y-4">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-full bg-lider-orange/10 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-check text-lider-orange"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-lider-brown text-lg">Atendimento Personalizado</h4>
+              <p class="text-gray-600">Cada cliente é único e recebe atenção dedicada</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-full bg-lider-orange/10 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-check text-lider-orange"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-lider-brown text-lg">Equipe Especializada</h4>
+              <p class="text-gray-600">Profissionais qualificados e em constante atualização</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-full bg-lider-orange/10 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-check text-lider-orange"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-lider-brown text-lg">Tecnologia de Ponta</h4>
+              <p class="text-gray-600">Sistemas modernos para agilidade e precisão</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section id="servicos" class="py-20 lg:py-28 bg-lider-cream">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16 fade-in">
+      <div class="inline-block bg-lider-orange text-white px-4 py-1.5 rounded-full text-sm font-bold mb-4">
+        NOSSOS SERVIÇOS
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-lider-brown mb-4">
+        Soluções completas para o seu negócio
+      </h2>
+      <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+        Oferecemos um portfólio completo de serviços contábeis para atender todas as necessidades da sua empresa
+      </p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="service-card bg-white p-8 rounded-2xl shadow-lg fade-in">
+        <div class="service-icon w-16 h-16 bg-lider-cream text-lider-orange rounded-2xl flex items-center justify-center mb-6">
+          <i class="fas fa-calculator text-3xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-lider-brown mb-3">Contábil</h3>
+        <p class="text-gray-600 mb-4">Escrituração contábil, balanços patrimoniais, demonstrações financeiras e relatórios gerenciais.</p>
+        <ul class="space-y-2 text-sm text-gray-600">
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> Balanço Patrimonial</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> DRE e Fluxo de Caixa</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> Conciliação Bancária</li>
+        </ul>
+      </div>
+      <div class="service-card bg-white p-8 rounded-2xl shadow-lg fade-in">
+        <div class="service-icon w-16 h-16 bg-lider-cream text-lider-orange rounded-2xl flex items-center justify-center mb-6">
+          <i class="fas fa-file-invoice-dollar text-3xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-lider-brown mb-3">Fiscal</h3>
+        <p class="text-gray-600 mb-4">Apuração de impostos, obrigações fiscais, planejamento tributário e recuperação de créditos.</p>
+        <ul class="space-y-2 text-sm text-gray-600">
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> Apuração de Impostos</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> Planejamento Tributário</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> SPED e EFD</li>
+        </ul>
+      </div>
+      <div class="service-card bg-white p-8 rounded-2xl shadow-lg fade-in">
+        <div class="service-icon w-16 h-16 bg-lider-cream text-lider-orange rounded-2xl flex items-center justify-center mb-6">
+          <i class="fas fa-users-cog text-3xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-lider-brown mb-3">Trabalhista</h3>
+        <p class="text-gray-600 mb-4">Folha de pagamento, admissões, rescisões, férias e todas as obrigações trabalhistas.</p>
+        <ul class="space-y-2 text-sm text-gray-600">
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> Folha de Pagamento</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> eSocial</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> FGTS e INSS</li>
+        </ul>
+      </div>
+      <div class="service-card bg-white p-8 rounded-2xl shadow-lg fade-in">
+        <div class="service-icon w-16 h-16 bg-lider-cream text-lider-orange rounded-2xl flex items-center justify-center mb-6">
+          <i class="fas fa-chart-line text-3xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-lider-brown mb-3">Financeiro</h3>
+        <p class="text-gray-600 mb-4">Consultoria financeira, análise de custos, orçamento e planejamento financeiro empresarial.</p>
+        <ul class="space-y-2 text-sm text-gray-600">
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> Análise de Custos</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> Orçamento Empresarial</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> Consultoria Financeira</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Differentials Section -->
+<section id="diferenciais" class="py-20 lg:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16 fade-in">
+      <div class="inline-block bg-lider-brown text-white px-4 py-1.5 rounded-full text-sm font-bold mb-4">
+        POR QUE NOS ESCOLHER
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-lider-brown mb-4">
+        Nossos <span class="text-lider-orange">diferenciais</span>
+      </h2>
+      <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+        Mais de quatro décadas de experiência nos tornam a escolha certa para sua empresa
+      </p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="fade-in group">
+        <div class="bg-gradient-to-br from-lider-cream to-white p-8 rounded-2xl border-2 border-lider-orange/10 hover:border-lider-orange/30 transition-all h-full">
+          <div class="w-14 h-14 bg-lider-orange text-white rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
+            <i class="fas fa-medal text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-lider-brown mb-3">Experiência Comprovada</h3>
+          <p class="text-gray-600">Mais de 45 anos de atuação no mercado contábil, com cases de sucesso em diversos segmentos.</p>
+        </div>
+      </div>
+      <div class="fade-in group">
+        <div class="bg-gradient-to-br from-lider-cream to-white p-8 rounded-2xl border-2 border-lider-orange/10 hover:border-lider-orange/30 transition-all h-full">
+          <div class="w-14 h-14 bg-lider-orange text-white rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
+            <i class="fas fa-headset text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-lider-brown mb-3">Atendimento Próximo</h3>
+          <p class="text-gray-600">Relacionamento próximo e personalizado, entendendo as necessidades específicas de cada cliente.</p>
+        </div>
+      </div>
+      <div class="fade-in group">
+        <div class="bg-gradient-to-br from-lider-cream to-white p-8 rounded-2xl border-2 border-lider-orange/10 hover:border-lider-orange/30 transition-all h-full">
+          <div class="w-14 h-14 bg-lider-orange text-white rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
+            <i class="fas fa-shield-alt text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-lider-brown mb-3">Segurança e Conformidade</h3>
+          <p class="text-gray-600">Total conformidade com a legislação vigente, garantindo segurança jurídica para sua empresa.</p>
+        </div>
+      </div>
+      <div class="fade-in group">
+        <div class="bg-gradient-to-br from-lider-cream to-white p-8 rounded-2xl border-2 border-lider-orange/10 hover:border-lider-orange/30 transition-all h-full">
+          <div class="w-14 h-14 bg-lider-orange text-white rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
+            <i class="fas fa-laptop-code text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-lider-brown mb-3">Tecnologia Moderna</h3>
+          <p class="text-gray-600">Utilizamos as melhores ferramentas e sistemas do mercado para agilidade e precisão.</p>
+        </div>
+      </div>
+      <div class="fade-in group">
+        <div class="bg-gradient-to-br from-lider-cream to-white p-8 rounded-2xl border-2 border-lider-orange/10 hover:border-lider-orange/30 transition-all h-full">
+          <div class="w-14 h-14 bg-lider-orange text-white rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
+            <i class="fas fa-lightbulb text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-lider-brown mb-3">Consultoria Estratégica</h3>
+          <p class="text-gray-600">Mais do que contabilidade, oferecemos consultoria estratégica para o crescimento do seu negócio.</p>
+        </div>
+      </div>
+      <div class="fade-in group">
+        <div class="bg-gradient-to-br from-lider-cream to-white p-8 rounded-2xl border-2 border-lider-orange/10 hover:border-lider-orange/30 transition-all h-full">
+          <div class="w-14 h-14 bg-lider-orange text-white rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
+            <i class="fas fa-map-marker-alt text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-lider-brown mb-3">Presença Local</h3>
+          <p class="text-gray-600">Localizados no coração de João Monlevade, prontos para atender você pessoalmente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Banner -->
+<section class="py-16 bg-gradient-to-r from-lider-brown to-lider-darkBrown relative overflow-hidden">
+  <div class="absolute inset-0 opacity-10">
+    <svg width="100%" height="100%">
+      <pattern id="pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+        <circle cx="30" cy="30" r="2" fill="#E8871E"/>
+      </pattern>
+      <rect width="100%" height="100%" fill="url(#pattern)"/>
+    </svg>
+  </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div class="text-white text-center lg:text-left">
+        <h2 class="text-3xl md:text-4xl font-black mb-3">Pronto para começar?</h2>
+        <p class="text-white/80 text-lg">Fale com nossos especialistas e descubra como podemos ajudar sua empresa a crescer.</p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="#contato" class="btn-primary text-white px-8 py-4 rounded-full font-bold text-lg inline-flex items-center justify-center gap-2">
+          <i class="fas fa-envelope"></i> Entre em Contato
+        </a>
+        <a href="https://wa.me/5531988967713" target="_blank" class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-bold text-lg inline-flex items-center justify-center gap-2 transition">
+          <i class="fab fa-whatsapp text-xl"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contato" class="py-20 lg:py-28 bg-lider-cream">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16 fade-in">
+      <div class="inline-block bg-lider-orange text-white px-4 py-1.5 rounded-full text-sm font-bold mb-4">
+        CONTATO
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-lider-brown mb-4">
+        Fale com a <span class="text-lider-orange">Contabilidade Líder</span>
+      </h2>
+      <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+        Estamos prontos para atender você. Entre em contato pelos canais abaixo ou visite nosso escritório.
+      </p>
+    </div>
+    <div class="grid lg:grid-cols-2 gap-12">
+      <div class="fade-in">
+        <div class="bg-white p-8 rounded-3xl shadow-xl h-full">
+          <h3 class="text-2xl font-bold text-lider-brown mb-6">Informações de Contato</h3>
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-lider-orange/10 text-lider-orange rounded-xl flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-map-marker-alt text-xl"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-lider-brown mb-1">Endereço</h4>
+                <p class="text-gray-600">Rua Fernão Dias, 303, 5º andar<br>Bairro Nossa Senhora do Rosário<br>João Monlevade - MG<br>CEP: 35930-180</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-lider-orange/10 text-lider-orange rounded-xl flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-phone text-xl"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-lider-brown mb-1">Telefone</h4>
+                <a href="tel:+553138523355" class="text-lider-orange font-semibold hover:underline">(31) 3852-3355</a>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-lider-orange/10 text-lider-orange rounded-xl flex items-center justify-center flex-shrink-0">
+                <i class="fab fa-whatsapp text-xl"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-lider-brown mb-1">WhatsApp</h4>
+                <a href="https://wa.me/5531988967713" target="_blank" class="text-lider-orange font-semibold hover:underline">(31) 98896-7713</a>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-lider-orange/10 text-lider-orange rounded-xl flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-envelope text-xl"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-lider-brown mb-1">E-mail</h4>
+                <p class="text-gray-600">contato@contabilidadelider.com.br</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-lider-orange/10 text-lider-orange rounded-xl flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-clock text-xl"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-lider-brown mb-1">Horário de Atendimento</h4>
+                <p class="text-gray-600">Segunda a Sexta: 8h às 18h<br>Sábado: 8h às 12h</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fade-in">
+        <div class="bg-white p-8 rounded-3xl shadow-xl h-full">
+          <h3 class="text-2xl font-bold text-lider-brown mb-6">Envie uma Mensagem</h3>
+          <form id="contactForm" class="space-y-5">
+            <div>
+              <label class="block text-sm font-semibold text-lider-brown mb-2">Nome Completo *</label>
+              <input type="text" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-lider-orange focus:outline-none transition" placeholder="Seu nome completo">
+            </div>
+            <div class="grid md:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-sm font-semibold text-lider-brown mb-2">E-mail *</label>
+                <input type="email" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-lider-orange focus:outline-none transition" placeholder="seu@email.com">
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-lider-brown mb-2">Telefone *</label>
+                <input type="tel" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-lider-orange focus:outline-none transition" placeholder="(31) 99999-9999">
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-lider-brown mb-2">Assunto</label>
+              <select class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-lider-orange focus:outline-none transition bg-white">
+                <option>Contabilidade</option>
+                <option>Fiscal</option>
+                <option>Trabalhista</option>
+                <option>Financeiro</option>
+                <option>Outros</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-lider-brown mb-2">Mensagem *</label>
+              <textarea required rows="4" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-lider-orange focus:outline-none transition resize-none" placeholder="Como podemos ajudar?"></textarea>
+            </div>
+            <button type="submit" class="btn-primary w-full text-white px-8 py-4 rounded-xl font-bold text-lg inline-flex items-center justify-center gap-2">
+              <i class="fas fa-paper-plane"></i> Enviar Mensagem
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="mt-12 fade-in">
+      <div class="bg-white p-3 rounded-3xl shadow-xl">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3751.5!2d-43.1786!3d-19.8122!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDQ4JzQ0LjAiUyA0M8KwMTAnNDMuMCJX!5e0!3m2!1spt-BR!2sbr!4v1234567890" width="100%" height="400" style="border:0; border-radius: 20px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-lider-darkBrown text-white pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <div>
+        <div class="mb-5">
+          <svg class="logo-svg" width="240" height="90" viewBox="0 0 700 260">
+            <use href="#logo-full"/>
+          </svg>
+        </div>
+        <p class="text-white/70 leading-relaxed mb-4">O sucesso da sua empresa começa aqui. Mais de 45 anos oferecendo soluções contábeis de qualidade em João Monlevade - MG.</p>
+        <div class="flex items-center gap-2 text-white/60 text-sm">
+          <i class="fas fa-id-card text-lider-orange"></i>
+          <span>CRC-MG: 4623</span>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-bold text-lg mb-5 text-lider-orange">Links Rápidos</h4>
+        <ul class="space-y-3">
+          <li><a href="#home" class="text-white/70 hover:text-lider-orange transition">Início</a></li>
+          <li><a href="#sobre" class="text-white/70 hover:text-lider-orange transition">Sobre Nós</a></li>
+          <li><a href="#servicos" class="text-white/70 hover:text-lider-orange transition">Serviços</a></li>
+          <li><a href="#diferenciais" class="text-white/70 hover:text-lider-orange transition">Diferenciais</a></li>
+          <li><a href="#contato" class="text-white/70 hover:text-lider-orange transition">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-lg mb-5 text-lider-orange">Serviços</h4>
+        <ul class="space-y-3">
+          <li><a href="#servicos" class="text-white/70 hover:text-lider-orange transition">Contábil</a></li>
+          <li><a href="#servicos" class="text-white/70 hover:text-lider-orange transition">Fiscal</a></li>
+          <li><a href="#servicos" class="text-white/70 hover:text-lider-orange transition">Trabalhista</a></li>
+          <li><a href="#servicos" class="text-white/70 hover:text-lider-orange transition">Financeiro</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-lg mb-5 text-lider-orange">Contato</h4>
+        <ul class="space-y-3 text-white/70">
+          <li class="flex items-start gap-3">
+            <i class="fas fa-map-marker-alt text-lider-orange mt-1"></i>
+            <span>Rua Fernão Dias, 303, 5º andar<br>João Monlevade - MG</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <i class="fas fa-phone text-lider-orange"></i>
+            <a href="tel:+553138523355" class="hover:text-lider-orange transition">(31) 3852-3355</a>
+          </li>
+          <li class="flex items-center gap-3">
+            <i class="fab fa-whatsapp text-lider-orange"></i>
+            <a href="https://wa.me/5531988967713" target="_blank" class="hover:text-lider-orange transition">(31) 98896-7713</a>
+          </li>
+          <li class="flex items-center gap-3">
+            <i class="fas fa-envelope text-lider-orange"></i>
+            <span>contato@contabilidadelider.com.br</span>
+          </li>
+        </ul>
+        <div class="flex gap-3 mt-5">
+          <a href="#" class="w-10 h-10 bg-white/10 hover:bg-lider-orange rounded-full flex items-center justify-center transition">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://instagram.com/lider.escritorio" target="_blank" class="w-10 h-10 bg-white/10 hover:bg-lider-orange rounded-full flex items-center justify-center transition" title="Instagram: @lider.escritorio">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="w-10 h-10 bg-white/10 hover:bg-lider-orange rounded-full flex items-center justify-center transition">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-white/60 text-sm">© 2026 Escritório de Contabilidade Líder. Todos os direitos reservados.</p>
+      <p class="text-white/60 text-sm">João Monlevade - MG | CRC-MG 4623 | <a href="https://instagram.com/lider.escritorio" target="_blank" class="text-lider-orange hover:underline">@lider.escritorio</a></p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5531988967713" target="_blank" class="float-whatsapp fixed bottom-6 right-6 w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center text-white text-3xl shadow-2xl z-40 transition">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const closeMenu = document.getElementById('closeMenu');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+  menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+  closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  mobileLinks.forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) navbar.style.boxShadow = '0 4px 20px rgba(74, 53, 32, 0.5)';
+    else navbar.style.boxShadow = '0 4px 20px rgba(74, 53, 32, 0.3)';
+  });
+
+  const counters = document.querySelectorAll('.counter');
+  const animateCounter = (counter) => {
+    const target = +counter.getAttribute('data-target');
+    const duration = 2000;
+    const step = target / (duration / 16);
+    let current = 0;
+    const update = () => {
+      current += step;
+      if (current < target) {
+        counter.textContent = Math.floor(current) + (target === 100 ? '%' : '+');
+        requestAnimationFrame(update);
+      } else {
+        counter.textContent = target + (target === 100 ? '%' : '+');
+      }
+    };
+    update();
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        if (entry.target.classList.contains('counter')) animateCounter(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  counters.forEach(c => observer.observe(c));
+
+  document.getElementById('contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-check"></i> Mensagem Enviada!';
+    btn.style.background = 'linear-gradient(135deg, #10B981 0%, #059669 100%)';
+    setTimeout(() => {
+      btn.innerHTML = originalText;
+      btn.style.background = '';
+      e.target.reset();
+    }, 3000);
+  });
+</script>
+</body>
+</html>
