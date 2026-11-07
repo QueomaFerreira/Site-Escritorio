@@ -29,13 +29,37 @@
   }
 </script>
 <style>
+  :root {
+    --color-primary: #E8871E;
+    --color-primary-dark: #C96F10;
+    --color-brown: #6B4E2E;
+    --color-brown-dark: #4A3520;
+    --color-cream: #FDF2E4;
+    --color-light: #FFF8F0;
+    --color-ink: #1a1a1a;
+    --color-body: #4a5568;
+    --color-muted: #718096;
+    --color-surface: #ffffff;
+    --color-surface-soft: #f7fafc;
+    --color-hairline: #e2e8f0;
+    --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+
   html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', sans-serif; }
+  body { font-family: var(--font-body); }
 
   .hero-bg {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, #FDF2E4 0%, #FFF8F0 50%, #FDEBD0 100%);
+    background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-light) 50%, #FDEBD0 100%);
   }
   .hero-bg::before {
     content: '';
@@ -60,11 +84,13 @@
   }
 
   .service-card {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--color-hairline, #e2e8f0);
   }
   .service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(107, 78, 46, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    border-color: var(--color-primary, #E8871E);
   }
   .service-card:hover .service-icon {
     background: #E8871E;
@@ -72,7 +98,54 @@
     transform: rotate(-5deg) scale(1.1);
   }
   .service-icon {
-    transition: all 0.4s ease;
+    transition: all 0.3s ease;
+  }
+  /* Screen reader only text */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  /* Visible on focus for keyboard users */
+  .focus\:not-sr-only:not(:focus) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  .service-card:hover .service-icon {
+    background: var(--color-primary, #E8871E);
+    transform: rotate(-5deg) scale(1.05);
+  }
+  /* Focus states for accessibility */
+  .service-card:focus-within {
+    outline: 2px solid #E8871E;
+    outline-offset: 2px;
+    border-color: #E8871E;
+  }
+  .btn-primary:focus-visible,
+  .nav-link:focus-visible,
+  .mobile-link:focus-visible {
+    outline: 2px solid #E8871E;
+    outline-offset: 2px;
+  }
+  /* Form field focus */
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid #E8871E;
+    outline-offset: 1px;
   }
   .fade-in {
     opacity: 0;
@@ -165,12 +238,18 @@
   }
 
   .navbar-dark {
-    background: linear-gradient(135deg, #4A3520 0%, #3A2A1A 100%);
-    box-shadow: 0 4px 20px rgba(74, 53, 32, 0.3);
+    background: linear-gradient(135deg, #FDF2E4 0%, #FFF8F0 100%);
+    box-shadow: 0 4px 20px rgba(74, 53, 32, 0.15);
+    border-bottom: 1px solid rgba(232, 135, 30, 0.15);
   }
 </style>
 </head>
 <body class="bg-white text-gray-800">
+
+<!-- Skip to content link for keyboard navigation -->
+<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-lider-orange focus:text-white focus:rounded focus:font-bold focus:text-lg">
+  Pular para o conteúdo principal
+</a>
 
 <!-- Logo SVG Definition -->
 <svg style="display:none">
@@ -227,28 +306,28 @@
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 navbar-dark transition-all duration-300">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20">
-      <a href="#home" class="flex items-center gap-2">
-        <svg class="logo-svg" width="230" height="85" viewBox="0 0 700 260">
+      <a href="#home" class="flex items-center gap-2" aria-label="Contabilidade Líder - Página Inicial">
+        <svg class="logo-svg" width="230" height="85" viewBox="0 0 700 260" aria-label="Logo Contabilidade Líder" role="img">
           <use href="#logo-full"/>
         </svg>
       </a>
       <div class="hidden lg:flex items-center gap-8">
-        <a href="#home" class="nav-link text-white font-semibold hover:text-lider-orange transition">Início</a>
-        <a href="#sobre" class="nav-link text-white font-semibold hover:text-lider-orange transition">Sobre</a>
-        <a href="#servicos" class="nav-link text-white font-semibold hover:text-lider-orange transition">Serviços</a>
-        <a href="#diferenciais" class="nav-link text-white font-semibold hover:text-lider-orange transition">Diferenciais</a>
-        <a href="#contato" class="nav-link text-white font-semibold hover:text-lider-orange transition">Contato</a>
+        <a href="#home" class="nav-link text-lider-darkBrown font-semibold hover:text-lider-orange transition" aria-current="page">Início</a>
+        <a href="#sobre" class="nav-link text-lider-darkBrown font-semibold hover:text-lider-orange transition">Sobre</a>
+        <a href="#servicos" class="nav-link text-lider-darkBrown font-semibold hover:text-lider-orange transition">Serviços</a>
+        <a href="#diferenciais" class="nav-link text-lider-darkBrown font-semibold hover:text-lider-orange transition">Diferenciais</a>
+        <a href="#contato" class="nav-link text-lider-darkBrown font-semibold hover:text-lider-orange transition">Contato</a>
         <a href="#contato" class="btn-primary text-white px-6 py-2.5 rounded-full font-semibold">Fale Conosco</a>
       </div>
-      <button id="menuBtn" class="lg:hidden text-white text-2xl">
-        <i class="fas fa-bars"></i>
+      <button id="menuBtn" class="lg:hidden text-lider-darkBrown text-2xl" aria-label="Abrir menu mobile" aria-expanded="false">
+        <i class="fas fa-bars" aria-hidden="true"></i>
       </button>
     </div>
   </div>
-  <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-72 h-full bg-lider-darkBrown shadow-2xl lg:hidden z-50">
+  <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-72 h-full bg-lider-light shadow-2xl lg:hidden z-50 border-l border-lider-orange/20">
     <div class="p-6">
-      <button id="closeMenu" class="absolute top-4 right-4 text-white text-2xl">
-        <i class="fas fa-times"></i>
+      <button id="closeMenu" class="absolute top-4 right-4 text-lider-darkBrown text-2xl" aria-label="Fechar menu mobile">
+        <i class="fas fa-times" aria-hidden="true"></i>
       </button>
       <div class="flex justify-center mt-4">
         <svg class="logo-svg" width="200" height="75" viewBox="0 0 700 260">
@@ -256,11 +335,11 @@
         </svg>
       </div>
       <div class="mt-8 flex flex-col gap-4">
-        <a href="#home" class="mobile-link text-white font-semibold text-lg py-2 border-b border-white/10">Início</a>
-        <a href="#sobre" class="mobile-link text-white font-semibold text-lg py-2 border-b border-white/10">Sobre</a>
-        <a href="#servicos" class="mobile-link text-white font-semibold text-lg py-2 border-b border-white/10">Serviços</a>
-        <a href="#diferenciais" class="mobile-link text-white font-semibold text-lg py-2 border-b border-white/10">Diferenciais</a>
-        <a href="#contato" class="mobile-link text-white font-semibold text-lg py-2 border-b border-white/10">Contato</a>
+        <a href="#home" class="mobile-link text-lider-darkBrown font-semibold text-lg py-2 border-b border-lider-orange/20">Início</a>
+        <a href="#sobre" class="mobile-link text-lider-darkBrown font-semibold text-lg py-2 border-b border-lider-orange/20">Sobre</a>
+        <a href="#servicos" class="mobile-link text-lider-darkBrown font-semibold text-lg py-2 border-b border-lider-orange/20">Serviços</a>
+        <a href="#diferenciais" class="mobile-link text-lider-darkBrown font-semibold text-lg py-2 border-b border-lider-orange/20">Diferenciais</a>
+        <a href="#contato" class="mobile-link text-lider-darkBrown font-semibold text-lg py-2 border-b border-lider-orange/20">Contato</a>
         <a href="#contato" class="btn-primary text-white px-6 py-3 rounded-full font-semibold text-center mt-4">Fale Conosco</a>
       </div>
     </div>
@@ -268,7 +347,7 @@
 </nav>
 
 <!-- Hero Section -->
-<section id="home" class="hero-bg min-h-screen flex items-center pt-20">
+<section id="main-content" id="home" class="hero-bg min-h-screen flex items-center pt-20" aria-labelledby="home-heading">
   <!-- Ilustração SVG de fundo -->
   <svg class="hero-illustration" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
     <defs>
@@ -367,16 +446,6 @@
   <rect x="1260" y="395" width="50" height="325" rx="8" fill="#6B4E2E"/>
   <rect x="1330" y="320" width="50" height="400" rx="8" fill="#E8871E"/>
   
-  <!-- Linha de tendência perfeitamente centralizada no topo de cada barra -->
-  <path d="M1075 620 L1145 545 L1215 470 L1285 395 L1355 320" 
-        stroke="#E8871E" 
-        stroke-width="4" 
-        fill="none" 
-        stroke-linecap="round" 
-        stroke-dasharray="8 4"/>
-  
-  <!-- Ponto final -->
-  <circle cx="1355" cy="320" r="8" fill="#E8871E"/>
 </g>
 
     <!-- Calculadora (canto inferior direito) -->
@@ -432,11 +501,15 @@
       <rect x="584" y="216" width="40" height="8" rx="4" fill="#E8871E"/>
     </g>
 
-    <!-- Gráfico de pizza -->
+    <!-- Gráfico de pizza simétrico -->
     <g class="float-slow" opacity="0.18">
-      <circle cx="380" cy="400" r="60" fill="#E8871E"/>
-      <path d="M380 400 L380 340 A60 60 0 0 1 432 430 Z" fill="#6B4E2E"/>
-      <path d="M380 400 L432 430 A60 60 0 0 1 330 440 Z" fill="#FDF2E4" stroke="#6B4E2E" stroke-width="2"/>
+      <circle cx="380" cy="400" r="60" fill="#E8871E" opacity="0.3"/>
+      <!-- Setor 1: laranja (12h às 4h) -->
+      <path d="M380 400 L380 340 A60 60 0 0 1 432 430 Z" fill="#E8871E"/>
+      <!-- Setor 2: marrom (4h às 8h) -->
+      <path d="M380 400 L432 430 A60 60 0 0 1 328 430 Z" fill="#6B4E2E"/>
+      <!-- Setor 3: creme (8h às 12h) -->
+      <path d="M380 400 L328 430 A60 60 0 0 1 380 340 Z" fill="#FDF2E4" stroke="#6B4E2E" stroke-width="1.5"/>
     </g>
 
     <!-- Pontos decorativos espalhados -->
@@ -458,32 +531,32 @@
         <div class="inline-block bg-lider-orange/20 border border-lider-orange/40 text-lider-orange px-4 py-1.5 rounded-full text-sm font-semibold mb-6 backdrop-blur-sm">
           <i class="fas fa-award mr-2"></i> Mais de 45 anos de experiência
         </div>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-6 text-lider-darkBrown">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-lider-darkBrown tracking-tight">
           O sucesso da sua empresa <span class="text-lider-orange">começa aqui</span>
         </h1>
-        <p class="text-lg md:text-xl text-lider-brown/80 mb-8 leading-relaxed">
-          Escritório de Contabilidade Líder em João Monlevade - MG. Oferecemos soluções completas nas áreas contábil, fiscal, trabalhista e financeira para o crescimento do seu negócio.
+        <p class="text-lg md:text-xl text-lider-brown/80 mb-10 leading-relaxed max-w-lg">
+          Escritório de contabilidade em João Monlevade – MG com mais de 45 anos de atuação. Oferecemos soluções contábeis, fiscais, trabalhistas e financeiras para o crescimento do seu negócio.
         </p>
         <div class="flex flex-col sm:flex-row gap-4">
           <a href="#contato" class="btn-primary text-white px-8 py-4 rounded-full font-bold text-lg inline-flex items-center justify-center gap-2">
-            <i class="fas fa-phone"></i> Agende uma Consulta
+            <i class="fas fa-phone"></i> Agende uma consulta
           </a>
           <a href="#servicos" class="bg-lider-brown/10 backdrop-blur-sm border-2 border-lider-brown/30 text-lider-brown px-8 py-4 rounded-full font-bold text-lg hover:bg-lider-brown/20 transition inline-flex items-center justify-center gap-2">
-            Nossos Serviços <i class="fas fa-arrow-right"></i>
+            Conheça nossos serviços <i class="fas fa-arrow-right"></i>
           </a>
         </div>
         <div class="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-lider-brown/20">
           <div>
             <div class="text-3xl md:text-4xl font-black text-lider-orange counter" data-target="45">0</div>
-            <div class="text-lider-brown/70 text-sm mt-1">Anos de Experiência</div>
+            <div class="text-lider-brown/70 text-sm mt-1">45+ anos de experiência</div>
           </div>
           <div>
             <div class="text-3xl md:text-4xl font-black text-lider-orange counter" data-target="500">0</div>
-            <div class="text-lider-brown/70 text-sm mt-1">Clientes Atendidos</div>
+            <div class="text-lider-brown/70 text-sm mt-1">500+ clientes atendidos</div>
           </div>
           <div>
             <div class="text-3xl md:text-4xl font-black text-lider-orange counter" data-target="100">0</div>
-            <div class="text-lider-brown/70 text-sm mt-1">% de Satisfação</div>
+            <div class="text-lider-brown/70 text-sm mt-1">100% de satisfação</div>
           </div>
         </div>
       </div>
@@ -500,7 +573,7 @@
 </section>
 
 <!-- About Section -->
-<section id="sobre" class="py-20 lg:py-28 bg-white">
+<section id="sobre" class="py-20 lg:py-28 bg-white" aria-labelledby="sobre-heading">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid lg:grid-cols-2 gap-16 items-center">
       <div class="fade-in">
@@ -542,40 +615,40 @@
         <div class="inline-block bg-lider-cream text-lider-orange px-4 py-1.5 rounded-full text-sm font-bold mb-4">
           SOBRE NÓS
         </div>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-lider-brown mb-6 leading-tight">
+        <h2 id="sobre-heading" class="text-3xl md:text-4xl lg:text-5xl font-bold text-lider-brown mb-6 leading-tight tracking-tight">
           Tradição e confiança em <span class="text-lider-orange">contabilidade</span>
         </h2>
-        <p class="text-gray-600 text-lg leading-relaxed mb-6">
-          O <strong class="text-lider-brown">Escritório de Contabilidade Líder</strong> em João Monlevade (MG) atua há mais de <strong class="text-lider-orange">45 anos no mercado</strong>, oferecendo serviços nas áreas contábil, fiscal, trabalhista e financeira.
-        </p>
         <p class="text-gray-600 text-lg leading-relaxed mb-8">
-          Nossa missão é ser o parceiro estratégico dos nossos clientes, proporcionando segurança, transparência e resultados que impulsionam o crescimento dos negócios.
+          O <strong class="text-lider-brown">Escritório de Contabilidade Líder</strong> atua há mais de <strong class="text-lider-orange">45 anos</strong> em João Monlevade – MG, oferecendo serviços contábeis, fiscais, trabalhistas e financeiros.
+        </p>
+        <p class="text-gray-600 text-lg leading-relaxed mb-10">
+          Nossa missão é ser parceiro estratégico dos clientes, com segurança, transparência e resultados que impulsionam o crescimento dos negócios.
         </p>
         <div class="space-y-4">
           <div class="flex items-start gap-4">
             <div class="w-10 h-10 rounded-full bg-lider-orange/10 flex items-center justify-center flex-shrink-0">
-              <i class="fas fa-check text-lider-orange"></i>
+              <i class="fas fa-check text-lider-orange" aria-hidden="true"></i>
             </div>
             <div>
-              <h4 class="font-bold text-lider-brown text-lg">Atendimento Personalizado</h4>
-              <p class="text-gray-600">Cada cliente é único e recebe atenção dedicada</p>
+              <h4 class="font-bold text-lider-brown text-lg">Atendimento personalizado</h4>
+              <p class="text-gray-600">Cada cliente recebe atenção dedicada</p>
             </div>
           </div>
           <div class="flex items-start gap-4">
             <div class="w-10 h-10 rounded-full bg-lider-orange/10 flex items-center justify-center flex-shrink-0">
-              <i class="fas fa-check text-lider-orange"></i>
+              <i class="fas fa-check text-lider-orange" aria-hidden="true"></i>
             </div>
             <div>
-              <h4 class="font-bold text-lider-brown text-lg">Equipe Especializada</h4>
+              <h4 class="font-bold text-lider-brown text-lg">Equipe especializada</h4>
               <p class="text-gray-600">Profissionais qualificados e em constante atualização</p>
             </div>
           </div>
           <div class="flex items-start gap-4">
             <div class="w-10 h-10 rounded-full bg-lider-orange/10 flex items-center justify-center flex-shrink-0">
-              <i class="fas fa-check text-lider-orange"></i>
+              <i class="fas fa-check text-lider-orange" aria-hidden="true"></i>
             </div>
             <div>
-              <h4 class="font-bold text-lider-brown text-lg">Tecnologia de Ponta</h4>
+              <h4 class="font-bold text-lider-brown text-lg">Tecnologia de ponta</h4>
               <p class="text-gray-600">Sistemas modernos para agilidade e precisão</p>
             </div>
           </div>
@@ -586,66 +659,66 @@
 </section>
 
 <!-- Services Section -->
-<section id="servicos" class="py-20 lg:py-28 bg-lider-cream">
+<section id="servicos" class="py-20 lg:py-28 bg-lider-cream" aria-labelledby="servicos-heading">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16 fade-in">
       <div class="inline-block bg-lider-orange text-white px-4 py-1.5 rounded-full text-sm font-bold mb-4">
         NOSSOS SERVIÇOS
       </div>
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-lider-brown mb-4">
+      <h2 id="servicos-heading" class="text-3xl md:text-4xl lg:text-5xl font-black text-lider-brown mb-4">
         Soluções completas para o seu negócio
       </h2>
       <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-        Oferecemos um portfólio completo de serviços contábeis para atender todas as necessidades da sua empresa
+        Oferecemos serviços contábeis completos para atender todas as necessidades da sua empresa
       </p>
     </div>
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="service-card bg-white p-8 rounded-2xl shadow-lg fade-in">
-        <div class="service-icon w-16 h-16 bg-lider-cream text-lider-orange rounded-2xl flex items-center justify-center mb-6">
-          <i class="fas fa-calculator text-3xl"></i>
+      <div class="service-card bg-white p-8 rounded-xl border border-lider-hairline shadow-sm fade-in" tabindex="0" role="region" aria-label="Serviço Contábil">
+        <div class="service-icon w-14 h-14 bg-lider-orange/10 text-lider-orange rounded-lg flex items-center justify-center mb-5">
+          <i class="fas fa-calculator text-2xl" aria-hidden="true"></i>
         </div>
-        <h3 class="text-xl font-bold text-lider-brown mb-3">Contábil</h3>
-        <p class="text-gray-600 mb-4">Escrituração contábil, balanços patrimoniais, demonstrações financeiras e relatórios gerenciais.</p>
+        <h3 class="text-lg font-bold text-lider-brown mb-3 tracking-tight">Contábil</h3>
+        <p class="text-gray-600 mb-6 text-sm leading-relaxed">Escrituração contábil, balanços patrimoniais, demonstrações financeiras e relatórios gerenciais.</p>
         <ul class="space-y-2 text-sm text-gray-600">
-          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> Balanço Patrimonial</li>
-          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> DRE e Fluxo de Caixa</li>
-          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> Conciliação Bancária</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange" aria-hidden="true"></i> Balanço Patrimonial</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange" aria-hidden="true"></i> DRE e Fluxo de Caixa</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange" aria-hidden="true"></i> Conciliação Bancária</li>
         </ul>
       </div>
-      <div class="service-card bg-white p-8 rounded-2xl shadow-lg fade-in">
-        <div class="service-icon w-16 h-16 bg-lider-cream text-lider-orange rounded-2xl flex items-center justify-center mb-6">
-          <i class="fas fa-file-invoice-dollar text-3xl"></i>
+      <div class="service-card bg-white p-8 rounded-xl border border-lider-hairline shadow-sm fade-in" tabindex="0" role="region" aria-label="Serviço Fiscal">
+        <div class="service-icon w-14 h-14 bg-lider-orange/10 text-lider-orange rounded-lg flex items-center justify-center mb-5">
+          <i class="fas fa-file-invoice-dollar text-2xl" aria-hidden="true"></i>
         </div>
-        <h3 class="text-xl font-bold text-lider-brown mb-3">Fiscal</h3>
-        <p class="text-gray-600 mb-4">Apuração de impostos, obrigações fiscais, planejamento tributário e recuperação de créditos.</p>
+        <h3 class="text-lg font-bold text-lider-brown mb-3 tracking-tight">Fiscal</h3>
+        <p class="text-gray-600 mb-6 text-sm leading-relaxed">Apuração de impostos, obrigações fiscais, planejamento tributário e recuperação de créditos.</p>
         <ul class="space-y-2 text-sm text-gray-600">
-          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> Apuração de Impostos</li>
-          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> Planejamento Tributário</li>
-          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> SPED e EFD</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange" aria-hidden="true"></i> Apuração de Impostos</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange" aria-hidden="true"></i> Planejamento Tributário</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange" aria-hidden="true"></i> SPED e EFD</li>
         </ul>
       </div>
-      <div class="service-card bg-white p-8 rounded-2xl shadow-lg fade-in">
-        <div class="service-icon w-16 h-16 bg-lider-cream text-lider-orange rounded-2xl flex items-center justify-center mb-6">
-          <i class="fas fa-users-cog text-3xl"></i>
+      <div class="service-card bg-white p-8 rounded-xl border border-lider-hairline shadow-sm fade-in" tabindex="0" role="region" aria-label="Serviço Trabalhista">
+        <div class="service-icon w-14 h-14 bg-lider-orange/10 text-lider-orange rounded-lg flex items-center justify-center mb-5">
+          <i class="fas fa-users-cog text-2xl" aria-hidden="true"></i>
         </div>
-        <h3 class="text-xl font-bold text-lider-brown mb-3">Trabalhista</h3>
-        <p class="text-gray-600 mb-4">Folha de pagamento, admissões, rescisões, férias e todas as obrigações trabalhistas.</p>
+        <h3 class="text-lg font-bold text-lider-brown mb-3 tracking-tight">Trabalhista</h3>
+        <p class="text-gray-600 mb-6 text-sm leading-relaxed">Folha de pagamento, admissões, rescisões, férias e outras obrigações trabalhistas.</p>
         <ul class="space-y-2 text-sm text-gray-600">
-          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> Folha de Pagamento</li>
-          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> eSocial</li>
-          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> FGTS e INSS</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange" aria-hidden="true"></i> Folha de Pagamento</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange" aria-hidden="true"></i> eSocial</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange" aria-hidden="true"></i> FGTS e INSS</li>
         </ul>
       </div>
-      <div class="service-card bg-white p-8 rounded-2xl shadow-lg fade-in">
-        <div class="service-icon w-16 h-16 bg-lider-cream text-lider-orange rounded-2xl flex items-center justify-center mb-6">
-          <i class="fas fa-chart-line text-3xl"></i>
+      <div class="service-card bg-white p-8 rounded-xl border border-lider-hairline shadow-sm fade-in" tabindex="0" role="region" aria-label="Serviço Financeiro">
+        <div class="service-icon w-14 h-14 bg-lider-orange/10 text-lider-orange rounded-lg flex items-center justify-center mb-5">
+          <i class="fas fa-chart-line text-2xl" aria-hidden="true"></i>
         </div>
-        <h3 class="text-xl font-bold text-lider-brown mb-3">Financeiro</h3>
-        <p class="text-gray-600 mb-4">Consultoria financeira, análise de custos, orçamento e planejamento financeiro empresarial.</p>
+        <h3 class="text-lg font-bold text-lider-brown mb-3 tracking-tight">Financeiro</h3>
+        <p class="text-gray-600 mb-6 text-sm leading-relaxed">Consultoria financeira, análise de custos, orçamento e planejamento financeiro empresarial.</p>
         <ul class="space-y-2 text-sm text-gray-600">
-          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> Análise de Custos</li>
-          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> Orçamento Empresarial</li>
-          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange"></i> Consultoria Financeira</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange" aria-hidden="true"></i> Análise de Custos</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange" aria-hidden="true"></i> Orçamento Empresarial</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-lider-orange" aria-hidden="true"></i> Consultoria Financeira</li>
         </ul>
       </div>
     </div>
@@ -653,72 +726,72 @@
 </section>
 
 <!-- Differentials Section -->
-<section id="diferenciais" class="py-20 lg:py-28 bg-white">
+<section id="diferenciais" class="py-20 lg:py-28 bg-white" aria-labelledby="diferenciais-heading">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16 fade-in">
       <div class="inline-block bg-lider-brown text-white px-4 py-1.5 rounded-full text-sm font-bold mb-4">
         POR QUE NOS ESCOLHER
       </div>
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-lider-brown mb-4">
+      <h2 id="diferenciais-heading" class="text-3xl md:text-4xl lg:text-5xl font-black text-lider-brown mb-4">
         Nossos <span class="text-lider-orange">diferenciais</span>
       </h2>
       <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-        Mais de quatro décadas de experiência nos tornam a escolha certa para sua empresa
+        Mais de quatro décadas de experiência nos tornam a escolha certa para o seu negócio
       </p>
     </div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div class="fade-in group">
-        <div class="bg-gradient-to-br from-lider-cream to-white p-8 rounded-2xl border-2 border-lider-orange/10 hover:border-lider-orange/30 transition-all h-full">
-          <div class="w-14 h-14 bg-lider-orange text-white rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
-            <i class="fas fa-medal text-2xl"></i>
+        <div class="bg-white p-8 rounded-xl border border-lider-hairline shadow-sm hover:shadow-md transition-all h-full">
+          <div class="w-12 h-12 bg-lider-orange/10 text-lider-orange rounded-lg flex items-center justify-center mb-4 group-hover:scale-105 transition">
+            <i class="fas fa-medal text-xl"></i>
           </div>
-          <h3 class="text-xl font-bold text-lider-brown mb-3">Experiência Comprovada</h3>
-          <p class="text-gray-600">Mais de 45 anos de atuação no mercado contábil, com cases de sucesso em diversos segmentos.</p>
+          <h3 class="text-lg font-bold text-lider-brown mb-2 tracking-tight">Experiência comprovada</h3>
+          <p class="text-gray-600 text-sm">Mais de 45 anos de atuação no mercado contábil, com casos de sucesso em diversos segmentos.</p>
         </div>
       </div>
       <div class="fade-in group">
-        <div class="bg-gradient-to-br from-lider-cream to-white p-8 rounded-2xl border-2 border-lider-orange/10 hover:border-lider-orange/30 transition-all h-full">
-          <div class="w-14 h-14 bg-lider-orange text-white rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
-            <i class="fas fa-headset text-2xl"></i>
+        <div class="bg-white p-8 rounded-xl border border-lider-hairline shadow-sm hover:shadow-md transition-all h-full">
+          <div class="w-12 h-12 bg-lider-orange/10 text-lider-orange rounded-lg flex items-center justify-center mb-4 group-hover:scale-105 transition">
+            <i class="fas fa-headset text-xl"></i>
           </div>
-          <h3 class="text-xl font-bold text-lider-brown mb-3">Atendimento Próximo</h3>
-          <p class="text-gray-600">Relacionamento próximo e personalizado, entendendo as necessidades específicas de cada cliente.</p>
+          <h3 class="text-lg font-bold text-lider-brown mb-2 tracking-tight">Atendimento próximo</h3>
+          <p class="text-gray-600 text-sm">Relacionamento próximo e personalizado, atendendo às necessidades de cada cliente.</p>
         </div>
       </div>
       <div class="fade-in group">
-        <div class="bg-gradient-to-br from-lider-cream to-white p-8 rounded-2xl border-2 border-lider-orange/10 hover:border-lider-orange/30 transition-all h-full">
-          <div class="w-14 h-14 bg-lider-orange text-white rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
-            <i class="fas fa-shield-alt text-2xl"></i>
+        <div class="bg-white p-8 rounded-xl border border-lider-hairline shadow-sm hover:shadow-md transition-all h-full">
+          <div class="w-12 h-12 bg-lider-orange/10 text-lider-orange rounded-lg flex items-center justify-center mb-4 group-hover:scale-105 transition">
+            <i class="fas fa-shield-alt text-xl"></i>
           </div>
-          <h3 class="text-xl font-bold text-lider-brown mb-3">Segurança e Conformidade</h3>
-          <p class="text-gray-600">Total conformidade com a legislação vigente, garantindo segurança jurídica para sua empresa.</p>
+          <h3 class="text-lg font-bold text-lider-brown mb-2 tracking-tight">Segurança e conformidade</h3>
+          <p class="text-gray-600 text-sm">Conformidade com a legislação vigente, garantindo segurança jurídica para o seu negócio.</p>
         </div>
       </div>
       <div class="fade-in group">
-        <div class="bg-gradient-to-br from-lider-cream to-white p-8 rounded-2xl border-2 border-lider-orange/10 hover:border-lider-orange/30 transition-all h-full">
-          <div class="w-14 h-14 bg-lider-orange text-white rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
-            <i class="fas fa-laptop-code text-2xl"></i>
+        <div class="bg-white p-8 rounded-xl border border-lider-hairline shadow-sm hover:shadow-md transition-all h-full">
+          <div class="w-12 h-12 bg-lider-orange/10 text-lider-orange rounded-lg flex items-center justify-center mb-4 group-hover:scale-105 transition">
+            <i class="fas fa-laptop-code text-xl"></i>
           </div>
-          <h3 class="text-xl font-bold text-lider-brown mb-3">Tecnologia Moderna</h3>
-          <p class="text-gray-600">Utilizamos as melhores ferramentas e sistemas do mercado para agilidade e precisão.</p>
+          <h3 class="text-lg font-bold text-lider-brown mb-2 tracking-tight">Tecnologia moderna</h3>
+          <p class="text-gray-600 text-sm">Ferramentas e sistemas modernos para agilidade e precisão.</p>
         </div>
       </div>
       <div class="fade-in group">
-        <div class="bg-gradient-to-br from-lider-cream to-white p-8 rounded-2xl border-2 border-lider-orange/10 hover:border-lider-orange/30 transition-all h-full">
-          <div class="w-14 h-14 bg-lider-orange text-white rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
-            <i class="fas fa-lightbulb text-2xl"></i>
+        <div class="bg-white p-8 rounded-xl border border-lider-hairline shadow-sm hover:shadow-md transition-all h-full">
+          <div class="w-12 h-12 bg-lider-orange/10 text-lider-orange rounded-lg flex items-center justify-center mb-4 group-hover:scale-105 transition">
+            <i class="fas fa-lightbulb text-xl"></i>
           </div>
-          <h3 class="text-xl font-bold text-lider-brown mb-3">Consultoria Estratégica</h3>
-          <p class="text-gray-600">Mais do que contabilidade, oferecemos consultoria estratégica para o crescimento do seu negócio.</p>
+          <h3 class="text-lg font-bold text-lider-brown mb-2 tracking-tight">Consultoria estratégica</h3>
+          <p class="text-gray-600 text-sm">Consultoria estratégica para o crescimento do seu negócio.</p>
         </div>
       </div>
       <div class="fade-in group">
-        <div class="bg-gradient-to-br from-lider-cream to-white p-8 rounded-2xl border-2 border-lider-orange/10 hover:border-lider-orange/30 transition-all h-full">
-          <div class="w-14 h-14 bg-lider-orange text-white rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
-            <i class="fas fa-map-marker-alt text-2xl"></i>
+        <div class="bg-white p-8 rounded-xl border border-lider-hairline shadow-sm hover:shadow-md transition-all h-full">
+          <div class="w-12 h-12 bg-lider-orange/10 text-lider-orange rounded-lg flex items-center justify-center mb-4 group-hover:scale-105 transition">
+            <i class="fas fa-map-marker-alt text-xl"></i>
           </div>
-          <h3 class="text-xl font-bold text-lider-brown mb-3">Presença Local</h3>
-          <p class="text-gray-600">Localizados no coração de João Monlevade, prontos para atender você pessoalmente.</p>
+          <h3 class="text-lg font-bold text-lider-brown mb-2 tracking-tight">Presença local</h3>
+          <p class="text-gray-600 text-sm">Localizados em João Monlevade – MG, prontos para atender você pessoalmente.</p>
         </div>
       </div>
     </div>
@@ -739,14 +812,14 @@
     <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
       <div class="text-white text-center lg:text-left">
         <h2 class="text-3xl md:text-4xl font-black mb-3">Pronto para começar?</h2>
-        <p class="text-white/80 text-lg">Fale com nossos especialistas e descubra como podemos ajudar sua empresa a crescer.</p>
+        <p class="text-white text-lg">Fale com nossos especialistas e descubra como podemos ajudar o seu negócio a crescer.</p>
       </div>
       <div class="flex flex-col sm:flex-row gap-4">
-        <a href="#contato" class="btn-primary text-white px-8 py-4 rounded-full font-bold text-lg inline-flex items-center justify-center gap-2">
-          <i class="fas fa-envelope"></i> Entre em Contato
+        <a href="#contato" class="btn-primary text-white px-8 py-4 rounded-full font-bold text-lg inline-flex items-center justify-center gap-2" aria-label="Entre em contato pelo formulário">
+          <i class="fas fa-envelope" aria-hidden="true"></i> Entre em contato
         </a>
-        <a href="https://wa.me/5531988967713" target="_blank" class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-bold text-lg inline-flex items-center justify-center gap-2 transition">
-          <i class="fab fa-whatsapp text-xl"></i> WhatsApp
+        <a href="https://wa.me/5531988967713" target="_blank" class="bg-white text-lider-brown-dark px-8 py-4 rounded-full font-bold text-lg inline-flex items-center justify-center gap-2 transition shadow-sm" aria-label="Fale conosco pelo WhatsApp">
+          <i class="fab fa-whatsapp text-xl" aria-hidden="true"></i> WhatsApp
         </a>
       </div>
     </div>
@@ -770,7 +843,7 @@
     <div class="grid lg:grid-cols-2 gap-12">
       <div class="fade-in">
         <div class="bg-white p-8 rounded-3xl shadow-xl h-full">
-          <h3 class="text-2xl font-bold text-lider-brown mb-6">Informações de Contato</h3>
+          <h3 class="text-2xl font-bold text-lider-brown mb-6">Informações de contato</h3>
           <div class="space-y-6">
             <div class="flex items-start gap-4">
               <div class="w-12 h-12 bg-lider-orange/10 text-lider-orange rounded-xl flex items-center justify-center flex-shrink-0">
@@ -822,25 +895,25 @@
       </div>
       <div class="fade-in">
         <div class="bg-white p-8 rounded-3xl shadow-xl h-full">
-          <h3 class="text-2xl font-bold text-lider-brown mb-6">Envie uma Mensagem</h3>
+          <h3 class="text-2xl font-bold text-lider-brown mb-6">Envie uma mensagem</h3>
           <form id="contactForm" class="space-y-5">
             <div>
-              <label class="block text-sm font-semibold text-lider-brown mb-2">Nome Completo *</label>
-              <input type="text" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-lider-orange focus:outline-none transition" placeholder="Seu nome completo">
+              <label for="nome" class="block text-sm font-semibold text-lider-brown mb-2">Nome completo *</label>
+              <input type="text" id="nome" required aria-required="true" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-lider-orange focus:outline-none transition" placeholder="Seu nome completo">
             </div>
             <div class="grid md:grid-cols-2 gap-5">
               <div>
-                <label class="block text-sm font-semibold text-lider-brown mb-2">E-mail *</label>
-                <input type="email" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-lider-orange focus:outline-none transition" placeholder="seu@email.com">
+                <label for="email" class="block text-sm font-semibold text-lider-brown mb-2">E-mail *</label>
+                <input type="email" id="email" required aria-required="true" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-lider-orange focus:outline-none transition" placeholder="seu@email.com">
               </div>
               <div>
-                <label class="block text-sm font-semibold text-lider-brown mb-2">Telefone *</label>
-                <input type="tel" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-lider-orange focus:outline-none transition" placeholder="(31) 99999-9999">
+                <label for="telefone" class="block text-sm font-semibold text-lider-brown mb-2">Telefone *</label>
+                <input type="tel" id="telefone" required aria-required="true" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-lider-orange focus:outline-none transition" placeholder="(31) 99999-9999">
               </div>
             </div>
             <div>
-              <label class="block text-sm font-semibold text-lider-brown mb-2">Assunto</label>
-              <select class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-lider-orange focus:outline-none transition bg-white">
+              <label for="assunto" class="block text-sm font-semibold text-lider-brown mb-2">Assunto</label>
+              <select id="assunto" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-lider-orange focus:outline-none transition bg-white">
                 <option>Contabilidade</option>
                 <option>Fiscal</option>
                 <option>Trabalhista</option>
@@ -849,26 +922,27 @@
               </select>
             </div>
             <div>
-              <label class="block text-sm font-semibold text-lider-brown mb-2">Mensagem *</label>
-              <textarea required rows="4" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-lider-orange focus:outline-none transition resize-none" placeholder="Como podemos ajudar?"></textarea>
+              <label for="mensagem" class="block text-sm font-semibold text-lider-brown mb-2">Mensagem *</label>
+              <textarea id="mensagem" required aria-required="true" rows="4" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-lider-orange focus:outline-none transition resize-none" placeholder="Como podemos ajudar?"></textarea>
             </div>
-            <button type="submit" class="btn-primary w-full text-white px-8 py-4 rounded-xl font-bold text-lg inline-flex items-center justify-center gap-2">
-              <i class="fas fa-paper-plane"></i> Enviar Mensagem
+            <button type="submit" class="btn-primary w-full text-white px-8 py-4 rounded-xl font-bold text-lg inline-flex items-center justify-center gap-2" aria-label="Enviar mensagem de contato">
+              <i class="fas fa-paper-plane" aria-hidden="true"></i> Enviar mensagem
             </button>
+            <div id="form-status" class="mt-4 sr-only" aria-live="polite"></div>
           </form>
         </div>
       </div>
     </div>
     <div class="mt-12 fade-in">
       <div class="bg-white p-3 rounded-3xl shadow-xl">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3751.5!2d-43.1786!3d-19.8122!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDQ4JzQ0LjAiUyA0M8KwMTAnNDMuMCJX!5e0!3m2!1spt-BR!2sbr!4v1234567890" width="100%" height="400" style="border:0; border-radius: 20px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps?q=Rua+Fernão+Dias+303+5º+andar+Nossa+Senhora+do+Rosário+João+Monlevade+MG+35930-180&output=embed" width="100%" height="400" style="border:0; border-radius: 20px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" aria-label="Localização do escritório no Google Maps"></iframe>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Footer -->
-<footer class="bg-lider-darkBrown text-white pt-16 pb-8">
+<footer class="bg-lider-light text-lider-darkBrown pt-16 pb-8">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
       <div>
@@ -877,8 +951,8 @@
             <use href="#logo-full"/>
           </svg>
         </div>
-        <p class="text-white/70 leading-relaxed mb-4">O sucesso da sua empresa começa aqui. Mais de 45 anos oferecendo soluções contábeis de qualidade em João Monlevade - MG.</p>
-        <div class="flex items-center gap-2 text-white/60 text-sm">
+        <p class="text-lider-darkBrown/80 leading-relaxed mb-4">O sucesso da sua empresa começa aqui. Mais de 45 anos oferecendo soluções contábeis de qualidade em João Monlevade - MG.</p>
+        <div class="flex items-center gap-2 text-lider-darkBrown/80 text-sm">
           <i class="fas fa-id-card text-lider-orange"></i>
           <span>CRC-MG: 4623</span>
         </div>
@@ -886,64 +960,64 @@
       <div>
         <h4 class="font-bold text-lg mb-5 text-lider-orange">Links Rápidos</h4>
         <ul class="space-y-3">
-          <li><a href="#home" class="text-white/70 hover:text-lider-orange transition">Início</a></li>
-          <li><a href="#sobre" class="text-white/70 hover:text-lider-orange transition">Sobre Nós</a></li>
-          <li><a href="#servicos" class="text-white/70 hover:text-lider-orange transition">Serviços</a></li>
-          <li><a href="#diferenciais" class="text-white/70 hover:text-lider-orange transition">Diferenciais</a></li>
-          <li><a href="#contato" class="text-white/70 hover:text-lider-orange transition">Contato</a></li>
+          <li><a href="#home" class="text-lider-darkBrown/80 hover:text-lider-orange transition">Início</a></li>
+          <li><a href="#sobre" class="text-lider-darkBrown/80 hover:text-lider-orange transition">Sobre Nós</a></li>
+          <li><a href="#servicos" class="text-lider-darkBrown/80 hover:text-lider-orange transition">Serviços</a></li>
+          <li><a href="#diferenciais" class="text-lider-darkBrown/80 hover:text-lider-orange transition">Diferenciais</a></li>
+          <li><a href="#contato" class="text-lider-darkBrown/80 hover:text-lider-orange transition">Contato</a></li>
         </ul>
       </div>
       <div>
         <h4 class="font-bold text-lg mb-5 text-lider-orange">Serviços</h4>
         <ul class="space-y-3">
-          <li><a href="#servicos" class="text-white/70 hover:text-lider-orange transition">Contábil</a></li>
-          <li><a href="#servicos" class="text-white/70 hover:text-lider-orange transition">Fiscal</a></li>
-          <li><a href="#servicos" class="text-white/70 hover:text-lider-orange transition">Trabalhista</a></li>
-          <li><a href="#servicos" class="text-white/70 hover:text-lider-orange transition">Financeiro</a></li>
+          <li><a href="#servicos" class="text-lider-darkBrown/80 hover:text-lider-orange transition">Contábil</a></li>
+          <li><a href="#servicos" class="text-lider-darkBrown/80 hover:text-lider-orange transition">Fiscal</a></li>
+          <li><a href="#servicos" class="text-lider-darkBrown/80 hover:text-lider-orange transition">Trabalhista</a></li>
+          <li><a href="#servicos" class="text-lider-darkBrown/80 hover:text-lider-orange transition">Financeiro</a></li>
         </ul>
       </div>
       <div>
         <h4 class="font-bold text-lg mb-5 text-lider-orange">Contato</h4>
-        <ul class="space-y-3 text-white/70">
+        <ul class="space-y-3 text-lider-darkBrown/80">
           <li class="flex items-start gap-3">
-            <i class="fas fa-map-marker-alt text-lider-orange mt-1"></i>
+            <i class="fas fa-map-marker-alt text-lider-orange mt-1" aria-hidden="true"></i>
             <span>Rua Fernão Dias, 303, 5º andar<br>João Monlevade - MG</span>
           </li>
           <li class="flex items-center gap-3">
-            <i class="fas fa-phone text-lider-orange"></i>
+            <i class="fas fa-phone text-lider-orange" aria-hidden="true"></i>
             <a href="tel:+553138523355" class="hover:text-lider-orange transition">(31) 3852-3355</a>
           </li>
           <li class="flex items-center gap-3">
-            <i class="fab fa-whatsapp text-lider-orange"></i>
+            <i class="fab fa-whatsapp text-lider-orange" aria-hidden="true"></i>
             <a href="https://wa.me/5531988967713" target="_blank" class="hover:text-lider-orange transition">(31) 98896-7713</a>
           </li>
           <li class="flex items-center gap-3">
-            <i class="fas fa-envelope text-lider-orange"></i>
+            <i class="fas fa-envelope text-lider-orange" aria-hidden="true"></i>
             <span>contato@contabilidadelider.com.br</span>
           </li>
         </ul>
         <div class="flex gap-3 mt-5">
-          <a href="#" class="w-10 h-10 bg-white/10 hover:bg-lider-orange rounded-full flex items-center justify-center transition">
-            <i class="fab fa-facebook-f"></i>
+          <a href="#" class="w-10 h-10 bg-lider-darkBrown/20 hover:bg-lider-orange rounded-full flex items-center justify-center transition" aria-label="Facebook">
+            <i class="fab fa-facebook-f text-lider-darkBrown" aria-hidden="true"></i>
           </a>
-          <a href="https://instagram.com/lider.escritorio" target="_blank" class="w-10 h-10 bg-white/10 hover:bg-lider-orange rounded-full flex items-center justify-center transition" title="Instagram: @lider.escritorio">
-            <i class="fab fa-instagram"></i>
+          <a href="https://instagram.com/lider.escritorio" target="_blank" class="w-10 h-10 bg-lider-darkBrown/20 hover:bg-lider-orange rounded-full flex items-center justify-center transition" aria-label="Instagram: @lider.escritorio">
+            <i class="fab fa-instagram text-lider-darkBrown" aria-hidden="true"></i>
           </a>
-          <a href="#" class="w-10 h-10 bg-white/10 hover:bg-lider-orange rounded-full flex items-center justify-center transition">
-            <i class="fab fa-linkedin-in"></i>
+          <a href="#" class="w-10 h-10 bg-lider-darkBrown/20 hover:bg-lider-orange rounded-full flex items-center justify-center transition" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in text-lider-darkBrown" aria-hidden="true"></i>
           </a>
         </div>
       </div>
     </div>
     <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-white/60 text-sm">© 2026 Escritório de Contabilidade Líder. Todos os direitos reservados.</p>
-      <p class="text-white/60 text-sm">João Monlevade - MG | CRC-MG 4623 | <a href="https://instagram.com/lider.escritorio" target="_blank" class="text-lider-orange hover:underline">@lider.escritorio</a></p>
+      <p class="text-lider-darkBrown/70 text-sm">© 2026 Escritório de Contabilidade Líder. Todos os direitos reservados.</p>
+      <p class="text-lider-darkBrown/70 text-sm">João Monlevade - MG | CRC-MG 4623 | <a href="https://instagram.com/lider.escritorio" target="_blank" class="text-lider-orange hover:underline">@lider.escritorio</a></p>
     </div>
   </div>
 </footer>
 
-<a href="https://wa.me/5531988967713" target="_blank" class="float-whatsapp fixed bottom-6 right-6 w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center text-white text-3xl shadow-2xl z-40 transition">
-  <i class="fab fa-whatsapp"></i>
+<a href="https://wa.me/5531988967713" target="_blank" class="float-whatsapp fixed bottom-6 right-6 w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center text-white text-3xl shadow-2xl z-40 transition" aria-label="Fale conosco pelo WhatsApp">
+  <i class="fab fa-whatsapp" aria-hidden="true"></i>
 </a>
 
 <script>
@@ -994,13 +1068,16 @@
   document.getElementById('contactForm').addEventListener('submit', (e) => {
     e.preventDefault();
     const btn = e.target.querySelector('button');
+    const status = document.getElementById('form-status');
     const originalText = btn.innerHTML;
     btn.innerHTML = '<i class="fas fa-check"></i> Mensagem Enviada!';
     btn.style.background = 'linear-gradient(135deg, #10B981 0%, #059669 100%)';
+    status.textContent = 'Mensagem enviada com sucesso.';
     setTimeout(() => {
       btn.innerHTML = originalText;
       btn.style.background = '';
       e.target.reset();
+      status.textContent = '';
     }, 3000);
   });
 </script>
