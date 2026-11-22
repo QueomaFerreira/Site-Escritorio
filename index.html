@@ -3,10 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contabilidade Líder | João Monlevade - MG</title>
+<title>Contabilidade Líder | Escritório de Contabilidade em João Monlevade - MG</title>
 <meta name="description" content="Escritório de Contabilidade Líder em João Monlevade - MG. Há mais de 45 anos oferecendo soluções contábeis, fiscais, trabalhistas e financeiras para o crescimento do seu negócio. CRC-MG 4623.">
-<meta name="theme-color" content="#E8871E">
+<meta name="theme-color" content="#59432B">
+<link rel="canonical" href="https://contabilidadelider.cnt.br/">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://contabilidadelider.cnt.br/">
+<meta property="og:site_name" content="Contabilidade Líder">
+<meta name="twitter:card" content="summary">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:title" content="Contabilidade Líder | João Monlevade - MG">
 <meta property="og:description" content="Mais de 45 anos de tradição e confiança em contabilidade, fiscal, trabalhista e consultoria financeira em João Monlevade - MG.">
@@ -17,8 +21,11 @@
   "@type": "AccountingService",
   "name": "Escritório de Contabilidade Líder",
   "description": "Escritório de contabilidade em João Monlevade - MG com mais de 45 anos de atuação em soluções contábeis, fiscais, trabalhistas e financeiras.",
+  "url": "https://contabilidadelider.cnt.br/",
+  "slogan": "O sucesso da sua empresa começa aqui",
+  "areaServed": ["João Monlevade", "Médio Piracicaba", "MG"],
   "telephone": "+55-31-3852-3355",
-  "email": "contato@contabilidadelider.com.br",
+  "email": "contato@contabilidadelider.cnt.br",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Rua Fernão Dias, 303, 5º andar - Nossa Senhora do Rosário",
@@ -50,15 +57,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
   :root {
-    --orange: #E8871E;
-    --dark-orange: #C96F10;
-    --brown: #6B4E2E;
-    --dark-brown: #4A3520;
-    --light: #FFF8F0;
-    --cream: #FDF2E4;
+    --orange: #E48224;
+    --dark-orange: #C96E18;
+    --brown: #59432B;
+    --dark-brown: #3B2C1C;
+    --light: #FAF8F5;
+    --cream: #F8F7F4;
     --gray-600: #4B5563;
     --gray-200: #E5E7EB;
-    --hairline: #E2E8F0;
+    --hairline: #E5E0D8;
+    --silver: #A8AAAD;
+    --gold: #F59E0B;
+    --gold-soft: #FEF3C7;
   }
   *, *::before, *::after { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -205,8 +215,8 @@
 
   /* Buttons */
   .btn-primary {
-    background: linear-gradient(135deg, #E8871E 0%, #C96F10 100%);
-    color: #fff;
+    background: linear-gradient(135deg, #E48224 0%, #C96E18 100%);
+    color: #2B1F13;
     font-weight: 700;
     border: none;
     cursor: pointer;
@@ -217,7 +227,7 @@
     transition: all 0.3s ease;
   }
   .btn-primary:hover {
-    background: linear-gradient(135deg, #C96F10 0%, #A85A0A 100%);
+    background: linear-gradient(135deg, #C96E18 0%, #B05D12 100%);
     transform: translateY(-2px);
     box-shadow: 0 10px 25px rgba(232, 135, 30, 0.35);
   }
@@ -247,7 +257,7 @@
     display: flex;
     align-items: center;
     padding: 6.5rem 0 4rem;
-    background: linear-gradient(135deg, var(--cream) 0%, var(--light) 50%, #FDEBD0 100%);
+    background: linear-gradient(135deg, var(--cream) 0%, var(--light) 50%, #F3EEE6 100%);
   }
   .hero-bg::before {
     content: '';
@@ -413,7 +423,7 @@
     margin-bottom: 1rem;
   }
   .pill-cream { background: var(--cream); color: var(--dark-orange); }
-  .pill-orange { background: var(--orange); color: #fff; }
+  .pill-orange { background: var(--orange); color: #2B1F13; }
   .pill-brown { background: var(--brown); color: #fff; }
   .section-title {
     font-size: clamp(1.875rem, 3.5vw, 3rem);
@@ -777,6 +787,16 @@
     .gear-rotate, .gear-rotate-reverse, .gear-rotate-slow, .float-slow, .float-medium, .float-fast, .float-whatsapp { animation: none !important; }
     html.has-js .fade-in { opacity: 1 !important; transform: none !important; transition: none !important; }
   }
+
+  .nav-highlight { color: var(--dark-brown); font-weight: 700; }
+  .nav-badge { background: var(--gold-soft); color: #92400E; border: 1px solid var(--gold); border-radius: 999px; font-size: .65rem; padding: .1rem .45rem; margin-left: .25rem; vertical-align: middle; }
+  .escala-banner { background: linear-gradient(135deg, var(--dark-brown), var(--brown)); color: #fff; padding: 3.5rem 0; }
+  .escala-banner-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+  .escala-banner .eyebrow { display: inline-block; background: var(--gold-soft); color: #92400E; font-weight: 700; font-size: .75rem; padding: .25rem .75rem; border-radius: 999px; margin-bottom: .75rem; }
+  .escala-banner h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); margin-bottom: .5rem; color: #fff; }
+  .escala-banner p { max-width: 640px; color: #F3EEE6; }
+  .escala-banner .btn-escala { display: inline-flex; align-items: center; gap: .5rem; background: var(--orange); color: #2B1F13; font-weight: 700; padding: .9rem 1.6rem; border-radius: 10px; text-decoration: none; transition: background .2s, transform .2s; }
+  .escala-banner .btn-escala:hover { background: #F0963A; transform: translateY(-2px); }
 </style>
 </head>
 <body>
@@ -788,9 +808,9 @@
   <defs>
     <symbol id="logo-full" viewBox="0 0 700 260">
       <g class="gear-rotate" style="transform-origin: 78px 104px;">
-        <path d="M 73.8 62.2 L 82.2 62.2 L 83.7 72.5 L 88.8 73.9 L 95.3 65.7 L 102.5 69.9 L 98.7 79.6 L 102.4 83.3 L 112.1 79.5 L 116.3 86.7 L 108.1 93.2 L 109.5 98.3 L 119.8 99.8 L 119.8 108.2 L 109.5 109.7 L 108.1 114.8 L 116.3 121.3 L 112.1 128.5 L 102.4 124.7 L 98.7 128.4 L 102.5 138.1 L 95.3 142.3 L 88.8 134.1 L 83.7 135.5 L 82.2 145.8 L 73.8 145.8 L 72.3 135.5 L 67.2 134.1 L 60.7 142.3 L 53.5 138.1 L 57.3 128.4 L 53.6 124.7 L 43.9 128.5 L 39.7 121.3 L 47.9 114.8 L 46.5 109.7 L 36.2 108.2 L 36.2 99.8 L 46.5 98.3 L 47.9 93.2 L 39.7 86.7 L 43.9 79.5 L 53.6 83.3 L 57.3 79.6 L 53.5 69.9 L 60.7 65.7 L 67.2 73.9 L 72.3 72.5 Z" fill="#E8871E" stroke="#C96F10" stroke-width="1.5"/>
-        <circle cx="78" cy="104" r="32" fill="#E8871E" stroke="#C96F10" stroke-width="1.5"/>
-        <circle cx="78" cy="104" r="14" fill="white" stroke="#E8871E" stroke-width="1.5"/>
+        <path d="M 73.8 62.2 L 82.2 62.2 L 83.7 72.5 L 88.8 73.9 L 95.3 65.7 L 102.5 69.9 L 98.7 79.6 L 102.4 83.3 L 112.1 79.5 L 116.3 86.7 L 108.1 93.2 L 109.5 98.3 L 119.8 99.8 L 119.8 108.2 L 109.5 109.7 L 108.1 114.8 L 116.3 121.3 L 112.1 128.5 L 102.4 124.7 L 98.7 128.4 L 102.5 138.1 L 95.3 142.3 L 88.8 134.1 L 83.7 135.5 L 82.2 145.8 L 73.8 145.8 L 72.3 135.5 L 67.2 134.1 L 60.7 142.3 L 53.5 138.1 L 57.3 128.4 L 53.6 124.7 L 43.9 128.5 L 39.7 121.3 L 47.9 114.8 L 46.5 109.7 L 36.2 108.2 L 36.2 99.8 L 46.5 98.3 L 47.9 93.2 L 39.7 86.7 L 43.9 79.5 L 53.6 83.3 L 57.3 79.6 L 53.5 69.9 L 60.7 65.7 L 67.2 73.9 L 72.3 72.5 Z" fill="#E48224" stroke="#C96E18" stroke-width="1.5"/>
+        <circle cx="78" cy="104" r="32" fill="#E48224" stroke="#C96E18" stroke-width="1.5"/>
+        <circle cx="78" cy="104" r="14" fill="white" stroke="#E48224" stroke-width="1.5"/>
       </g>
       <g>
         <line x1="78" y1="30" x2="78" y2="200" stroke="#3A2A1A" stroke-width="5" stroke-linecap="round"/>
@@ -807,9 +827,9 @@
         <circle cx="56" cy="53" r="1.2" fill="#3A2A1A"/>
         <circle cx="100" cy="53" r="1.2" fill="#3A2A1A"/>
       </g>
-      <text x="160" y="85" font-family="Inter, Arial, sans-serif" font-weight="900" font-size="46" fill="#E8871E" letter-spacing="1">CONTABILIDADE</text>
-      <text x="155" y="185" font-family="Inter, Arial, sans-serif" font-weight="900" font-size="110" fill="#6B4E2E" letter-spacing="2">LÍDER</text>
-      <text x="165" y="225" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="16" fill="#E8871E" letter-spacing="0.5">"O SUCESSO DA SUA EMPRESA COMEÇA AQUI"</text>
+      <text x="160" y="85" font-family="Inter, Arial, sans-serif" font-weight="900" font-size="46" fill="#E48224" letter-spacing="1">CONTABILIDADE</text>
+      <text x="155" y="185" font-family="Inter, Arial, sans-serif" font-weight="900" font-size="110" fill="#59432B" letter-spacing="2">LÍDER</text>
+      <text x="165" y="225" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="16" fill="#E48224" letter-spacing="0.5">"O SUCESSO DA SUA EMPRESA COMEÇA AQUI"</text>
     </symbol>
   </defs>
 </svg>
@@ -825,7 +845,7 @@
         <a href="#sobre" class="nav-link">Sobre</a>
         <a href="#servicos" class="nav-link">Serviços</a>
         <a href="#diferenciais" class="nav-link">Diferenciais</a>
-        <a href="escala" class="nav-link" target="_blank" rel="noopener noreferrer">Escala</a>
+        <a href="escala.html" class="nav-link nav-highlight"><i class="fas fa-calendar-check" aria-hidden="true"></i> Simulador de Escalas <span class="nav-badge">Grátis</span></a>
         <a href="#contato" class="nav-link">Contato</a>
         <a href="#contato" class="btn-primary btn-nav">Fale Conosco</a>
       </div>
@@ -844,7 +864,7 @@
       <a href="#sobre" class="mobile-link">Sobre</a>
       <a href="#servicos" class="mobile-link">Serviços</a>
       <a href="#diferenciais" class="mobile-link">Diferenciais</a>
-      <a href="escala" class="mobile-link" target="_blank" rel="noopener noreferrer">Escala</a>
+      <a href="escala.html" class="mobile-link">Simulador de Escalas (grátis)</a>
       <a href="#contato" class="mobile-link">Contato</a>
       <a href="#contato" class="btn-primary btn-lg" style="margin-top:1rem;">Fale Conosco</a>
     </div>
@@ -857,83 +877,83 @@
     <svg class="hero-illustration" aria-hidden="true" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
       <!-- Grande engrenagem decorativa -->
       <g class="gear-rotate" style="transform-origin: 1250px 150px;" opacity="0.15">
-        <path d="M 1243.4 30.3 L 1256.6 30.3 L 1259.1 47.6 L 1266.3 49.1 L 1275.2 34.0 L 1287.3 39.0 L 1283.0 56.0 L 1289.1 60.1 L 1303.2 49.6 L 1312.4 58.8 L 1301.9 72.9 L 1306.0 79.0 L 1323.0 74.7 L 1328.0 86.8 L 1312.9 95.7 L 1314.4 102.9 L 1331.7 105.4 L 1331.7 118.6 L 1314.4 121.1 L 1312.9 128.3 L 1328.0 137.2 L 1323.0 149.3 L 1306.0 145.0 L 1301.9 151.1 L 1312.4 165.2 L 1303.2 174.4 L 1289.1 163.9 L 1283.0 168.0 L 1287.3 185.0 L 1275.2 190.0 L 1266.3 174.9 L 1259.1 176.4 L 1256.6 193.7 L 1243.4 193.7 L 1240.9 176.4 L 1233.7 174.9 L 1224.8 190.0 L 1212.7 185.0 L 1217.0 168.0 L 1210.9 163.9 L 1196.8 174.4 L 1187.6 165.2 L 1198.1 151.1 L 1194.0 145.0 L 1177.0 149.3 L 1172.0 137.2 L 1187.1 128.3 L 1185.6 121.1 L 1168.3 118.6 L 1168.3 105.4 L 1185.6 102.9 L 1187.1 95.7 L 1172.0 86.8 L 1177.0 74.7 L 1194.0 79.0 L 1198.1 72.9 L 1187.6 58.8 L 1196.8 49.6 L 1210.9 60.1 L 1217.0 56.0 L 1212.7 39.0 L 1224.8 34.0 L 1233.7 49.1 L 1240.9 47.6 Z" fill="#E8871E" stroke="#C96F10" stroke-width="2"/>
-        <circle cx="1250" cy="112" r="65" fill="#E8871E" stroke="#C96F10" stroke-width="2"/>
-        <circle cx="1250" cy="112" r="35" fill="white" stroke="#E8871E" stroke-width="2"/>
-        <circle cx="1250" cy="112" r="18" fill="#E8871E" opacity="0.3"/>
+        <path d="M 1243.4 30.3 L 1256.6 30.3 L 1259.1 47.6 L 1266.3 49.1 L 1275.2 34.0 L 1287.3 39.0 L 1283.0 56.0 L 1289.1 60.1 L 1303.2 49.6 L 1312.4 58.8 L 1301.9 72.9 L 1306.0 79.0 L 1323.0 74.7 L 1328.0 86.8 L 1312.9 95.7 L 1314.4 102.9 L 1331.7 105.4 L 1331.7 118.6 L 1314.4 121.1 L 1312.9 128.3 L 1328.0 137.2 L 1323.0 149.3 L 1306.0 145.0 L 1301.9 151.1 L 1312.4 165.2 L 1303.2 174.4 L 1289.1 163.9 L 1283.0 168.0 L 1287.3 185.0 L 1275.2 190.0 L 1266.3 174.9 L 1259.1 176.4 L 1256.6 193.7 L 1243.4 193.7 L 1240.9 176.4 L 1233.7 174.9 L 1224.8 190.0 L 1212.7 185.0 L 1217.0 168.0 L 1210.9 163.9 L 1196.8 174.4 L 1187.6 165.2 L 1198.1 151.1 L 1194.0 145.0 L 1177.0 149.3 L 1172.0 137.2 L 1187.1 128.3 L 1185.6 121.1 L 1168.3 118.6 L 1168.3 105.4 L 1185.6 102.9 L 1187.1 95.7 L 1172.0 86.8 L 1177.0 74.7 L 1194.0 79.0 L 1198.1 72.9 L 1187.6 58.8 L 1196.8 49.6 L 1210.9 60.1 L 1217.0 56.0 L 1212.7 39.0 L 1224.8 34.0 L 1233.7 49.1 L 1240.9 47.6 Z" fill="#E48224" stroke="#C96E18" stroke-width="2"/>
+        <circle cx="1250" cy="112" r="65" fill="#E48224" stroke="#C96E18" stroke-width="2"/>
+        <circle cx="1250" cy="112" r="35" fill="white" stroke="#E48224" stroke-width="2"/>
+        <circle cx="1250" cy="112" r="18" fill="#E48224" opacity="0.3"/>
       </g>
       <!-- Engrenagem inferior esquerda -->
       <g class="gear-rotate-reverse" style="transform-origin: 180px 750px;" opacity="0.12">
-        <path d="M 173.8 670.3 L 186.2 670.3 L 188.6 685.3 L 196.2 687.3 L 205.7 675.5 L 216.5 681.8 L 211.1 695.9 L 216.6 701.4 L 230.7 696.0 L 237.0 706.8 L 225.2 716.3 L 227.2 723.9 L 242.2 726.3 L 242.2 738.7 L 227.2 741.1 L 225.2 748.7 L 237.0 758.2 L 230.7 769.0 L 216.6 763.6 L 211.1 769.1 L 216.5 783.2 L 205.7 789.5 L 196.2 777.7 L 188.6 779.7 L 186.2 794.7 L 173.8 794.7 L 171.4 779.7 L 163.8 777.7 L 154.3 789.5 L 143.5 783.2 L 148.9 769.1 L 143.4 763.6 L 129.3 769.0 L 123.0 758.2 L 134.8 748.7 L 132.8 741.1 L 117.8 738.7 L 117.8 726.3 L 132.8 723.9 L 134.8 716.3 L 123.0 706.8 L 129.3 696.0 L 143.4 701.4 L 148.9 695.9 L 143.5 681.8 L 154.3 675.5 L 163.8 687.3 L 171.4 685.3 Z" fill="#6B4E2E" stroke="#4A3520" stroke-width="2"/>
-        <circle cx="180" cy="732.5" r="48" fill="#6B4E2E" stroke="#4A3520" stroke-width="2"/>
-        <circle cx="180" cy="732.5" r="24" fill="white" stroke="#6B4E2E" stroke-width="2"/>
-        <circle cx="180" cy="732.5" r="12" fill="#6B4E2E" opacity="0.3"/>
+        <path d="M 173.8 670.3 L 186.2 670.3 L 188.6 685.3 L 196.2 687.3 L 205.7 675.5 L 216.5 681.8 L 211.1 695.9 L 216.6 701.4 L 230.7 696.0 L 237.0 706.8 L 225.2 716.3 L 227.2 723.9 L 242.2 726.3 L 242.2 738.7 L 227.2 741.1 L 225.2 748.7 L 237.0 758.2 L 230.7 769.0 L 216.6 763.6 L 211.1 769.1 L 216.5 783.2 L 205.7 789.5 L 196.2 777.7 L 188.6 779.7 L 186.2 794.7 L 173.8 794.7 L 171.4 779.7 L 163.8 777.7 L 154.3 789.5 L 143.5 783.2 L 148.9 769.1 L 143.4 763.6 L 129.3 769.0 L 123.0 758.2 L 134.8 748.7 L 132.8 741.1 L 117.8 738.7 L 117.8 726.3 L 132.8 723.9 L 134.8 716.3 L 123.0 706.8 L 129.3 696.0 L 143.4 701.4 L 148.9 695.9 L 143.5 681.8 L 154.3 675.5 L 163.8 687.3 L 171.4 685.3 Z" fill="#59432B" stroke="#3B2C1C" stroke-width="2"/>
+        <circle cx="180" cy="732.5" r="48" fill="#59432B" stroke="#3B2C1C" stroke-width="2"/>
+        <circle cx="180" cy="732.5" r="24" fill="white" stroke="#59432B" stroke-width="2"/>
+        <circle cx="180" cy="732.5" r="12" fill="#59432B" opacity="0.3"/>
       </g>
       <!-- Engrenagem média -->
       <g class="gear-rotate-slow" style="transform-origin: 950px 600px;" opacity="0.10">
-        <path d="M 950.1 540.0 L 960.9 540.0 L 963.0 553.0 L 969.6 554.8 L 977.9 544.5 L 987.3 550.0 L 982.7 562.3 L 987.5 567.1 L 999.7 562.5 L 1005.2 571.9 L 995.0 580.2 L 996.8 586.8 L 1009.7 589.0 L 1009.7 600.0 L 996.8 602.2 L 995.0 608.8 L 1005.2 617.1 L 999.7 626.5 L 987.5 621.9 L 982.7 626.7 L 987.3 639.0 L 977.9 644.5 L 969.6 634.2 L 963.0 636.0 L 960.9 649.0 L 950.1 649.0 L 948.0 636.0 L 941.4 634.2 L 933.1 644.5 L 923.7 639.0 L 928.3 626.7 L 923.5 621.9 L 911.3 626.5 L 905.8 617.1 L 916.0 608.8 L 914.2 602.2 L 901.3 600.0 L 901.3 589.0 L 914.2 586.8 L 916.0 580.2 L 905.8 571.9 L 911.3 562.5 L 923.5 567.1 L 928.3 562.3 L 923.7 550.0 L 933.1 544.5 L 941.4 554.8 L 948.0 553.0 Z" fill="#6B4E2E" stroke="#4A3520" stroke-width="2"/>
-        <circle cx="955.5" cy="594.5" r="42" fill="#6B4E2E" stroke="#4A3520" stroke-width="2"/>
-        <circle cx="955.5" cy="594.5" r="20" fill="#ffffff" stroke="#4A3520" stroke-width="2"/>
-        <circle cx="955.5" cy="594.5" r="10" fill="#6B4E2E" opacity="0.35"/>
+        <path d="M 950.1 540.0 L 960.9 540.0 L 963.0 553.0 L 969.6 554.8 L 977.9 544.5 L 987.3 550.0 L 982.7 562.3 L 987.5 567.1 L 999.7 562.5 L 1005.2 571.9 L 995.0 580.2 L 996.8 586.8 L 1009.7 589.0 L 1009.7 600.0 L 996.8 602.2 L 995.0 608.8 L 1005.2 617.1 L 999.7 626.5 L 987.5 621.9 L 982.7 626.7 L 987.3 639.0 L 977.9 644.5 L 969.6 634.2 L 963.0 636.0 L 960.9 649.0 L 950.1 649.0 L 948.0 636.0 L 941.4 634.2 L 933.1 644.5 L 923.7 639.0 L 928.3 626.7 L 923.5 621.9 L 911.3 626.5 L 905.8 617.1 L 916.0 608.8 L 914.2 602.2 L 901.3 600.0 L 901.3 589.0 L 914.2 586.8 L 916.0 580.2 L 905.8 571.9 L 911.3 562.5 L 923.5 567.1 L 928.3 562.3 L 923.7 550.0 L 933.1 544.5 L 941.4 554.8 L 948.0 553.0 Z" fill="#59432B" stroke="#3B2C1C" stroke-width="2"/>
+        <circle cx="955.5" cy="594.5" r="42" fill="#59432B" stroke="#3B2C1C" stroke-width="2"/>
+        <circle cx="955.5" cy="594.5" r="20" fill="#ffffff" stroke="#3B2C1C" stroke-width="2"/>
+        <circle cx="955.5" cy="594.5" r="10" fill="#59432B" opacity="0.35"/>
       </g>
       <!-- Gráfico de barras -->
       <g class="float-slow" opacity="0.22">
-        <rect x="1050" y="620" width="50" height="100" rx="8" fill="#E8871E"/>
-        <rect x="1120" y="545" width="50" height="175" rx="8" fill="#E8871E"/>
-        <rect x="1190" y="470" width="50" height="250" rx="8" fill="#6B4E2E"/>
-        <rect x="1260" y="395" width="50" height="325" rx="8" fill="#6B4E2E"/>
-        <rect x="1330" y="320" width="50" height="400" rx="8" fill="#E8871E"/>
+        <rect x="1050" y="620" width="50" height="100" rx="8" fill="#E48224"/>
+        <rect x="1120" y="545" width="50" height="175" rx="8" fill="#E48224"/>
+        <rect x="1190" y="470" width="50" height="250" rx="8" fill="#59432B"/>
+        <rect x="1260" y="395" width="50" height="325" rx="8" fill="#59432B"/>
+        <rect x="1330" y="320" width="50" height="400" rx="8" fill="#E48224"/>
       </g>
       <!-- Calculadora -->
       <g class="float-medium" opacity="0.18">
-        <rect x="980" y="680" width="120" height="160" rx="12" fill="#6B4E2E"/>
+        <rect x="980" y="680" width="120" height="160" rx="12" fill="#59432B"/>
         <rect x="992" y="692" width="96" height="36" rx="6" fill="#FDF2E4"/>
-        <text x="1040" y="718" font-family="Inter, Arial" font-size="18" font-weight="bold" fill="#6B4E2E" text-anchor="middle">1.250</text>
-        <rect x="992" y="740" width="22" height="22" rx="4" fill="#E8871E"/>
-        <rect x="1022" y="740" width="22" height="22" rx="4" fill="#E8871E"/>
-        <rect x="1052" y="740" width="22" height="22" rx="4" fill="#E8871E"/>
-        <rect x="992" y="770" width="22" height="22" rx="4" fill="#E8871E"/>
-        <rect x="1022" y="770" width="22" height="22" rx="4" fill="#E8871E"/>
-        <rect x="1052" y="770" width="22" height="22" rx="4" fill="#E8871E"/>
-        <rect x="992" y="800" width="22" height="22" rx="4" fill="#E8871E"/>
-        <rect x="1022" y="800" width="22" height="22" rx="4" fill="#E8871E"/>
-        <rect x="1052" y="800" width="22" height="22" rx="4" fill="#E8871E"/>
+        <text x="1040" y="718" font-family="Inter, Arial" font-size="18" font-weight="bold" fill="#59432B" text-anchor="middle">1.250</text>
+        <rect x="992" y="740" width="22" height="22" rx="4" fill="#E48224"/>
+        <rect x="1022" y="740" width="22" height="22" rx="4" fill="#E48224"/>
+        <rect x="1052" y="740" width="22" height="22" rx="4" fill="#E48224"/>
+        <rect x="992" y="770" width="22" height="22" rx="4" fill="#E48224"/>
+        <rect x="1022" y="770" width="22" height="22" rx="4" fill="#E48224"/>
+        <rect x="1052" y="770" width="22" height="22" rx="4" fill="#E48224"/>
+        <rect x="992" y="800" width="22" height="22" rx="4" fill="#E48224"/>
+        <rect x="1022" y="800" width="22" height="22" rx="4" fill="#E48224"/>
+        <rect x="1052" y="800" width="22" height="22" rx="4" fill="#E48224"/>
       </g>
       <!-- Moedas empilhadas -->
       <g class="float-fast" opacity="0.22">
-        <ellipse cx="280" cy="620" rx="55" ry="14" fill="#E8871E" stroke="#C96F10" stroke-width="2"/>
-        <ellipse cx="280" cy="605" rx="55" ry="14" fill="#E8871E" stroke="#C96F10" stroke-width="2"/>
-        <ellipse cx="280" cy="590" rx="55" ry="14" fill="#E8871E" stroke="#C96F10" stroke-width="2"/>
-        <ellipse cx="280" cy="575" rx="55" ry="14" fill="#E8871E" stroke="#C96F10" stroke-width="2"/>
-        <text x="280" y="580" font-family="Inter, Arial" font-size="20" font-weight="bold" fill="#6B4E2E" text-anchor="middle">$</text>
+        <ellipse cx="280" cy="620" rx="55" ry="14" fill="#E48224" stroke="#C96E18" stroke-width="2"/>
+        <ellipse cx="280" cy="605" rx="55" ry="14" fill="#E48224" stroke="#C96E18" stroke-width="2"/>
+        <ellipse cx="280" cy="590" rx="55" ry="14" fill="#E48224" stroke="#C96E18" stroke-width="2"/>
+        <ellipse cx="280" cy="575" rx="55" ry="14" fill="#E48224" stroke="#C96E18" stroke-width="2"/>
+        <text x="280" y="580" font-family="Inter, Arial" font-size="20" font-weight="bold" fill="#59432B" text-anchor="middle">$</text>
       </g>
       <!-- Documento -->
       <g class="float-slow" opacity="0.18">
-        <rect x="420" y="120" width="140" height="180" rx="10" fill="white" stroke="#E8871E" stroke-width="3"/>
-        <line x1="440" y1="150" x2="540" y2="150" stroke="#E8871E" stroke-width="3" stroke-linecap="round"/>
-        <line x1="440" y1="175" x2="520" y2="175" stroke="#6B4E2E" stroke-width="3" stroke-linecap="round"/>
-        <line x1="440" y1="200" x2="530" y2="200" stroke="#6B4E2E" stroke-width="3" stroke-linecap="round"/>
-        <line x1="440" y1="225" x2="510" y2="225" stroke="#E8871E" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="540" cy="270" r="22" fill="#E8871E"/>
+        <rect x="420" y="120" width="140" height="180" rx="10" fill="white" stroke="#E48224" stroke-width="3"/>
+        <line x1="440" y1="150" x2="540" y2="150" stroke="#E48224" stroke-width="3" stroke-linecap="round"/>
+        <line x1="440" y1="175" x2="520" y2="175" stroke="#59432B" stroke-width="3" stroke-linecap="round"/>
+        <line x1="440" y1="200" x2="530" y2="200" stroke="#59432B" stroke-width="3" stroke-linecap="round"/>
+        <line x1="440" y1="225" x2="510" y2="225" stroke="#E48224" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="540" cy="270" r="22" fill="#E48224"/>
         <path d="M532 270 L538 276 L550 264" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
       </g>
       <!-- Porcentagem e Pizza -->
       <g class="float-medium" opacity="0.15">
-        <circle cx="700" cy="700" r="50" fill="#E8871E"/>
+        <circle cx="700" cy="700" r="50" fill="#E48224"/>
         <text x="700" y="718" font-family="Inter, Arial" font-size="40" font-weight="900" fill="white" text-anchor="middle">%</text>
       </g>
       <g class="float-slow" opacity="0.18">
-        <circle cx="380" cy="400" r="60" fill="#E8871E" opacity="0.3"/>
-        <path d="M380 400 L380 340 A60 60 0 0 1 432 430 Z" fill="#E8871E"/>
-        <path d="M380 400 L432 430 A60 60 0 0 1 328 430 Z" fill="#6B4E2E"/>
-        <path d="M380 400 L328 430 A60 60 0 0 1 380 340 Z" fill="#FDF2E4" stroke="#6B4E2E" stroke-width="1.5"/>
+        <circle cx="380" cy="400" r="60" fill="#E48224" opacity="0.3"/>
+        <path d="M380 400 L380 340 A60 60 0 0 1 432 430 Z" fill="#E48224"/>
+        <path d="M380 400 L432 430 A60 60 0 0 1 328 430 Z" fill="#59432B"/>
+        <path d="M380 400 L328 430 A60 60 0 0 1 380 340 Z" fill="#FDF2E4" stroke="#59432B" stroke-width="1.5"/>
       </g>
       <!-- Linhas e pontos -->
-      <circle cx="150" cy="200" r="6" fill="#E8871E" opacity="0.3"/>
-      <circle cx="800" cy="150" r="8" fill="#6B4E2E" opacity="0.2"/>
-      <circle cx="1100" cy="500" r="5" fill="#E8871E" opacity="0.3"/>
-      <path d="M100 400 Q200 350 300 400 T500 400" stroke="#E8871E" stroke-width="2" fill="none" opacity="0.15" stroke-dasharray="6 4"/>
-      <path d="M900 100 Q1000 150 1100 100 T1300 100" stroke="#6B4E2E" stroke-width="2" fill="none" opacity="0.12" stroke-dasharray="6 4"/>
+      <circle cx="150" cy="200" r="6" fill="#E48224" opacity="0.3"/>
+      <circle cx="800" cy="150" r="8" fill="#59432B" opacity="0.2"/>
+      <circle cx="1100" cy="500" r="5" fill="#E48224" opacity="0.3"/>
+      <path d="M100 400 Q200 350 300 400 T500 400" stroke="#E48224" stroke-width="2" fill="none" opacity="0.15" stroke-dasharray="6 4"/>
+      <path d="M900 100 Q1000 150 1100 100 T1300 100" stroke="#59432B" stroke-width="2" fill="none" opacity="0.12" stroke-dasharray="6 4"/>
     </svg>
     <div class="container hero-content">
       <div class="hero-grid">
@@ -1000,8 +1020,8 @@
             </ul>
             <div class="hero-card-footer">
               <div>
-                <strong style="display:block; font-size:0.8rem; color:#4A3520;">João Monlevade – MG</strong>
-                <span style="font-size:0.75rem; color:#6B4E2E;">Atendimento presencial e digital</span>
+                <strong style="display:block; font-size:0.8rem; color:#3B2C1C;">João Monlevade – MG</strong>
+                <span style="font-size:0.75rem; color:#59432B;">Atendimento presencial e digital</span>
               </div>
               <a href="https://wa.me/5531988967713?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Contabilidade%20L%C3%ADder." target="_blank" rel="noopener noreferrer" class="btn-wa-sm">
                 <i class="fab fa-whatsapp" aria-hidden="true"></i> Falar agora
@@ -1122,6 +1142,20 @@
   </section>
 
   <!-- CTA Banner -->
+  <!-- Banner Simulador de Escalas -->
+  <section class="escala-banner" aria-labelledby="escala-banner-heading">
+    <div class="container">
+      <div class="escala-banner-inner">
+        <div>
+          <span class="eyebrow">Ferramenta gratuita para empresários e gestores de RH</span>
+          <h2 id="escala-banner-heading">Simulador e Gerador de Escalas de Trabalho</h2>
+          <p>Monte escalas 6x1, 5x2, 4x3 e 12x36, acompanhe folgas, domingos trabalhados e carga horária, e exporte para Excel ou PDF. Pensado para empresas de João Monlevade e região do Médio Piracicaba.</p>
+        </div>
+        <a href="escala.html" class="btn-escala"><i class="fas fa-calendar-check" aria-hidden="true"></i> Gerar minha escala</a>
+      </div>
+    </div>
+  </section>
+
   <section class="cta-banner">
     <div class="container">
       <div class="cta-inner">
@@ -1152,7 +1186,7 @@
             <div class="contact-info-item"><div class="contact-info-icon"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></div><div><h4>Endereço</h4><p>Rua Fernão Dias, 303, 5º andar<br>Bairro Nossa Senhora do Rosário<br>João Monlevade - MG<br>CEP: 35930-180</p></div></div>
             <div class="contact-info-item"><div class="contact-info-icon"><i class="fas fa-phone" aria-hidden="true"></i></div><div><h4>Telefone</h4><a href="tel:+553138523355" class="contact-link">(31) 3852-3355</a></div></div>
             <div class="contact-info-item"><div class="contact-info-icon"><i class="fab fa-whatsapp" aria-hidden="true"></i></div><div><h4>WhatsApp</h4><a href="https://wa.me/5531988967713?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20a%20Contabilidade%20L%C3%ADder." target="_blank" rel="noopener noreferrer" class="contact-link">(31) 98896-7713</a></div></div>
-            <div class="contact-info-item"><div class="contact-info-icon"><i class="fas fa-envelope" aria-hidden="true"></i></div><div><h4>E-mail</h4><a href="mailto:contato@contabilidadelider.com.br" class="contact-link">contato@contabilidadelider.com.br</a></div></div>
+            <div class="contact-info-item"><div class="contact-info-icon"><i class="fas fa-envelope" aria-hidden="true"></i></div><div><h4>E-mail</h4><a href="mailto:contato@contabilidadelider.cnt.br" class="contact-link">contato@contabilidadelider.cnt.br</a></div></div>
             <div class="contact-info-item"><div class="contact-info-icon"><i class="fas fa-clock" aria-hidden="true"></i></div><div><h4>Horário de Atendimento</h4><p>Segunda a Sexta: 8h às 18h<br>Sábado: 8h às 12h</p></div></div>
           </div>
         </div>
@@ -1256,7 +1290,7 @@
           <li>Rua Fernão Dias, 303, 5º andar, João Monlevade - MG</li>
           <li><a href="tel:+553138523355">(31) 3852-3355</a></li>
           <li><a href="https://wa.me/5531988967713?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20a%20Contabilidade%20L%C3%ADder." target="_blank" rel="noopener noreferrer">(31) 98896-7713</a></li>
-          <li><a href="mailto:contato@contabilidadelider.com.br">contato@contabilidadelider.com.br</a></li>
+          <li><a href="mailto:contato@contabilidadelider.cnt.br">contato@contabilidadelider.cnt.br</a></li>
         </ul>
         <a href="https://instagram.com/lider.escritorio" target="_blank" rel="noopener noreferrer" class="social-pill">
           <i class="fab fa-instagram" aria-hidden="true"></i> @lider.escritorio
@@ -1339,7 +1373,7 @@
     const mensagem = document.getElementById('mensagem').value.trim();
     const texto = ['Olá! Gostaria de falar com a Contabilidade Líder.', '', `*Nome:* ${nome}`, `*E-mail:* ${email}`, `*Telefone:* ${telefone}`, `*Assunto:* ${assunto}`, `*Mensagem:* ${mensagem}`].join('\n');
     const waUrl = `https://wa.me/5531988967713?text=${encodeURIComponent(texto)}`;
-    const mailUrl = `mailto:contato@contabilidadelider.com.br?subject=${encodeURIComponent('[Site] ' + assunto + ' - ' + nome)}&body=${encodeURIComponent(texto.replace(/\*/g, ''))}`;
+    const mailUrl = `mailto:contato@contabilidadelider.cnt.br?subject=${encodeURIComponent('[Site] ' + assunto + ' - ' + nome)}&body=${encodeURIComponent(texto.replace(/\*/g, ''))}`;
     window.open(waUrl, '_blank', 'noopener,noreferrer');
     const status = document.getElementById('form-status');
     status.innerHTML = `Mensagem preparada! <a href="${waUrl}" target="_blank" rel="noopener noreferrer" style="text-decoration:underline; font-weight:700;">Abrir WhatsApp</a> ou <a href="${mailUrl}" style="text-decoration:underline; font-weight:700;">enviar por e-mail</a>.`;

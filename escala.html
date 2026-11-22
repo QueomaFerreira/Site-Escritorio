@@ -3,24 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simulador de Escalas Trabalhistas (Pós-6x1) | Contabilidade Líder</title>
+  <title>Simulador e Gerador de Escalas de Trabalho 6x1, 5x2, 4x3 e 12x36 | Contabilidade Líder</title>
   <meta name="description" content="Ferramenta gratuita da Contabilidade Líder para organizar escalas 5x2, 4x3, 12x36 e revezamento de folgas com cálculo automático de horas, importação de planilhas, alertas CLT e exportação para Excel e PDF." />
-  <meta name="theme-color" content="#E8871E" />
+  <meta name="theme-color" content="#59432B" />
+  <link rel="canonical" href="https://contabilidadelider.cnt.br/escala.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="Contabilidade Líder" />
+  <meta property="og:url" content="https://contabilidadelider.cnt.br/escala.html" />
+  <meta property="og:title" content="Simulador e Gerador de Escalas de Trabalho | Contabilidade Líder" />
+  <meta property="og:description" content="Ferramenta gratuita para montar escalas 6x1, 5x2, 4x3 e 12x36 com cálculo de horas, folgas e domingos. Contabilidade Líder, João Monlevade - MG." />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"AccountingService","name":"Contabilidade Líder","url":"https://contabilidadelider.cnt.br/","email":"contato@contabilidadelider.cnt.br","telephone":"+55-31-3852-3355","slogan":"O sucesso da sua empresa começa aqui","address":{"@type":"PostalAddress","streetAddress":"Rua Fernão Dias, 303, 5º andar","addressLocality":"João Monlevade","addressRegion":"MG","postalCode":"35930-180","addressCountry":"BR"},"areaServed":["João Monlevade","Médio Piracicaba","MG"]}
+  </script>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FDF2E4'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='%23E8871E' stroke-width='7' stroke-dasharray='7 3'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%236B4E2E'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-inter@5.0.0/index.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
   <style>
     :root {
-      --orange: #E8871E;
-      --dark-orange: #C96F10;
-      --brown: #6B4E2E;
-      --dark-brown: #4A3520;
-      --light: #FFF8F0;
-      --cream: #FDF2E4;
+      --orange: #E48224;
+      --dark-orange: #C96E18;
+      --brown: #59432B;
+      --dark-brown: #3B2C1C;
+      --light: #FAF8F5;
+      --cream: #F8F7F4;
       --gray-600: #4B5563;
       --gray-200: #E5E7EB;
-      --hairline: #E2E8F0;
+      --hairline: #E5E0D8;
+    --silver: #A8AAAD;
+    --gold: #F59E0B;
+    --gold-soft: #FEF3C7;
       --bg: #FFFDF9;
       --surface: #FFFFFF;
       --text: #1F2937;
@@ -188,12 +201,12 @@
       padding: 0.6rem 1rem;
     }
     .btn-primary {
-      background: linear-gradient(135deg, #E8871E 0%, #C96F10 100%);
-      color: #fff;
+      background: linear-gradient(135deg, #E48224 0%, #C96E18 100%);
+      color: #2B1F13;
       box-shadow: 0 4px 12px rgba(232, 135, 30, 0.25);
     }
     .btn-primary:hover {
-      background: linear-gradient(135deg, #C96F10 0%, #A85A0A 100%);
+      background: linear-gradient(135deg, #C96E18 0%, #B05D12 100%);
       transform: translateY(-1px);
       box-shadow: 0 8px 20px rgba(232, 135, 30, 0.35);
     }
@@ -243,7 +256,7 @@
     .hero-banner {
       position: relative;
       overflow: hidden;
-      background: linear-gradient(135deg, var(--cream) 0%, var(--light) 55%, #FDEBD0 100%);
+      background: linear-gradient(135deg, var(--cream) 0%, var(--light) 55%, #F3EEE6 100%);
       border-bottom: 1px solid rgba(232, 135, 30, 0.18);
       padding: 2.5rem 0;
     }
@@ -925,9 +938,9 @@
   <defs>
     <symbol id="logo-full" viewBox="0 0 700 260">
       <g class="gear-rotate" style="transform-origin: 78px 104px;">
-        <path d="M 73.8 62.2 L 82.2 62.2 L 83.7 72.5 L 88.8 73.9 L 95.3 65.7 L 102.5 69.9 L 98.7 79.6 L 102.4 83.3 L 112.1 79.5 L 116.3 86.7 L 108.1 93.2 L 109.5 98.3 L 119.8 99.8 L 119.8 108.2 L 109.5 109.7 L 108.1 114.8 L 116.3 121.3 L 112.1 128.5 L 102.4 124.7 L 98.7 128.4 L 102.5 138.1 L 95.3 142.3 L 88.8 134.1 L 83.7 135.5 L 82.2 145.8 L 73.8 145.8 L 72.3 135.5 L 67.2 134.1 L 60.7 142.3 L 53.5 138.1 L 57.3 128.4 L 53.6 124.7 L 43.9 128.5 L 39.7 121.3 L 47.9 114.8 L 46.5 109.7 L 36.2 108.2 L 36.2 99.8 L 46.5 98.3 L 47.9 93.2 L 39.7 86.7 L 43.9 79.5 L 53.6 83.3 L 57.3 79.6 L 53.5 69.9 L 60.7 65.7 L 67.2 73.9 L 72.3 72.5 Z" fill="#E8871E" stroke="#C96F10" stroke-width="1.5"/>
-        <circle cx="78" cy="104" r="32" fill="#E8871E" stroke="#C96F10" stroke-width="1.5"/>
-        <circle cx="78" cy="104" r="14" fill="white" stroke="#E8871E" stroke-width="1.5"/>
+        <path d="M 73.8 62.2 L 82.2 62.2 L 83.7 72.5 L 88.8 73.9 L 95.3 65.7 L 102.5 69.9 L 98.7 79.6 L 102.4 83.3 L 112.1 79.5 L 116.3 86.7 L 108.1 93.2 L 109.5 98.3 L 119.8 99.8 L 119.8 108.2 L 109.5 109.7 L 108.1 114.8 L 116.3 121.3 L 112.1 128.5 L 102.4 124.7 L 98.7 128.4 L 102.5 138.1 L 95.3 142.3 L 88.8 134.1 L 83.7 135.5 L 82.2 145.8 L 73.8 145.8 L 72.3 135.5 L 67.2 134.1 L 60.7 142.3 L 53.5 138.1 L 57.3 128.4 L 53.6 124.7 L 43.9 128.5 L 39.7 121.3 L 47.9 114.8 L 46.5 109.7 L 36.2 108.2 L 36.2 99.8 L 46.5 98.3 L 47.9 93.2 L 39.7 86.7 L 43.9 79.5 L 53.6 83.3 L 57.3 79.6 L 53.5 69.9 L 60.7 65.7 L 67.2 73.9 L 72.3 72.5 Z" fill="#E48224" stroke="#C96E18" stroke-width="1.5"/>
+        <circle cx="78" cy="104" r="32" fill="#E48224" stroke="#C96E18" stroke-width="1.5"/>
+        <circle cx="78" cy="104" r="14" fill="white" stroke="#E48224" stroke-width="1.5"/>
       </g>
       <g>
         <line x1="78" y1="30" x2="78" y2="200" stroke="#3A2A1A" stroke-width="5" stroke-linecap="round"/>
@@ -944,9 +957,9 @@
         <circle cx="56" cy="53" r="1.2" fill="#3A2A1A"/>
         <circle cx="100" cy="53" r="1.2" fill="#3A2A1A"/>
       </g>
-      <text x="160" y="85" font-family="Inter, Arial, sans-serif" font-weight="900" font-size="46" fill="#E8871E" letter-spacing="1">CONTABILIDADE</text>
-      <text x="155" y="185" font-family="Inter, Arial, sans-serif" font-weight="900" font-size="110" fill="#6B4E2E" letter-spacing="2">LÍDER</text>
-      <text x="165" y="225" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="16" fill="#E8871E" letter-spacing="0.5">"O SUCESSO DA SUA EMPRESA COMEÇA AQUI"</text>
+      <text x="160" y="85" font-family="Inter, Arial, sans-serif" font-weight="900" font-size="46" fill="#E48224" letter-spacing="1">CONTABILIDADE</text>
+      <text x="155" y="185" font-family="Inter, Arial, sans-serif" font-weight="900" font-size="110" fill="#59432B" letter-spacing="2">LÍDER</text>
+      <text x="165" y="225" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="16" fill="#E48224" letter-spacing="0.5">"O SUCESSO DA SUA EMPRESA COMEÇA AQUI"</text>
     </symbol>
   </defs>
 </svg>
@@ -962,8 +975,8 @@
         <a href="index.html" class="nav-link"><i class="fa-solid fa-arrow-left" style="margin-right:0.35rem;"></i>Voltar ao Site</a>
         <a href="index.html#servicos" class="nav-link">Serviços</a>
         <a href="index.html#contato" class="nav-link">Contato</a>
-        <a href="https://wa.me/5531988967713?text=Ol%C3%A1!%20Estou%20usando%20o%20Simulador%20de%20Escalas%20no%20site%20da%20Contabilidade%20L%C3%ADder%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
-          <i class="fa-brands fa-whatsapp"></i> Falar com Especialista
+        <a href="https://wa.me/5531988967713?text=Ol%C3%A1!%20Estou%20usando%20o%20Simulador%20de%20Escalas%20no%20site%20da%20Contabilidade%20L%C3%ADder%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida." target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          <i class="fa-brands fa-whatsapp"></i> Agendar consultoria
         </a>
       </div>
       <button id="menuBtn" class="menu-btn" aria-label="Abrir menu mobile" aria-expanded="false">
@@ -980,8 +993,8 @@
       <a href="index.html" class="mobile-link">Voltar ao Site</a>
       <a href="index.html#servicos" class="mobile-link">Serviços</a>
       <a href="index.html#contato" class="mobile-link">Contato</a>
-      <a href="https://wa.me/5531988967713?text=Ol%C3%A1!%20Estou%20usando%20o%20Simulador%20de%20Escalas%20da%20Contabilidade%20L%C3%ADder." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="margin-top:0.75rem;">
-        <i class="fa-brands fa-whatsapp"></i> Falar com Especialista
+      <a href="https://wa.me/5531988967713?text=Ol%C3%A1!%20Estou%20usando%20o%20Simulador%20de%20Escalas%20da%20Contabilidade%20L%C3%ADder." target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-top:0.75rem;">
+        <i class="fa-brands fa-whatsapp"></i> Agendar consultoria
       </a>
     </div>
   </div>
@@ -991,11 +1004,11 @@
 <section class="hero-banner">
   <svg class="hero-illustration" aria-hidden="true" viewBox="0 0 1440 360" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
     <g class="gear-rotate" style="transform-origin: 1320px 90px;" opacity="0.12">
-      <path d="M 1313.4 10.3 L 1326.6 10.3 L 1329.1 27.6 L 1336.3 29.1 L 1345.2 14.0 L 1357.3 19.0 L 1353.0 36.0 L 1359.1 40.1 L 1373.2 29.6 L 1382.4 38.8 L 1371.9 52.9 L 1376.0 59.0 L 1393.0 54.7 L 1398.0 66.8 L 1382.9 75.7 L 1384.4 82.9 L 1401.7 85.4 L 1401.7 98.6 L 1384.4 101.1 L 1382.9 108.3 L 1398.0 117.2 L 1393.0 129.3 L 1376.0 125.0 L 1371.9 131.1 L 1382.4 145.2 L 1373.2 154.4 L 1359.1 143.9 L 1353.0 148.0 L 1357.3 165.0 L 1345.2 170.0 L 1336.3 154.9 L 1329.1 156.4 L 1326.6 173.7 L 1313.4 173.7 L 1310.9 156.4 L 1303.7 154.9 L 1294.8 170.0 L 1282.7 165.0 L 1287.0 148.0 L 1280.9 143.9 L 1266.8 154.4 L 1257.6 145.2 L 1268.1 131.1 L 1264.0 125.0 L 1247.0 129.3 L 1242.0 117.2 L 1257.1 108.3 L 1255.6 101.1 L 1238.3 98.6 L 1238.3 85.4 L 1255.6 82.9 L 1257.1 75.7 L 1242.0 66.8 L 1247.0 54.7 L 1264.0 59.0 L 1268.1 52.9 L 1257.6 38.8 L 1266.8 29.6 L 1280.9 40.1 L 1287.0 36.0 L 1282.7 19.0 L 1294.8 14.0 L 1303.7 29.1 L 1310.9 27.6 Z" fill="#E8871E"/>
+      <path d="M 1313.4 10.3 L 1326.6 10.3 L 1329.1 27.6 L 1336.3 29.1 L 1345.2 14.0 L 1357.3 19.0 L 1353.0 36.0 L 1359.1 40.1 L 1373.2 29.6 L 1382.4 38.8 L 1371.9 52.9 L 1376.0 59.0 L 1393.0 54.7 L 1398.0 66.8 L 1382.9 75.7 L 1384.4 82.9 L 1401.7 85.4 L 1401.7 98.6 L 1384.4 101.1 L 1382.9 108.3 L 1398.0 117.2 L 1393.0 129.3 L 1376.0 125.0 L 1371.9 131.1 L 1382.4 145.2 L 1373.2 154.4 L 1359.1 143.9 L 1353.0 148.0 L 1357.3 165.0 L 1345.2 170.0 L 1336.3 154.9 L 1329.1 156.4 L 1326.6 173.7 L 1313.4 173.7 L 1310.9 156.4 L 1303.7 154.9 L 1294.8 170.0 L 1282.7 165.0 L 1287.0 148.0 L 1280.9 143.9 L 1266.8 154.4 L 1257.6 145.2 L 1268.1 131.1 L 1264.0 125.0 L 1247.0 129.3 L 1242.0 117.2 L 1257.1 108.3 L 1255.6 101.1 L 1238.3 98.6 L 1238.3 85.4 L 1255.6 82.9 L 1257.1 75.7 L 1242.0 66.8 L 1247.0 54.7 L 1264.0 59.0 L 1268.1 52.9 L 1257.6 38.8 L 1266.8 29.6 L 1280.9 40.1 L 1287.0 36.0 L 1282.7 19.0 L 1294.8 14.0 L 1303.7 29.1 L 1310.9 27.6 Z" fill="#E48224"/>
       <circle cx="1320" cy="92" r="34" fill="#FFF8F0"/>
     </g>
     <g class="gear-rotate-reverse" style="transform-origin: 90px 300px;" opacity="0.10">
-      <circle cx="90" cy="300" r="56" fill="#6B4E2E"/>
+      <circle cx="90" cy="300" r="56" fill="#59432B"/>
       <circle cx="90" cy="300" r="24" fill="#FFF8F0"/>
     </g>
   </svg>
@@ -1017,9 +1030,6 @@
       <button type="button" onclick="window.print()" class="btn btn-secondary">
         <i class="fa-solid fa-file-pdf"></i> Imprimir / PDF
       </button>
-      <button type="button" onclick="enviarWhatsApp()" class="btn btn-primary">
-        <i class="fa-brands fa-whatsapp"></i> Validar com DP
-      </button>
     </div>
   </div>
 </section>
@@ -1033,7 +1043,7 @@
         <div class="print-office-info">
           <strong>Escritório de Contabilidade Líder • CRC-MG 4623</strong>
           <span>Rua Fernão Dias, 303, 5º andar — N. Sra. do Rosário, João Monlevade - MG • CEP: 35930-180</span><br>
-          <span>Tel: (31) 3852-3355 • WhatsApp: (31) 98896-7713 • contato@contabilidadelider.com.br</span>
+          <span>Tel: (31) 3852-3355 • WhatsApp: (31) 98896-7713 • contato@contabilidadelider.cnt.br</span>
         </div>
       </div>
       <div class="print-doc-meta">
@@ -1217,25 +1227,22 @@
 
       <div class="print-footer">
         <span><strong>Contabilidade Líder</strong> • Rua Fernão Dias, 303, 5º andar, João Monlevade - MG • CRC-MG 4623</span>
-        <span>Tel: (31) 3852-3355 • WhatsApp: (31) 98896-7713 • @lider.escritorio</span>
+        <span>Tel: (31) 3852-3355 • WhatsApp: (31) 98896-7713 • contabilidadelider.cnt.br • contato@contabilidadelider.cnt.br</span>
       </div>
     </section>
 
     <!-- CTA Lead Generation -->
-    <section class="cta-box no-print">
+    <section class="cta-box no-print" aria-labelledby="cta-escala-titulo">
       <div>
-        <h3>Precisa adequar a folha e convenção coletiva da sua empresa?</h3>
+        <h3 id="cta-escala-titulo">Mudar a escala impacta folha, encargos e convenção coletiva</h3>
         <p>
-          A transição da escala 6x1 exige atenção aos acordos sindicais, banco de horas e cálculos de encargos. Nossa equipe de Departamento Pessoal em João Monlevade analisa sua escala gratuitamente.
+          A transição da escala 6x1 para modelos como 5x2, 4x3 ou 12x36 afeta horas extras, banco de horas, DSR, adicional noturno e custo da folha de pagamento. A Contabilidade Líder, em João Monlevade - MG, faz o diagnóstico trabalhista e o planejamento tributário da sua empresa para a transição ser segura e econômica.
         </p>
       </div>
       <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-        <button type="button" onclick="enviarWhatsApp()" class="btn btn-whatsapp">
-          <i class="fa-brands fa-whatsapp"></i> Enviar Escala para Análise
+        <button type="button" onclick="agendarConsultoria()" class="btn btn-primary">
+          <i class="fa-regular fa-calendar-check"></i> Agendar consultoria
         </button>
-        <a href="index.html#contato" class="btn btn-white">
-          Agendar Consultoria
-        </a>
       </div>
     </section>
   </div>
@@ -1269,7 +1276,7 @@
           <li>Rua Fernão Dias, 303, 5º andar, João Monlevade - MG</li>
           <li><a href="tel:+553138523355">(31) 3852-3355</a></li>
           <li><a href="https://wa.me/5531988967713?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20a%20Contabilidade%20L%C3%ADder." target="_blank" rel="noopener noreferrer">(31) 98896-7713</a></li>
-          <li><a href="mailto:contato@contabilidadelider.com.br">contato@contabilidadelider.com.br</a></li>
+          <li><a href="mailto:contato@contabilidadelider.cnt.br">contato@contabilidadelider.cnt.br</a></li>
         </ul>
         <a href="https://instagram.com/lider.escritorio" target="_blank" rel="noopener noreferrer" class="social-pill">
           <i class="fa-brands fa-instagram"></i> @lider.escritorio
@@ -1863,6 +1870,7 @@
     const linhas = [
       [`ESCALA SEMANAL DE TRABALHO - ${empresa.toUpperCase()}`],
       [`Modelo Base: ${presetAtual.toUpperCase()} | Limite Semanal: ${limiteHoras}h | Gerado por: Contabilidade Líder (CRC-MG 4623)`],
+      ['contabilidadelider.cnt.br | contato@contabilidadelider.cnt.br | (31) 98896-7713 | João Monlevade - MG'],
       [],
       ['Colaborador', 'Cargo/Setor', 'Horário Turno', 'Intervalo (min)', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo', 'Carga Semanal', 'Status CLT']
     ];
@@ -1899,24 +1907,12 @@
     URL.revokeObjectURL(url);
   }
 
-  function enviarWhatsApp() {
+  function agendarConsultoria() {
     const empresa = document.getElementById('nomeEmpresa').value.trim();
-    const limite = document.getElementById('limiteSemanal').value;
-    const total = colaboradores.length;
-    const resumo = colaboradores.slice(0, 6).map(c => {
-      const horasDia = calcularHorasDiarias(c.entrada, c.saida, c.intervalo);
-      const totalH = formatarHoras(horasDia * c.dias.filter(d => d === 'T').length);
-      return `• ${c.nome} (${c.cargo}): ${totalH}/sem`;
-    }).join('\n');
-
-    const texto = `Olá, equipe da Contabilidade Líder! Montei uma escala no simulador gratuito do site${empresa ? ` para a empresa *${empresa}*` : ''}:\n\n` +
-      `• Modelo base: *${presetAtual.toUpperCase()}* (limite ${limite}h)\n` +
-      `• Equipe: *${total} colaborador(es)*\n` +
-      `${resumo}\n\n` +
-      `Gostaria de validar essa escala conforme a CLT e a convenção coletiva da minha categoria.`;
-
-    const url = `https://wa.me/5531988967713?text=${encodeURIComponent(texto)}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
+    const texto = `Olá, equipe da Contabilidade Líder! Usei o Simulador de Escalas do site${empresa ? ` (empresa *${empresa}*)` : ''} ` +
+      `com ${colaboradores.length} colaborador(es), modelo base *${presetAtual.toUpperCase()}*. ` +
+      `Gostaria de agendar uma consultoria sobre escalas, folha de pagamento e planejamento tributário.`;
+    window.open(`https://wa.me/5531988967713?text=${encodeURIComponent(texto)}`, '_blank', 'noopener,noreferrer');
   }
 
   inicializar();
