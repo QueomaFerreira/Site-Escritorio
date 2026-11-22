@@ -14,7 +14,7 @@
 <meta property="og:locale" content="pt_BR">
 <meta property="og:title" content="Contabilidade Líder | João Monlevade - MG">
 <meta property="og:description" content="Mais de 45 anos de tradição e confiança em contabilidade, fiscal, trabalhista e consultoria financeira em João Monlevade - MG.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FDF2E4'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='%23E8871E' stroke-width='7' stroke-dasharray='7 3'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%236B4E2E'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FAF8F5'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='%23E48224' stroke-width='7' stroke-dasharray='7 3'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%2359432B'/%3E%3C/svg%3E">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -53,7 +53,9 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-inter@5.0.0/index.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
   :root {
@@ -69,12 +71,16 @@
     --silver: #A8AAAD;
     --gold: #F59E0B;
     --gold-soft: #FEF3C7;
+    --surface: #FFFFFF;
+    --radius-card: 16px;
+    --shadow-sm: 0 4px 16px rgba(59, 44, 28, 0.06);
+    --shadow-md: 0 12px 30px rgba(59, 44, 28, 0.10);
   }
   *, *::before, *::after { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background: #ffffff;
     color: #1F2937;
     line-height: 1.5;
@@ -100,7 +106,8 @@
     top: 1rem;
     z-index: 100;
     background: var(--orange);
-    color: #fff;
+    color: #2B1F13;
+    font-weight: 700;
     padding: 0.5rem 1rem;
     border-radius: 0.375rem;
     font-weight: 700;
@@ -128,18 +135,18 @@
     top: 0; left: 0; right: 0;
     z-index: 50;
     background: linear-gradient(135deg, var(--cream) 0%, var(--light) 100%);
-    box-shadow: 0 4px 20px rgba(74, 53, 32, 0.12);
-    border-bottom: 1px solid rgba(232, 135, 30, 0.15);
+    box-shadow: 0 4px 20px rgba(59, 44, 28, 0.12);
+    border-bottom: 1px solid rgba(228, 130, 36, 0.15);
     transition: box-shadow 0.3s ease;
   }
-  .navbar.scrolled { box-shadow: 0 6px 24px rgba(74, 53, 32, 0.22); }
+  .navbar.scrolled { box-shadow: 0 6px 24px rgba(59, 44, 28, 0.22); }
   .navbar-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 5rem;
   }
-  .logo-svg { filter: drop-shadow(0 4px 12px rgba(107, 78, 46, 0.15)); display: block; }
+  .logo-svg { filter: drop-shadow(0 4px 12px rgba(89, 67, 43, 0.15)); display: block; }
   .nav-links {
     display: none;
     align-items: center;
@@ -184,7 +191,7 @@
     height: 100vh;
     background: var(--light);
     box-shadow: -10px 0 30px rgba(0,0,0,0.15);
-    border-left: 1px solid rgba(232, 135, 30, 0.2);
+    border-left: 1px solid rgba(228, 130, 36, 0.2);
     z-index: 60;
     padding: 1.5rem;
     transform: translateX(100%);
@@ -210,7 +217,7 @@
     font-weight: 600;
     font-size: 1.05rem;
     padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(232, 135, 30, 0.2);
+    border-bottom: 1px solid rgba(228, 130, 36, 0.2);
   }
 
   /* Buttons */
@@ -229,13 +236,13 @@
   .btn-primary:hover {
     background: linear-gradient(135deg, #C96E18 0%, #B05D12 100%);
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(232, 135, 30, 0.35);
+    box-shadow: 0 10px 25px rgba(228, 130, 36, 0.35);
   }
   .btn-nav { padding: 0.625rem 1.5rem; border-radius: 9999px; font-weight: 600; }
   .btn-lg { padding: 1rem 2rem; border-radius: 9999px; font-size: 1.05rem; }
   .btn-secondary {
     background: rgba(255, 255, 255, 0.75);
-    border: 2px solid rgba(107, 78, 46, 0.3);
+    border: 2px solid rgba(89, 67, 43, 0.3);
     color: var(--dark-brown);
     padding: 1rem 2rem;
     border-radius: 9999px;
@@ -264,8 +271,8 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(circle at 15% 80%, rgba(232, 135, 30, 0.12) 0%, transparent 40%),
-      radial-gradient(circle at 85% 20%, rgba(107, 78, 46, 0.10) 0%, transparent 40%);
+      radial-gradient(circle at 15% 80%, rgba(228, 130, 36, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 85% 20%, rgba(89, 67, 43, 0.10) 0%, transparent 40%);
     z-index: 0;
   }
   .hero-illustration {
@@ -290,8 +297,8 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: rgba(232, 135, 30, 0.15);
-    border: 1px solid rgba(232, 135, 30, 0.35);
+    background: rgba(228, 130, 36, 0.15);
+    border: 1px solid rgba(228, 130, 36, 0.35);
     color: var(--dark-brown);
     padding: 0.4rem 1rem;
     border-radius: 9999px;
@@ -313,7 +320,7 @@
   .text-brown { color: var(--brown); }
   .hero-desc {
     font-size: 1.125rem;
-    color: rgba(74, 53, 32, 0.85);
+    color: rgba(59, 44, 28, 0.85);
     line-height: 1.65;
     max-width: 34rem;
     margin-bottom: 2.25rem;
@@ -330,10 +337,10 @@
     gap: 1.5rem;
     margin-top: 3rem;
     padding-top: 2rem;
-    border-top: 1px solid rgba(107, 78, 46, 0.2);
+    border-top: 1px solid rgba(89, 67, 43, 0.2);
   }
   .stat-num { font-size: 2.25rem; font-weight: 900; color: var(--dark-orange); font-variant-numeric: tabular-nums; }
-  .stat-label { font-size: 0.875rem; color: rgba(74, 53, 32, 0.78); margin-top: 0.25rem; }
+  .stat-label { font-size: 0.875rem; color: rgba(59, 44, 28, 0.78); margin-top: 0.25rem; }
 
   /* Hero Executive Card */
   .hero-card-wrap { display: none; justify-content: center; }
@@ -345,8 +352,8 @@
     background: rgba(255, 255, 255, 0.96);
     padding: 2rem;
     border-radius: 1.5rem;
-    box-shadow: 0 25px 50px -12px rgba(74, 53, 32, 0.18);
-    border: 1px solid rgba(232, 135, 30, 0.2);
+    box-shadow: 0 25px 50px -12px rgba(59, 44, 28, 0.18);
+    border: 1px solid rgba(228, 130, 36, 0.2);
   }
   .hero-card-header {
     display: flex;
@@ -354,7 +361,7 @@
     justify-content: space-between;
     padding-bottom: 1.25rem;
     margin-bottom: 1.5rem;
-    border-bottom: 1px solid rgba(107, 78, 46, 0.1);
+    border-bottom: 1px solid rgba(89, 67, 43, 0.1);
   }
   .hero-card-kicker {
     font-size: 0.75rem;
@@ -367,7 +374,7 @@
   .hero-card-icon {
     width: 3rem; height: 3rem;
     border-radius: 1rem;
-    background: rgba(232, 135, 30, 0.15);
+    background: rgba(228, 130, 36, 0.15);
     color: var(--dark-orange);
     display: flex; align-items: center; justify-content: center;
     font-size: 1.25rem;
@@ -377,7 +384,7 @@
   .hero-card-bullet {
     width: 1.75rem; height: 1.75rem;
     border-radius: 9999px;
-    background: rgba(232, 135, 30, 0.15);
+    background: rgba(228, 130, 36, 0.15);
     color: var(--dark-orange);
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
@@ -452,7 +459,7 @@
     padding: 2rem;
     border-radius: 1.5rem;
     box-shadow: 0 20px 25px -5px rgba(0,0,0,0.08);
-    border: 1px solid rgba(232, 135, 30, 0.12);
+    border: 1px solid rgba(228, 130, 36, 0.12);
   }
   .about-stats-grid {
     display: grid;
@@ -476,7 +483,7 @@
   .check-icon {
     width: 2.5rem; height: 2.5rem;
     border-radius: 9999px;
-    background: rgba(232, 135, 30, 0.12);
+    background: rgba(228, 130, 36, 0.12);
     color: var(--dark-orange);
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
@@ -508,7 +515,7 @@
   .service-icon {
     width: 3.5rem; height: 3.5rem;
     border-radius: 0.5rem;
-    background: rgba(232, 135, 30, 0.12);
+    background: rgba(228, 130, 36, 0.12);
     color: var(--orange);
     display: flex; align-items: center; justify-content: center;
     font-size: 1.5rem;
@@ -547,7 +554,7 @@
   .diff-icon {
     width: 3rem; height: 3rem;
     border-radius: 0.5rem;
-    background: rgba(232, 135, 30, 0.12);
+    background: rgba(228, 130, 36, 0.12);
     color: var(--orange);
     display: flex; align-items: center; justify-content: center;
     font-size: 1.25rem;
@@ -610,7 +617,7 @@
   .contact-info-icon {
     width: 3rem; height: 3rem;
     border-radius: 0.75rem;
-    background: rgba(232, 135, 30, 0.12);
+    background: rgba(228, 130, 36, 0.12);
     color: var(--dark-orange);
     display: flex; align-items: center; justify-content: center;
     font-size: 1.25rem;
@@ -690,7 +697,7 @@
     gap: 0.5rem;
     background: var(--cream);
     color: var(--dark-brown);
-    border: 1px solid rgba(232, 135, 30, 0.35);
+    border: 1px solid rgba(228, 130, 36, 0.35);
     padding: 0.55rem 1.1rem;
     border-radius: 9999px;
     font-size: 0.85rem;
@@ -698,14 +705,22 @@
     transition: background 0.2s ease;
     white-space: nowrap;
   }
-  .btn-map:hover { background: var(--orange); color: #fff; }
+  .btn-map:hover { background: var(--orange); color: #2B1F13; }
 
   /* Footer */
   .footer {
-    background: var(--light);
-    color: var(--dark-brown);
+    background: var(--dark-brown);
+    color: #E5E0D8;
     padding: 4rem 0 2rem;
-    border-top: 1px solid rgba(232, 135, 30, 0.15);
+    border-top: 3px solid var(--orange);
+  }
+  .footer-logo-wrap {
+    display: inline-block;
+    background: #FAF8F5;
+    padding: 0.65rem 1rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid var(--hairline);
   }
   .footer-grid {
     display: grid;
@@ -715,19 +730,20 @@
   }
   @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 1024px) { .footer-grid { grid-template-columns: repeat(4, 1fr); } }
-  .footer h4 { font-size: 1.125rem; font-weight: 700; color: var(--dark-orange); margin-bottom: 1.25rem; }
-  .footer ul { display: flex; flex-direction: column; gap: 0.75rem; }
-  .footer a:hover { color: var(--dark-orange); }
+  .footer h4 { font-size: 1.05rem; font-weight: 700; color: #F5A65B; margin-bottom: 1.15rem; }
+  .footer ul { display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.925rem; }
+  .footer a { transition: color 0.2s ease; }
+  .footer a:hover { color: #F5A65B; }
   .footer-bottom {
-    border-top: 1px solid rgba(107, 78, 46, 0.15);
-    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    padding-top: 1.75rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
     font-size: 0.875rem;
-    color: rgba(74, 53, 32, 0.75);
+    color: #D1C9BE;
   }
   @media (min-width: 768px) { .footer-bottom { flex-direction: row; } }
   .social-pill {
@@ -735,14 +751,16 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background: rgba(74, 53, 32, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 9999px;
     font-size: 0.875rem;
     font-weight: 600;
     margin-top: 1.25rem;
     transition: all 0.2s ease;
   }
-  .social-pill:hover { background: var(--orange); color: #fff !important; }
+  .social-pill:hover { background: var(--orange); color: #2B1F13 !important; border-color: var(--orange); }
 
   /* Floating WhatsApp */
   .float-whatsapp {
@@ -789,13 +807,16 @@
   }
 
   .nav-highlight { color: var(--dark-brown); font-weight: 700; }
-  .nav-badge { background: var(--gold-soft); color: #92400E; border: 1px solid var(--gold); border-radius: 999px; font-size: .65rem; padding: .1rem .45rem; margin-left: .25rem; vertical-align: middle; }
-  .escala-banner { background: linear-gradient(135deg, var(--dark-brown), var(--brown)); color: #fff; padding: 3.5rem 0; }
-  .escala-banner-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
-  .escala-banner .eyebrow { display: inline-block; background: var(--gold-soft); color: #92400E; font-weight: 700; font-size: .75rem; padding: .25rem .75rem; border-radius: 999px; margin-bottom: .75rem; }
-  .escala-banner h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); margin-bottom: .5rem; color: #fff; }
-  .escala-banner p { max-width: 640px; color: #F3EEE6; }
-  .escala-banner .btn-escala { display: inline-flex; align-items: center; gap: .5rem; background: var(--orange); color: #2B1F13; font-weight: 700; padding: .9rem 1.6rem; border-radius: 10px; text-decoration: none; transition: background .2s, transform .2s; }
+  .nav-badge { background: var(--gold-soft); color: #92400E; border: 1px solid var(--gold); border-radius: 999px; font-size: .65rem; padding: .1rem .45rem; margin-left: .25rem; vertical-align: middle; font-weight: 700; }
+  .escala-banner { background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 100%); color: #fff; padding: 3.75rem 0; border-top: 1px solid rgba(255,255,255,0.08); }
+  .escala-banner-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 20px; padding: 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+  .escala-banner .eyebrow { display: inline-flex; align-items: center; gap: .4rem; background: var(--gold-soft); color: #78350F; font-weight: 700; font-size: .75rem; padding: .28rem .8rem; border-radius: 999px; margin-bottom: .85rem; }
+  .escala-banner h2 { font-size: clamp(1.5rem, 3vw, 2.05rem); margin-bottom: .6rem; color: #fff; line-height: 1.25; }
+  .escala-banner p { max-width: 650px; color: #F3EEE6; font-size: .98rem; line-height: 1.6; }
+  .escala-bullets { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; margin-top: 1rem; font-size: .875rem; color: #FAF8F5; }
+  .escala-bullets span { display: inline-flex; align-items: center; gap: .4rem; }
+  .escala-bullets i { color: var(--orange); }
+  .escala-banner .btn-escala { display: inline-flex; align-items: center; gap: .55rem; background: var(--orange); color: #2B1F13; font-weight: 700; padding: .95rem 1.7rem; border-radius: 12px; text-decoration: none; white-space: nowrap; box-shadow: 0 10px 25px rgba(0,0,0,0.2); transition: background .2s, transform .2s; }
   .escala-banner .btn-escala:hover { background: #F0963A; transform: translateY(-2px); }
 </style>
 </head>
@@ -827,14 +848,14 @@
         <circle cx="56" cy="53" r="1.2" fill="#3A2A1A"/>
         <circle cx="100" cy="53" r="1.2" fill="#3A2A1A"/>
       </g>
-      <text x="160" y="85" font-family="Inter, Arial, sans-serif" font-weight="900" font-size="46" fill="#E48224" letter-spacing="1">CONTABILIDADE</text>
-      <text x="155" y="185" font-family="Inter, Arial, sans-serif" font-weight="900" font-size="110" fill="#59432B" letter-spacing="2">LÍDER</text>
-      <text x="165" y="225" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="16" fill="#E48224" letter-spacing="0.5">"O SUCESSO DA SUA EMPRESA COMEÇA AQUI"</text>
+      <text x="160" y="85" font-family="Plus Jakarta Sans, Inter, Arial, sans-serif" font-weight="900" font-size="46" fill="#E48224" letter-spacing="1">CONTABILIDADE</text>
+      <text x="155" y="185" font-family="Plus Jakarta Sans, Inter, Arial, sans-serif" font-weight="900" font-size="110" fill="#59432B" letter-spacing="2">LÍDER</text>
+      <text x="165" y="225" font-family="Plus Jakarta Sans, Inter, Arial, sans-serif" font-weight="700" font-size="16" fill="#E48224" letter-spacing="0.5">"O SUCESSO DA SUA EMPRESA COMEÇA AQUI"</text>
     </symbol>
   </defs>
 </svg>
 
-<nav id="navbar" class="navbar">
+<header><nav id="navbar" class="navbar" aria-label="Navegação principal">
   <div class="container">
     <div class="navbar-inner">
       <a href="#home" aria-label="Contabilidade Líder - Página Inicial">
@@ -869,7 +890,7 @@
       <a href="#contato" class="btn-primary btn-lg" style="margin-top:1rem;">Fale Conosco</a>
     </div>
   </div>
-</nav>
+</nav></header>
 
 <main id="main-content">
   <!-- Hero Section -->
@@ -908,7 +929,7 @@
       <g class="float-medium" opacity="0.18">
         <rect x="980" y="680" width="120" height="160" rx="12" fill="#59432B"/>
         <rect x="992" y="692" width="96" height="36" rx="6" fill="#FDF2E4"/>
-        <text x="1040" y="718" font-family="Inter, Arial" font-size="18" font-weight="bold" fill="#59432B" text-anchor="middle">1.250</text>
+        <text x="1040" y="718" font-family="Plus Jakarta Sans, Inter, Arial" font-size="18" font-weight="bold" fill="#59432B" text-anchor="middle">1.250</text>
         <rect x="992" y="740" width="22" height="22" rx="4" fill="#E48224"/>
         <rect x="1022" y="740" width="22" height="22" rx="4" fill="#E48224"/>
         <rect x="1052" y="740" width="22" height="22" rx="4" fill="#E48224"/>
@@ -925,7 +946,7 @@
         <ellipse cx="280" cy="605" rx="55" ry="14" fill="#E48224" stroke="#C96E18" stroke-width="2"/>
         <ellipse cx="280" cy="590" rx="55" ry="14" fill="#E48224" stroke="#C96E18" stroke-width="2"/>
         <ellipse cx="280" cy="575" rx="55" ry="14" fill="#E48224" stroke="#C96E18" stroke-width="2"/>
-        <text x="280" y="580" font-family="Inter, Arial" font-size="20" font-weight="bold" fill="#59432B" text-anchor="middle">$</text>
+        <text x="280" y="580" font-family="Plus Jakarta Sans, Inter, Arial" font-size="20" font-weight="bold" fill="#59432B" text-anchor="middle">$</text>
       </g>
       <!-- Documento -->
       <g class="float-slow" opacity="0.18">
@@ -940,7 +961,7 @@
       <!-- Porcentagem e Pizza -->
       <g class="float-medium" opacity="0.15">
         <circle cx="700" cy="700" r="50" fill="#E48224"/>
-        <text x="700" y="718" font-family="Inter, Arial" font-size="40" font-weight="900" fill="white" text-anchor="middle">%</text>
+        <text x="700" y="718" font-family="Plus Jakarta Sans, Inter, Arial" font-size="40" font-weight="900" fill="white" text-anchor="middle">%</text>
       </g>
       <g class="float-slow" opacity="0.18">
         <circle cx="380" cy="400" r="60" fill="#E48224" opacity="0.3"/>
@@ -965,7 +986,7 @@
             O sucesso da sua empresa <span class="text-orange">começa aqui</span>
           </h1>
           <p class="hero-desc">
-            Escritório de contabilidade em João Monlevade – MG com mais de 45 anos de atuação. Oferecemos soluções contábeis, fiscais, trabalhistas e financeiras para o crescimento do seu negócio.
+            Há mais de 45 anos apoiando empresários, indústrias, comércios e prestadores de serviço de João Monlevade e região do Médio Piracicaba com contabilidade estratégica, fiscal, trabalhista e financeira.
           </p>
           <div class="hero-actions">
             <a href="#contato" class="btn-primary btn-lg"><i class="fas fa-phone" aria-hidden="true"></i> Agende uma consulta</a>
@@ -1054,7 +1075,7 @@
             Tradição e confiança em <span class="text-orange">contabilidade</span>
           </h2>
           <p class="about-text">
-            O <strong class="text-brown">Escritório de Contabilidade Líder</strong> atua há mais de <strong class="text-dark-orange">45 anos</strong> em João Monlevade – MG, oferecendo serviços contábeis, fiscais, trabalhistas e financeiros.
+            O <strong class="text-brown">Escritório de Contabilidade Líder</strong> atua há mais de <strong class="text-dark-orange">45 anos</strong> em João Monlevade e em todo o Médio Piracicaba – MG, atendendo indústrias, comércios e prestadores de serviço com soluções contábeis, fiscais, trabalhistas e financeiras.
           </p>
           <p class="about-text">
             Nossa missão é ser parceiro estratégico dos clientes, com segurança, transparência e resultados que impulsionam o crescimento dos negócios.
@@ -1075,10 +1096,10 @@
       <div class="section-header fade-in">
         <span class="pill pill-orange">NOSSOS SERVIÇOS</span>
         <h2 id="servicos-heading" class="section-title">Soluções completas para o seu negócio</h2>
-        <p class="section-subtitle">Oferecemos serviços contábeis completos para atender todas as necessidades da sua empresa</p>
+        <p class="section-subtitle">Atendimento contábil, fiscal, trabalhista e financeiro sob medida para empresas de João Monlevade e região do Médio Piracicaba</p>
       </div>
       <div class="services-grid">
-        <div class="service-card fade-in" tabindex="0" role="region" aria-label="Serviço Contábil">
+        <article class="service-card fade-in" tabindex="0" aria-label="Serviço Contábil">
           <div class="service-icon"><i class="fas fa-calculator" aria-hidden="true"></i></div>
           <h3>Contábil</h3>
           <p>Escrituração contábil, balanços patrimoniais, demonstrações financeiras e relatórios gerenciais.</p>
@@ -1087,8 +1108,8 @@
             <li><i class="fas fa-check" aria-hidden="true"></i> DRE e Fluxo de Caixa</li>
             <li><i class="fas fa-check" aria-hidden="true"></i> Conciliação Bancária</li>
           </ul>
-        </div>
-        <div class="service-card fade-in" tabindex="0" role="region" aria-label="Serviço Fiscal">
+        </article>
+        <article class="service-card fade-in" tabindex="0" aria-label="Serviço Fiscal">
           <div class="service-icon"><i class="fas fa-file-invoice-dollar" aria-hidden="true"></i></div>
           <h3>Fiscal</h3>
           <p>Apuração de impostos, obrigações fiscais, planejamento tributário e recuperação de créditos.</p>
@@ -1097,8 +1118,8 @@
             <li><i class="fas fa-check" aria-hidden="true"></i> Planejamento Tributário</li>
             <li><i class="fas fa-check" aria-hidden="true"></i> SPED e EFD</li>
           </ul>
-        </div>
-        <div class="service-card fade-in" tabindex="0" role="region" aria-label="Serviço Trabalhista">
+        </article>
+        <article class="service-card fade-in" tabindex="0" aria-label="Serviço Trabalhista">
           <div class="service-icon"><i class="fas fa-users-cog" aria-hidden="true"></i></div>
           <h3>Trabalhista</h3>
           <p>Folha de pagamento, admissões, rescisões, férias e outras obrigações trabalhistas.</p>
@@ -1107,8 +1128,8 @@
             <li><i class="fas fa-check" aria-hidden="true"></i> eSocial</li>
             <li><i class="fas fa-check" aria-hidden="true"></i> FGTS e INSS</li>
           </ul>
-        </div>
-        <div class="service-card fade-in" tabindex="0" role="region" aria-label="Serviço Financeiro">
+        </article>
+        <article class="service-card fade-in" tabindex="0" aria-label="Serviço Financeiro">
           <div class="service-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
           <h3>Financeiro</h3>
           <p>Consultoria financeira, análise de custos, orçamento e planejamento financeiro empresarial.</p>
@@ -1117,7 +1138,7 @@
             <li><i class="fas fa-check" aria-hidden="true"></i> Orçamento Empresarial</li>
             <li><i class="fas fa-check" aria-hidden="true"></i> Consultoria Financeira</li>
           </ul>
-        </div>
+        </article>
       </div>
     </div>
   </section>
@@ -1128,7 +1149,7 @@
       <div class="section-header fade-in">
         <span class="pill pill-brown">POR QUE NOS ESCOLHER</span>
         <h2 id="diferenciais-heading" class="section-title">Nossos <span class="text-orange">diferenciais</span></h2>
-        <p class="section-subtitle">Mais de quatro décadas de experiência nos tornam a escolha certa para o seu negócio</p>
+        <p class="section-subtitle">Mais de quatro décadas de história ao lado do empresariado de João Monlevade e região</p>
       </div>
       <div class="diff-grid">
         <div class="diff-card fade-in"><div class="diff-icon"><i class="fas fa-medal" aria-hidden="true"></i></div><h3>Experiência comprovada</h3><p>Mais de 45 anos de atuação no mercado contábil, com casos de sucesso em diversos segmentos.</p></div>
@@ -1136,7 +1157,7 @@
         <div class="diff-card fade-in"><div class="diff-icon"><i class="fas fa-shield-alt" aria-hidden="true"></i></div><h3>Segurança e conformidade</h3><p>Conformidade com a legislação vigente, garantindo segurança jurídica para o seu negócio.</p></div>
         <div class="diff-card fade-in"><div class="diff-icon"><i class="fas fa-laptop-code" aria-hidden="true"></i></div><h3>Tecnologia moderna</h3><p>Ferramentas e sistemas modernos para agilidade e precisão.</p></div>
         <div class="diff-card fade-in"><div class="diff-icon"><i class="fas fa-lightbulb" aria-hidden="true"></i></div><h3>Consultoria estratégica</h3><p>Consultoria estratégica para o crescimento do seu negócio.</p></div>
-        <div class="diff-card fade-in"><div class="diff-icon"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></div><h3>Presença local</h3><p>Localizados em João Monlevade – MG, prontos para atender você pessoalmente.</p></div>
+        <div class="diff-card fade-in"><div class="diff-icon"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></div><h3>Presença local</h3><p>Sede no coração de João Monlevade – MG, com atendimento presencial para todo o Médio Piracicaba.</p></div>
       </div>
     </div>
   </section>
@@ -1145,13 +1166,18 @@
   <!-- Banner Simulador de Escalas -->
   <section class="escala-banner" aria-labelledby="escala-banner-heading">
     <div class="container">
-      <div class="escala-banner-inner">
+      <div class="escala-banner-card">
         <div>
-          <span class="eyebrow">Ferramenta gratuita para empresários e gestores de RH</span>
+          <span class="eyebrow"><i class="fas fa-bolt" aria-hidden="true"></i> Ferramenta gratuita para empresários e gestores de RH</span>
           <h2 id="escala-banner-heading">Simulador e Gerador de Escalas de Trabalho</h2>
-          <p>Monte escalas 6x1, 5x2, 4x3 e 12x36, acompanhe folgas, domingos trabalhados e carga horária, e exporte para Excel ou PDF. Pensado para empresas de João Monlevade e região do Médio Piracicaba.</p>
+          <p>Planeje a transição da escala 6x1 para 5x2, 4x3 ou 12x36 com segurança. Calcule horas semanais, domingos trabalhados, alertas trabalhistas e exporte sua escala em segundos.</p>
+          <div class="escala-bullets">
+            <span><i class="fas fa-check-circle" aria-hidden="true"></i> Modelos 6x1, 5x2, 4x3 e 12x36</span>
+            <span><i class="fas fa-check-circle" aria-hidden="true"></i> Resumo de horas e custo estimado</span>
+            <span><i class="fas fa-check-circle" aria-hidden="true"></i> Exportação para Excel (CSV) e PDF</span>
+          </div>
         </div>
-        <a href="escala.html" class="btn-escala"><i class="fas fa-calendar-check" aria-hidden="true"></i> Gerar minha escala</a>
+        <a href="escala.html" class="btn-escala"><i class="fas fa-calendar-check" aria-hidden="true"></i> Gerar escala grátis</a>
       </div>
     </div>
   </section>
@@ -1259,10 +1285,13 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <svg class="logo-svg" width="220" height="82" viewBox="0 0 700 260" style="margin-bottom:1rem;" role="img" aria-label="Logo Contabilidade Líder"><use href="#logo-full"/></svg>
-        <p style="font-size:0.95rem; color:rgba(74,53,32,0.8); margin-bottom:1rem;">O sucesso da sua empresa começa aqui. Mais de 45 anos oferecendo soluções contábeis de qualidade em João Monlevade - MG.</p>
-        <div style="font-size:0.875rem; color:rgba(74,53,32,0.8); display:flex; align-items:center; gap:0.5rem;">
-          <i class="fas fa-id-card text-dark-orange" aria-hidden="true"></i> <span>CRC-MG: 4623</span>
+        <div class="footer-logo-wrap">
+          <svg class="logo-svg" width="200" height="74" viewBox="0 0 700 260" role="img" aria-label="Logo Contabilidade Líder"><use href="#logo-full"/></svg>
+        </div>
+        <p style="font-size:0.95rem; color:#E5E0D8; margin-bottom:1rem;">"O sucesso da sua empresa começa aqui." Mais de 45 anos oferecendo soluções contábeis em João Monlevade e região do Médio Piracicaba - MG.</p>
+        <div style="font-size:0.875rem; color:#F3EEE6; display:flex; align-items:center; gap:0.5rem;">
+          <i class="fas fa-id-card" style="color:#F5A65B;" aria-hidden="true"></i> <span>CRC-MG: 4623</span>
+          <!-- TODO: inserir CNPJ -->
         </div>
       </div>
       <div>
@@ -1272,6 +1301,7 @@
           <li><a href="#sobre">Sobre Nós</a></li>
           <li><a href="#servicos">Serviços</a></li>
           <li><a href="#diferenciais">Diferenciais</a></li>
+          <li><a href="escala.html">Simulador de Escalas (Grátis)</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
       </div>
@@ -1279,27 +1309,27 @@
         <h4>Serviços</h4>
         <ul>
           <li><a href="#servicos">Contábil</a></li>
-          <li><a href="#servicos">Fiscal</a></li>
-          <li><a href="#servicos">Trabalhista</a></li>
-          <li><a href="#servicos">Financeiro</a></li>
+          <li><a href="#servicos">Fiscal &amp; Tributário</a></li>
+          <li><a href="#servicos">Trabalhista &amp; eSocial</a></li>
+          <li><a href="#servicos">Consultoria Financeira</a></li>
         </ul>
       </div>
       <div>
         <h4>Contato</h4>
         <ul>
-          <li>Rua Fernão Dias, 303, 5º andar, João Monlevade - MG</li>
+          <li>Rua Fernão Dias, 303, 5º andar, N. Sra. do Rosário, João Monlevade - MG, CEP 35930-180</li>
           <li><a href="tel:+553138523355">(31) 3852-3355</a></li>
-          <li><a href="https://wa.me/5531988967713?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20a%20Contabilidade%20L%C3%ADder." target="_blank" rel="noopener noreferrer">(31) 98896-7713</a></li>
+          <li><a href="https://wa.me/5531988967713?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20a%20Contabilidade%20L%C3%ADder." target="_blank" rel="noopener noreferrer">WhatsApp: (31) 98896-7713</a></li>
           <li><a href="mailto:contato@contabilidadelider.cnt.br">contato@contabilidadelider.cnt.br</a></li>
         </ul>
-        <a href="https://instagram.com/lider.escritorio" target="_blank" rel="noopener noreferrer" class="social-pill">
+        <a href="https://instagram.com/lider.escritorio" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Instagram da Contabilidade Líder">
           <i class="fab fa-instagram" aria-hidden="true"></i> @lider.escritorio
         </a>
       </div>
     </div>
     <div class="footer-bottom">
       <p>© 2026 Escritório de Contabilidade Líder. Todos os direitos reservados.</p>
-      <p>João Monlevade - MG | CRC-MG 4623 | <a href="https://instagram.com/lider.escritorio" target="_blank" rel="noopener noreferrer" class="text-dark-orange">@lider.escritorio</a></p>
+      <p>João Monlevade - MG | CRC-MG 4623 | <a href="mailto:contato@contabilidadelider.cnt.br" style="color:#F5A65B;">contato@contabilidadelider.cnt.br</a></p>
     </div>
   </div>
 </footer>

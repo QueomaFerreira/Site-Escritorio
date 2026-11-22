@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Simulador e Gerador de Escalas de Trabalho 6x1, 5x2, 4x3 e 12x36 | Contabilidade Líder</title>
-  <meta name="description" content="Ferramenta gratuita da Contabilidade Líder para organizar escalas 5x2, 4x3, 12x36 e revezamento de folgas com cálculo automático de horas, importação de planilhas, alertas CLT e exportação para Excel e PDF." />
+  <meta name="description" content="Ferramenta gratuita da Contabilidade Líder para montar escalas 6x1, 5x2, 4x3, 12x36 e revezamento de folgas com cálculo automático de horas, domingos trabalhados, alertas CLT, custo estimado da folha e exportação para Excel e PDF." />
   <meta name="theme-color" content="#59432B" />
   <link rel="canonical" href="https://contabilidadelider.cnt.br/escala.html" />
   <meta property="og:type" content="website" />
@@ -12,929 +12,468 @@
   <meta property="og:site_name" content="Contabilidade Líder" />
   <meta property="og:url" content="https://contabilidadelider.cnt.br/escala.html" />
   <meta property="og:title" content="Simulador e Gerador de Escalas de Trabalho | Contabilidade Líder" />
-  <meta property="og:description" content="Ferramenta gratuita para montar escalas 6x1, 5x2, 4x3 e 12x36 com cálculo de horas, folgas e domingos. Contabilidade Líder, João Monlevade - MG." />
+  <meta property="og:description" content="Ferramenta gratuita para montar escalas 6x1, 5x2, 4x3 e 12x36 com cálculo de horas, folgas, domingos e custo estimado. Contabilidade Líder, João Monlevade - MG." />
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"AccountingService","name":"Contabilidade Líder","url":"https://contabilidadelider.cnt.br/","email":"contato@contabilidadelider.cnt.br","telephone":"+55-31-3852-3355","slogan":"O sucesso da sua empresa começa aqui","address":{"@type":"PostalAddress","streetAddress":"Rua Fernão Dias, 303, 5º andar","addressLocality":"João Monlevade","addressRegion":"MG","postalCode":"35930-180","addressCountry":"BR"},"areaServed":["João Monlevade","Médio Piracicaba","MG"]}
   </script>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FDF2E4'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='%23E8871E' stroke-width='7' stroke-dasharray='7 3'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%236B4E2E'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-inter@5.0.0/index.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
   <style>
     :root {
       --orange: #E48224;
       --dark-orange: #C96E18;
+      --on-orange: #2B1F13;
       --brown: #59432B;
       --dark-brown: #3B2C1C;
       --light: #FAF8F5;
       --cream: #F8F7F4;
-      --gray-600: #4B5563;
-      --gray-200: #E5E7EB;
       --hairline: #E5E0D8;
-    --silver: #A8AAAD;
-    --gold: #F59E0B;
-    --gold-soft: #FEF3C7;
-      --bg: #FFFDF9;
+      --silver: #A8AAAD;
+      --gold: #F59E0B;
+      --gold-soft: #FEF3C7;
+      --bg: #FCFBF9;
       --surface: #FFFFFF;
       --text: #1F2937;
-      --text-muted: #6B7280;
+      --text-muted: #6B6358;
       --success: #15803D;
       --success-bg: #DCFCE7;
-      --warning: #B45309;
-      --warning-bg: #FEF3C7;
       --danger: #B91C1C;
       --danger-bg: #FEE2E2;
-      --info: #1D4ED8;
-      --info-bg: #DBEAFE;
+
+      /* Escala tipográfica (base 16px, razão ~1.2) */
+      --fs-2xs: 0.6875rem;
+      --fs-xs: 0.75rem;
+      --fs-sm: 0.875rem;
+      --fs-base: 1rem;
+      --fs-lg: 1.125rem;
+      --fs-xl: 1.375rem;
+      --fs-2xl: clamp(1.5rem, 2.6vw, 1.875rem);
+      --fs-3xl: clamp(1.75rem, 3.6vw, 2.5rem);
+
+      --radius-sm: 0.625rem;
+      --radius: 1rem;
+      --radius-lg: 1.25rem;
+      --shadow-sm: 0 1px 2px rgba(59, 44, 28, 0.06);
+      --shadow: 0 10px 30px -12px rgba(59, 44, 28, 0.14);
     }
 
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html { scroll-behavior: smooth; }
-
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
     body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background-color: var(--bg);
+      font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: var(--fs-base);
+      background: var(--bg);
       color: var(--text);
-      line-height: 1.5;
+      line-height: 1.55;
       -webkit-font-smoothing: antialiased;
     }
-
     a { color: inherit; text-decoration: none; }
-    ul { list-style: none; margin: 0; padding: 0; }
-    button, input, select, textarea { font-family: inherit; }
-
-    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+    ul, ol { list-style: none; }
+    button, input, select { font: inherit; color: inherit; }
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, [tabindex]:focus-visible {
       outline: 2px solid var(--orange);
       outline-offset: 2px;
     }
-
-    .container-wide {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 1.25rem;
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
     }
-    @media (min-width: 640px) { .container-wide { padding: 0 1.5rem; } }
-    @media (min-width: 1024px) { .container-wide { padding: 0 2rem; } }
+    .svg-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 
-    /* Navbar (Identidade Visual index.html) */
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
+    @media (min-width: 640px) { .container { padding: 0 1.5rem; } }
+    @media (min-width: 1024px) { .container { padding: 0 2rem; } }
+
+    /* ===== Navbar ===== */
     .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: linear-gradient(135deg, var(--cream) 0%, var(--light) 100%);
-      box-shadow: 0 4px 20px rgba(74, 53, 32, 0.12);
-      border-bottom: 1px solid rgba(232, 135, 30, 0.18);
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(250, 248, 245, 0.96);
+      backdrop-filter: saturate(1.4) blur(8px);
+      border-bottom: 1px solid var(--hairline);
       transition: box-shadow 0.3s ease;
     }
-    .navbar.scrolled { box-shadow: 0 6px 24px rgba(74, 53, 32, 0.2); }
-    .navbar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 5rem;
-      gap: 1rem;
-    }
-    .logo-svg {
-      filter: drop-shadow(0 4px 12px rgba(107, 78, 46, 0.15));
-      display: block;
-    }
-    .nav-links {
-      display: none;
-      align-items: center;
-      gap: 1.75rem;
-    }
-    .nav-link {
-      position: relative;
-      color: var(--dark-brown);
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: color 0.2s ease;
-    }
-    .nav-link:hover { color: var(--orange); }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--orange);
-      transition: width 0.3s ease;
-    }
-    .nav-link:hover::after { width: 100%; }
-    .menu-btn {
-      background: none;
-      border: none;
-      color: var(--dark-brown);
-      font-size: 1.5rem;
-      cursor: pointer;
-      padding: 0.25rem;
-    }
-    @media (min-width: 1024px) {
-      .nav-links { display: flex; }
-      .menu-btn { display: none; }
-    }
+    .navbar.scrolled { box-shadow: 0 6px 24px rgba(59, 44, 28, 0.12); }
+    .navbar-inner { display: flex; align-items: center; justify-content: space-between; height: 4.75rem; gap: 1rem; }
+    .logo-svg { display: block; height: auto; }
+    .nav-links { display: none; align-items: center; gap: 1.75rem; }
+    .nav-link { position: relative; color: var(--dark-brown); font-weight: 600; font-size: var(--fs-sm); transition: color 0.2s ease; }
+    .nav-link:hover { color: var(--dark-orange); }
+    .menu-btn { background: none; border: none; color: var(--dark-brown); font-size: 1.5rem; cursor: pointer; padding: 0.5rem; }
+    @media (min-width: 1024px) { .nav-links { display: flex; } .menu-btn { display: none; } }
 
-    /* Mobile menu */
     .mobile-menu {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 18rem;
-      height: 100vh;
-      background: var(--light);
-      box-shadow: -10px 0 30px rgba(0,0,0,0.15);
-      border-left: 1px solid rgba(232, 135, 30, 0.2);
-      z-index: 60;
-      padding: 1.5rem;
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
+      position: fixed; top: 0; right: 0; width: min(18rem, 85vw); height: 100vh;
+      background: var(--light); box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+      border-left: 1px solid var(--hairline); z-index: 60; padding: 1.5rem;
+      transform: translateX(100%); visibility: hidden;
+      transition: transform 0.3s ease, visibility 0.3s;
     }
-    .mobile-menu.open { transform: translateX(0); }
-    .close-menu {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: none;
-      border: none;
-      color: var(--dark-brown);
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-    .mobile-nav-list {
-      margin-top: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    .mobile-link {
-      color: var(--dark-brown);
-      font-weight: 600;
-      font-size: 1.05rem;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(232, 135, 30, 0.2);
-    }
+    .mobile-menu.open { transform: translateX(0); visibility: visible; }
+    .close-menu { position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: var(--dark-brown); font-size: 1.5rem; cursor: pointer; padding: 0.25rem; }
+    .mobile-nav-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .mobile-link { color: var(--dark-brown); font-weight: 600; padding: 0.6rem 0; border-bottom: 1px solid var(--hairline); }
 
-    /* Buttons */
+    /* ===== Buttons ===== */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.65rem 1.15rem;
-      border-radius: 9999px;
-      font-size: 0.875rem;
-      font-weight: 700;
-      cursor: pointer;
-      border: 1px solid transparent;
-      text-decoration: none;
-      transition: all 0.25s ease;
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      padding: 0.7rem 1.2rem; border-radius: 9999px;
+      font-size: var(--fs-sm); font-weight: 700; line-height: 1.2;
+      cursor: pointer; border: 1.5px solid transparent;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
       white-space: nowrap;
     }
-    .btn-sm-rect {
-      border-radius: 0.75rem;
-      padding: 0.6rem 1rem;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, #E48224 0%, #C96E18 100%);
-      color: #2B1F13;
-      box-shadow: 0 4px 12px rgba(232, 135, 30, 0.25);
-    }
-    .btn-primary:hover {
-      background: linear-gradient(135deg, #C96E18 0%, #B05D12 100%);
-      transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba(232, 135, 30, 0.35);
-    }
-    .btn-brown {
-      background: linear-gradient(135deg, var(--brown) 0%, var(--dark-brown) 100%);
-      color: #fff;
-    }
-    .btn-brown:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 18px rgba(74, 53, 32, 0.25);
-    }
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.9);
-      border: 1.5px solid rgba(107, 78, 46, 0.25);
-      color: var(--dark-brown);
-    }
-    .btn-secondary:hover {
-      background: #fff;
-      border-color: var(--orange);
-      color: var(--dark-orange);
-    }
-    .btn-excel {
-      background: #15803D;
-      color: #fff;
-    }
-    .btn-excel:hover {
-      background: #166534;
-      transform: translateY(-1px);
-    }
-    .btn-whatsapp {
-      background: #16A34A;
-      color: #fff;
-    }
-    .btn-whatsapp:hover {
-      background: #15803D;
-      transform: translateY(-1px);
-    }
-    .btn-white {
-      background: #fff;
-      color: var(--dark-brown);
-    }
-    .btn-white:hover {
-      background: var(--cream);
-    }
+    .btn-rect { border-radius: var(--radius-sm); }
+    .btn-sm { padding: 0.5rem 0.85rem; font-size: var(--fs-xs); }
+    /* Laranja reservado ao CTA "Agendar consultoria" (texto escuro p/ contraste AA) */
+    .btn-primary { background: var(--orange); color: var(--on-orange); box-shadow: 0 4px 14px rgba(228, 130, 36, 0.28); }
+    .btn-primary:hover { background: var(--dark-orange); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(228, 130, 36, 0.35); }
+    .btn-brown { background: var(--brown); color: #fff; }
+    .btn-brown:hover { background: var(--dark-brown); transform: translateY(-1px); box-shadow: 0 8px 18px rgba(59, 44, 28, 0.25); }
+    .btn-secondary { background: #fff; border-color: var(--hairline); color: var(--dark-brown); }
+    .btn-secondary:hover { border-color: var(--orange); color: var(--dark-orange); }
+    .btn-secondary .fa-file-excel { color: var(--success); }
 
-    /* Hero Banner (Estilo index.html) */
-    .hero-banner {
-      position: relative;
-      overflow: hidden;
+    /* ===== Hero ===== */
+    .hero {
+      position: relative; overflow: hidden;
       background: linear-gradient(135deg, var(--cream) 0%, var(--light) 55%, #F3EEE6 100%);
-      border-bottom: 1px solid rgba(232, 135, 30, 0.18);
-      padding: 2.5rem 0;
-    }
-    .hero-banner::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 12% 85%, rgba(232, 135, 30, 0.12) 0%, transparent 40%),
-        radial-gradient(circle at 88% 18%, rgba(107, 78, 46, 0.08) 0%, transparent 40%);
-      pointer-events: none;
-    }
-    .hero-illustration {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(232, 135, 30, 0.14);
-      border: 1px solid rgba(232, 135, 30, 0.35);
-      color: var(--dark-brown);
-      padding: 0.35rem 0.9rem;
-      border-radius: 9999px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      margin-bottom: 0.85rem;
-    }
-    .hero-badge i { color: var(--dark-orange); }
-    .hero-inner h1 {
-      font-size: clamp(1.65rem, 3vw, 2.35rem);
-      font-weight: 900;
-      color: var(--dark-brown);
-      letter-spacing: -0.02em;
-      line-height: 1.18;
-      margin-bottom: 0.6rem;
-    }
-    .hero-inner h1 span { color: var(--orange); }
-    .hero-inner p {
-      color: rgba(74, 53, 32, 0.84);
-      max-width: 660px;
-      font-size: 0.98rem;
-      line-height: 1.6;
-    }
-    .export-group {
-      display: flex;
-      gap: 0.65rem;
-      flex-wrap: wrap;
-    }
-
-    /* Main Content */
-    main.main-content {
-      padding: 2rem 0 4rem;
-    }
-
-    /* Cards */
-    .card {
-      background: var(--surface);
-      border: 1px solid rgba(232, 135, 30, 0.16);
-      border-radius: 1.25rem;
-      padding: 1.5rem;
-      box-shadow: 0 10px 25px -5px rgba(74, 53, 32, 0.06);
-      margin-bottom: 1.5rem;
-    }
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 1.25rem;
-      padding-bottom: 0.85rem;
-      border-bottom: 1px solid rgba(107, 78, 46, 0.12);
-    }
-    .card-title {
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--brown);
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-    }
-    .card-title i {
-      color: var(--orange);
-    }
-
-    /* Presets Grid */
-    .presets-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 0.85rem;
-    }
-    .preset-btn {
-      text-align: left;
-      padding: 1rem;
-      border: 2px solid var(--gray-200);
-      border-radius: 1rem;
-      background: #fff;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .preset-btn:hover {
-      border-color: rgba(232, 135, 30, 0.6);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(74, 53, 32, 0.08);
-    }
-    .preset-btn.active {
-      border-color: var(--orange);
-      background: linear-gradient(135deg, var(--cream) 0%, var(--light) 100%);
-      box-shadow: 0 6px 16px rgba(232, 135, 30, 0.15);
-    }
-    .preset-btn strong {
-      display: block;
-      font-size: 0.92rem;
-      color: var(--dark-brown);
-      margin-bottom: 0.25rem;
-    }
-    .preset-btn span {
-      display: block;
-      font-size: 0.8rem;
-      color: var(--gray-600);
-      line-height: 1.4;
-    }
-
-    /* Two-column Team Entry (Manual + Importar Planilha) */
-    .team-entry-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-    @media (min-width: 1024px) {
-      .team-entry-grid {
-        grid-template-columns: 1.25fr 1fr;
-        align-items: stretch;
-      }
-    }
-    .team-entry-grid .card {
-      margin-bottom: 0;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* Form Add Colaborador */
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.85rem;
-      align-items: end;
-    }
-    .form-grid .span-2 {
-      grid-column: span 2;
-    }
-    @media (max-width: 540px) {
-      .form-grid { grid-template-columns: 1fr; }
-      .form-grid .span-2 { grid-column: span 1; }
-    }
-    .form-group label {
-      display: block;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--brown);
-      margin-bottom: 0.35rem;
-    }
-    .form-control {
-      width: 100%;
-      padding: 0.6rem 0.85rem;
-      border: 2px solid var(--gray-200);
-      border-radius: 0.75rem;
-      font-size: 0.9rem;
-      background: #fff;
-      color: var(--text);
-      transition: border-color 0.2s ease;
-    }
-    .form-control:focus {
-      outline: none;
-      border-color: var(--orange);
-    }
-
-    /* Import Dropzone */
-    .import-dropzone {
-      border: 2px dashed rgba(232, 135, 30, 0.45);
-      background: linear-gradient(135deg, var(--light) 0%, #fff 100%);
-      border-radius: 1rem;
-      padding: 1.25rem;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-    .import-dropzone:hover, .import-dropzone.dragover {
-      border-color: var(--orange);
-      background: var(--cream);
-      transform: translateY(-1px);
-    }
-    .import-icon {
-      width: 3rem;
-      height: 3rem;
-      border-radius: 9999px;
-      background: rgba(232, 135, 30, 0.14);
-      color: var(--dark-orange);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.35rem;
-      margin-bottom: 0.25rem;
-    }
-    .import-options {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 0.85rem;
-      font-size: 0.82rem;
-      color: var(--gray-600);
-    }
-    .import-mode-group {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .import-mode-group label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      cursor: pointer;
-      font-weight: 600;
-      color: var(--dark-brown);
-    }
-    .import-status {
-      margin-top: 0.75rem;
-      padding: 0.65rem 0.9rem;
-      border-radius: 0.75rem;
-      font-size: 0.82rem;
-      font-weight: 600;
-      display: none;
-    }
-    .import-status.show { display: block; }
-    .import-status.ok {
-      background: var(--success-bg);
-      color: var(--success);
-      border: 1px solid #BBF7D0;
-    }
-    .import-status.err {
-      background: var(--danger-bg);
-      color: var(--danger);
-      border: 1px solid #FECACA;
-    }
-
-    /* KPI Summary */
-    .kpi-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    .kpi-box {
-      background: var(--surface);
-      border: 1px solid rgba(232, 135, 30, 0.18);
-      border-top: 4px solid var(--orange);
-      border-radius: 1rem;
-      padding: 1.1rem 1.25rem;
-      box-shadow: 0 4px 12px rgba(74, 53, 32, 0.04);
-    }
-    .kpi-box span {
-      font-size: 0.74rem;
-      color: var(--gray-600);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-    }
-    .kpi-box strong {
-      display: block;
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: var(--dark-brown);
-      margin-top: 0.25rem;
-      font-variant-numeric: tabular-nums;
-    }
-
-    /* Schedule Table */
-    .table-wrapper {
-      overflow-x: auto;
-      border: 1px solid var(--hairline);
-      border-radius: 1rem;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 920px;
-      background: #fff;
-    }
-    th, td {
-      padding: 0.7rem 0.5rem;
       border-bottom: 1px solid var(--hairline);
-      border-right: 1px solid var(--hairline);
-      text-align: center;
-      font-size: 0.85rem;
+      padding: 2.5rem 0 2.25rem;
     }
-    th {
-      background: var(--cream);
-      color: var(--dark-brown);
-      font-weight: 800;
-      font-size: 0.8rem;
+    .hero-illustration { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .hero-inner { position: relative; z-index: 1; max-width: 760px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(228, 130, 36, 0.12); border: 1px solid rgba(228, 130, 36, 0.35);
+      color: var(--dark-brown); padding: 0.3rem 0.85rem; border-radius: 9999px;
+      font-size: var(--fs-xs); font-weight: 700; margin-bottom: 0.9rem;
     }
-    th.col-colab, td.col-colab {
-      text-align: left;
-      padding-left: 1rem;
-      min-width: 220px;
-      position: sticky;
-      left: 0;
-      background: #fff;
-      z-index: 2;
+    .eyebrow i { color: var(--dark-orange); }
+    .hero h1 { font-size: var(--fs-3xl); font-weight: 800; color: var(--dark-brown); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 0.75rem; }
+    .hero h1 span { color: var(--dark-orange); }
+    .hero p { color: rgba(59, 44, 28, 0.85); font-size: var(--fs-base); line-height: 1.65; }
+    .hero-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: #fff; border: 1px solid var(--hairline); color: var(--dark-brown);
+      padding: 0.35rem 0.75rem; border-radius: 9999px; font-size: var(--fs-xs); font-weight: 600;
     }
-    th.col-colab {
-      background: var(--cream);
-    }
-    .colab-name {
-      font-weight: 700;
-      color: var(--dark-brown);
-      display: block;
-    }
-    .colab-meta {
-      font-size: 0.74rem;
-      color: var(--text-muted);
-    }
+    .chip i { color: var(--dark-orange); }
 
-    /* Status Pill Button */
-    .shift-cell {
-      cursor: pointer;
-      user-select: none;
-      transition: background 0.15s;
+    /* ===== Stepper ===== */
+    .stepper-wrap { position: sticky; top: 4.75rem; z-index: 40; background: rgba(252, 251, 249, 0.95); backdrop-filter: blur(6px); border-bottom: 1px solid var(--hairline); }
+    .stepper { display: flex; gap: 0.25rem; padding: 0.6rem 0; overflow-x: auto; scrollbar-width: none; }
+    .stepper::-webkit-scrollbar { display: none; }
+    .stepper li { display: flex; align-items: center; flex: 0 0 auto; }
+    .stepper li + li::before { content: ''; width: 1.5rem; height: 2px; background: var(--hairline); margin: 0 0.35rem; border-radius: 2px; }
+    .stepper a {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.35rem 0.75rem 0.35rem 0.35rem; border-radius: 9999px;
+      font-size: var(--fs-sm); font-weight: 600; color: var(--text-muted);
+      transition: background 0.2s ease, color 0.2s ease;
     }
-    .shift-cell:hover { background: var(--light); }
+    .stepper a:hover { color: var(--dark-brown); background: var(--cream); }
+    .stepper .num {
+      width: 1.6rem; height: 1.6rem; border-radius: 9999px; display: inline-grid; place-items: center;
+      background: #fff; border: 1.5px solid var(--hairline); font-size: var(--fs-xs); font-weight: 800; color: var(--brown);
+    }
+    .stepper a.is-active { color: var(--dark-brown); background: #fff; box-shadow: var(--shadow-sm); }
+    .stepper a.is-active .num { background: var(--brown); border-color: var(--brown); color: #fff; }
+    @media (min-width: 1024px) { .stepper-wrap { top: 4.75rem; } }
+
+    /* ===== Steps ===== */
+    .main-content { padding: 2rem 0 3rem; }
+    .step { margin-bottom: 2.5rem; }
+    .step-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .step-title { display: flex; gap: 0.85rem; align-items: flex-start; }
+    .step-badge {
+      flex: 0 0 auto; width: 2.25rem; height: 2.25rem; border-radius: 0.75rem;
+      display: grid; place-items: center; background: var(--brown); color: #fff;
+      font-weight: 800; font-size: var(--fs-base);
+    }
+    .step-title h2 { font-size: var(--fs-xl); font-weight: 800; color: var(--dark-brown); letter-spacing: -0.01em; line-height: 1.25; }
+    .step-title p { font-size: var(--fs-sm); color: var(--text-muted); margin-top: 0.15rem; }
+    .toolbar { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--radius-lg);
+      padding: 1.25rem; box-shadow: var(--shadow);
+    }
+    @media (min-width: 640px) { .card { padding: 1.5rem; } }
+    .card + .card { margin-top: 1rem; }
+    .card-title { font-size: var(--fs-base); font-weight: 700; color: var(--dark-brown); display: flex; align-items: center; gap: 0.55rem; }
+    .card-title i { color: var(--dark-orange); }
+    .card-sub { font-size: var(--fs-xs); color: var(--text-muted); margin-top: 0.15rem; }
+    .card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem; }
+
+    .panel-section + .panel-section { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--hairline); }
+    fieldset { border: none; min-width: 0; }
+    legend, .group-label { font-size: var(--fs-sm); font-weight: 700; color: var(--dark-brown); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+    legend i, .group-label i { color: var(--dark-orange); }
+    legend small, .group-label small { font-weight: 500; color: var(--text-muted); font-size: var(--fs-xs); }
+
+    /* ===== Forms ===== */
+    .grid-2, .grid-3 { display: grid; grid-template-columns: 1fr; gap: 0.9rem; }
+    @media (min-width: 640px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+    .field label { display: block; font-size: var(--fs-xs); font-weight: 600; color: var(--brown); margin-bottom: 0.35rem; }
+    .field .hint { display: block; font-size: var(--fs-2xs); color: var(--text-muted); margin-top: 0.3rem; }
+    .form-control {
+      width: 100%; min-height: 2.75rem; padding: 0.6rem 0.85rem;
+      border: 1.5px solid var(--hairline); border-radius: var(--radius-sm);
+      font-size: var(--fs-sm); background: #fff; color: var(--text);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .form-control:hover { border-color: #D3CABD; }
+    .form-control:focus { outline: none; border-color: var(--orange); box-shadow: 0 0 0 3px rgba(228, 130, 36, 0.18); }
+    .input-prefix { position: relative; }
+    .input-prefix span { position: absolute; left: 0.85rem; top: 50%; transform: translateY(-50%); font-size: var(--fs-sm); color: var(--text-muted); pointer-events: none; }
+    .input-prefix .form-control { padding-left: 2.4rem; }
+    .input-suffix { position: relative; }
+    .input-suffix span { position: absolute; right: 0.85rem; top: 50%; transform: translateY(-50%); font-size: var(--fs-sm); color: var(--text-muted); pointer-events: none; }
+
+    /* ===== Presets ===== */
+    .presets-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 0.75rem; }
+    .preset-btn {
+      position: relative; text-align: left; padding: 0.95rem 1rem;
+      border: 1.5px solid var(--hairline); border-radius: var(--radius); background: #fff;
+      cursor: pointer; transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+      display: flex; flex-direction: column; gap: 0.3rem;
+    }
+    .preset-btn:hover { border-color: rgba(228, 130, 36, 0.6); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+    .preset-btn[aria-pressed="true"] { border-color: var(--orange); background: var(--light); box-shadow: 0 0 0 3px rgba(228, 130, 36, 0.15); }
+    .preset-btn[aria-pressed="true"]::after {
+      content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+      position: absolute; top: 0.75rem; right: 0.75rem; width: 1.35rem; height: 1.35rem;
+      border-radius: 9999px; background: var(--brown); color: #fff; font-size: 0.65rem;
+      display: grid; place-items: center;
+    }
+    .preset-tag { align-self: flex-start; font-size: var(--fs-xs); font-weight: 800; color: var(--brown); background: var(--cream); border: 1px solid var(--hairline); padding: 0.1rem 0.5rem; border-radius: 0.4rem; letter-spacing: 0.02em; }
+    .preset-btn strong { font-size: var(--fs-sm); color: var(--dark-brown); font-weight: 700; }
+    .preset-btn span.desc { font-size: var(--fs-xs); color: var(--text-muted); line-height: 1.45; }
+    .preset-btn span.meta { font-size: var(--fs-2xs); color: var(--brown); font-weight: 600; margin-top: auto; padding-top: 0.25rem; }
+
+    .panel-footer { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--hairline); }
+    .panel-footer p { font-size: var(--fs-xs); color: var(--text-muted); max-width: 560px; }
+
+    /* ===== Equipe ===== */
+    .team-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    @media (min-width: 1024px) { .team-grid { grid-template-columns: 1.2fr 1fr; } }
+    .team-grid .card + .card { margin-top: 0; }
+    .team-grid .card { display: flex; flex-direction: column; }
+    .form-actions { display: flex; align-items: flex-end; }
+    .form-actions .btn { width: 100%; min-height: 2.75rem; }
+
+    .import-dropzone {
+      border: 2px dashed rgba(228, 130, 36, 0.45); background: var(--light);
+      border-radius: var(--radius); padding: 1.25rem; text-align: center; cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease;
+      flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.4rem;
+    }
+    .import-dropzone:hover, .import-dropzone.dragover { border-color: var(--orange); background: var(--cream); }
+    .import-dropzone strong { color: var(--dark-brown); font-size: var(--fs-sm); }
+    .import-dropzone span { font-size: var(--fs-xs); color: var(--text-muted); }
+    .import-icon { width: 2.75rem; height: 2.75rem; border-radius: 9999px; background: rgba(228, 130, 36, 0.14); color: var(--dark-orange); display: grid; place-items: center; font-size: 1.2rem; }
+    .import-mode-group { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-top: 0.85rem; }
+    .import-mode-group legend { margin-bottom: 0.4rem; font-size: var(--fs-xs); }
+    .import-mode-group label { display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer; font-weight: 600; font-size: var(--fs-xs); color: var(--dark-brown); }
+    .import-mode-group input { accent-color: var(--brown); }
+    .import-status { margin-top: 0.75rem; padding: 0.65rem 0.9rem; border-radius: var(--radius-sm); font-size: var(--fs-xs); font-weight: 600; display: none; }
+    .import-status.show { display: block; }
+    .import-status.ok { background: var(--success-bg); color: var(--success); border: 1px solid #BBF7D0; }
+    .import-status.err { background: var(--danger-bg); color: var(--danger); border: 1px solid #FECACA; }
+
+    /* ===== KPIs ===== */
+    .kpi-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin-bottom: 1rem; }
+    @media (min-width: 768px) { .kpi-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    @media (min-width: 1200px) { .kpi-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+    .kpi {
+      background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--radius);
+      padding: 0.95rem 1rem; box-shadow: var(--shadow-sm); min-width: 0;
+      display: flex; flex-direction: column; gap: 0.2rem;
+    }
+    .kpi-label { display: flex; align-items: center; gap: 0.45rem; font-size: var(--fs-2xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); }
+    .kpi-label i { width: 1.6rem; height: 1.6rem; border-radius: 0.5rem; display: grid; place-items: center; background: var(--cream); color: var(--brown); font-size: 0.75rem; flex: 0 0 auto; }
+    .kpi-value { font-size: var(--fs-xl); font-weight: 800; color: var(--dark-brown); font-variant-numeric: tabular-nums; line-height: 1.2; margin-top: 0.3rem; overflow-wrap: anywhere; }
+    .kpi-sub { font-size: var(--fs-2xs); color: var(--text-muted); }
+    .kpi--sunday .kpi-label i { background: var(--gold-soft); color: #92400E; }
+    .kpi--alert .kpi-label i { background: var(--success-bg); color: var(--success); }
+    .kpi--alert.has-alerts { border-color: #FECACA; }
+    .kpi--alert.has-alerts .kpi-label i { background: var(--danger-bg); color: var(--danger); }
+    .kpi--alert.has-alerts .kpi-value { color: var(--danger); }
+    .kpi--cost { background: linear-gradient(135deg, #fff 0%, var(--light) 100%); border-color: rgba(228, 130, 36, 0.35); }
+    .kpi--cost .kpi-label i { background: rgba(228, 130, 36, 0.14); color: var(--dark-orange); }
+    .kpi--cost a { color: var(--dark-orange); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+    .estimate-note { font-size: var(--fs-2xs); color: var(--text-muted); margin: -0.25rem 0 1rem; }
+
+    /* ===== Tabela ===== */
+    .table-scroll-hint { display: flex; align-items: center; gap: 0.4rem; font-size: var(--fs-xs); color: var(--text-muted); margin-bottom: 0.5rem; }
+    @media (min-width: 1200px) { .table-scroll-hint { display: none; } }
+    .table-wrapper {
+      overflow-x: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;
+      scroll-behavior: smooth; border: 1px solid var(--hairline); border-radius: var(--radius);
+      max-width: 100%;
+    }
+    .schedule-table { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 980px; background: #fff; }
+    .schedule-table th, .schedule-table td {
+      padding: 0.55rem 0.4rem; border-bottom: 1px solid var(--hairline); border-right: 1px solid var(--hairline);
+      text-align: center; font-size: var(--fs-sm); vertical-align: middle;
+    }
+    .schedule-table th:last-child, .schedule-table td:last-child { border-right: none; }
+    .schedule-table tbody tr:last-child td { border-bottom: none; }
+    .schedule-table th { background: var(--cream); color: var(--dark-brown); font-weight: 700; font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.03em; padding-top: 0.75rem; padding-bottom: 0.75rem; }
+    .schedule-table th.th-sunday { background: var(--gold-soft); color: #92400E; }
+    .col-colab { text-align: left !important; padding-left: 0.9rem !important; min-width: 170px; position: sticky; left: 0; background: #fff; z-index: 2; box-shadow: 1px 0 0 var(--hairline); }
+    @media (min-width: 768px) { .col-colab { min-width: 220px; } }
+    th.col-colab { background: var(--cream); z-index: 3; }
+    .colab-name { font-weight: 700; color: var(--dark-brown); display: block; font-size: var(--fs-sm); }
+    .colab-meta { font-size: var(--fs-2xs); color: var(--text-muted); display: block; }
+    .row-alert td.col-colab { box-shadow: inset 3px 0 0 var(--danger), 1px 0 0 var(--hairline); }
+
     .pill-shift {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      min-width: 70px;
-      padding: 0.35rem 0.25rem;
-      border-radius: 0.5rem;
-      font-weight: 700;
-      font-size: 0.75rem;
+      display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+      width: 100%; min-width: 72px; min-height: 2.6rem; padding: 0.3rem 0.25rem;
+      border-radius: 0.55rem; font-weight: 700; font-size: var(--fs-xs); line-height: 1.2;
+      cursor: pointer; border: 1px solid transparent; background: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
-    .pill-shift small {
-      font-weight: 500;
-      font-size: 0.65rem;
-      opacity: 0.9;
-    }
-    .pill-T {
-      background: var(--info-bg);
-      color: var(--info);
-      border: 1px solid #BFDBFE;
-    }
-    .pill-F {
-      background: var(--success-bg);
-      color: var(--success);
-      border: 1px solid #BBF7D0;
-    }
-    .pill-D {
-      background: var(--warning-bg);
-      color: var(--warning);
-      border: 1px solid #FDE68A;
-    }
-    .pill-A {
-      background: #F3E8FF;
-      color: #6B21A8;
-      border: 1px solid #E9D5FF;
-    }
+    .pill-shift:hover { transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+    .pill-shift small { font-weight: 500; font-size: var(--fs-2xs); opacity: 0.9; }
+    .pill-T { background: #F4EEE6; color: var(--dark-brown); border-color: #E3D6C4; }
+    .pill-DT { background: var(--gold-soft); color: #92400E; border-color: var(--gold); box-shadow: inset 0 0 0 1px rgba(245, 158, 11, 0.35); }
+    .pill-F { background: var(--success-bg); color: var(--success); border-color: #BBF7D0; }
+    .pill-D { background: #F1F2F3; color: #4B5563; border-color: #D9DBDE; }
+    .pill-A { background: #F3E8FF; color: #6B21A8; border-color: #E9D5FF; }
 
-    /* Alerts */
-    .alert-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      padding: 0.25rem 0.55rem;
-      border-radius: 9999px;
-      font-size: 0.72rem;
-      font-weight: 700;
-    }
-    .alert-ok {
-      background: var(--success-bg);
-      color: var(--success);
-    }
-    .alert-warn {
-      background: var(--danger-bg);
-      color: var(--danger);
-    }
+    .alert-badge { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.25rem 0.55rem; border-radius: 9999px; font-size: var(--fs-2xs); font-weight: 700; white-space: nowrap; }
+    .alert-ok { background: var(--success-bg); color: var(--success); }
+    .alert-warn { background: var(--danger-bg); color: var(--danger); }
+    .btn-icon-del { background: transparent; border: none; color: #9CA3AF; cursor: pointer; padding: 0.5rem; font-size: 0.95rem; border-radius: 0.5rem; transition: color 0.15s, background 0.15s; }
+    .btn-icon-del:hover { color: var(--danger); background: var(--danger-bg); }
+    .empty-row td { padding: 2rem 1rem !important; color: var(--text-muted); font-size: var(--fs-sm); }
 
-    .btn-icon-del {
-      background: transparent;
-      border: none;
-      color: #9CA3AF;
-      cursor: pointer;
-      padding: 0.35rem;
-      font-size: 0.95rem;
-      transition: color 0.15s;
-    }
-    .btn-icon-del:hover { color: var(--danger); }
+    .legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; margin-top: 1rem; font-size: var(--fs-xs); color: var(--text-muted); }
+    .legend li { display: inline-flex; align-items: center; gap: 0.45rem; }
+    .legend .swatch { width: 0.9rem; height: 0.9rem; border-radius: 0.3rem; border: 1px solid; flex: 0 0 auto; }
+    .legend strong { color: var(--dark-brown); font-weight: 700; }
 
-    /* CTA Box (Estilo index.html cta-banner) */
-    .cta-box {
-      background: linear-gradient(to right, var(--brown), var(--dark-brown));
-      color: #fff;
-      border-radius: 1.5rem;
-      padding: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      margin-top: 2rem;
-      box-shadow: 0 20px 30px -10px rgba(74, 53, 32, 0.25);
+    /* ===== Conteúdo estratégico ===== */
+    .insights { background: var(--light); border-top: 1px solid var(--hairline); padding: 3rem 0; }
+    .insights-head { max-width: 760px; margin-bottom: 1.75rem; }
+    .insights-head h2 { font-size: var(--fs-2xl); font-weight: 800; color: var(--dark-brown); letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 0.6rem; }
+    .insights-head p { color: var(--text-muted); font-size: var(--fs-base); }
+    .insight-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    @media (min-width: 768px) { .insight-grid { grid-template-columns: repeat(3, 1fr); } }
+    .insight-card { background: #fff; border: 1px solid var(--hairline); border-radius: var(--radius-lg); padding: 1.35rem; box-shadow: var(--shadow-sm); }
+    .insight-icon { width: 2.6rem; height: 2.6rem; border-radius: 0.8rem; display: grid; place-items: center; background: rgba(228, 130, 36, 0.12); color: var(--dark-orange); font-size: 1.1rem; margin-bottom: 0.85rem; }
+    .insight-card h3 { font-size: var(--fs-base); font-weight: 700; color: var(--dark-brown); margin-bottom: 0.4rem; }
+    .insight-card p { font-size: var(--fs-sm); color: var(--text-muted); line-height: 1.6; }
+    .cta-band {
+      margin-top: 1.5rem; border-radius: var(--radius-lg); padding: 1.75rem;
+      background: linear-gradient(120deg, var(--brown) 0%, var(--dark-brown) 100%); color: #fff;
+      display: flex; justify-content: space-between; align-items: center; gap: 1.25rem; flex-wrap: wrap;
+      box-shadow: 0 20px 30px -14px rgba(59, 44, 28, 0.4);
     }
-    .cta-box h3 {
-      font-size: 1.35rem;
-      font-weight: 800;
-      margin-bottom: 0.4rem;
-    }
-    .cta-box p {
-      color: rgba(255, 255, 255, 0.88);
-      font-size: 0.95rem;
-      max-width: 620px;
-    }
+    .cta-band h3 { font-size: var(--fs-xl); font-weight: 800; margin-bottom: 0.35rem; }
+    .cta-band p { color: rgba(255, 255, 255, 0.88); font-size: var(--fs-sm); max-width: 640px; }
 
-    /* Footer (Estilo index.html) */
-    .footer {
-      background: var(--light);
-      color: var(--dark-brown);
-      padding: 3.5rem 0 2rem;
-      border-top: 1px solid rgba(232, 135, 30, 0.18);
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      margin-bottom: 2.5rem;
-    }
+    /* ===== Footer ===== */
+    .footer { background: var(--cream); color: var(--dark-brown); padding: 3rem 0 2rem; border-top: 1px solid var(--hairline); }
+    .footer-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2rem; }
     @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 1024px) { .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; } }
-    .footer h4 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--dark-orange);
-      margin-bottom: 1rem;
-    }
-    .footer ul { display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.92rem; }
+    .footer h2 { font-size: var(--fs-base); font-weight: 700; color: var(--dark-orange); margin-bottom: 0.9rem; }
+    .footer ul { display: flex; flex-direction: column; gap: 0.6rem; font-size: var(--fs-sm); }
     .footer a:hover { color: var(--dark-orange); }
-    .footer-bottom {
-      border-top: 1px solid rgba(107, 78, 46, 0.15);
-      padding-top: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-      font-size: 0.85rem;
-      color: rgba(74, 53, 32, 0.75);
-    }
-    @media (min-width: 768px) { .footer-bottom { flex-direction: row; } }
-    .social-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.45rem 0.95rem;
-      background: rgba(74, 53, 32, 0.1);
-      border-radius: 9999px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-top: 1rem;
-      transition: all 0.2s ease;
-    }
-    .social-pill:hover { background: var(--orange); color: #fff !important; }
+    .footer-about { font-size: var(--fs-sm); color: rgba(59, 44, 28, 0.82); margin: 0.85rem 0; max-width: 340px; }
+    .footer-crc { font-size: var(--fs-sm); display: flex; align-items: center; gap: 0.5rem; }
+    .footer-crc i { color: var(--dark-orange); }
+    .social-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.45rem 0.95rem; background: rgba(59, 44, 28, 0.08); border-radius: 9999px; font-size: var(--fs-sm); font-weight: 600; margin-top: 1rem; transition: background 0.2s ease; }
+    .social-pill:hover { background: rgba(228, 130, 36, 0.18); }
+    .footer-bottom { border-top: 1px solid rgba(89, 67, 43, 0.15); padding-top: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 0.5rem; font-size: var(--fs-xs); color: rgba(59, 44, 28, 0.75); text-align: center; }
+    @media (min-width: 768px) { .footer-bottom { flex-direction: row; text-align: left; } }
 
-    /* Floating WhatsApp */
-    .float-whatsapp {
-      position: fixed;
-      bottom: 1.5rem;
-      right: 1.5rem;
-      width: 3.75rem;
-      height: 3.75rem;
-      background: #22C55E;
-      color: #fff;
-      border-radius: 9999px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.75rem;
-      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.25);
-      z-index: 40;
+    /* ===== CTA flutuante (Agendar consultoria) ===== */
+    .float-cta {
+      position: fixed; bottom: 1.25rem; right: 1.25rem; z-index: 45;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      height: 3.25rem; padding: 0 1.1rem; border-radius: 9999px; border: none; cursor: pointer;
+      background: var(--orange); color: var(--on-orange); font-weight: 700; font-size: var(--fs-sm);
+      box-shadow: 0 14px 24px -8px rgba(59, 44, 28, 0.4);
       transition: background 0.2s ease, transform 0.2s ease;
     }
-    .float-whatsapp:hover { background: #16A34A; transform: scale(1.05); }
+    .float-cta:hover { background: var(--dark-orange); transform: translateY(-2px); }
+    .float-cta i { font-size: 1.15rem; }
+    @media (max-width: 639px) { .float-cta { width: 3.25rem; padding: 0; justify-content: center; } .float-cta .label { display: none; } }
 
-    /* Animations */
+    /* Animações do logo */
     .gear-rotate { animation: gearSpin 20s linear infinite; }
     .gear-rotate-reverse { animation: gearSpinReverse 25s linear infinite; }
     @keyframes gearSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     @keyframes gearSpinReverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
-
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
+      html, .table-wrapper { scroll-behavior: auto; }
       .gear-rotate, .gear-rotate-reverse { animation: none !important; }
+      * { transition: none !important; }
     }
 
-    /* Print Styles */
+    /* ===== Impressão / PDF ===== */
     .print-header, .print-footer { display: none; }
-    @page {
-      size: A4 landscape;
-      margin: 10mm 12mm;
-    }
+    @page { size: A4 landscape; margin: 9mm 10mm; }
     @media print {
-      * {
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-      }
-      .no-print, .navbar, .hero-banner, .cta-box, .footer, .float-whatsapp {
-        display: none !important;
-      }
-      body {
-        background: #fff !important;
-        font-size: 11px;
-      }
-      .container-wide {
-        margin: 0;
-        padding: 0;
-        max-width: 100%;
-      }
-      main.main-content {
-        padding: 0;
-      }
-      .card {
-        border: none;
-        box-shadow: none;
-        padding: 0;
-        margin-bottom: 0.5rem;
-      }
-      .card-header {
-        margin-bottom: 0.5rem;
-        padding-bottom: 0.35rem;
-      }
-      .card-title {
-        font-size: 0.92rem;
-      }
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; box-shadow: none !important; }
+      .no-print, .navbar, .hero, .stepper-wrap, .insights, .footer, .float-cta, .mobile-menu { display: none !important; }
+      html, body { background: #fff !important; font-size: 10.5px; }
+      .gear-rotate, .gear-rotate-reverse { animation: none !important; }
+      .container { max-width: 100%; padding: 0; margin: 0; }
+      .main-content { padding: 0; }
+      .step { margin: 0; }
+      .card { border: none; padding: 0; border-radius: 0; }
       .print-header {
-        display: flex !important;
-        justify-content: space-between;
-        align-items: center;
-        gap: 1rem;
-        background: var(--light);
-        border: 1px solid rgba(232, 135, 30, 0.3);
-        border-bottom: 3px solid var(--orange);
-        border-radius: 0.75rem;
-        padding: 0.65rem 1rem;
-        margin-bottom: 0.75rem;
-        break-inside: avoid;
+        display: flex !important; justify-content: space-between; align-items: center; gap: 1rem;
+        border-bottom: 3px solid var(--orange); padding: 0 0 0.6rem; margin-bottom: 0.75rem; break-inside: avoid;
       }
-      .print-brand {
-        display: flex;
-        align-items: center;
-        gap: 0.85rem;
-      }
-      .print-office-info {
-        font-size: 0.7rem;
-        line-height: 1.4;
-        color: var(--dark-brown);
-      }
-      .print-office-info strong {
-        font-size: 0.82rem;
-        color: var(--brown);
-        display: block;
-      }
-      .print-doc-meta {
-        text-align: right;
-        min-width: 220px;
-      }
-      .print-doc-meta h2 {
-        font-size: 1.05rem;
-        font-weight: 900;
-        color: var(--dark-brown);
-        margin-bottom: 0.15rem;
-      }
-      .print-doc-meta p {
-        font-size: 0.72rem;
-        color: var(--gray-600);
-      }
-      .kpi-row {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 0.6rem;
-        margin-bottom: 0.7rem;
-        break-inside: avoid;
-      }
-      .kpi-box {
-        padding: 0.5rem 0.75rem;
-        border-radius: 0.6rem;
-        border-top-width: 3px;
-        box-shadow: none;
-      }
-      .kpi-box span { font-size: 0.65rem; }
-      .kpi-box strong { font-size: 1.1rem; margin-top: 0.1rem; }
-      .table-wrapper {
-        overflow: visible;
-        border-radius: 0.6rem;
-      }
-      table {
-        min-width: 0 !important;
-        width: 100% !important;
-      }
-      th, td {
-        padding: 0.35rem 0.25rem;
-        font-size: 0.72rem;
-      }
-      th.col-colab, td.col-colab {
-        min-width: 160px;
-        position: static;
-        padding-left: 0.5rem;
-      }
-      .colab-meta { font-size: 0.64rem; }
-      .pill-shift {
-        min-width: 54px;
-        padding: 0.22rem 0.18rem;
-        font-size: 0.68rem;
-      }
-      .pill-shift small { font-size: 0.58rem; }
-      tr {
-        break-inside: avoid;
-        page-break-inside: avoid;
-      }
-      .legend-row {
-        margin-top: 0.55rem !important;
-        gap: 0.85rem !important;
-        font-size: 0.68rem !important;
-        break-inside: avoid;
-      }
+      .print-brand { display: flex; align-items: center; gap: 0.9rem; }
+      .print-office-info { font-size: 0.72rem; line-height: 1.45; color: var(--dark-brown); }
+      .print-office-info strong { font-size: 0.85rem; color: var(--brown); display: block; }
+      .print-doc-meta { text-align: right; min-width: 220px; }
+      .print-doc-meta h1 { font-size: 1.15rem; font-weight: 800; color: var(--dark-brown); margin-bottom: 0.15rem; }
+      .print-doc-meta p { font-size: 0.72rem; color: var(--text-muted); }
+      .kpi-grid { grid-template-columns: repeat(6, 1fr) !important; gap: 0.45rem; margin-bottom: 0.4rem; break-inside: avoid; }
+      .kpi { padding: 0.4rem 0.55rem; border-radius: 0.5rem; gap: 0; }
+      .kpi-label { font-size: 0.6rem; }
+      .kpi-label i { display: none; }
+      .kpi-value { font-size: 0.95rem; margin-top: 0.1rem; }
+      .kpi-sub { font-size: 0.58rem; }
+      .kpi--cost a { text-decoration: none; color: var(--text-muted); font-weight: 500; }
+      .estimate-note { margin: 0 0 0.5rem; font-size: 0.6rem; }
+      .table-scroll-hint { display: none !important; }
+      .table-wrapper { overflow: visible; border-radius: 0.5rem; }
+      .schedule-table { min-width: 0 !important; width: 100% !important; }
+      .schedule-table th, .schedule-table td { padding: 0.3rem 0.2rem; font-size: 0.68rem; }
+      .col-colab { position: static; min-width: 150px; padding-left: 0.5rem !important; }
+      .colab-meta { font-size: 0.6rem; }
+      .pill-shift { min-width: 0; min-height: 0; padding: 0.2rem 0.15rem; font-size: 0.64rem; border-radius: 0.35rem; }
+      .pill-shift small { font-size: 0.56rem; }
+      tr { break-inside: avoid; page-break-inside: avoid; }
+      thead { display: table-header-group; }
+      .legend { margin-top: 0.5rem; gap: 0.3rem 0.9rem; font-size: 0.62rem; break-inside: avoid; }
       .print-footer {
-        display: flex !important;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-top: 0.65rem;
-        padding-top: 0.45rem;
-        border-top: 1px solid rgba(107, 78, 46, 0.22);
-        font-size: 0.66rem;
-        color: var(--gray-600);
-        break-inside: avoid;
+        display: flex !important; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;
+        margin-top: 0.6rem; padding-top: 0.4rem; border-top: 1px solid rgba(89, 67, 43, 0.25);
+        font-size: 0.62rem; color: var(--text-muted); break-inside: avoid;
       }
     }
   </style>
 </head>
 <body>
 
-<!-- Logo SVG Definition (Identidade Oficial index.html) -->
-<svg style="display:none">
+<!-- Logo SVG (identidade oficial index.html) -->
+<svg class="svg-sprite" aria-hidden="true" focusable="false">
   <defs>
     <symbol id="logo-full" viewBox="0 0 700 260">
       <g class="gear-rotate" style="transform-origin: 78px 104px;">
@@ -957,398 +496,526 @@
         <circle cx="56" cy="53" r="1.2" fill="#3A2A1A"/>
         <circle cx="100" cy="53" r="1.2" fill="#3A2A1A"/>
       </g>
-      <text x="160" y="85" font-family="Inter, Arial, sans-serif" font-weight="900" font-size="46" fill="#E48224" letter-spacing="1">CONTABILIDADE</text>
-      <text x="155" y="185" font-family="Inter, Arial, sans-serif" font-weight="900" font-size="110" fill="#59432B" letter-spacing="2">LÍDER</text>
-      <text x="165" y="225" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="16" fill="#E48224" letter-spacing="0.5">"O SUCESSO DA SUA EMPRESA COMEÇA AQUI"</text>
+      <text x="160" y="85" font-family="'Plus Jakarta Sans', Inter, Arial, sans-serif" font-weight="800" font-size="46" fill="#E48224" letter-spacing="1">CONTABILIDADE</text>
+      <text x="155" y="185" font-family="'Plus Jakarta Sans', Inter, Arial, sans-serif" font-weight="800" font-size="110" fill="#59432B" letter-spacing="2">LÍDER</text>
+      <text x="165" y="225" font-family="'Plus Jakarta Sans', Inter, Arial, sans-serif" font-weight="700" font-size="16" fill="#E48224" letter-spacing="0.5">"O SUCESSO DA SUA EMPRESA COMEÇA AQUI"</text>
     </symbol>
   </defs>
 </svg>
 
-<!-- Navbar -->
-<nav id="navbar" class="navbar">
-  <div class="container-wide">
-    <div class="navbar-inner">
-      <a href="index.html" aria-label="Contabilidade Líder - Voltar ao Site">
-        <svg class="logo-svg" width="210" height="76" viewBox="0 0 700 260" role="img" aria-label="Logo Contabilidade Líder"><use href="#logo-full"/></svg>
-      </a>
-      <div class="nav-links">
-        <a href="index.html" class="nav-link"><i class="fa-solid fa-arrow-left" style="margin-right:0.35rem;"></i>Voltar ao Site</a>
-        <a href="index.html#servicos" class="nav-link">Serviços</a>
-        <a href="index.html#contato" class="nav-link">Contato</a>
-        <a href="https://wa.me/5531988967713?text=Ol%C3%A1!%20Estou%20usando%20o%20Simulador%20de%20Escalas%20no%20site%20da%20Contabilidade%20L%C3%ADder%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida." target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-          <i class="fa-brands fa-whatsapp"></i> Agendar consultoria
+<header>
+  <nav id="navbar" class="navbar" aria-label="Navegação principal">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" aria-label="Contabilidade Líder — voltar ao site">
+          <svg class="logo-svg" width="190" height="70" viewBox="0 0 700 260" role="img" aria-label="Logo Contabilidade Líder"><use href="#logo-full"/></svg>
         </a>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Voltar ao site</a>
+          <a href="index.html#servicos" class="nav-link">Serviços</a>
+          <a href="index.html#contato" class="nav-link">Contato</a>
+          <button type="button" class="btn btn-primary" onclick="agendarConsultoria()">
+            <i class="fa-regular fa-calendar-check" aria-hidden="true"></i> Agendar consultoria
+          </button>
+        </div>
+        <button id="menuBtn" type="button" class="menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
       </div>
-      <button id="menuBtn" class="menu-btn" aria-label="Abrir menu mobile" aria-expanded="false">
-        <i class="fa-solid fa-bars" aria-hidden="true"></i>
-      </button>
     </div>
-  </div>
-  <div id="mobileMenu" class="mobile-menu">
-    <button id="closeMenu" class="close-menu" aria-label="Fechar menu mobile"><i class="fa-solid fa-times" aria-hidden="true"></i></button>
-    <div style="display:flex; justify-content:center; margin-top:1rem;">
-      <svg class="logo-svg" width="180" height="66" viewBox="0 0 700 260"><use href="#logo-full"/></svg>
-    </div>
-    <div class="mobile-nav-list">
-      <a href="index.html" class="mobile-link">Voltar ao Site</a>
-      <a href="index.html#servicos" class="mobile-link">Serviços</a>
-      <a href="index.html#contato" class="mobile-link">Contato</a>
-      <a href="https://wa.me/5531988967713?text=Ol%C3%A1!%20Estou%20usando%20o%20Simulador%20de%20Escalas%20da%20Contabilidade%20L%C3%ADder." target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-top:0.75rem;">
-        <i class="fa-brands fa-whatsapp"></i> Agendar consultoria
-      </a>
-    </div>
-  </div>
-</nav>
-
-<!-- Hero Banner -->
-<section class="hero-banner">
-  <svg class="hero-illustration" aria-hidden="true" viewBox="0 0 1440 360" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-    <g class="gear-rotate" style="transform-origin: 1320px 90px;" opacity="0.12">
-      <path d="M 1313.4 10.3 L 1326.6 10.3 L 1329.1 27.6 L 1336.3 29.1 L 1345.2 14.0 L 1357.3 19.0 L 1353.0 36.0 L 1359.1 40.1 L 1373.2 29.6 L 1382.4 38.8 L 1371.9 52.9 L 1376.0 59.0 L 1393.0 54.7 L 1398.0 66.8 L 1382.9 75.7 L 1384.4 82.9 L 1401.7 85.4 L 1401.7 98.6 L 1384.4 101.1 L 1382.9 108.3 L 1398.0 117.2 L 1393.0 129.3 L 1376.0 125.0 L 1371.9 131.1 L 1382.4 145.2 L 1373.2 154.4 L 1359.1 143.9 L 1353.0 148.0 L 1357.3 165.0 L 1345.2 170.0 L 1336.3 154.9 L 1329.1 156.4 L 1326.6 173.7 L 1313.4 173.7 L 1310.9 156.4 L 1303.7 154.9 L 1294.8 170.0 L 1282.7 165.0 L 1287.0 148.0 L 1280.9 143.9 L 1266.8 154.4 L 1257.6 145.2 L 1268.1 131.1 L 1264.0 125.0 L 1247.0 129.3 L 1242.0 117.2 L 1257.1 108.3 L 1255.6 101.1 L 1238.3 98.6 L 1238.3 85.4 L 1255.6 82.9 L 1257.1 75.7 L 1242.0 66.8 L 1247.0 54.7 L 1264.0 59.0 L 1268.1 52.9 L 1257.6 38.8 L 1266.8 29.6 L 1280.9 40.1 L 1287.0 36.0 L 1282.7 19.0 L 1294.8 14.0 L 1303.7 29.1 L 1310.9 27.6 Z" fill="#E48224"/>
-      <circle cx="1320" cy="92" r="34" fill="#FFF8F0"/>
-    </g>
-    <g class="gear-rotate-reverse" style="transform-origin: 90px 300px;" opacity="0.10">
-      <circle cx="90" cy="300" r="56" fill="#59432B"/>
-      <circle cx="90" cy="300" r="24" fill="#FFF8F0"/>
-    </g>
-  </svg>
-
-  <div class="container-wide hero-inner">
-    <div>
-      <div class="hero-badge">
-        <i class="fa-solid fa-calendar-check"></i> Ferramenta Gratuita • Transição Pós-Escala 6x1
+    <div id="mobileMenu" class="mobile-menu" aria-label="Menu mobile">
+      <button id="closeMenu" type="button" class="close-menu" aria-label="Fechar menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      <div style="display:flex; justify-content:center; margin-top:1rem;">
+        <svg class="logo-svg" width="170" height="63" viewBox="0 0 700 260" aria-hidden="true"><use href="#logo-full"/></svg>
       </div>
-      <h1>Organizador e Simulador de <span>Escalas Trabalhistas</span></h1>
-      <p>
-        Monte ou importe a escala semanal da sua equipe em modelos 5x2, 4x3, 12x36 ou revezamento de folgas. Calcule automaticamente a carga horária semanal, exporte para Excel/PDF e evite passivos trabalhistas.
-      </p>
+      <div class="mobile-nav-list">
+        <a href="index.html" class="mobile-link">Voltar ao site</a>
+        <a href="index.html#servicos" class="mobile-link">Serviços</a>
+        <a href="index.html#contato" class="mobile-link">Contato</a>
+        <button type="button" class="btn btn-primary" style="margin-top:0.75rem;" onclick="closeMobileMenu(); agendarConsultoria();">
+          <i class="fa-regular fa-calendar-check" aria-hidden="true"></i> Agendar consultoria
+        </button>
+      </div>
     </div>
-    <div class="export-group">
-      <button type="button" onclick="exportarCSV()" class="btn btn-excel">
-        <i class="fa-solid fa-file-excel"></i> Exportar Excel (CSV)
-      </button>
-      <button type="button" onclick="window.print()" class="btn btn-secondary">
-        <i class="fa-solid fa-file-pdf"></i> Imprimir / PDF
-      </button>
-    </div>
-  </div>
-</section>
+  </nav>
 
-<main class="main-content">
-  <div class="container-wide">
-    <!-- Cabeçalho exclusivo para impressão -->
+  <section class="hero" aria-labelledby="hero-titulo">
+    <svg class="hero-illustration" aria-hidden="true" viewBox="0 0 1440 360" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <g class="gear-rotate" style="transform-origin: 1320px 92px;" opacity="0.12">
+        <path d="M 1313.4 10.3 L 1326.6 10.3 L 1329.1 27.6 L 1336.3 29.1 L 1345.2 14.0 L 1357.3 19.0 L 1353.0 36.0 L 1359.1 40.1 L 1373.2 29.6 L 1382.4 38.8 L 1371.9 52.9 L 1376.0 59.0 L 1393.0 54.7 L 1398.0 66.8 L 1382.9 75.7 L 1384.4 82.9 L 1401.7 85.4 L 1401.7 98.6 L 1384.4 101.1 L 1382.9 108.3 L 1398.0 117.2 L 1393.0 129.3 L 1376.0 125.0 L 1371.9 131.1 L 1382.4 145.2 L 1373.2 154.4 L 1359.1 143.9 L 1353.0 148.0 L 1357.3 165.0 L 1345.2 170.0 L 1336.3 154.9 L 1329.1 156.4 L 1326.6 173.7 L 1313.4 173.7 L 1310.9 156.4 L 1303.7 154.9 L 1294.8 170.0 L 1282.7 165.0 L 1287.0 148.0 L 1280.9 143.9 L 1266.8 154.4 L 1257.6 145.2 L 1268.1 131.1 L 1264.0 125.0 L 1247.0 129.3 L 1242.0 117.2 L 1257.1 108.3 L 1255.6 101.1 L 1238.3 98.6 L 1238.3 85.4 L 1255.6 82.9 L 1257.1 75.7 L 1242.0 66.8 L 1247.0 54.7 L 1264.0 59.0 L 1268.1 52.9 L 1257.6 38.8 L 1266.8 29.6 L 1280.9 40.1 L 1287.0 36.0 L 1282.7 19.0 L 1294.8 14.0 L 1303.7 29.1 L 1310.9 27.6 Z" fill="#E48224"/>
+        <circle cx="1320" cy="92" r="34" fill="#FFF8F0"/>
+      </g>
+      <g class="gear-rotate-reverse" style="transform-origin: 90px 300px;" opacity="0.10">
+        <circle cx="90" cy="300" r="56" fill="#59432B"/>
+        <circle cx="90" cy="300" r="24" fill="#FFF8F0"/>
+      </g>
+    </svg>
+    <div class="container">
+      <div class="hero-inner">
+        <span class="eyebrow"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i> Ferramenta gratuita • Transição da escala 6x1</span>
+        <h1 id="hero-titulo">Simulador de <span>Escalas de Trabalho</span></h1>
+        <p>Monte ou importe a escala semanal da sua equipe nos modelos 6x1, 5x2, 4x3 ou 12x36. Veja horas, domingos trabalhados, alertas CLT e uma estimativa de custo da folha — e exporte para Excel ou PDF em segundos.</p>
+        <ul class="hero-chips" aria-label="Recursos">
+          <li class="chip"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> 6x1 · 5x2 · 4x3 · 12x36</li>
+          <li class="chip"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Alertas CLT</li>
+          <li class="chip"><i class="fa-solid fa-file-import" aria-hidden="true"></i> Importa planilhas</li>
+          <li class="chip"><i class="fa-solid fa-file-export" aria-hidden="true"></i> Excel e PDF</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</header>
+
+<div class="stepper-wrap no-print">
+  <div class="container">
+    <ol class="stepper" aria-label="Etapas do simulador">
+      <li><a href="#passo-configurar" data-step="passo-configurar" class="is-active"><span class="num">1</span> Configurar</a></li>
+      <li><a href="#passo-equipe" data-step="passo-equipe"><span class="num">2</span> Equipe</a></li>
+      <li><a href="#passo-resultado" data-step="passo-resultado"><span class="num">3</span> Resultado</a></li>
+    </ol>
+  </div>
+</div>
+
+<main class="main-content" id="conteudo">
+  <div class="container">
+
+    <!-- Cabeçalho institucional exclusivo para impressão -->
     <div class="print-header">
       <div class="print-brand">
-        <svg width="170" height="62" viewBox="0 0 700 260" role="img" aria-label="Logo Contabilidade Líder"><use href="#logo-full"/></svg>
+        <svg width="170" height="63" viewBox="0 0 700 260" role="img" aria-label="Logo Contabilidade Líder"><use href="#logo-full"/></svg>
         <div class="print-office-info">
-          <strong>Escritório de Contabilidade Líder • CRC-MG 4623</strong>
-          <span>Rua Fernão Dias, 303, 5º andar — N. Sra. do Rosário, João Monlevade - MG • CEP: 35930-180</span><br>
-          <span>Tel: (31) 3852-3355 • WhatsApp: (31) 98896-7713 • contato@contabilidadelider.cnt.br</span>
+          <strong>Contabilidade Líder • contabilidadelider.cnt.br</strong>
+          <span>contato@contabilidadelider.cnt.br • Tel: (31) 3852-3355 • WhatsApp: (31) 98896-7713</span><br>
+          <span>Rua Fernão Dias, 303, 5º andar — João Monlevade - MG • CRC-MG 4623</span>
         </div>
       </div>
       <div class="print-doc-meta">
-        <h2 id="print-empresa-titulo">Escala Semanal de Trabalho</h2>
+        <h1 id="print-empresa-titulo">Escala Semanal de Trabalho</h1>
         <p id="print-meta-detalhes">Modelo: 5x2 • Limite: 44h/sem</p>
       </div>
     </div>
 
-    <!-- Passo 1: Configuração e Modelos -->
-    <section class="card no-print">
-      <div class="card-header">
-        <div class="card-title">
-          <i class="fa-solid fa-sliders"></i> 1. Escolha o Modelo de Escala Base (Substituição 6x1)
-        </div>
-        <div style="display:flex; gap:0.65rem; align-items:center; flex-wrap:wrap;">
-          <input type="text" id="nomeEmpresa" class="form-control" placeholder="Nome da sua Empresa (sai no Excel/PDF)" style="width: 280px;" oninput="salvarDados()">
-          <select id="limiteSemanal" class="form-control" style="width: 185px;" onchange="renderTabela(); salvarDados();">
-            <option value="44">Limite: 44h / semana</option>
-            <option value="40">Limite: 40h / semana</option>
-            <option value="36">Limite: 36h / semana</option>
-          </select>
+    <!-- PASSO 1: CONFIGURAR -->
+    <section id="passo-configurar" class="step no-print" aria-labelledby="titulo-passo-1">
+      <div class="step-head">
+        <div class="step-title">
+          <span class="step-badge" aria-hidden="true">1</span>
+          <div>
+            <h2 id="titulo-passo-1">Configurar escala</h2>
+            <p>Defina a empresa, o limite semanal e o modelo de escala base.</p>
+          </div>
         </div>
       </div>
 
-      <div class="presets-grid">
-        <button type="button" class="preset-btn active" data-preset="5x2" onclick="aplicarPreset('5x2', this)">
-          <strong>Escala 5x2 (Segunda a Sexta)</strong>
-          <span>5 dias de trabalho + 2 folgas (Sáb/Dom). Ideal para escritórios e serviços.</span>
-        </button>
-        <button type="button" class="preset-btn" data-preset="5x2_rev" onclick="aplicarPreset('5x2_rev', this)">
-          <strong>Escala 5x2 com Revezamento</strong>
-          <span>5 dias de trabalho + 2 folgas alternadas para comércio que abre fim de semana.</span>
-        </button>
-        <button type="button" class="preset-btn" data-preset="4x3" onclick="aplicarPreset('4x3', this)">
-          <strong>Escala 4x3 (Jornada Reduzida)</strong>
-          <span>4 dias trabalhados + 3 dias de folga na semana.</span>
-        </button>
-        <button type="button" class="preset-btn" data-preset="12x36" onclick="aplicarPreset('12x36', this)">
-          <strong>Escala 12x36 (Plantão Alternado)</strong>
-          <span>12h de jornada por 36h de descanso (dia sim, dia não).</span>
-        </button>
+      <div class="card">
+        <div class="panel-section">
+          <div class="group-label"><i class="fa-solid fa-building" aria-hidden="true"></i> Dados da empresa</div>
+          <div class="grid-2">
+            <div class="field">
+              <label for="nomeEmpresa">Nome da empresa</label>
+              <input type="text" id="nomeEmpresa" class="form-control" placeholder="Ex.: Supermercado Monlevade Ltda." autocomplete="organization" oninput="salvarDados()" aria-describedby="nomeEmpresaHint">
+              <span class="hint" id="nomeEmpresaHint">Aparece no cabeçalho do Excel e do PDF.</span>
+            </div>
+            <div class="field">
+              <label for="limiteSemanal">Limite de horas semanais</label>
+              <select id="limiteSemanal" class="form-control" onchange="renderTabela(); salvarDados();" aria-describedby="limiteHint">
+                <option value="44">44h por semana (CLT atual)</option>
+                <option value="40">40h por semana</option>
+                <option value="36">36h por semana</option>
+              </select>
+              <span class="hint" id="limiteHint">Usado nos alertas CLT e no cálculo do custo/hora.</span>
+            </div>
+          </div>
+        </div>
+
+        <fieldset class="panel-section">
+          <legend><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Modelo de escala <small>— aplica dias e horários padrão à equipe</small></legend>
+          <div class="presets-grid">
+            <button type="button" class="preset-btn" data-preset="6x1" aria-pressed="false" onclick="aplicarPreset('6x1', this)">
+              <span class="preset-tag">6x1</span>
+              <strong>Seis por um</strong>
+              <span class="desc">6 dias de trabalho + 1 folga, com revezamento que cobre o domingo.</span>
+              <span class="meta">08:00–16:20 • 44h/sem</span>
+            </button>
+            <button type="button" class="preset-btn" data-preset="5x2" aria-pressed="true" onclick="aplicarPreset('5x2', this)">
+              <span class="preset-tag">5x2</span>
+              <strong>Segunda a sexta</strong>
+              <span class="desc">5 dias + folga no sábado e DSR no domingo. Ideal para escritórios.</span>
+              <span class="meta">08:00–17:48 • 44h/sem</span>
+            </button>
+            <button type="button" class="preset-btn" data-preset="5x2_rev" aria-pressed="false" onclick="aplicarPreset('5x2_rev', this)">
+              <span class="preset-tag">5x2 rev.</span>
+              <strong>5x2 com revezamento</strong>
+              <span class="desc">Folgas alternadas para comércio que abre aos sábados.</span>
+              <span class="meta">08:00–17:48 • 44h/sem</span>
+            </button>
+            <button type="button" class="preset-btn" data-preset="4x3" aria-pressed="false" onclick="aplicarPreset('4x3', this)">
+              <span class="preset-tag">4x3</span>
+              <strong>Jornada reduzida</strong>
+              <span class="desc">4 dias trabalhados + 3 dias de descanso na semana.</span>
+              <span class="meta">08:00–19:00 • 40h/sem</span>
+            </button>
+            <button type="button" class="preset-btn" data-preset="12x36" aria-pressed="false" onclick="aplicarPreset('12x36', this)">
+              <span class="preset-tag">12x36</span>
+              <strong>Plantão alternado</strong>
+              <span class="desc">12h de jornada por 36h de descanso (dia sim, dia não).</span>
+              <span class="meta">07:00–19:00 • média 42h</span>
+            </button>
+          </div>
+        </fieldset>
+
+        <fieldset class="panel-section">
+          <legend><i class="fa-solid fa-coins" aria-hidden="true"></i> Estimativa de custo <small>— opcional</small></legend>
+          <div class="grid-3">
+            <div class="field">
+              <label for="salarioMedio">Salário médio mensal</label>
+              <div class="input-prefix">
+                <span aria-hidden="true">R$</span>
+                <input type="number" id="salarioMedio" class="form-control" min="0" step="0.01" inputmode="decimal" placeholder="Ex.: 2200,00" oninput="renderTabela(); salvarDados();" aria-describedby="salarioHint">
+              </div>
+              <span class="hint" id="salarioHint">Custo/hora = salário ÷ divisor (44h → 220).</span>
+            </div>
+            <div class="field">
+              <label for="custoHora">Custo por hora <small>(substitui o salário)</small></label>
+              <div class="input-prefix">
+                <span aria-hidden="true">R$</span>
+                <input type="number" id="custoHora" class="form-control" min="0" step="0.01" inputmode="decimal" placeholder="Ex.: 12,50" oninput="renderTabela(); salvarDados();">
+              </div>
+            </div>
+            <div class="field">
+              <label for="encargos">Encargos e provisões</label>
+              <div class="input-suffix">
+                <input type="number" id="encargos" class="form-control" min="0" max="200" step="1" inputmode="numeric" placeholder="Ex.: 68" oninput="renderTabela(); salvarDados();" aria-describedby="encargosHint">
+                <span aria-hidden="true">%</span>
+              </div>
+              <span class="hint" id="encargosHint">INSS, FGTS, férias, 13º… (deixe vazio para ignorar).</span>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="panel-footer">
+          <p><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Ao trocar o modelo, os dias e horários da equipe são recalculados. Depois, ajuste dia a dia clicando na grade.</p>
+          <button type="button" class="btn btn-brown btn-rect" onclick="gerarEscala()">
+            <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Gerar escala
+          </button>
+        </div>
       </div>
     </section>
 
-    <!-- Passo 2: Adicionar Manualmente OU Importar Planilha -->
-    <div class="team-entry-grid no-print">
-      <!-- 2A: Adicionar Colaborador -->
-      <section class="card">
-        <div class="card-header">
-          <div class="card-title">
-            <i class="fa-solid fa-user-plus"></i> 2A. Adicionar Colaborador
+    <!-- PASSO 2: EQUIPE -->
+    <section id="passo-equipe" class="step no-print" aria-labelledby="titulo-passo-2">
+      <div class="step-head">
+        <div class="step-title">
+          <span class="step-badge" aria-hidden="true">2</span>
+          <div>
+            <h2 id="titulo-passo-2">Equipe</h2>
+            <p>Cadastre colaboradores manualmente ou importe uma planilha.</p>
           </div>
         </div>
-        <form id="formColab" class="form-grid" onsubmit="adicionarColaborador(event)">
-          <div class="form-group">
-            <label for="colabNome">Nome do Colaborador *</label>
-            <input type="text" id="colabNome" class="form-control" placeholder="Ex.: Mariana Souza" required>
-          </div>
-          <div class="form-group">
-            <label for="colabCargo">Cargo / Setor</label>
-            <input type="text" id="colabCargo" class="form-control" placeholder="Ex.: Atendimento / Caixa">
-          </div>
-          <div class="form-group">
-            <label for="colabEntrada">Entrada</label>
-            <input type="time" id="colabEntrada" class="form-control" value="08:00" required>
-          </div>
-          <div class="form-group">
-            <label for="colabSaida">Saída</label>
-            <input type="time" id="colabSaida" class="form-control" value="17:48" required>
-          </div>
-          <div class="form-group">
-            <label for="colabIntervalo">Intervalo (min)</label>
-            <input type="number" id="colabIntervalo" class="form-control" value="60" min="0" max="180" required>
-          </div>
-          <button type="submit" class="btn btn-primary btn-sm-rect" style="height: 42px;">
-            <i class="fa-solid fa-plus"></i> Adicionar à Grade
-          </button>
-        </form>
-      </section>
+      </div>
 
-      <!-- 2B: Importar Planilha -->
-      <section class="card">
-        <div class="card-header">
-          <div class="card-title">
-            <i class="fa-solid fa-file-import"></i> 2B. Importar Planilha de Dados
+      <div class="team-grid">
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Adicionar colaborador</h3>
+              <p class="card-sub">Turno e intervalo definem as horas líquidas por dia.</p>
+            </div>
           </div>
-          <button type="button" class="btn btn-secondary" style="padding:0.4rem 0.85rem; font-size:0.78rem;" onclick="baixarModeloPlanilha()">
-            <i class="fa-solid fa-download"></i> Baixar Modelo
-          </button>
+          <form id="formColab" class="grid-2" onsubmit="adicionarColaborador(event)">
+            <div class="field">
+              <label for="colabNome">Nome do colaborador *</label>
+              <input type="text" id="colabNome" class="form-control" placeholder="Ex.: Mariana Souza" required autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="colabCargo">Cargo / setor</label>
+              <input type="text" id="colabCargo" class="form-control" placeholder="Ex.: Atendimento / Caixa" autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="colabEntrada">Entrada</label>
+              <input type="time" id="colabEntrada" class="form-control" value="08:00" required>
+            </div>
+            <div class="field">
+              <label for="colabSaida">Saída</label>
+              <input type="time" id="colabSaida" class="form-control" value="17:48" required>
+            </div>
+            <div class="field">
+              <label for="colabIntervalo">Intervalo (minutos)</label>
+              <input type="number" id="colabIntervalo" class="form-control" value="60" min="0" max="180" required>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-brown btn-rect">
+                <i class="fa-solid fa-plus" aria-hidden="true"></i> Adicionar colaborador
+              </button>
+            </div>
+          </form>
         </div>
 
-        <input type="file" id="inputPlanilha" accept=".xlsx,.xls,.csv" style="display:none" onchange="handleArquivoPlanilha(this.files[0])">
-
-        <div id="dropzonePlanilha" class="import-dropzone" tabindex="0" role="button" aria-label="Importar planilha Excel ou CSV" onclick="document.getElementById('inputPlanilha').click()">
-          <div class="import-icon">
-            <i class="fa-solid fa-file-excel"></i>
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-file-import" aria-hidden="true"></i> Importar planilha</h3>
+              <p class="card-sub">.XLSX, .XLS ou .CSV</p>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="baixarModeloPlanilha()">
+              <i class="fa-solid fa-download" aria-hidden="true"></i> Baixar modelo
+            </button>
           </div>
-          <strong style="color:var(--dark-brown); font-size:0.95rem;">Clique para selecionar ou arraste sua planilha</strong>
-          <span style="font-size:0.78rem; color:var(--gray-600);">
-            Aceita <strong>.XLSX, .XLS ou .CSV</strong> com colunas: Nome, Cargo, Entrada, Saída, Intervalo (e dias opcionais Seg-Dom).
-          </span>
-        </div>
 
-        <div class="import-options">
-          <div class="import-mode-group">
+          <input type="file" id="inputPlanilha" accept=".xlsx,.xls,.csv" hidden onchange="handleArquivoPlanilha(this.files[0])" aria-label="Selecionar planilha">
+
+          <div id="dropzonePlanilha" class="import-dropzone" tabindex="0" role="button" aria-label="Importar planilha Excel ou CSV" onclick="document.getElementById('inputPlanilha').click()">
+            <div class="import-icon" aria-hidden="true"><i class="fa-solid fa-file-excel"></i></div>
+            <strong>Clique para selecionar ou arraste sua planilha</strong>
+            <span>Colunas: Nome, Cargo, Entrada, Saída, Intervalo (e dias opcionais Seg–Dom).</span>
+          </div>
+
+          <fieldset class="import-mode-group">
+            <legend class="sr-only">Modo de importação</legend>
             <label><input type="radio" name="modoImportacao" value="substituir" checked> Substituir equipe atual</label>
             <label><input type="radio" name="modoImportacao" value="adicionar"> Adicionar à equipe</label>
-          </div>
+          </fieldset>
+          <div id="importStatus" class="import-status" role="status" aria-live="polite"></div>
         </div>
-        <div id="importStatus" class="import-status" role="status" aria-live="polite"></div>
-      </section>
-    </div>
-
-    <!-- KPIs -->
-    <div class="kpi-row">
-      <div class="kpi-box">
-        <span>Total de Colaboradores</span>
-        <strong id="kpiTotalColab">0</strong>
-      </div>
-      <div class="kpi-box">
-        <span>Média Horas / Semana</span>
-        <strong id="kpiMediaHoras">0h</strong>
-      </div>
-      <div class="kpi-box">
-        <span>Cobertura aos Sábados</span>
-        <strong id="kpiSabado">0 pessoas</strong>
-      </div>
-      <div class="kpi-box">
-        <span>Cobertura aos Domingos</span>
-        <strong id="kpiDomingo">0 pessoas</strong>
-      </div>
-    </div>
-
-    <!-- Grade Interativa -->
-    <section class="card">
-      <div class="card-header">
-        <div class="card-title">
-          <i class="fa-solid fa-table-cells"></i> 3. Grade Semanal de Trabalho
-          <small class="no-print" style="font-weight:500; color:var(--text-muted); font-size:0.82rem;">(Clique nos dias para alternar Trabalho / Folga / DSR / Ausência)</small>
-        </div>
-        <div class="no-print" style="display:flex; gap:0.5rem; flex-wrap:wrap;">
-          <button type="button" class="btn btn-secondary btn-sm-rect" onclick="exportarCSV()">
-            <i class="fa-solid fa-file-excel" style="color:#15803D;"></i> Baixar Excel
-          </button>
-          <button type="button" class="btn btn-secondary btn-sm-rect" onclick="window.print()">
-            <i class="fa-solid fa-print"></i> Imprimir / PDF
-          </button>
-          <button type="button" class="btn btn-secondary btn-sm-rect" onclick="resetarExemplo()">
-            <i class="fa-solid fa-rotate-left"></i> Restaurar Exemplo
-          </button>
-        </div>
-      </div>
-
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th class="col-colab">Colaborador / Turno</th>
-              <th>Segunda</th>
-              <th>Terça</th>
-              <th>Quarta</th>
-              <th>Quinta</th>
-              <th>Sexta</th>
-              <th>Sábado</th>
-              <th>Domingo</th>
-              <th>Carga Semanal</th>
-              <th>Status CLT</th>
-              <th class="no-print">Ação</th>
-            </tr>
-          </thead>
-          <tbody id="tabelaEscalaBody"></tbody>
-        </table>
-      </div>
-
-      <div class="legend-row" style="margin-top:1rem; display:flex; gap:1.25rem; flex-wrap:wrap; font-size:0.8rem; color:var(--gray-600);">
-        <span><strong style="color:var(--info);">■ Trabalho (T):</strong> Dia efetivo com cálculo líquido descontado o intervalo.</span>
-        <span><strong style="color:var(--success);">■ Folga (F):</strong> Folga compensatória semanal.</span>
-        <span><strong style="color:var(--warning);">■ DSR Domingo (D):</strong> Descanso Semanal Remunerado no domingo.</span>
-        <span><strong style="color:#6B21A8;">■ Ausência (A):</strong> Férias, abono ou afastamento.</span>
-      </div>
-
-      <div class="print-footer">
-        <span><strong>Contabilidade Líder</strong> • Rua Fernão Dias, 303, 5º andar, João Monlevade - MG • CRC-MG 4623</span>
-        <span>Tel: (31) 3852-3355 • WhatsApp: (31) 98896-7713 • contabilidadelider.cnt.br • contato@contabilidadelider.cnt.br</span>
       </div>
     </section>
 
-    <!-- CTA Lead Generation -->
-    <section class="cta-box no-print" aria-labelledby="cta-escala-titulo">
-      <div>
-        <h3 id="cta-escala-titulo">Mudar a escala impacta folha, encargos e convenção coletiva</h3>
-        <p>
-          A transição da escala 6x1 para modelos como 5x2, 4x3 ou 12x36 afeta horas extras, banco de horas, DSR, adicional noturno e custo da folha de pagamento. A Contabilidade Líder, em João Monlevade - MG, faz o diagnóstico trabalhista e o planejamento tributário da sua empresa para a transição ser segura e econômica.
-        </p>
+    <!-- PASSO 3: RESULTADO -->
+    <section id="passo-resultado" class="step" aria-labelledby="titulo-passo-3">
+      <div class="step-head no-print">
+        <div class="step-title">
+          <span class="step-badge" aria-hidden="true">3</span>
+          <div>
+            <h2 id="titulo-passo-3">Resultado</h2>
+            <p>Clique em um dia para alternar Trabalho → Folga → DSR → Ausência.</p>
+          </div>
+        </div>
+        <div class="toolbar">
+          <button type="button" class="btn btn-secondary btn-rect btn-sm" onclick="exportarCSV()">
+            <i class="fa-solid fa-file-excel" aria-hidden="true"></i> Exportar CSV/Excel
+          </button>
+          <button type="button" class="btn btn-secondary btn-rect btn-sm" onclick="window.print()">
+            <i class="fa-solid fa-print" aria-hidden="true"></i> Imprimir / PDF
+          </button>
+          <button type="button" class="btn btn-secondary btn-rect btn-sm" onclick="resetarExemplo()">
+            <i class="fa-solid fa-rotate-left" aria-hidden="true"></i> Restaurar exemplo
+          </button>
+        </div>
       </div>
-      <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-        <button type="button" onclick="agendarConsultoria()" class="btn btn-primary">
-          <i class="fa-regular fa-calendar-check"></i> Agendar consultoria
-        </button>
+
+      <div class="kpi-grid" role="region" aria-label="Resumo da escala" aria-live="polite">
+        <div class="kpi">
+          <span class="kpi-label"><i class="fa-solid fa-users" aria-hidden="true"></i> Colaboradores</span>
+          <strong class="kpi-value" id="kpiTotalColab">0</strong>
+          <span class="kpi-sub" id="kpiSabado">Sábado: 0 pessoa(s)</span>
+        </div>
+        <div class="kpi">
+          <span class="kpi-label"><i class="fa-regular fa-clock" aria-hidden="true"></i> Horas semanais</span>
+          <strong class="kpi-value" id="kpiHorasTotais">0h</strong>
+          <span class="kpi-sub">Total da equipe</span>
+        </div>
+        <div class="kpi">
+          <span class="kpi-label"><i class="fa-solid fa-user-clock" aria-hidden="true"></i> Média / pessoa</span>
+          <strong class="kpi-value" id="kpiMediaHoras">0h</strong>
+          <span class="kpi-sub" id="kpiLimite">Limite: 44h</span>
+        </div>
+        <div class="kpi kpi--sunday">
+          <span class="kpi-label"><i class="fa-solid fa-sun" aria-hidden="true"></i> Domingos trab.</span>
+          <strong class="kpi-value" id="kpiDomingo">0</strong>
+          <span class="kpi-sub">Colaboradores no domingo</span>
+        </div>
+        <div class="kpi kpi--alert" id="kpiAlertasBox">
+          <span class="kpi-label"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Alertas CLT</span>
+          <strong class="kpi-value" id="kpiAlertas">0</strong>
+          <span class="kpi-sub" id="kpiAlertasSub">Nenhum alerta</span>
+        </div>
+        <div class="kpi kpi--cost">
+          <span class="kpi-label"><i class="fa-solid fa-coins" aria-hidden="true"></i> Custo estimado*</span>
+          <strong class="kpi-value" id="kpiCustoMensal">—</strong>
+          <span class="kpi-sub" id="kpiCustoSub"><a href="#salarioMedio">Informe o salário médio</a></span>
+        </div>
+      </div>
+      <p class="estimate-note">* Estimativa simplificada: horas semanais × custo/hora × 5 semanas (base do divisor mensal, inclui DSR) + encargos informados. Não considera horas extras, adicionais, benefícios nem convenção coletiva.</p>
+
+      <div class="card">
+        <p class="table-scroll-hint no-print"><i class="fa-solid fa-arrows-left-right" aria-hidden="true"></i> Deslize a tabela para ver a semana completa.</p>
+        <div class="table-wrapper" tabindex="0" role="region" aria-label="Grade semanal de trabalho (rolável)">
+          <table class="schedule-table">
+            <caption class="sr-only">Grade semanal de trabalho por colaborador, com carga semanal e status CLT</caption>
+            <thead>
+              <tr>
+                <th scope="col" class="col-colab">Colaborador / turno</th>
+                <th scope="col">Seg</th>
+                <th scope="col">Ter</th>
+                <th scope="col">Qua</th>
+                <th scope="col">Qui</th>
+                <th scope="col">Sex</th>
+                <th scope="col">Sáb</th>
+                <th scope="col" class="th-sunday">Dom</th>
+                <th scope="col">Carga semanal</th>
+                <th scope="col">Status CLT</th>
+                <th scope="col" class="no-print"><span class="sr-only">Ações</span></th>
+              </tr>
+            </thead>
+            <tbody id="tabelaEscalaBody"></tbody>
+          </table>
+        </div>
+
+        <ul class="legend" aria-label="Legenda">
+          <li><span class="swatch pill-T" aria-hidden="true"></span><strong>Trabalho</strong> horas líquidas (sem intervalo)</li>
+          <li><span class="swatch pill-DT" aria-hidden="true"></span><strong>Domingo trabalhado</strong> exige folga compensatória</li>
+          <li><span class="swatch pill-F" aria-hidden="true"></span><strong>Folga</strong> compensatória semanal</li>
+          <li><span class="swatch pill-D" aria-hidden="true"></span><strong>DSR</strong> descanso semanal remunerado</li>
+          <li><span class="swatch pill-A" aria-hidden="true"></span><strong>Ausência</strong> férias, abono ou afastamento</li>
+        </ul>
+
+        <div class="print-footer">
+          <span><strong>Contabilidade Líder</strong> • O sucesso da sua empresa começa aqui • CRC-MG 4623</span>
+          <span>contabilidadelider.cnt.br • contato@contabilidadelider.cnt.br • (31) 3852-3355</span>
+        </div>
       </div>
     </section>
   </div>
+
+  <!-- Conteúdo estratégico -->
+  <section id="impactos" class="insights" aria-labelledby="titulo-impactos">
+    <div class="container">
+      <div class="insights-head">
+        <span class="eyebrow"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Transição da escala 6x1</span>
+        <h2 id="titulo-impactos">O que muda na folha da sua empresa ao sair da 6x1</h2>
+        <p>Empresários de João Monlevade e de todo o Médio Piracicaba estão revendo jornadas. Antes de alterar a escala, entenda o impacto real no custo da folha e no risco trabalhista.</p>
+      </div>
+      <div class="insight-grid">
+        <article class="insight-card">
+          <div class="insight-icon" aria-hidden="true"><i class="fa-solid fa-business-time"></i></div>
+          <h3>Horas extras e banco de horas</h3>
+          <p>Redistribuir a jornada pode gerar horas extras (mínimo de 50%) ou exigir acordo de banco de horas formalizado. Um ajuste mal feito vira passivo trabalhista.</p>
+        </article>
+        <article class="insight-card">
+          <div class="insight-icon" aria-hidden="true"><i class="fa-solid fa-moon"></i></div>
+          <h3>DSR, domingos e adicional noturno</h3>
+          <p>Domingos e feriados trabalhados, reflexos no DSR e adicional noturno (22h às 5h) mudam conforme a escala e pesam no custo mensal da equipe.</p>
+        </article>
+        <article class="insight-card">
+          <div class="insight-icon" aria-hidden="true"><i class="fa-solid fa-file-signature"></i></div>
+          <h3>Convenção coletiva e encargos</h3>
+          <p>A convenção da sua categoria pode limitar escalas como 12x36 e 4x3. INSS, FGTS e provisões acompanham cada hora a mais na folha de pagamento.</p>
+        </article>
+      </div>
+      <div class="cta-band">
+        <div>
+          <h3>O sucesso da sua empresa começa aqui.</h3>
+          <p>A Contabilidade Líder analisa sua escala, simula o custo real da folha e orienta a transição com segurança jurídica e economia — atendimento próximo em João Monlevade e região.</p>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="agendarConsultoria()">
+          <i class="fa-regular fa-calendar-check" aria-hidden="true"></i> Agendar consultoria
+        </button>
+      </div>
+    </div>
+  </section>
 </main>
 
-<!-- Footer (Identidade Visual index.html) -->
 <footer class="footer">
-  <div class="container-wide">
+  <div class="container">
     <div class="footer-grid">
       <div>
-        <svg class="logo-svg" width="210" height="78" viewBox="0 0 700 260" style="margin-bottom:0.85rem;" role="img" aria-label="Logo Contabilidade Líder"><use href="#logo-full"/></svg>
-        <p style="font-size:0.92rem; color:rgba(74,53,32,0.8); margin-bottom:0.85rem; max-width:340px;">
-          O sucesso da sua empresa começa aqui. Mais de 45 anos oferecendo soluções contábeis, fiscais e trabalhistas em João Monlevade - MG.
-        </p>
-        <div style="font-size:0.85rem; color:rgba(74,53,32,0.85); display:flex; align-items:center; gap:0.5rem;">
-          <i class="fa-solid fa-id-card" style="color:var(--dark-orange);"></i> <span>CRC-MG: 4623</span>
-        </div>
+        <svg class="logo-svg" width="200" height="74" viewBox="0 0 700 260" role="img" aria-label="Logo Contabilidade Líder"><use href="#logo-full"/></svg>
+        <p class="footer-about">O sucesso da sua empresa começa aqui. Mais de 45 anos oferecendo soluções contábeis, fiscais e trabalhistas em João Monlevade e no Médio Piracicaba.</p>
+        <div class="footer-crc"><i class="fa-solid fa-id-card" aria-hidden="true"></i> <span>CRC-MG: 4623</span></div>
       </div>
-      <div>
-        <h4>Navegação</h4>
+      <nav aria-labelledby="footer-nav-titulo">
+        <h2 id="footer-nav-titulo">Navegação</h2>
         <ul>
-          <li><a href="index.html">Site Institucional</a></li>
-          <li><a href="index.html#sobre">Sobre Nós</a></li>
+          <li><a href="index.html">Site institucional</a></li>
+          <li><a href="index.html#sobre">Sobre nós</a></li>
           <li><a href="index.html#servicos">Serviços</a></li>
           <li><a href="index.html#contato">Contato</a></li>
         </ul>
-      </div>
+      </nav>
       <div>
-        <h4>Contato</h4>
+        <h2>Contato</h2>
         <ul>
           <li>Rua Fernão Dias, 303, 5º andar, João Monlevade - MG</li>
           <li><a href="tel:+553138523355">(31) 3852-3355</a></li>
-          <li><a href="https://wa.me/5531988967713?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20a%20Contabilidade%20L%C3%ADder." target="_blank" rel="noopener noreferrer">(31) 98896-7713</a></li>
+          <li>WhatsApp: (31) 98896-7713</li>
           <li><a href="mailto:contato@contabilidadelider.cnt.br">contato@contabilidadelider.cnt.br</a></li>
         </ul>
         <a href="https://instagram.com/lider.escritorio" target="_blank" rel="noopener noreferrer" class="social-pill">
-          <i class="fa-brands fa-instagram"></i> @lider.escritorio
+          <i class="fa-brands fa-instagram" aria-hidden="true"></i> @lider.escritorio
         </a>
       </div>
     </div>
     <div class="footer-bottom">
       <p>© 2026 Escritório de Contabilidade Líder. Todos os direitos reservados.</p>
-      <p>João Monlevade - MG | CRC-MG 4623 | <a href="https://instagram.com/lider.escritorio" target="_blank" rel="noopener noreferrer" style="color:var(--dark-orange); font-weight:600;">@lider.escritorio</a></p>
+      <p>João Monlevade - MG | CRC-MG 4623 | contabilidadelider.cnt.br</p>
     </div>
   </div>
 </footer>
 
-<a href="https://wa.me/5531988967713?text=Ol%C3%A1!%20Estou%20usando%20o%20Simulador%20de%20Escalas%20da%20Contabilidade%20L%C3%ADder." target="_blank" rel="noopener noreferrer" class="float-whatsapp" aria-label="Fale conosco pelo WhatsApp">
-  <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-</a>
+<button type="button" class="float-cta no-print" onclick="agendarConsultoria()" aria-label="Agendar consultoria" title="Agendar consultoria">
+  <i class="fa-regular fa-calendar-check" aria-hidden="true"></i><span class="label">Agendar consultoria</span>
+</button>
 
 <script>
   const STORAGE_KEY = 'lider_escala_v1';
   const ESTADOS = ['T', 'F', 'D', 'A'];
+  const DIAS_SEMANA = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'];
   const LABELS = {
     T: { titulo: 'Trabalho', desc: 'Turno ativo' },
     F: { titulo: 'Folga', desc: 'Compensação' },
-    D: { titulo: 'DSR Dom', desc: 'Descanso' },
+    D: { titulo: 'DSR', desc: 'Descanso' },
     A: { titulo: 'Ausência', desc: 'Férias/Abono' }
+  };
+  const PRESET_NOMES = {
+    '6x1': '6x1',
+    '5x2': '5x2',
+    '5x2_rev': '5x2 com revezamento',
+    '4x3': '4x3',
+    '12x36': '12x36'
   };
 
   let presetAtual = '5x2';
   let colaboradores = [];
 
   const dadosExemplo = [
-    {
-      id: 1,
-      nome: 'Carlos Eduardo',
-      cargo: 'Atendimento',
-      entrada: '08:00',
-      saida: '17:48',
-      intervalo: 60,
-      dias: ['T', 'T', 'T', 'T', 'T', 'F', 'D']
-    },
-    {
-      id: 2,
-      nome: 'Fernanda Lima',
-      cargo: 'Operação / Caixa',
-      entrada: '08:00',
-      saida: '17:48',
-      intervalo: 60,
-      dias: ['T', 'T', 'T', 'T', 'T', 'F', 'D']
-    },
-    {
-      id: 3,
-      nome: 'Rafael Mendes',
-      cargo: 'Estoque / Logística',
-      entrada: '09:00',
-      saida: '18:48',
-      intervalo: 60,
-      dias: ['T', 'T', 'T', 'T', 'T', 'F', 'D']
-    }
+    { id: 1, nome: 'Carlos Eduardo', cargo: 'Atendimento', entrada: '08:00', saida: '17:48', intervalo: 60, dias: ['T', 'T', 'T', 'T', 'T', 'F', 'D'] },
+    { id: 2, nome: 'Fernanda Lima', cargo: 'Operação / Caixa', entrada: '08:00', saida: '17:48', intervalo: 60, dias: ['T', 'T', 'T', 'T', 'T', 'F', 'D'] },
+    { id: 3, nome: 'Rafael Mendes', cargo: 'Estoque / Logística', entrada: '09:00', saida: '18:48', intervalo: 60, dias: ['T', 'T', 'T', 'T', 'T', 'F', 'D'] }
   ];
 
-  /* Mobile menu & navbar scroll */
+  /* Menu mobile e sombra da navbar */
   const menuBtn = document.getElementById('menuBtn');
   const closeMenu = document.getElementById('closeMenu');
   const mobileMenu = document.getElementById('mobileMenu');
-  const openMobileMenu = () => { mobileMenu.classList.add('open'); menuBtn.setAttribute('aria-expanded', 'true'); };
-  const closeMobileMenu = () => { mobileMenu.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); };
+  function openMobileMenu() { mobileMenu.classList.add('open'); menuBtn.setAttribute('aria-expanded', 'true'); }
+  function closeMobileMenu() { mobileMenu.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); }
   menuBtn.addEventListener('click', openMobileMenu);
   closeMenu.addEventListener('click', closeMobileMenu);
   document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', closeMobileMenu));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMobileMenu(); });
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
   }, { passive: true });
+
+  /* Indicador de etapa ativa (1 Configurar → 2 Equipe → 3 Resultado) */
+  function configurarStepper() {
+    const links = document.querySelectorAll('.stepper a[data-step]');
+    if (!('IntersectionObserver' in window) || !links.length) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        links.forEach(l => {
+          const ativo = l.dataset.step === entry.target.id;
+          l.classList.toggle('is-active', ativo);
+          if (ativo) l.setAttribute('aria-current', 'step'); else l.removeAttribute('aria-current');
+        });
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    links.forEach(l => {
+      const alvo = document.getElementById(l.dataset.step);
+      if (alvo) observer.observe(alvo);
+    });
+  }
 
   function escapeHtml(str) {
     return String(str ?? '')
@@ -1359,6 +1026,16 @@
       .replace(/'/g, '&#39;');
   }
 
+  function nomePreset() {
+    return PRESET_NOMES[presetAtual] || presetAtual.toUpperCase();
+  }
+
+  function marcarPresetAtivo() {
+    document.querySelectorAll('.preset-btn').forEach(b => {
+      b.setAttribute('aria-pressed', b.dataset.preset === presetAtual ? 'true' : 'false');
+    });
+  }
+
   function inicializar() {
     const salvo = localStorage.getItem(STORAGE_KEY);
     if (salvo) {
@@ -1367,15 +1044,21 @@
         colaboradores = parsed.colaboradores || JSON.parse(JSON.stringify(dadosExemplo));
         document.getElementById('nomeEmpresa').value = parsed.empresa || '';
         document.getElementById('limiteSemanal').value = parsed.limite || '44';
+        document.getElementById('salarioMedio').value = parsed.salario || '';
+        document.getElementById('custoHora').value = parsed.custoHora || '';
+        document.getElementById('encargos').value = parsed.encargos || '';
+        if (parsed.preset && PRESET_NOMES[parsed.preset]) presetAtual = parsed.preset;
       } catch (e) {
         colaboradores = JSON.parse(JSON.stringify(dadosExemplo));
       }
     } else {
       colaboradores = JSON.parse(JSON.stringify(dadosExemplo));
     }
+    marcarPresetAtivo();
     salvarDados();
     renderTabela();
     configurarDropzone();
+    configurarStepper();
   }
 
   function salvarDados() {
@@ -1388,12 +1071,16 @@
     const metaEl = document.getElementById('print-meta-detalhes');
     if (metaEl) {
       const dataAtual = new Date().toLocaleDateString('pt-BR');
-      metaEl.textContent = `Modelo: ${presetAtual.toUpperCase()} • Limite: ${limite}h/sem • Emissão: ${dataAtual}`;
+      metaEl.textContent = `Modelo: ${nomePreset()} • Limite: ${limite}h/sem • Emissão: ${dataAtual}`;
     }
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
       empresa,
       limite,
+      preset: presetAtual,
+      salario: document.getElementById('salarioMedio').value,
+      custoHora: document.getElementById('custoHora').value,
+      encargos: document.getElementById('encargos').value,
       colaboradores
     }));
   }
@@ -1416,6 +1103,10 @@
     return `${h}h${m > 0 ? String(m).padStart(2, '0') : ''}`;
   }
 
+  function formatarMoeda(valor) {
+    return Number(valor || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+  }
+
   function validarColaborador(c, limiteHoras) {
     const horasDia = calcularHorasDiarias(c.entrada, c.saida, c.intervalo);
     const diasTrabalhados = c.dias.filter(d => d === 'T').length;
@@ -1425,7 +1116,9 @@
     if (horasSemana > limiteHoras + 0.05) {
       alertas.push(`Excede ${limiteHoras}h`);
     }
-    if (diasTrabalhados >= 6 && presetAtual !== '12x36') {
+    if (diasTrabalhados >= 7) {
+      alertas.push('Sem DSR na semana');
+    } else if (diasTrabalhados >= 6 && presetAtual !== '12x36' && presetAtual !== '6x1') {
       alertas.push('6+ dias seguidos');
     }
     if (horasDia > 10 && presetAtual !== '12x36') {
@@ -1435,7 +1128,43 @@
     return { horasDia, diasTrabalhados, horasSemana, alertas };
   }
 
+  /* Resumo da equipe usado pelos KPIs e pela exportação */
+  function calcularResumo() {
+    const limiteHoras = Number(document.getElementById('limiteSemanal').value);
+    let somaHoras = 0;
+    let coberturaSab = 0;
+    let domingosTrabalhados = 0;
+    let colabsComAlerta = 0;
+    let totalAlertas = 0;
+
+    colaboradores.forEach(c => {
+      const { horasSemana, alertas } = validarColaborador(c, limiteHoras);
+      somaHoras += horasSemana;
+      if (c.dias[5] === 'T') coberturaSab++;
+      if (c.dias[6] === 'T') domingosTrabalhados++;
+      if (alertas.length) { colabsComAlerta++; totalAlertas += alertas.length; }
+    });
+
+    const total = colaboradores.length;
+    const media = total ? somaHoras / total : 0;
+
+    // Custo: custo/hora informado OU salário ÷ divisor mensal (limite × 5; ex.: 44h → 220)
+    const custoHoraInformado = Number(document.getElementById('custoHora').value) || 0;
+    const salario = Number(document.getElementById('salarioMedio').value) || 0;
+    const encargosPct = Math.max(0, Number(document.getElementById('encargos').value) || 0);
+    const custoHora = custoHoraInformado > 0 ? custoHoraInformado : (salario > 0 ? salario / (limiteHoras * 5) : 0);
+    const custoMensal = custoHora > 0 ? somaHoras * custoHora * 5 * (1 + encargosPct / 100) : 0;
+    const custoSemanal = custoMensal * 7 / 30;
+
+    return { limiteHoras, total, somaHoras, media, coberturaSab, domingosTrabalhados, colabsComAlerta, totalAlertas, custoHora, encargosPct, custoMensal, custoSemanal };
+  }
+
   function diasPadraoPorPreset(idx = 0) {
+    if (presetAtual === '6x1') {
+      return idx % 2 === 0
+        ? ['T', 'T', 'T', 'T', 'T', 'T', 'D']
+        : ['T', 'T', 'F', 'T', 'T', 'T', 'T'];
+    }
     if (presetAtual === '5x2_rev') {
       return idx % 2 === 0
         ? ['T', 'T', 'T', 'T', 'T', 'F', 'D']
@@ -1456,15 +1185,17 @@
 
   function aplicarPreset(tipo, btn) {
     presetAtual = tipo;
-    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
-    if (btn) btn.classList.add('active');
+    marcarPresetAtivo();
 
     colaboradores = colaboradores.map((c, idx) => {
       let dias = diasPadraoPorPreset(idx);
       let entrada = c.entrada;
       let saida = c.saida;
 
-      if (tipo === '5x2' || tipo === '5x2_rev') {
+      if (tipo === '6x1') {
+        entrada = '08:00';
+        saida = '16:20';
+      } else if (tipo === '5x2' || tipo === '5x2_rev') {
         entrada = '08:00';
         saida = '17:48';
       } else if (tipo === '4x3') {
@@ -1480,6 +1211,11 @@
 
     salvarDados();
     renderTabela();
+  }
+
+  function gerarEscala() {
+    aplicarPreset(presetAtual);
+    document.getElementById('passo-resultado').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   function adicionarColaborador(e) {
@@ -1504,6 +1240,7 @@
 
     document.getElementById('colabNome').value = '';
     document.getElementById('colabCargo').value = '';
+    document.getElementById('colabNome').focus();
     salvarDados();
     renderTabela();
   }
@@ -1522,6 +1259,8 @@
     colab.dias[diaIndex] = proximo;
     salvarDados();
     renderTabela();
+    const alvo = document.querySelector(`[data-cell="${colabId}-${diaIndex}"]`);
+    if (alvo) alvo.focus();
   }
 
   function resetarExemplo() {
@@ -1535,51 +1274,77 @@
     const limiteHoras = Number(document.getElementById('limiteSemanal').value);
     tbody.innerHTML = '';
 
-    let somaHorasEquipe = 0;
-    let coberturaSab = 0;
-    let coberturaDom = 0;
+    if (!colaboradores.length) {
+      tbody.innerHTML = '<tr class="empty-row"><td colspan="11">Nenhum colaborador na escala. Adicione no passo 2 ou importe uma planilha.</td></tr>';
+    }
 
     colaboradores.forEach(c => {
       const { horasDia, horasSemana, alertas } = validarColaborador(c, limiteHoras);
-      somaHorasEquipe += horasSemana;
-
-      if (c.dias[5] === 'T') coberturaSab++;
-      if (c.dias[6] === 'T') coberturaDom++;
 
       const statusHtml = alertas.length === 0
-        ? `<span class="alert-badge alert-ok"><i class="fa-solid fa-check"></i> Regular</span>`
-        : `<span class="alert-badge alert-warn" title="${escapeHtml(alertas.join(' | '))}"><i class="fa-solid fa-triangle-exclamation"></i> ${escapeHtml(alertas[0])}</span>`;
+        ? `<span class="alert-badge alert-ok"><i class="fa-solid fa-check" aria-hidden="true"></i> Regular</span>`
+        : `<span class="alert-badge alert-warn" title="${escapeHtml(alertas.join(' | '))}"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> ${escapeHtml(alertas[0])}${alertas.length > 1 ? ` +${alertas.length - 1}` : ''}</span>`;
+
+      const celulas = c.dias.map((estado, idx) => {
+        const domingoTrabalhado = idx === 6 && estado === 'T';
+        const classe = domingoTrabalhado ? 'pill-DT' : `pill-${estado}`;
+        const titulo = domingoTrabalhado ? 'Dom. trab.' : LABELS[estado].titulo;
+        const detalhe = estado === 'T' ? formatarHoras(horasDia) : LABELS[estado].desc;
+        const aria = `${c.nome}, ${DIAS_SEMANA[idx]}: ${domingoTrabalhado ? 'Domingo trabalhado' : LABELS[estado].titulo}. Ativar para alterar.`;
+        return `
+          <td class="shift-cell">
+            <button type="button" class="pill-shift ${classe}" data-cell="${c.id}-${idx}" onclick="alternarDia(${c.id}, ${idx})" aria-label="${escapeHtml(aria)}" title="Clique para alterar">
+              ${titulo}
+              <small>${detalhe}</small>
+            </button>
+          </td>`;
+      }).join('');
 
       const tr = document.createElement('tr');
+      if (alertas.length) tr.className = 'row-alert';
       tr.innerHTML = `
-        <td class="col-colab">
+        <th scope="row" class="col-colab">
           <span class="colab-name">${escapeHtml(c.nome)}</span>
           <span class="colab-meta">${escapeHtml(c.cargo)} • ${escapeHtml(c.entrada)} às ${escapeHtml(c.saida)} (${Number(c.intervalo)}m int.)</span>
-        </td>
-        ${c.dias.map((estado, idx) => `
-          <td class="shift-cell" onclick="alternarDia(${c.id}, ${idx})" title="Clique para alterar">
-            <div class="pill-shift pill-${estado}">
-              ${LABELS[estado].titulo}
-              <small>${estado === 'T' ? formatarHoras(horasDia) : LABELS[estado].desc}</small>
-            </div>
-          </td>
-        `).join('')}
+        </th>
+        ${celulas}
         <td><strong>${formatarHoras(horasSemana)}</strong></td>
         <td>${statusHtml}</td>
         <td class="no-print">
-          <button type="button" class="btn-icon-del" onclick="removerColaborador(${c.id})" title="Remover">
-            <i class="fa-solid fa-trash"></i>
+          <button type="button" class="btn-icon-del" onclick="removerColaborador(${c.id})" title="Remover" aria-label="Remover ${escapeHtml(c.nome)}">
+            <i class="fa-solid fa-trash" aria-hidden="true"></i>
           </button>
         </td>
       `;
       tbody.appendChild(tr);
     });
 
-    document.getElementById('kpiTotalColab').textContent = colaboradores.length;
-    const media = colaboradores.length ? (somaHorasEquipe / colaboradores.length) : 0;
-    document.getElementById('kpiMediaHoras').textContent = formatarHoras(media);
-    document.getElementById('kpiSabado').textContent = `${coberturaSab} pessoa(s)`;
-    document.getElementById('kpiDomingo').textContent = `${coberturaDom} pessoa(s)`;
+    atualizarKPIs(calcularResumo());
+  }
+
+  function atualizarKPIs(r) {
+    document.getElementById('kpiTotalColab').textContent = r.total;
+    document.getElementById('kpiSabado').textContent = `Sábado: ${r.coberturaSab} pessoa(s)`;
+    document.getElementById('kpiHorasTotais').textContent = formatarHoras(r.somaHoras);
+    document.getElementById('kpiMediaHoras').textContent = formatarHoras(r.media);
+    document.getElementById('kpiLimite').textContent = `Limite: ${r.limiteHoras}h/sem`;
+    document.getElementById('kpiDomingo').textContent = r.domingosTrabalhados;
+
+    document.getElementById('kpiAlertas').textContent = r.colabsComAlerta;
+    document.getElementById('kpiAlertasSub').textContent = r.colabsComAlerta
+      ? `${r.totalAlertas} alerta(s) na equipe`
+      : 'Nenhum alerta';
+    document.getElementById('kpiAlertasBox').classList.toggle('has-alerts', r.colabsComAlerta > 0);
+
+    const custoEl = document.getElementById('kpiCustoMensal');
+    const custoSub = document.getElementById('kpiCustoSub');
+    if (r.custoMensal > 0) {
+      custoEl.textContent = `${formatarMoeda(r.custoMensal)}/mês`;
+      custoSub.textContent = `≈ ${formatarMoeda(r.custoSemanal)}/semana • ${r.custoHora.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}/h`;
+    } else {
+      custoEl.textContent = '—';
+      custoSub.innerHTML = '<a href="#salarioMedio">Informe o salário médio</a>';
+    }
   }
 
   /* =========================================================
@@ -1866,18 +1631,22 @@
 
     const empresa = document.getElementById('nomeEmpresa').value.trim() || 'Empresa Não Informada';
     const limiteHoras = Number(document.getElementById('limiteSemanal').value);
+    const resumo = calcularResumo();
+    const dataAtual = new Date().toLocaleDateString('pt-BR');
 
     const linhas = [
+      ['Contabilidade Líder • contabilidadelider.cnt.br | contato@contabilidadelider.cnt.br • (31) 3852-3355 • WhatsApp (31) 98896-7713'],
+      ['Rua Fernão Dias, 303, 5º andar — João Monlevade - MG • CRC-MG 4623 • O sucesso da sua empresa começa aqui'],
+      [],
       [`ESCALA SEMANAL DE TRABALHO - ${empresa.toUpperCase()}`],
-      [`Modelo Base: ${presetAtual.toUpperCase()} | Limite Semanal: ${limiteHoras}h | Gerado por: Contabilidade Líder (CRC-MG 4623)`],
-      ['contabilidadelider.cnt.br | contato@contabilidadelider.cnt.br | (31) 98896-7713 | João Monlevade - MG'],
+      [`Modelo base: ${nomePreset()} | Limite semanal: ${limiteHoras}h | Emissão: ${dataAtual}`],
       [],
       ['Colaborador', 'Cargo/Setor', 'Horário Turno', 'Intervalo (min)', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo', 'Carga Semanal', 'Status CLT']
     ];
 
     colaboradores.forEach(c => {
       const { horasSemana, alertas } = validarColaborador(c, limiteHoras);
-      const diasTexto = c.dias.map(d => LABELS[d].titulo);
+      const diasTexto = c.dias.map((d, idx) => (idx === 6 && d === 'T') ? 'Trabalho (domingo)' : LABELS[d].titulo);
       const statusTexto = alertas.length === 0 ? 'Regular' : alertas.join(' / ');
 
       linhas.push([
@@ -1891,6 +1660,25 @@
       ]);
     });
 
+    linhas.push(
+      [],
+      ['RESUMO'],
+      ['Total de colaboradores', resumo.total],
+      ['Horas semanais totais', formatarHoras(resumo.somaHoras)],
+      ['Média por colaborador', formatarHoras(resumo.media)],
+      ['Domingos trabalhados', resumo.domingosTrabalhados],
+      ['Colaboradores com alerta CLT', resumo.colabsComAlerta]
+    );
+    if (resumo.custoMensal > 0) {
+      linhas.push(
+        ['Custo/hora considerado', resumo.custoHora.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })],
+        ['Encargos considerados', `${resumo.encargosPct}%`],
+        ['Custo semanal estimado', formatarMoeda(resumo.custoSemanal)],
+        ['Custo mensal estimado', formatarMoeda(resumo.custoMensal)],
+        ['Observação', 'Estimativa simplificada. Não inclui horas extras, adicionais, benefícios ou regras de convenção coletiva.']
+      );
+    }
+
     const csvConteudo = '\uFEFF' + linhas
       .map(row => row.map(campo => `"${String(campo).replace(/"/g, '""')}"`).join(';'))
       .join('\r\n');
@@ -1898,7 +1686,7 @@
     const blob = new Blob([csvConteudo], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
-    const slugEmpresa = empresa.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    const slugEmpresa = empresa.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
     link.href = url;
     link.download = `escala-semanal-${slugEmpresa || 'equipe'}.csv`;
     document.body.appendChild(link);
@@ -1910,7 +1698,7 @@
   function agendarConsultoria() {
     const empresa = document.getElementById('nomeEmpresa').value.trim();
     const texto = `Olá, equipe da Contabilidade Líder! Usei o Simulador de Escalas do site${empresa ? ` (empresa *${empresa}*)` : ''} ` +
-      `com ${colaboradores.length} colaborador(es), modelo base *${presetAtual.toUpperCase()}*. ` +
+      `com ${colaboradores.length} colaborador(es), modelo base *${nomePreset()}*. ` +
       `Gostaria de agendar uma consultoria sobre escalas, folha de pagamento e planejamento tributário.`;
     window.open(`https://wa.me/5531988967713?text=${encodeURIComponent(texto)}`, '_blank', 'noopener,noreferrer');
   }
