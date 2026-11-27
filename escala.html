@@ -445,7 +445,7 @@
 
     /* ===== Tabela com indicador condicional de scroll ===== */
     .table-scroll-hint { display: flex; align-items: center; gap: 0.45rem; font-size: var(--fs-xs); color: var(--ink-subtle); margin-bottom: 0.5rem; }
-    @media (min-width: 1200px) { .table-scroll-hint { display: none; } }
+    @media (min-width: 1200px) { body:not(.modo-mensal) .table-scroll-hint { display: none; } }
     .table-shell { position: relative; }
     .table-shell::after {
       content: ''; position: absolute; top: 1px; right: 1px; bottom: 1px; width: 28px;
@@ -635,11 +635,96 @@
       .toast-undo:hover { background-color: var(--orange); color: var(--on-orange); }
     }
 
+    /* ===== Seletor Semanal / Mensal & Grade Mensal ===== */
+    .period-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; flex-wrap: wrap;
+    }
+    .segmented {
+      position: relative; display: inline-grid; grid-template-columns: 1fr 1fr;
+      background: var(--paper); border: 1px solid var(--hairline);
+      border-radius: 12px; padding: 0.25rem; min-width: 260px;
+    }
+    .segmented-indicator {
+      position: absolute; top: 0.25rem; bottom: 0.25rem; left: 0.25rem;
+      width: calc((100% - 0.5rem) / 2); border-radius: 9px;
+      background: var(--surface);
+      box-shadow: 0 1px 3px rgba(35, 25, 16, 0.08), 0 0 0 1px rgba(59, 44, 28, 0.08);
+      transform: translateX(calc(var(--seg-idx, 0) * 100%));
+      transition: transform 240ms var(--ease-in-out);
+      pointer-events: none;
+    }
+    .segmented button {
+      position: relative; z-index: 1; background: transparent; border: none;
+      padding: 0.52rem 0.9rem; border-radius: 9px; cursor: pointer;
+      font-size: var(--fs-xs); font-weight: 600; color: var(--ink-subtle);
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+      transition: color 180ms ease, transform 140ms var(--ease-out);
+      white-space: nowrap;
+    }
+    .segmented button:active { transform: scale(0.97); }
+    .segmented button[aria-pressed="true"] { color: var(--espresso); font-weight: 700; }
+    .segmented.segmented-sm { min-width: 210px; }
+    .segmented.segmented-sm button { padding: 0.42rem 0.7rem; }
+
+    .month-settings {
+      margin-top: 1rem; padding: 1rem 1.15rem;
+      background: var(--paper); border: 1px solid var(--hairline); border-radius: var(--radius);
+      display: grid; grid-template-columns: 1fr; gap: 0.9rem; align-items: end;
+      transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out);
+    }
+    @media (min-width: 768px) {
+      .month-settings { grid-template-columns: 1fr 0.7fr 1.5fr; }
+    }
+    @starting-style {
+      .month-settings { opacity: 0; transform: scale(0.98) translateY(4px); }
+    }
+    .month-settings[hidden] { display: none; }
+    .month-toggle {
+      display: flex; align-items: flex-start; gap: 0.55rem;
+      padding: 0.55rem 0.75rem; background: var(--surface); border: 1px solid var(--hairline);
+      border-radius: var(--radius-sm); cursor: pointer; font-size: var(--fs-xs); color: var(--dark-brown); line-height: 1.4;
+    }
+    .month-toggle input { margin-top: 0.15rem; accent-color: var(--espresso); width: 1rem; height: 1rem; flex-shrink: 0; }
+    .month-toggle strong { display: block; color: var(--espresso); font-weight: 700; }
+    .month-toggle span { color: var(--ink-subtle); font-size: var(--fs-2xs); }
+
+    .result-controls {
+      display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap;
+      margin-bottom: 1rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--hairline);
+    }
+    .result-period-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: var(--fs-xs); font-weight: 700; color: var(--espresso);
+      background: var(--paper); border: 1px solid var(--hairline);
+      padding: 0.42rem 0.8rem; border-radius: 9999px;
+    }
+    .result-period-badge svg { color: var(--dark-orange); }
+    .result-quick-actions { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+
+    /* Grade Mensal compacta */
+    .schedule-table th.th-saturday { background: #F5F1E9; color: var(--brown); }
+    .schedule-table th.week-start, .schedule-table td.week-start { border-left: 2px solid rgba(59, 44, 28, 0.22); }
+    .schedule-table.is-monthly { min-width: 1580px; }
+    .schedule-table.is-monthly th, .schedule-table.is-monthly td { padding: 0.42rem 0.22rem; }
+    .schedule-table.is-monthly th .day-num { display: block; font-size: 0.78rem; font-weight: 800; line-height: 1.1; color: var(--espresso); }
+    .schedule-table.is-monthly th .day-dow { display: block; font-size: 0.62rem; font-weight: 600; color: var(--ink-subtle); margin-top: 0.1rem; }
+    .schedule-table.is-monthly th.th-sunday .day-num,
+    .schedule-table.is-monthly th.th-sunday .day-dow { color: #92400E; }
+    .pill-shift.is-compact {
+      min-width: 36px; min-height: 2.3rem; padding: 0.22rem 0.15rem;
+      font-size: 0.72rem; border-radius: 7px;
+    }
+    .pill-shift.is-compact small { font-size: 0.58rem; }
+    .carga-sub { display: block; font-size: var(--fs-2xs); font-weight: 500; color: var(--ink-subtle); margin-top: 0.1rem; }
+
     /* Reduced motion gentil */
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .mobile-menu, .toast { transform: none !important; transition: opacity 180ms ease, visibility 180ms; }
       .preset-check { transform: none !important; }
+      .segmented-indicator { transition: transform 120ms ease; }
+      .month-settings { transform: none !important; transition: opacity 160ms ease; }
     }
 
     /* ===== Impressão / PDF ===== */
@@ -672,12 +757,26 @@
       .table-scroll-hint { display: none !important; }
       .table-shell::after { display: none !important; }
       .table-wrapper { overflow: visible !important; border-radius: 0; }
-      .schedule-table { min-width: 0; width: 100%; }
+      .schedule-table { min-width: 0 !important; width: 100%; }
       .schedule-table th, .schedule-table td { padding: 0.32rem 0.25rem; font-size: 0.7rem; }
       .col-colab { position: static; min-width: 150px; padding-left: 0.5rem !important; }
       .colab-meta { font-size: 0.6rem; }
       .pill-shift { min-width: 0; min-height: 0; padding: 0.2rem 0.15rem; font-size: 0.64rem; border-radius: 5px; }
       .pill-shift small { font-size: 0.56rem; }
+
+      /* Compactação automática para caber os 31 dias na folha A4 paisagem */
+      body.modo-mensal .schedule-table th,
+      body.modo-mensal .schedule-table td { padding: 0.2rem 0.08rem; font-size: 0.56rem; }
+      body.modo-mensal .col-colab { min-width: 105px; max-width: 120px; padding-left: 0.35rem !important; }
+      body.modo-mensal .colab-name { font-size: 0.6rem; }
+      body.modo-mensal .colab-meta { font-size: 0.5rem; }
+      body.modo-mensal .schedule-table.is-monthly th .day-num { font-size: 0.58rem; }
+      body.modo-mensal .schedule-table.is-monthly th .day-dow { font-size: 0.46rem; }
+      body.modo-mensal .pill-shift.is-compact { min-width: 0; min-height: 0; padding: 0.16rem 0.05rem; font-size: 0.55rem; border-radius: 3px; }
+      body.modo-mensal .pill-shift.is-compact small { display: none; }
+      body.modo-mensal .alert-badge { font-size: 0.52rem; padding: 0.14rem 0.3rem; }
+      body.modo-mensal .carga-sub { font-size: 0.48rem; }
+
       tr { break-inside: avoid; page-break-inside: avoid; }
       thead { display: table-header-group; }
       .legend { margin-top: 0.5rem; gap: 0.3rem 0.9rem; font-size: 0.62rem; break-inside: avoid; }
@@ -743,19 +842,19 @@
       <div class="hero-inner">
         <div class="hero-kicker">Ferramenta gratuita · Adequação à escala 5×2</div>
         <h1 id="hero-titulo">Simulador de <em>Escala 5×2</em></h1>
-        <p>Monte ou importe a escala semanal da sua equipe para simular a adequação ao modelo 5×2 (Segunda a sexta, 5×2 com revezamento ou 12×36). Acompanhe horas líquidas, domingos trabalhados e alertas — pronto para exportar em Excel ou PDF.</p>
+        <p>Monte ou importe a escala semanal ou do mês inteiro da sua equipe para simular a adequação ao modelo 5×2 (Segunda a sexta, 5×2 com revezamento ou 12×36), com folgas alternadas ao longo das semanas, alertas CLT e exportação para Excel ou PDF.</p>
         <ul class="hero-chips" aria-label="Recursos">
           <li class="chip">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
             5×2 · 5×2 rev. · 12×36
           </li>
           <li class="chip">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            Alertas CLT
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Semanal ou Mês inteiro
           </li>
           <li class="chip">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-            Importa planilhas
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Alertas CLT
           </li>
           <li class="chip">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
@@ -836,6 +935,61 @@
         <fieldset class="panel-section">
           <legend>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Período da simulação <small>— semanal ou mês inteiro com folgas alternadas</small>
+          </legend>
+          <div class="period-bar">
+            <div class="segmented" data-segmented="periodo" style="--seg-idx: 0;" role="group" aria-label="Período da escala">
+              <div class="segmented-indicator" aria-hidden="true"></div>
+              <button type="button" data-modo="semanal" aria-pressed="true" onclick="definirModoEscala('semanal')">
+                Escala semanal
+              </button>
+              <button type="button" data-modo="mensal" aria-pressed="false" onclick="definirModoEscala('mensal')">
+                Escala mensal
+              </button>
+            </div>
+            <span style="font-size: var(--fs-xs); color: var(--ink-subtle);">Use o modo mensal para planejar revezamento de folgas ao longo das semanas do mês.</span>
+          </div>
+
+          <div id="monthSettings" class="month-settings" hidden>
+            <div class="field">
+              <label for="mesReferencia">Mês de referência</label>
+              <select id="mesReferencia" class="form-control" onchange="alterarMesReferencia()">
+                <option value="0">Janeiro</option>
+                <option value="1">Fevereiro</option>
+                <option value="2">Março</option>
+                <option value="3">Abril</option>
+                <option value="4">Maio</option>
+                <option value="5">Junho</option>
+                <option value="6">Julho</option>
+                <option value="7">Agosto</option>
+                <option value="8">Setembro</option>
+                <option value="9">Outubro</option>
+                <option value="10">Novembro</option>
+                <option value="11">Dezembro</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="anoReferencia">Ano</label>
+              <select id="anoReferencia" class="form-control" onchange="alterarMesReferencia()">
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+              </select>
+            </div>
+            <label class="month-toggle">
+              <input type="checkbox" id="alternarFolgasMes" checked onchange="alternarRegraRevezamentoMes()" />
+              <div>
+                <strong>Alternar folgas a cada semana do mês</strong>
+                <span>No modelo 5×2 com revezamento, rotaciona a folga entre sábado e dias úteis semana a semana.</span>
+              </div>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="panel-section">
+          <legend>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
             Modelo de escala <small>— aplica dias e horários padrão à equipe</small>
           </legend>
           <div class="presets-grid" role="group" aria-label="Modelos de escala">
@@ -991,6 +1145,23 @@
       </div>
 
       <div class="card">
+        <div class="result-controls no-print">
+          <div class="result-period-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span id="resultadoPeriodoLabel">Escala semanal · Seg a Dom</span>
+          </div>
+          <div class="result-quick-actions">
+            <button type="button" id="btnRegenerarMes" class="btn btn-secondary btn-rect btn-sm" onclick="regenerarMesAtual()" hidden>
+              Alternar folgas do mês
+            </button>
+            <div class="segmented segmented-sm" data-segmented="periodo" style="--seg-idx: 0;" role="group" aria-label="Alternar visualização semanal ou mensal">
+              <div class="segmented-indicator" aria-hidden="true"></div>
+              <button type="button" data-modo="semanal" aria-pressed="true" onclick="definirModoEscala('semanal')">Semanal</button>
+              <button type="button" data-modo="mensal" aria-pressed="false" onclick="definirModoEscala('mensal')">Mensal</button>
+            </div>
+          </div>
+        </div>
+
         <div class="kpi-grid" aria-label="Resumo da escala">
           <div class="kpi">
             <span class="kpi-label">
@@ -1003,10 +1174,10 @@
           <div class="kpi">
             <span class="kpi-label">
               <span class="kpi-ico" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
-              Horas semanais
+              <span id="kpiHorasLabel">Horas semanais</span>
             </span>
             <span class="kpi-value" id="kpiHorasTotais">0h</span>
-            <span class="kpi-sub">Total da equipe</span>
+            <span class="kpi-sub" id="kpiHorasSub">Total da equipe</span>
           </div>
           <div class="kpi">
             <span class="kpi-label">
@@ -1022,7 +1193,7 @@
               Domingos trab.
             </span>
             <span class="kpi-value" id="kpiDomingo">0</span>
-            <span class="kpi-sub">Colaboradores no domingo</span>
+            <span class="kpi-sub" id="kpiDomingoSub">Colaboradores no domingo</span>
           </div>
           <div class="kpi kpi--alert" id="kpiAlertasBox">
             <span class="kpi-label">
@@ -1034,29 +1205,15 @@
           </div>
         </div>
 
-        <p class="table-scroll-hint no-print">
+        <p class="table-scroll-hint no-print" id="tableScrollHint">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-          Arraste a tabela horizontalmente para ver todos os dias da semana.
+          <span id="tableScrollHintText">Arraste a tabela horizontalmente para ver todos os dias da semana.</span>
         </p>
 
         <div id="tableShell" class="table-shell">
-          <div id="tableWrapper" class="table-wrapper" tabindex="0" role="region" aria-label="Grade semanal de escala de trabalho">
-            <table class="schedule-table">
-              <thead>
-                <tr>
-                  <th scope="col" class="col-colab">Colaborador / Turno</th>
-                  <th scope="col">Seg</th>
-                  <th scope="col">Ter</th>
-                  <th scope="col">Qua</th>
-                  <th scope="col">Qui</th>
-                  <th scope="col">Sex</th>
-                  <th scope="col">Sáb</th>
-                  <th scope="col" class="th-sunday">Dom</th>
-                  <th scope="col">Carga semanal</th>
-                  <th scope="col">Status CLT</th>
-                  <th scope="col" class="no-print"><span class="sr-only">Ações</span></th>
-                </tr>
-              </thead>
+          <div id="tableWrapper" class="table-wrapper" tabindex="0" role="region" aria-label="Grade de escala de trabalho">
+            <table id="tabelaEscala" class="schedule-table">
+              <thead id="tabelaEscalaHead"></thead>
               <tbody id="tabelaEscalaBody"></tbody>
             </table>
           </div>
@@ -1193,11 +1350,17 @@
     36: { entrada: '08:00', saida: '16:12' }
   };
   const DIAS_SEMANA = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'];
+  const DOW_CURTO = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+  const DOW_COMPLETO = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+  const MESES_NOMES = [
+    'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+  ];
   const LABELS = {
-    T: { titulo: 'Trabalho', desc: '' },
-    F: { titulo: 'Folga', desc: 'Compensação' },
-    D: { titulo: 'DSR', desc: 'Descanso' },
-    A: { titulo: 'Ausência', desc: 'Férias/Abono' }
+    T: { titulo: 'Trabalho', curto: 'T', desc: '' },
+    F: { titulo: 'Folga', curto: 'F', desc: 'Compensação' },
+    D: { titulo: 'DSR', curto: 'D', desc: 'Descanso' },
+    A: { titulo: 'Ausência', curto: 'A', desc: 'Férias/Abono' }
   };
   const PRESET_NOMES = {
     '5x2': '5x2',
@@ -1209,18 +1372,23 @@
     return `${n} ${n === 1 ? singular : plural}`;
   }
 
+  const hoje = new Date();
   let presetAtual = '5x2';
+  let modoEscala = 'semanal'; // 'semanal' | 'mensal'
+  let mesSelecionado = hoje.getMonth();
+  let anoSelecionado = Math.min(2028, Math.max(2025, hoje.getFullYear()));
+  let alternarFolgasMes = true;
   let colaboradores = [];
   let ultimoSnapshot = null;
   let toastTimer = null;
 
   const dadosExemplo = [
-    { id: 1, nome: 'Carlos Eduardo', cargo: 'Atendimento', entrada: '08:00', saida: '17:24', intervalo: 60, dias: ['T', 'T', 'T', 'T', 'T', 'F', 'D'] },
-    { id: 2, nome: 'Fernanda Lima', cargo: 'Operação / Caixa', entrada: '08:00', saida: '17:24', intervalo: 60, dias: ['T', 'T', 'T', 'T', 'T', 'F', 'D'] },
-    { id: 3, nome: 'Rafael Mendes', cargo: 'Estoque / Logística', entrada: '09:00', saida: '18:24', intervalo: 60, dias: ['T', 'T', 'T', 'T', 'T', 'F', 'D'] }
+    { id: 1, nome: 'Carlos Eduardo', cargo: 'Atendimento', entrada: '08:00', saida: '17:24', intervalo: 60, dias: ['T', 'T', 'T', 'T', 'T', 'F', 'D'], meses: {} },
+    { id: 2, nome: 'Fernanda Lima', cargo: 'Operação / Caixa', entrada: '08:00', saida: '17:24', intervalo: 60, dias: ['T', 'T', 'T', 'T', 'T', 'F', 'D'], meses: {} },
+    { id: 3, nome: 'Rafael Mendes', cargo: 'Estoque / Logística', entrada: '09:00', saida: '18:24', intervalo: 60, dias: ['T', 'T', 'T', 'T', 'T', 'F', 'D'], meses: {} }
   ];
 
-  /* Toast estilo Sonner (interruptível com Desfazer) */
+  /* ===== Toast estilo Sonner (interruptível com Desfazer) ===== */
   const toastEl = document.getElementById('toast');
   const toastMsg = document.getElementById('toastMsg');
   const toastUndo = document.getElementById('toastUndo');
@@ -1230,10 +1398,7 @@
     toastMsg.textContent = msg;
     if (onUndo) {
       toastUndo.hidden = false;
-      toastUndo.onclick = () => {
-        onUndo();
-        esconderToast();
-      };
+      toastUndo.onclick = () => { onUndo(); esconderToast(); };
     } else {
       toastUndo.hidden = true;
       toastUndo.onclick = null;
@@ -1246,7 +1411,7 @@
     toastEl.classList.remove('is-open');
   }
 
-  /* Drawer Mobile com backdrop e restauração de foco */
+  /* ===== Drawer Mobile ===== */
   const menuBtn = document.getElementById('menuBtn');
   const closeMenu = document.getElementById('closeMenu');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -1279,7 +1444,7 @@
     }
   });
 
-  /* Sombra navbar + barra de progresso do stepper */
+  /* ===== Sombra navbar + barra de progresso do stepper ===== */
   const navbarEl = document.getElementById('navbar');
   const progressEl = document.getElementById('stepperProgress');
   function atualizarScrollUI() {
@@ -1290,7 +1455,7 @@
   }
   window.addEventListener('scroll', atualizarScrollUI, { passive: true });
 
-  /* Sombra condicional de scroll horizontal na tabela */
+  /* ===== Sombra condicional de scroll horizontal na tabela ===== */
   const tableShell = document.getElementById('tableShell');
   const tableWrapper = document.getElementById('tableWrapper');
   function atualizarSombraTabela() {
@@ -1301,7 +1466,7 @@
   tableWrapper.addEventListener('scroll', atualizarSombraTabela, { passive: true });
   window.addEventListener('resize', atualizarSombraTabela, { passive: true });
 
-  /* Indicador de etapa ativa (1 Configurar → 2 Equipe → 3 Resultado) */
+  /* ===== Stepper ativo ===== */
   function configurarStepper() {
     const links = document.querySelectorAll('.stepper a[data-step]');
     if (!('IntersectionObserver' in window) || !links.length) return;
@@ -1343,6 +1508,18 @@
     return HORARIO_5X2_POR_LIMITE[limiteHoras] || HORARIO_5X2_POR_LIMITE[42];
   }
 
+  function chaveMes(ano = anoSelecionado, mes = mesSelecionado) {
+    return `${ano}-${String(mes + 1).padStart(2, '0')}`;
+  }
+
+  function diasNoMes(ano = anoSelecionado, mes = mesSelecionado) {
+    return new Date(ano, mes + 1, 0).getDate();
+  }
+
+  function nomeMesAno(ano = anoSelecionado, mes = mesSelecionado) {
+    return `${MESES_NOMES[mes]} de ${ano}`;
+  }
+
   function atualizarMetasPresets() {
     const limite = obterLimiteSemanal();
     const { entrada, saida } = horarioPadrao5x2(limite);
@@ -1378,25 +1555,219 @@
     });
   }
 
+  function sincronizarControlesModo() {
+    const isMensal = modoEscala === 'mensal';
+    document.body.classList.toggle('modo-mensal', isMensal);
+
+    document.querySelectorAll('[data-segmented="periodo"]').forEach(seg => {
+      seg.style.setProperty('--seg-idx', isMensal ? '1' : '0');
+      seg.querySelectorAll('button[data-modo]').forEach(btn => {
+        btn.setAttribute('aria-pressed', btn.dataset.modo === modoEscala ? 'true' : 'false');
+      });
+    });
+
+    const monthBox = document.getElementById('monthSettings');
+    if (monthBox) monthBox.hidden = !isMensal;
+
+    const btnRegen = document.getElementById('btnRegenerarMes');
+    if (btnRegen) btnRegen.hidden = !isMensal;
+
+    const mesEl = document.getElementById('mesReferencia');
+    const anoEl = document.getElementById('anoReferencia');
+    const altEl = document.getElementById('alternarFolgasMes');
+    if (mesEl) mesEl.value = String(mesSelecionado);
+    if (anoEl) anoEl.value = String(anoSelecionado);
+    if (altEl) altEl.checked = alternarFolgasMes;
+
+    const badgeLabel = document.getElementById('resultadoPeriodoLabel');
+    if (badgeLabel) {
+      badgeLabel.textContent = isMensal
+        ? `Escala mensal · ${nomeMesAno()} (${diasNoMes()} dias)`
+        : 'Escala semanal · Seg a Dom';
+    }
+
+    const hintText = document.getElementById('tableScrollHintText');
+    if (hintText) {
+      hintText.textContent = isMensal
+        ? `Arraste a tabela horizontalmente para visualizar todos os ${diasNoMes()} dias de ${MESES_NOMES[mesSelecionado]}.`
+        : 'Arraste a tabela horizontalmente para ver todos os dias da semana.';
+    }
+  }
+
+  function definirModoEscala(novoModo) {
+    if (novoModo !== 'semanal' && novoModo !== 'mensal') return;
+    if (modoEscala === novoModo) return;
+    modoEscala = novoModo;
+
+    if (modoEscala === 'mensal') {
+      colaboradores.forEach((c, idx) => garantirMesColaborador(c, idx));
+    }
+
+    sincronizarControlesModo();
+    salvarDados();
+    renderTabela();
+    mostrarToast(
+      modoEscala === 'mensal'
+        ? `Modo mensal ativado (${nomeMesAno()}).`
+        : 'Modo semanal ativado.'
+    );
+  }
+
+  function alterarMesReferencia() {
+    mesSelecionado = Number(document.getElementById('mesReferencia').value);
+    anoSelecionado = Number(document.getElementById('anoReferencia').value);
+    colaboradores.forEach((c, idx) => garantirMesColaborador(c, idx));
+    sincronizarControlesModo();
+    salvarDados();
+    renderTabela();
+  }
+
+  function alternarRegraRevezamentoMes() {
+    alternarFolgasMes = document.getElementById('alternarFolgasMes').checked;
+    const chave = chaveMes();
+    colaboradores.forEach((c, idx) => {
+      if (!c.meses || typeof c.meses !== 'object') c.meses = {};
+      c.meses[chave] = gerarDiasMesPorPreset(idx, anoSelecionado, mesSelecionado, presetAtual, alternarFolgasMes);
+    });
+    salvarDados();
+    renderTabela();
+    mostrarToast(
+      alternarFolgasMes
+        ? 'Folgas alternadas semana a semana aplicadas ao mês.'
+        : 'Padrão semanal fixo aplicado ao mês.'
+    );
+  }
+
+  function regenerarMesAtual() {
+    ultimoSnapshot = JSON.parse(JSON.stringify(colaboradores));
+    const chave = chaveMes();
+    const modoRevez = document.getElementById('alternarFolgasMes')?.checked ?? true;
+    alternarFolgasMes = modoRevez;
+    // Garante rotação real de folgas mesmo se preset atual for 5x2 simples, usando o ciclo alternado
+    const presetParaGerar = presetAtual === '5x2' ? '5x2_rev' : presetAtual;
+    if (presetAtual === '5x2') {
+      presetAtual = '5x2_rev';
+      marcarPresetAtivo();
+      sincronizarFormularioTurno();
+    }
+    colaboradores.forEach((c, idx) => {
+      if (!c.meses || typeof c.meses !== 'object') c.meses = {};
+      c.meses[chave] = gerarDiasMesPorPreset(idx, anoSelecionado, mesSelecionado, presetParaGerar, true);
+    });
+    salvarDados();
+    renderTabela();
+    mostrarToast(`Folgas alternadas geradas para ${nomeMesAno()}.`, () => {
+      if (!ultimoSnapshot) return;
+      colaboradores = ultimoSnapshot;
+      ultimoSnapshot = null;
+      salvarDados();
+      renderTabela();
+    });
+  }
+
+  function diasPadraoPorPreset(idx = 0) {
+    if (presetAtual === '5x2_rev') {
+      return idx % 2 === 0
+        ? ['T', 'T', 'T', 'T', 'T', 'F', 'D']
+        : ['F', 'T', 'T', 'T', 'T', 'T', 'D'];
+    }
+    if (presetAtual === '12x36') {
+      return idx % 2 === 0
+        ? ['T', 'F', 'T', 'F', 'T', 'F', 'T']
+        : ['F', 'T', 'F', 'T', 'F', 'T', 'D'];
+    }
+    return ['T', 'T', 'T', 'T', 'T', 'F', 'D'];
+  }
+
+  /* Gera os 28–31 dias do mês respeitando calendário real e alternância semanal de folgas */
+  function gerarDiasMesPorPreset(idxColab = 0, ano = anoSelecionado, mes = mesSelecionado, preset = presetAtual, alternarSemanas = alternarFolgasMes) {
+    const total = diasNoMes(ano, mes);
+    const resultado = [];
+    let semanaIdx = 0;
+
+    for (let d = 1; d <= total; d++) {
+      const dow = new Date(ano, mes, d).getDay(); // 0=Dom, 1=Seg..6=Sáb
+      if (d > 1 && dow === 1) semanaIdx++;
+
+      if (preset === '12x36') {
+        const trabalha = ((d - 1 + idxColab) % 2) === 0;
+        resultado.push(trabalha ? 'T' : (dow === 0 ? 'D' : 'F'));
+      } else if (preset === '5x2_rev') {
+        if (dow === 0) {
+          resultado.push('D');
+        } else {
+          // Quando alternarSemanas está ativo, quem trabalhou sábado em uma semana folga no sábado na seguinte
+          const ciclo = alternarSemanas ? (idxColab + semanaIdx) : idxColab;
+          const folgaNoSabado = (ciclo % 2) === 0;
+          if (folgaNoSabado) {
+            resultado.push(dow === 6 ? 'F' : 'T');
+          } else {
+            // Na semana em que trabalha no sábado, rotaciona a folga compensatória entre Seg (1), Qua (3) e Sex (5)
+            const diasFolgaUtil = [1, 3, 5];
+            const diaFolga = alternarSemanas
+              ? diasFolgaUtil[Math.floor(ciclo / 2) % diasFolgaUtil.length]
+              : 1;
+            resultado.push(dow === diaFolga ? 'F' : 'T');
+          }
+        }
+      } else {
+        // 5x2 clássico: Seg-Sex T, Sáb F, Dom D
+        if (dow === 0) resultado.push('D');
+        else if (dow === 6) resultado.push('F');
+        else resultado.push('T');
+      }
+    }
+
+    return resultado;
+  }
+
+  function garantirMesColaborador(c, idx, ano = anoSelecionado, mes = mesSelecionado) {
+    if (!c.meses || typeof c.meses !== 'object') c.meses = {};
+    const chave = chaveMes(ano, mes);
+    const total = diasNoMes(ano, mes);
+    if (!Array.isArray(c.meses[chave]) || c.meses[chave].length !== total) {
+      c.meses[chave] = gerarDiasMesPorPreset(idx, ano, mes, presetAtual, alternarFolgasMes);
+    }
+    return c.meses[chave];
+  }
+
   function inicializar() {
     const salvo = localStorage.getItem(STORAGE_KEY);
     if (salvo) {
       try {
         const parsed = JSON.parse(salvo);
-        colaboradores = Array.isArray(parsed.colaboradores) ? parsed.colaboradores : JSON.parse(JSON.stringify(dadosExemplo));
+        colaboradores = Array.isArray(parsed.colaboradores)
+          ? parsed.colaboradores.map(c => ({ ...c, meses: (c.meses && typeof c.meses === 'object') ? c.meses : {} }))
+          : JSON.parse(JSON.stringify(dadosExemplo));
         document.getElementById('nomeEmpresa').value = parsed.empresa || '';
         const limiteSalvo = String(parsed.limite || '42');
         document.getElementById('limiteSemanal').value = LIMITES_VALIDOS.includes(limiteSalvo) ? limiteSalvo : '42';
         if (parsed.preset && PRESET_NOMES[parsed.preset]) presetAtual = parsed.preset;
+        if (parsed.modo === 'mensal' || parsed.modo === 'semanal') modoEscala = parsed.modo;
+        if (typeof parsed.mes === 'number' && parsed.mes >= 0 && parsed.mes <= 11) mesSelecionado = parsed.mes;
+        if (typeof parsed.ano === 'number' && parsed.ano >= 2025 && parsed.ano <= 2028) anoSelecionado = parsed.ano;
+        if (typeof parsed.alternarFolgasMes === 'boolean') alternarFolgasMes = parsed.alternarFolgasMes;
       } catch (e) {
         colaboradores = JSON.parse(JSON.stringify(dadosExemplo));
       }
     } else {
       colaboradores = JSON.parse(JSON.stringify(dadosExemplo));
     }
+
+    const params = new URLSearchParams(window.location.search);
+    const paramModo = params.get('modo');
+    const paramPreset = params.get('preset');
+    if (paramPreset && PRESET_NOMES[paramPreset]) presetAtual = paramPreset;
+    if (paramModo === 'mensal' || paramModo === 'semanal') modoEscala = paramModo;
+
+    if (modoEscala === 'mensal') {
+      colaboradores.forEach((c, idx) => garantirMesColaborador(c, idx));
+    }
+
     marcarPresetAtivo();
     atualizarMetasPresets();
     sincronizarFormularioTurno();
+    sincronizarControlesModo();
     salvarDados();
     renderTabela();
     configurarDropzone();
@@ -1408,20 +1779,28 @@
   function salvarDados() {
     const empresa = document.getElementById('nomeEmpresa').value.trim();
     const limite = String(obterLimiteSemanal());
-    document.getElementById('print-empresa-titulo').textContent = empresa
-      ? `Escala Semanal — ${empresa}`
+    const tituloBase = modoEscala === 'mensal'
+      ? `Escala Mensal (${nomeMesAno()})`
       : 'Escala Semanal de Trabalho';
+    document.getElementById('print-empresa-titulo').textContent = empresa
+      ? `${tituloBase} — ${empresa}`
+      : tituloBase;
 
     const metaEl = document.getElementById('print-meta-detalhes');
     if (metaEl) {
       const dataAtual = new Date().toLocaleDateString('pt-BR');
-      metaEl.textContent = `Modelo: ${nomePreset()} • Limite: ${limite}h/sem • Emissão: ${dataAtual}`;
+      const periodoTxt = modoEscala === 'mensal' ? `${nomeMesAno()} (${diasNoMes()} dias)` : 'Semanal';
+      metaEl.textContent = `Período: ${periodoTxt} • Modelo: ${nomePreset()} • Limite: ${limite}h/sem • Emissão: ${dataAtual}`;
     }
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
       empresa,
       limite,
       preset: presetAtual,
+      modo: modoEscala,
+      mes: mesSelecionado,
+      ano: anoSelecionado,
+      alternarFolgasMes,
       colaboradores
     }));
   }
@@ -1444,7 +1823,6 @@
     return `${h}h${m > 0 ? String(m).padStart(2, '0') : ''}`;
   }
 
-
   function validarColaborador(c, limiteHoras) {
     const horasDia = calcularHorasDiarias(c.entrada, c.saida, c.intervalo);
     const diasTrabalhados = c.dias.filter(d => d === 'T').length;
@@ -1466,8 +1844,100 @@
     return { horasDia, diasTrabalhados, horasSemana, alertas };
   }
 
+  function validarColaboradorMensal(c, diasMes, ano, mes, limiteHoras) {
+    const horasDia = calcularHorasDiarias(c.entrada, c.saida, c.intervalo);
+    const diasTrabalhados = diasMes.filter(d => d === 'T').length;
+    const horasMes = horasDia * diasTrabalhados;
+    const semanasNoMes = diasMes.length / 7;
+    const mediaSemanal = horasMes / semanasNoMes;
+
+    let maxConsecutivos = 0;
+    let seqAtual = 0;
+    let domingosTrabalhados = 0;
+    let totalDomingosMes = 0;
+
+    diasMes.forEach((estado, i) => {
+      const dow = new Date(ano, mes, i + 1).getDay();
+      if (dow === 0) {
+        totalDomingosMes++;
+        if (estado === 'T') domingosTrabalhados++;
+      }
+      if (estado === 'T') {
+        seqAtual++;
+        if (seqAtual > maxConsecutivos) maxConsecutivos = seqAtual;
+      } else {
+        seqAtual = 0;
+      }
+    });
+
+    const alertas = [];
+    if (mediaSemanal > limiteHoras + 0.2) {
+      alertas.push(`Média > ${limiteHoras}h/sem`);
+    }
+    if (maxConsecutivos >= 7) {
+      alertas.push('7+ dias seguidos');
+    } else if (maxConsecutivos >= 6 && presetAtual !== '12x36') {
+      alertas.push('6+ dias seguidos');
+    }
+    if (domingosTrabalhados === totalDomingosMes && totalDomingosMes >= 3 && presetAtual !== '12x36') {
+      alertas.push('Sem folga aos domingos');
+    }
+    if (horasDia > 10 && presetAtual !== '12x36') {
+      alertas.push('Jornada > 10h/dia');
+    }
+
+    return { horasDia, diasTrabalhados, horasMes, mediaSemanal, domingosTrabalhados, alertas };
+  }
+
   function calcularResumo() {
     const limiteHoras = obterLimiteSemanal();
+    const total = colaboradores.length;
+
+    if (modoEscala === 'mensal') {
+      const totalDias = diasNoMes();
+      let somaHoras = 0;
+      let domingosTrabalhados = 0;
+      let colabsComAlerta = 0;
+      let totalAlertas = 0;
+      let totalSabadosMes = 0;
+      let somaCoberturaSabados = 0;
+
+      for (let d = 1; d <= totalDias; d++) {
+        if (new Date(anoSelecionado, mesSelecionado, d).getDay() === 6) {
+          totalSabadosMes++;
+          colaboradores.forEach((c, idx) => {
+            const diasMes = garantirMesColaborador(c, idx);
+            if (diasMes[d - 1] === 'T') somaCoberturaSabados++;
+          });
+        }
+      }
+
+      colaboradores.forEach((c, idx) => {
+        const diasMes = garantirMesColaborador(c, idx);
+        const val = validarColaboradorMensal(c, diasMes, anoSelecionado, mesSelecionado, limiteHoras);
+        somaHoras += val.horasMes;
+        domingosTrabalhados += val.domingosTrabalhados;
+        if (val.alertas.length) { colabsComAlerta++; totalAlertas += val.alertas.length; }
+      });
+
+      const media = total ? somaHoras / total : 0;
+      const mediaSemanalEquipe = total ? (media / (totalDias / 7)) : 0;
+      const mediaCoberturaSab = totalSabadosMes ? Math.round((somaCoberturaSabados / totalSabadosMes) * 10) / 10 : 0;
+
+      return {
+        modo: 'mensal',
+        limiteHoras,
+        total,
+        somaHoras,
+        media,
+        mediaSemanalEquipe,
+        coberturaSab: mediaCoberturaSab,
+        domingosTrabalhados,
+        colabsComAlerta,
+        totalAlertas
+      };
+    }
+
     let somaHoras = 0;
     let coberturaSab = 0;
     let domingosTrabalhados = 0;
@@ -1482,23 +1952,18 @@
       if (alertas.length) { colabsComAlerta++; totalAlertas += alertas.length; }
     });
 
-    const total = colaboradores.length;
     const media = total ? somaHoras / total : 0;
-    return { limiteHoras, total, somaHoras, media, coberturaSab, domingosTrabalhados, colabsComAlerta, totalAlertas };
-  }
-
-  function diasPadraoPorPreset(idx = 0) {
-    if (presetAtual === '5x2_rev') {
-      return idx % 2 === 0
-        ? ['T', 'T', 'T', 'T', 'T', 'F', 'D']
-        : ['F', 'T', 'T', 'T', 'T', 'T', 'D'];
-    }
-    if (presetAtual === '12x36') {
-      return idx % 2 === 0
-        ? ['T', 'F', 'T', 'F', 'T', 'F', 'T']
-        : ['F', 'T', 'F', 'T', 'F', 'T', 'D'];
-    }
-    return ['T', 'T', 'T', 'T', 'T', 'F', 'D'];
+    return {
+      modo: 'semanal',
+      limiteHoras,
+      total,
+      somaHoras,
+      media,
+      coberturaSab,
+      domingosTrabalhados,
+      colabsComAlerta,
+      totalAlertas
+    };
   }
 
   function aplicarPreset(tipo) {
@@ -1508,6 +1973,7 @@
     sincronizarFormularioTurno();
 
     const horario5x2 = horarioPadrao5x2();
+    const chave = chaveMes();
 
     colaboradores = colaboradores.map((c, idx) => {
       const dias = diasPadraoPorPreset(idx);
@@ -1522,12 +1988,21 @@
         saida = '19:00';
       }
 
-      return { ...c, entrada, saida, dias };
+      const meses = (c.meses && typeof c.meses === 'object') ? { ...c.meses } : {};
+      if (modoEscala === 'mensal' || meses[chave]) {
+        meses[chave] = gerarDiasMesPorPreset(idx, anoSelecionado, mesSelecionado, tipo, alternarFolgasMes);
+      }
+
+      return { ...c, entrada, saida, dias, meses };
     });
 
     salvarDados();
     renderTabela();
-    mostrarToast(`Modelo ${nomePreset()} aplicado à equipe.`);
+    mostrarToast(
+      modoEscala === 'mensal'
+        ? `Modelo ${nomePreset()} aplicado ao mês de ${nomeMesAno()}.`
+        : `Modelo ${nomePreset()} aplicado à equipe.`
+    );
   }
 
   function gerarEscala() {
@@ -1545,6 +2020,12 @@
 
     if (!nome) return;
 
+    const novoIdx = colaboradores.length;
+    const meses = {};
+    if (modoEscala === 'mensal') {
+      meses[chaveMes()] = gerarDiasMesPorPreset(novoIdx, anoSelecionado, mesSelecionado, presetAtual, alternarFolgasMes);
+    }
+
     colaboradores.push({
       id: Date.now() + Math.floor(Math.random() * 1000),
       nome,
@@ -1552,7 +2033,8 @@
       entrada,
       saida,
       intervalo,
-      dias: diasPadraoPorPreset(colaboradores.length)
+      dias: diasPadraoPorPreset(novoIdx),
+      meses
     });
 
     document.getElementById('colabNome').value = '';
@@ -1587,7 +2069,20 @@
     colab.dias[diaIndex] = proximo;
     salvarDados();
     renderTabela();
-    const alvo = document.querySelector(`[data-cell="${colabId}-${diaIndex}"]`);
+    const alvo = document.querySelector(`[data-cell="w-${colabId}-${diaIndex}"]`);
+    if (alvo) alvo.focus();
+  }
+
+  function alternarDiaMes(colabId, diaIndex) {
+    const idxColab = colaboradores.findIndex(c => c.id === colabId);
+    if (idxColab === -1) return;
+    const colab = colaboradores[idxColab];
+    const diasMes = garantirMesColaborador(colab, idxColab);
+    const atual = diasMes[diaIndex];
+    diasMes[diaIndex] = ESTADOS[(ESTADOS.indexOf(atual) + 1) % ESTADOS.length];
+    salvarDados();
+    renderTabela();
+    const alvo = document.querySelector(`[data-cell="m-${colabId}-${diaIndex}"]`);
     if (alvo) alvo.focus();
   }
 
@@ -1596,6 +2091,9 @@
     presetAtual = '5x2';
     document.getElementById('limiteSemanal').value = '42';
     colaboradores = JSON.parse(JSON.stringify(dadosExemplo));
+    if (modoEscala === 'mensal') {
+      colaboradores.forEach((c, idx) => garantirMesColaborador(c, idx));
+    }
     marcarPresetAtivo();
     atualizarMetasPresets();
     sincronizarFormularioTurno();
@@ -1615,54 +2113,148 @@
   const WARN_SVG = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
 
   function renderTabela() {
+    const table = document.getElementById('tabelaEscala');
+    const thead = document.getElementById('tabelaEscalaHead');
     const tbody = document.getElementById('tabelaEscalaBody');
     const limiteHoras = obterLimiteSemanal();
+    const isMensal = modoEscala === 'mensal';
+
+    table.classList.toggle('is-monthly', isMensal);
     tbody.innerHTML = '';
 
-    if (!colaboradores.length) {
-      tbody.innerHTML = '<tr class="empty-row"><td colspan="11">Nenhum colaborador na escala. Adicione no passo 2 ou importe uma planilha.</td></tr>';
-    }
+    if (isMensal) {
+      const totalDias = diasNoMes();
+      const thDias = [];
+      for (let d = 1; d <= totalDias; d++) {
+        const dow = new Date(anoSelecionado, mesSelecionado, d).getDay();
+        const classes = [];
+        if (dow === 0) classes.push('th-sunday');
+        else if (dow === 6) classes.push('th-saturday');
+        if (d > 1 && dow === 1) classes.push('week-start');
+        thDias.push(`<th scope="col" class="${classes.join(' ')}"><span class="day-num">${String(d).padStart(2, '0')}</span><span class="day-dow">${DOW_CURTO[dow]}</span></th>`);
+      }
 
-    colaboradores.forEach(c => {
-      const { horasDia, horasSemana, alertas } = validarColaborador(c, limiteHoras);
+      thead.innerHTML = `
+        <tr>
+          <th scope="col" class="col-colab">Colaborador / Turno</th>
+          ${thDias.join('')}
+          <th scope="col">Carga mensal</th>
+          <th scope="col">Status CLT</th>
+          <th scope="col" class="no-print"><span class="sr-only">Ações</span></th>
+        </tr>`;
 
-      const statusHtml = alertas.length === 0
-        ? `<span class="alert-badge alert-ok">${OK_SVG} Regular</span>`
-        : `<span class="alert-badge alert-warn" title="${escapeHtml(alertas.join(' | '))}">${WARN_SVG} ${escapeHtml(alertas[0])}${alertas.length > 1 ? ` +${alertas.length - 1}` : ''}</span>`;
+      if (!colaboradores.length) {
+        tbody.innerHTML = `<tr class="empty-row"><td colspan="${totalDias + 4}">Nenhum colaborador na escala. Adicione no passo 2 ou importe uma planilha.</td></tr>`;
+      }
 
-      const celulas = c.dias.map((estado, idx) => {
-        const domingoTrabalhado = idx === 6 && estado === 'T';
-        const classe = domingoTrabalhado ? 'pill-DT' : `pill-${estado}`;
-        const titulo = domingoTrabalhado ? 'Dom. trab.' : LABELS[estado].titulo;
-        const detalhe = estado === 'T' ? formatarHoras(horasDia) : LABELS[estado].desc;
-        const aria = `${c.nome}, ${DIAS_SEMANA[idx]}: ${domingoTrabalhado ? 'Domingo trabalhado' : LABELS[estado].titulo}. Ativar para alterar.`;
-        return `
-          <td class="shift-cell">
-            <button type="button" class="pill-shift ${classe}" data-cell="${c.id}-${idx}" onclick="alternarDia(${c.id}, ${idx})" aria-label="${escapeHtml(aria)}" title="Clique para alterar">
-              ${titulo}
-              <small>${detalhe}</small>
+      colaboradores.forEach((c, idxColab) => {
+        const diasMes = garantirMesColaborador(c, idxColab);
+        const { horasDia, diasTrabalhados, horasMes, mediaSemanal, alertas } = validarColaboradorMensal(c, diasMes, anoSelecionado, mesSelecionado, limiteHoras);
+
+        const statusHtml = alertas.length === 0
+          ? `<span class="alert-badge alert-ok">${OK_SVG} Regular</span>`
+          : `<span class="alert-badge alert-warn" title="${escapeHtml(alertas.join(' | '))}">${WARN_SVG} ${escapeHtml(alertas[0])}${alertas.length > 1 ? ` +${alertas.length - 1}` : ''}</span>`;
+
+        const celulas = diasMes.map((estado, idxDia) => {
+          const diaNum = idxDia + 1;
+          const dow = new Date(anoSelecionado, mesSelecionado, diaNum).getDay();
+          const domingoTrabalhado = dow === 0 && estado === 'T';
+          const classe = domingoTrabalhado ? 'pill-DT' : `pill-${estado}`;
+          const textoCurto = domingoTrabalhado ? 'Dom' : LABELS[estado].curto;
+          const tituloExtenso = domingoTrabalhado ? 'Domingo trabalhado' : LABELS[estado].titulo;
+          const dataFmt = `${String(diaNum).padStart(2, '0')}/${String(mesSelecionado + 1).padStart(2, '0')}`;
+          const aria = `${c.nome}, ${dataFmt} (${DOW_COMPLETO[dow]}): ${tituloExtenso}. Ativar para alterar.`;
+          const tdClass = (diaNum > 1 && dow === 1) ? 'shift-cell week-start' : 'shift-cell';
+          return `
+            <td class="${tdClass}">
+              <button type="button" class="pill-shift is-compact ${classe}" data-cell="m-${c.id}-${idxDia}" onclick="alternarDiaMes(${c.id}, ${idxDia})" aria-label="${escapeHtml(aria)}" title="${escapeHtml(`${dataFmt} (${DOW_COMPLETO[dow]}): ${tituloExtenso} — clique para alterar`)}">
+                ${textoCurto}
+              </button>
+            </td>`;
+        }).join('');
+
+        const tr = document.createElement('tr');
+        if (alertas.length) tr.className = 'row-alert';
+        tr.innerHTML = `
+          <th scope="row" class="col-colab">
+            <span class="colab-name">${escapeHtml(c.nome)}</span>
+            <span class="colab-meta">${escapeHtml(c.cargo)} • ${escapeHtml(c.entrada)} às ${escapeHtml(c.saida)} (${Number(c.intervalo)}m int.)</span>
+          </th>
+          ${celulas}
+          <td>
+            <strong>${formatarHoras(horasMes)}</strong>
+            <span class="carga-sub">${diasTrabalhados}d · ~${formatarHoras(mediaSemanal)}/sem</span>
+          </td>
+          <td>${statusHtml}</td>
+          <td class="no-print">
+            <button type="button" class="btn-icon-del" onclick="removerColaborador(${c.id})" title="Remover" aria-label="Remover ${escapeHtml(c.nome)}">
+              ${TRASH_SVG}
             </button>
-          </td>`;
-      }).join('');
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    } else {
+      thead.innerHTML = `
+        <tr>
+          <th scope="col" class="col-colab">Colaborador / Turno</th>
+          <th scope="col">Seg</th>
+          <th scope="col">Ter</th>
+          <th scope="col">Qua</th>
+          <th scope="col">Qui</th>
+          <th scope="col">Sex</th>
+          <th scope="col" class="th-saturday">Sáb</th>
+          <th scope="col" class="th-sunday">Dom</th>
+          <th scope="col">Carga semanal</th>
+          <th scope="col">Status CLT</th>
+          <th scope="col" class="no-print"><span class="sr-only">Ações</span></th>
+        </tr>`;
 
-      const tr = document.createElement('tr');
-      if (alertas.length) tr.className = 'row-alert';
-      tr.innerHTML = `
-        <th scope="row" class="col-colab">
-          <span class="colab-name">${escapeHtml(c.nome)}</span>
-          <span class="colab-meta">${escapeHtml(c.cargo)} • ${escapeHtml(c.entrada)} às ${escapeHtml(c.saida)} (${Number(c.intervalo)}m int.)</span>
-        </th>
-        ${celulas}
-        <td><strong>${formatarHoras(horasSemana)}</strong></td>
-        <td>${statusHtml}</td>
-        <td class="no-print">
-          <button type="button" class="btn-icon-del" onclick="removerColaborador(${c.id})" title="Remover" aria-label="Remover ${escapeHtml(c.nome)}">
-            ${TRASH_SVG}
-          </button>
-        </td>
-      `;
-      tbody.appendChild(tr);
-    });
+      if (!colaboradores.length) {
+        tbody.innerHTML = '<tr class="empty-row"><td colspan="11">Nenhum colaborador na escala. Adicione no passo 2 ou importe uma planilha.</td></tr>';
+      }
+
+      colaboradores.forEach(c => {
+        const { horasDia, horasSemana, alertas } = validarColaborador(c, limiteHoras);
+
+        const statusHtml = alertas.length === 0
+          ? `<span class="alert-badge alert-ok">${OK_SVG} Regular</span>`
+          : `<span class="alert-badge alert-warn" title="${escapeHtml(alertas.join(' | '))}">${WARN_SVG} ${escapeHtml(alertas[0])}${alertas.length > 1 ? ` +${alertas.length - 1}` : ''}</span>`;
+
+        const celulas = c.dias.map((estado, idx) => {
+          const domingoTrabalhado = idx === 6 && estado === 'T';
+          const classe = domingoTrabalhado ? 'pill-DT' : `pill-${estado}`;
+          const titulo = domingoTrabalhado ? 'Dom. trab.' : LABELS[estado].titulo;
+          const detalhe = estado === 'T' ? formatarHoras(horasDia) : LABELS[estado].desc;
+          const aria = `${c.nome}, ${DIAS_SEMANA[idx]}: ${domingoTrabalhado ? 'Domingo trabalhado' : LABELS[estado].titulo}. Ativar para alterar.`;
+          return `
+            <td class="shift-cell">
+              <button type="button" class="pill-shift ${classe}" data-cell="w-${c.id}-${idx}" onclick="alternarDia(${c.id}, ${idx})" aria-label="${escapeHtml(aria)}" title="Clique para alterar">
+                ${titulo}
+                <small>${detalhe}</small>
+              </button>
+            </td>`;
+        }).join('');
+
+        const tr = document.createElement('tr');
+        if (alertas.length) tr.className = 'row-alert';
+        tr.innerHTML = `
+          <th scope="row" class="col-colab">
+            <span class="colab-name">${escapeHtml(c.nome)}</span>
+            <span class="colab-meta">${escapeHtml(c.cargo)} • ${escapeHtml(c.entrada)} às ${escapeHtml(c.saida)} (${Number(c.intervalo)}m int.)</span>
+          </th>
+          ${celulas}
+          <td><strong>${formatarHoras(horasSemana)}</strong></td>
+          <td>${statusHtml}</td>
+          <td class="no-print">
+            <button type="button" class="btn-icon-del" onclick="removerColaborador(${c.id})" title="Remover" aria-label="Remover ${escapeHtml(c.nome)}">
+              ${TRASH_SVG}
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
 
     atualizarKPIs(calcularResumo());
     atualizarSombraTabela();
@@ -1670,17 +2262,31 @@
 
   function atualizarKPIs(r) {
     document.getElementById('kpiTotalColab').textContent = r.total;
-    document.getElementById('kpiSabado').textContent = `Sábado: ${pluralizar(r.coberturaSab, 'pessoa', 'pessoas')}`;
     document.getElementById('kpiHorasTotais').textContent = formatarHoras(r.somaHoras);
     document.getElementById('kpiMediaHoras').textContent = formatarHoras(r.media);
-    document.getElementById('kpiLimite').textContent = `Limite: ${r.limiteHoras}h/sem`;
     document.getElementById('kpiDomingo').textContent = r.domingosTrabalhados;
-
     document.getElementById('kpiAlertas').textContent = r.colabsComAlerta;
-    document.getElementById('kpiAlertasSub').textContent = r.colabsComAlerta
-      ? `${pluralizar(r.totalAlertas, 'alerta', 'alertas')} na equipe`
-      : 'Nenhum alerta';
     document.getElementById('kpiAlertasBox').classList.toggle('has-alerts', r.colabsComAlerta > 0);
+
+    if (r.modo === 'mensal') {
+      document.getElementById('kpiSabado').textContent = `Sábados: ~${String(r.coberturaSab).replace('.', ',')} / dia`;
+      document.getElementById('kpiHorasLabel').textContent = 'Horas no mês';
+      document.getElementById('kpiHorasSub').textContent = `${MESES_NOMES[mesSelecionado]}/${anoSelecionado}`;
+      document.getElementById('kpiLimite').textContent = `~${formatarHoras(r.mediaSemanalEquipe)}/sem (lim. ${r.limiteHoras}h)`;
+      document.getElementById('kpiDomingoSub').textContent = 'Turnos em domingo no mês';
+      document.getElementById('kpiAlertasSub').textContent = r.colabsComAlerta
+        ? `${pluralizar(r.totalAlertas, 'alerta', 'alertas')} no mês`
+        : 'Nenhum alerta';
+    } else {
+      document.getElementById('kpiSabado').textContent = `Sábado: ${pluralizar(r.coberturaSab, 'pessoa', 'pessoas')}`;
+      document.getElementById('kpiHorasLabel').textContent = 'Horas semanais';
+      document.getElementById('kpiHorasSub').textContent = 'Total da equipe';
+      document.getElementById('kpiLimite').textContent = `Limite: ${r.limiteHoras}h/sem`;
+      document.getElementById('kpiDomingoSub').textContent = 'Colaboradores no domingo';
+      document.getElementById('kpiAlertasSub').textContent = r.colabsComAlerta
+        ? `${pluralizar(r.totalAlertas, 'alerta', 'alertas')} na equipe`
+        : 'Nenhum alerta';
+    }
   }
 
   /* ===== Importação de planilha (.XLSX, .XLS, .CSV) ===== */
@@ -1865,9 +2471,14 @@
         colIdx >= 0 ? normalizarEstadoDia(row[colIdx], padrao[dIdx]) : padrao[dIdx]
       );
 
+      const meses = {};
+      if (modoEscala === 'mensal') {
+        meses[chaveMes()] = gerarDiasMesPorPreset(importados.length, anoSelecionado, mesSelecionado, presetAtual, alternarFolgasMes);
+      }
+
       importados.push({
         id: Date.now() + r + Math.floor(Math.random() * 1000),
-        nome, cargo, entrada, saida, intervalo, dias
+        nome, cargo, entrada, saida, intervalo, dias, meses
       });
     }
 
@@ -1950,42 +2561,96 @@
     const limiteHoras = obterLimiteSemanal();
     const resumo = calcularResumo();
     const dataAtual = new Date().toLocaleDateString('pt-BR');
+    const isMensal = modoEscala === 'mensal';
 
     const linhas = [
       ['Contabilidade Líder • contabilidadelider.cnt.br | contato@contabilidadelider.cnt.br • (31) 3852-3355 • WhatsApp (31) 98896-7713'],
       ['Rua Fernão Dias, 303, 5º andar — João Monlevade - MG • CRC-MG 4623 • O sucesso da sua empresa começa aqui'],
-      [],
-      [`ESCALA SEMANAL DE TRABALHO - ${empresa.toUpperCase()}`],
-      [`Modelo base: ${nomePreset()} | Limite semanal: ${limiteHoras}h | Emissão: ${dataAtual}`],
-      [],
-      ['Colaborador', 'Cargo/Setor', 'Horário Turno', 'Intervalo (min)', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo', 'Carga Semanal', 'Status CLT']
+      []
     ];
 
-    colaboradores.forEach(c => {
-      const { horasSemana, alertas } = validarColaborador(c, limiteHoras);
-      const diasTexto = c.dias.map((d, idx) => (idx === 6 && d === 'T') ? 'Trabalho (domingo)' : LABELS[d].titulo);
-      const statusTexto = alertas.length === 0 ? 'Regular' : alertas.join(' / ');
+    if (isMensal) {
+      const totalDias = diasNoMes();
+      const cabDias = [];
+      for (let d = 1; d <= totalDias; d++) {
+        const dow = new Date(anoSelecionado, mesSelecionado, d).getDay();
+        cabDias.push(`${String(d).padStart(2, '0')} (${DOW_CURTO[dow]})`);
+      }
 
-      linhas.push([
-        c.nome,
-        c.cargo,
-        `${c.entrada} às ${c.saida}`,
-        c.intervalo,
-        ...diasTexto,
-        formatarHoras(horasSemana),
-        statusTexto
-      ]);
-    });
+      linhas.push(
+        [`ESCALA MENSAL DE TRABALHO (${nomeMesAno().toUpperCase()}) - ${empresa.toUpperCase()}`],
+        [`Modelo base: ${nomePreset()} | Limite semanal: ${limiteHoras}h | Emissão: ${dataAtual}`],
+        [],
+        ['Colaborador', 'Cargo/Setor', 'Horário Turno', 'Intervalo (min)', ...cabDias, 'Dias Trabalhados', 'Carga Mensal', 'Média Semanal', 'Status CLT']
+      );
 
-    linhas.push(
-      [],
-      ['RESUMO'],
-      ['Total de colaboradores', resumo.total],
-      ['Horas semanais totais', formatarHoras(resumo.somaHoras)],
-      ['Média por colaborador', formatarHoras(resumo.media)],
-      ['Domingos trabalhados', resumo.domingosTrabalhados],
-      ['Colaboradores com alerta CLT', resumo.colabsComAlerta]
-    );
+      colaboradores.forEach((c, idx) => {
+        const diasMes = garantirMesColaborador(c, idx);
+        const { diasTrabalhados, horasMes, mediaSemanal, alertas } = validarColaboradorMensal(c, diasMes, anoSelecionado, mesSelecionado, limiteHoras);
+        const diasTexto = diasMes.map((d, i) => {
+          const dow = new Date(anoSelecionado, mesSelecionado, i + 1).getDay();
+          return (dow === 0 && d === 'T') ? 'Dom. Trab.' : LABELS[d].curto;
+        });
+        const statusTexto = alertas.length === 0 ? 'Regular' : alertas.join(' / ');
+
+        linhas.push([
+          c.nome,
+          c.cargo,
+          `${c.entrada} às ${c.saida}`,
+          c.intervalo,
+          ...diasTexto,
+          diasTrabalhados,
+          formatarHoras(horasMes),
+          formatarHoras(mediaSemanal),
+          statusTexto
+        ]);
+      });
+
+      linhas.push(
+        [],
+        ['RESUMO MENSAL'],
+        ['Período', `${nomeMesAno()} (${totalDias} dias)`],
+        ['Total de colaboradores', resumo.total],
+        ['Horas totais no mês', formatarHoras(resumo.somaHoras)],
+        ['Média mensal por colaborador', formatarHoras(resumo.media)],
+        ['Média semanal por colaborador', formatarHoras(resumo.mediaSemanalEquipe)],
+        ['Turnos em domingo no mês', resumo.domingosTrabalhados],
+        ['Colaboradores com alerta CLT', resumo.colabsComAlerta]
+      );
+    } else {
+      linhas.push(
+        [`ESCALA SEMANAL DE TRABALHO - ${empresa.toUpperCase()}`],
+        [`Modelo base: ${nomePreset()} | Limite semanal: ${limiteHoras}h | Emissão: ${dataAtual}`],
+        [],
+        ['Colaborador', 'Cargo/Setor', 'Horário Turno', 'Intervalo (min)', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo', 'Carga Semanal', 'Status CLT']
+      );
+
+      colaboradores.forEach(c => {
+        const { horasSemana, alertas } = validarColaborador(c, limiteHoras);
+        const diasTexto = c.dias.map((d, idx) => (idx === 6 && d === 'T') ? 'Trabalho (domingo)' : LABELS[d].titulo);
+        const statusTexto = alertas.length === 0 ? 'Regular' : alertas.join(' / ');
+
+        linhas.push([
+          c.nome,
+          c.cargo,
+          `${c.entrada} às ${c.saida}`,
+          c.intervalo,
+          ...diasTexto,
+          formatarHoras(horasSemana),
+          statusTexto
+        ]);
+      });
+
+      linhas.push(
+        [],
+        ['RESUMO'],
+        ['Total de colaboradores', resumo.total],
+        ['Horas semanais totais', formatarHoras(resumo.somaHoras)],
+        ['Média por colaborador', formatarHoras(resumo.media)],
+        ['Domingos trabalhados', resumo.domingosTrabalhados],
+        ['Colaboradores com alerta CLT', resumo.colabsComAlerta]
+      );
+    }
 
     const csvConteudo = '\uFEFF' + linhas
       .map(row => row.map(campo => `"${String(campo).replace(/"/g, '""')}"`).join(';'))
@@ -1995,20 +2660,22 @@
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     const slugEmpresa = empresa.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    const prefixo = isMensal ? `escala-mensal-${chaveMes()}` : 'escala-semanal';
     link.href = url;
-    link.download = `escala-semanal-${slugEmpresa || 'equipe'}.csv`;
+    link.download = `${prefixo}-${slugEmpresa || 'equipe'}.csv`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
-    mostrarToast('Planilha CSV exportada com sucesso.');
+    mostrarToast(isMensal ? `Planilha mensal (${nomeMesAno()}) exportada.` : 'Planilha semanal CSV exportada.');
   }
 
   function agendarConsultoria() {
     const empresa = document.getElementById('nomeEmpresa').value.trim();
     const limite = obterLimiteSemanal();
+    const periodo = modoEscala === 'mensal' ? `mensal (${nomeMesAno()})` : 'semanal';
     const texto = `Olá, equipe da Contabilidade Líder! Usei o Simulador de Escala 5x2 do site${empresa ? ` (empresa *${empresa}*)` : ''} ` +
-      `com ${pluralizar(colaboradores.length, 'colaborador', 'colaboradores')}, modelo base *${nomePreset()}* (limite ${limite}h/sem). ` +
+      `no modo *${periodo}* com ${pluralizar(colaboradores.length, 'colaborador', 'colaboradores')}, modelo base *${nomePreset()}* (limite ${limite}h/sem). ` +
       `Gostaria de agendar uma consultoria sobre adequação à escala 5x2 e folha de pagamento.`;
     window.open(`https://wa.me/5531988967713?text=${encodeURIComponent(texto)}`, '_blank', 'noopener,noreferrer');
   }
