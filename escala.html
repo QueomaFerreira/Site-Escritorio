@@ -700,6 +700,51 @@
       padding: 0.42rem 0.8rem; border-radius: 9999px;
     }
     .result-period-badge svg { color: var(--dark-orange); }
+    .result-period-badge[hidden] { display: none; }
+    .month-nav {
+      display: inline-flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;
+    }
+    .month-nav[hidden] { display: none; }
+    .month-nav-group {
+      display: inline-flex; align-items: center; gap: 0.25rem;
+      background: var(--paper); border: 1px solid var(--hairline);
+      padding: 0.22rem; border-radius: 11px;
+    }
+    .month-nav-btn {
+      width: 2rem; height: 2rem; border-radius: 8px; border: 1px solid transparent;
+      background: var(--surface); color: var(--dark-brown); cursor: pointer;
+      display: inline-grid; place-items: center;
+      box-shadow: 0 1px 2px rgba(35, 25, 16, 0.05);
+      transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease, transform 140ms var(--ease-out);
+    }
+    .month-nav-btn:active { transform: scale(0.94); }
+    .month-nav-btn:disabled { opacity: 0.38; cursor: not-allowed; }
+    .month-nav-select {
+      height: 2rem; padding: 0 0.6rem; border-radius: 8px;
+      border: 1px solid transparent; background: transparent;
+      font-size: var(--fs-xs); font-weight: 700; color: var(--espresso); cursor: pointer;
+      transition: background-color 150ms ease, border-color 150ms ease;
+    }
+    .month-nav-select:focus { outline: none; background: var(--surface); border-color: var(--orange); }
+    .month-days-pill {
+      font-size: var(--fs-2xs); font-weight: 600; color: var(--ink-subtle);
+      padding: 0.28rem 0.6rem; border-radius: 9999px;
+      background: var(--paper); border: 1px solid var(--hairline);
+      font-variant-numeric: tabular-nums;
+    }
+    .month-today-btn {
+      height: 2rem; padding: 0 0.7rem; border-radius: 8px;
+      border: 1px solid var(--hairline-strong); background: var(--surface);
+      font-size: var(--fs-xs); font-weight: 600; color: var(--dark-brown); cursor: pointer;
+      transition: background-color 150ms ease, border-color 150ms ease, transform 140ms var(--ease-out);
+    }
+    .month-today-btn:active { transform: scale(0.96); }
+    .month-today-btn[hidden] { display: none; }
+    @media (hover: hover) and (pointer: fine) {
+      .month-nav-btn:not(:disabled):hover { border-color: var(--hairline-strong); color: var(--espresso); background-color: #FFFFFF; }
+      .month-nav-select:hover { background-color: var(--surface); }
+      .month-today-btn:hover { background-color: var(--paper); border-color: var(--brown); }
+    }
     .result-quick-actions { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
 
     /* Grade Mensal compacta */
@@ -953,7 +998,7 @@
           <div id="monthSettings" class="month-settings" hidden>
             <div class="field">
               <label for="mesReferencia">Mês de referência</label>
-              <select id="mesReferencia" class="form-control" onchange="alterarMesReferencia()">
+              <select id="mesReferencia" class="form-control" onchange="alterarMesReferencia('passo1')">
                 <option value="0">Janeiro</option>
                 <option value="1">Fevereiro</option>
                 <option value="2">Março</option>
@@ -970,11 +1015,15 @@
             </div>
             <div class="field">
               <label for="anoReferencia">Ano</label>
-              <select id="anoReferencia" class="form-control" onchange="alterarMesReferencia()">
+              <select id="anoReferencia" class="form-control" onchange="alterarMesReferencia('passo1')">
                 <option value="2025">2025</option>
                 <option value="2026">2026</option>
                 <option value="2027">2027</option>
                 <option value="2028">2028</option>
+                <option value="2029">2029</option>
+                <option value="2030">2030</option>
+                <option value="2031">2031</option>
+                <option value="2032">2032</option>
               </select>
             </div>
             <label class="month-toggle">
@@ -1146,10 +1195,48 @@
 
       <div class="card">
         <div class="result-controls no-print">
-          <div class="result-period-badge">
+          <div id="resultadoPeriodoBadge" class="result-period-badge">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             <span id="resultadoPeriodoLabel">Escala semanal · Seg a Dom</span>
           </div>
+
+          <div id="resultadoMonthNav" class="month-nav" hidden>
+            <div class="month-nav-group" role="group" aria-label="Navegação de mês e ano da escala mensal">
+              <button type="button" id="btnMesAnterior" class="month-nav-btn" onclick="navegarMes(-1)" aria-label="Mês anterior" title="Mês anterior">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <select id="resultadoMes" class="month-nav-select" aria-label="Selecionar mês da escala" onchange="alterarMesReferencia('resultado')">
+                <option value="0">Janeiro</option>
+                <option value="1">Fevereiro</option>
+                <option value="2">Março</option>
+                <option value="3">Abril</option>
+                <option value="4">Maio</option>
+                <option value="5">Junho</option>
+                <option value="6">Julho</option>
+                <option value="7">Agosto</option>
+                <option value="8">Setembro</option>
+                <option value="9">Outubro</option>
+                <option value="10">Novembro</option>
+                <option value="11">Dezembro</option>
+              </select>
+              <select id="resultadoAno" class="month-nav-select" aria-label="Selecionar ano da escala" onchange="alterarMesReferencia('resultado')">
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+                <option value="2029">2029</option>
+                <option value="2030">2030</option>
+                <option value="2031">2031</option>
+                <option value="2032">2032</option>
+              </select>
+              <button type="button" id="btnMesProximo" class="month-nav-btn" onclick="navegarMes(1)" aria-label="Próximo mês" title="Próximo mês">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+            <span id="resultadoDiasInfo" class="month-days-pill">30 dias</span>
+            <button type="button" id="btnMesAtual" class="month-today-btn" onclick="irParaMesAtual()" hidden>Mês atual</button>
+          </div>
+
           <div class="result-quick-actions">
             <button type="button" id="btnRegenerarMes" class="btn btn-secondary btn-rect btn-sm" onclick="regenerarMesAtual()" hidden>
               Alternar folgas do mês
@@ -1372,11 +1459,13 @@
     return `${n} ${n === 1 ? singular : plural}`;
   }
 
+  const ANO_MIN = 2025;
+  const ANO_MAX = 2032;
   const hoje = new Date();
   let presetAtual = '5x2';
   let modoEscala = 'semanal'; // 'semanal' | 'mensal'
   let mesSelecionado = hoje.getMonth();
-  let anoSelecionado = Math.min(2028, Math.max(2025, hoje.getFullYear()));
+  let anoSelecionado = Math.min(ANO_MAX, Math.max(ANO_MIN, hoje.getFullYear()));
   let alternarFolgasMes = true;
   let colaboradores = [];
   let ultimoSnapshot = null;
@@ -1572,12 +1661,35 @@
     const btnRegen = document.getElementById('btnRegenerarMes');
     if (btnRegen) btnRegen.hidden = !isMensal;
 
+    const badgeWrap = document.getElementById('resultadoPeriodoBadge');
+    const monthNav = document.getElementById('resultadoMonthNav');
+    if (badgeWrap) badgeWrap.hidden = isMensal;
+    if (monthNav) monthNav.hidden = !isMensal;
+
     const mesEl = document.getElementById('mesReferencia');
     const anoEl = document.getElementById('anoReferencia');
+    const resMesEl = document.getElementById('resultadoMes');
+    const resAnoEl = document.getElementById('resultadoAno');
     const altEl = document.getElementById('alternarFolgasMes');
     if (mesEl) mesEl.value = String(mesSelecionado);
     if (anoEl) anoEl.value = String(anoSelecionado);
+    if (resMesEl) resMesEl.value = String(mesSelecionado);
+    if (resAnoEl) resAnoEl.value = String(anoSelecionado);
     if (altEl) altEl.checked = alternarFolgasMes;
+
+    const diasInfo = document.getElementById('resultadoDiasInfo');
+    if (diasInfo) diasInfo.textContent = `${diasNoMes()} dias`;
+
+    const btnAnt = document.getElementById('btnMesAnterior');
+    const btnProx = document.getElementById('btnMesProximo');
+    if (btnAnt) btnAnt.disabled = (anoSelecionado <= ANO_MIN && mesSelecionado === 0);
+    if (btnProx) btnProx.disabled = (anoSelecionado >= ANO_MAX && mesSelecionado === 11);
+
+    const btnHoje = document.getElementById('btnMesAtual');
+    if (btnHoje) {
+      const mesmoMesAtual = (anoSelecionado === hoje.getFullYear() && mesSelecionado === hoje.getMonth());
+      btnHoje.hidden = mesmoMesAtual;
+    }
 
     const badgeLabel = document.getElementById('resultadoPeriodoLabel');
     if (badgeLabel) {
@@ -1613,13 +1725,42 @@
     );
   }
 
-  function alterarMesReferencia() {
-    mesSelecionado = Number(document.getElementById('mesReferencia').value);
-    anoSelecionado = Number(document.getElementById('anoReferencia').value);
+  function aplicarMesAno(novoMes, novoAno, notificar = false) {
+    let m = Number(novoMes);
+    let a = Number(novoAno);
+    while (m < 0) { m += 12; a -= 1; }
+    while (m > 11) { m -= 12; a += 1; }
+    if (a < ANO_MIN) { a = ANO_MIN; m = 0; }
+    if (a > ANO_MAX) { a = ANO_MAX; m = 11; }
+
+    mesSelecionado = m;
+    anoSelecionado = a;
+    if (modoEscala !== 'mensal') modoEscala = 'mensal';
+
     colaboradores.forEach((c, idx) => garantirMesColaborador(c, idx));
     sincronizarControlesModo();
     salvarDados();
     renderTabela();
+    if (notificar) {
+      mostrarToast(`Calendário atualizado para ${nomeMesAno()}.`);
+    }
+  }
+
+  function alterarMesReferencia(origem = 'passo1') {
+    const mesId = origem === 'resultado' ? 'resultadoMes' : 'mesReferencia';
+    const anoId = origem === 'resultado' ? 'resultadoAno' : 'anoReferencia';
+    const m = Number(document.getElementById(mesId).value);
+    const a = Number(document.getElementById(anoId).value);
+    aplicarMesAno(m, a, false);
+  }
+
+  function navegarMes(delta) {
+    aplicarMesAno(mesSelecionado + delta, anoSelecionado, false);
+  }
+
+  function irParaMesAtual() {
+    const anoAlvo = Math.min(ANO_MAX, Math.max(ANO_MIN, hoje.getFullYear()));
+    aplicarMesAno(hoje.getMonth(), anoAlvo, true);
   }
 
   function alternarRegraRevezamentoMes() {
@@ -1643,7 +1784,6 @@
     const chave = chaveMes();
     const modoRevez = document.getElementById('alternarFolgasMes')?.checked ?? true;
     alternarFolgasMes = modoRevez;
-    // Garante rotação real de folgas mesmo se preset atual for 5x2 simples, usando o ciclo alternado
     const presetParaGerar = presetAtual === '5x2' ? '5x2_rev' : presetAtual;
     if (presetAtual === '5x2') {
       presetAtual = '5x2_rev';
@@ -1679,39 +1819,40 @@
     return ['T', 'T', 'T', 'T', 'T', 'F', 'D'];
   }
 
-  /* Gera os 28–31 dias do mês respeitando calendário real e alternância semanal de folgas */
+  /* Gera os 28–31 dias do mês com continuidade real de semanas e plantões entre meses consecutivos */
   function gerarDiasMesPorPreset(idxColab = 0, ano = anoSelecionado, mes = mesSelecionado, preset = presetAtual, alternarSemanas = alternarFolgasMes) {
     const total = diasNoMes(ano, mes);
     const resultado = [];
-    let semanaIdx = 0;
+    const baseSegundaUTC = Date.UTC(2025, 0, 6); // Segunda-feira de referência para índice absoluto de semana
+    const msDia = 86400000;
 
     for (let d = 1; d <= total; d++) {
+      const dataUTC = Date.UTC(ano, mes, d);
       const dow = new Date(ano, mes, d).getDay(); // 0=Dom, 1=Seg..6=Sáb
-      if (d > 1 && dow === 1) semanaIdx++;
+      const diaAbsoluto = Math.floor((dataUTC - baseSegundaUTC) / msDia);
+      const semanaAbsoluta = Math.floor(diaAbsoluto / 7);
 
       if (preset === '12x36') {
-        const trabalha = ((d - 1 + idxColab) % 2) === 0;
+        const trabalha = (((diaAbsoluto + idxColab) % 2) + 2) % 2 === 0;
         resultado.push(trabalha ? 'T' : (dow === 0 ? 'D' : 'F'));
       } else if (preset === '5x2_rev') {
         if (dow === 0) {
           resultado.push('D');
         } else {
-          // Quando alternarSemanas está ativo, quem trabalhou sábado em uma semana folga no sábado na seguinte
-          const ciclo = alternarSemanas ? (idxColab + semanaIdx) : idxColab;
-          const folgaNoSabado = (ciclo % 2) === 0;
+          const ciclo = alternarSemanas ? (idxColab + semanaAbsoluta) : idxColab;
+          const cicloPos = ((ciclo % 6) + 6) % 6;
+          const folgaNoSabado = (cicloPos % 2) === 0;
           if (folgaNoSabado) {
             resultado.push(dow === 6 ? 'F' : 'T');
           } else {
-            // Na semana em que trabalha no sábado, rotaciona a folga compensatória entre Seg (1), Qua (3) e Sex (5)
             const diasFolgaUtil = [1, 3, 5];
             const diaFolga = alternarSemanas
-              ? diasFolgaUtil[Math.floor(ciclo / 2) % diasFolgaUtil.length]
+              ? diasFolgaUtil[Math.floor(cicloPos / 2) % diasFolgaUtil.length]
               : 1;
             resultado.push(dow === diaFolga ? 'F' : 'T');
           }
         }
       } else {
-        // 5x2 clássico: Seg-Sex T, Sáb F, Dom D
         if (dow === 0) resultado.push('D');
         else if (dow === 6) resultado.push('F');
         else resultado.push('T');
@@ -1745,7 +1886,7 @@
         if (parsed.preset && PRESET_NOMES[parsed.preset]) presetAtual = parsed.preset;
         if (parsed.modo === 'mensal' || parsed.modo === 'semanal') modoEscala = parsed.modo;
         if (typeof parsed.mes === 'number' && parsed.mes >= 0 && parsed.mes <= 11) mesSelecionado = parsed.mes;
-        if (typeof parsed.ano === 'number' && parsed.ano >= 2025 && parsed.ano <= 2028) anoSelecionado = parsed.ano;
+        if (typeof parsed.ano === 'number' && parsed.ano >= ANO_MIN && parsed.ano <= ANO_MAX) anoSelecionado = parsed.ano;
         if (typeof parsed.alternarFolgasMes === 'boolean') alternarFolgasMes = parsed.alternarFolgasMes;
       } catch (e) {
         colaboradores = JSON.parse(JSON.stringify(dadosExemplo));
