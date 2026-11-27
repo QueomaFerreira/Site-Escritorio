@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simulador e Gerador de Escalas de Trabalho 6x1, 5x2, 4x3 e 12x36 | Contabilidade Líder</title>
-  <meta name="description" content="Ferramenta gratuita da Contabilidade Líder para montar escalas 6x1, 5x2, 4x3, 12x36 e revezamento de folgas com cálculo automático de horas, domingos trabalhados, alertas CLT, custo estimado da folha e exportação para Excel e PDF." />
+  <title>Simulador de Escala 5x2 e Adequação de Jornada | Contabilidade Líder</title>
+  <meta name="description" content="Ferramenta gratuita da Contabilidade Líder para simular a adequação da sua equipe à escala 5x2 (Segunda a sexta, 5x2 com revezamento ou 12x36), com cálculo automático de horas semanais, domingos trabalhados, alertas CLT e exportação para Excel e PDF." />
   <meta name="theme-color" content="#59432B" />
   <link rel="canonical" href="https://contabilidadelider.cnt.br/escala.html" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:site_name" content="Contabilidade Líder" />
   <meta property="og:url" content="https://contabilidadelider.cnt.br/escala.html" />
-  <meta property="og:title" content="Simulador e Gerador de Escalas de Trabalho | Contabilidade Líder" />
-  <meta property="og:description" content="Ferramenta gratuita para montar escalas 6x1, 5x2, 4x3 e 12x36 com cálculo de horas, folgas, domingos e custo estimado. Contabilidade Líder, João Monlevade - MG." />
+  <meta property="og:title" content="Simulador de Escala 5x2 | Contabilidade Líder" />
+  <meta property="og:description" content="Ferramenta gratuita para simular a adequação da sua equipe à escala 5x2 (5x2, 5x2 com revezamento ou 12x36) com cálculo de horas, folgas, domingos trabalhados e alertas CLT. Contabilidade Líder, João Monlevade - MG." />
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"AccountingService","name":"Contabilidade Líder","url":"https://contabilidadelider.cnt.br/","email":"contato@contabilidadelider.cnt.br","telephone":"+55-31-3852-3355","slogan":"O sucesso da sua empresa começa aqui","address":{"@type":"PostalAddress","streetAddress":"Rua Fernão Dias, 303, 5º andar","addressLocality":"João Monlevade","addressRegion":"MG","postalCode":"35930-180","addressCountry":"BR"},"areaServed":["João Monlevade","Médio Piracicaba","MG"]}
   </script>
@@ -62,13 +62,14 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+    html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; overflow-x: clip; }
     body {
       font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       font-size: var(--fs-base);
       background: var(--bg);
       color: var(--text);
       line-height: 1.55;
+      overflow-x: clip;
       -webkit-font-smoothing: antialiased;
     }
     a { color: inherit; text-decoration: none; }
@@ -107,7 +108,7 @@
     .nav-link { position: relative; color: var(--dark-brown); font-weight: 600; font-size: var(--fs-sm); transition: color 0.2s ease; }
     .nav-link:hover { color: var(--dark-orange); }
     .menu-btn { background: none; border: none; color: var(--dark-brown); font-size: 1.5rem; cursor: pointer; padding: 0.5rem; }
-    @media (min-width: 1024px) { .nav-links { display: flex; } .menu-btn { display: none; } }
+    @media (min-width: 1024px) { .nav-links { display: flex; } .menu-btn, .mobile-menu { display: none; } }
 
     .mobile-menu {
       position: fixed; top: 0; right: 0; width: min(18rem, 85vw); height: 100vh;
@@ -221,9 +222,8 @@
     legend small, .group-label small { font-weight: 500; color: var(--text-muted); font-size: var(--fs-xs); }
 
     /* ===== Forms ===== */
-    .grid-2, .grid-3 { display: grid; grid-template-columns: 1fr; gap: 0.9rem; }
+    .grid-2 { display: grid; grid-template-columns: 1fr; gap: 0.9rem; }
     @media (min-width: 640px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
-    @media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
     .field label { display: block; font-size: var(--fs-xs); font-weight: 600; color: var(--brown); margin-bottom: 0.35rem; }
     .field .hint { display: block; font-size: var(--fs-2xs); color: var(--text-muted); margin-top: 0.3rem; }
     .form-control {
@@ -234,14 +234,10 @@
     }
     .form-control:hover { border-color: #D3CABD; }
     .form-control:focus { outline: none; border-color: var(--orange); box-shadow: 0 0 0 3px rgba(228, 130, 36, 0.18); }
-    .input-prefix { position: relative; }
-    .input-prefix span { position: absolute; left: 0.85rem; top: 50%; transform: translateY(-50%); font-size: var(--fs-sm); color: var(--text-muted); pointer-events: none; }
-    .input-prefix .form-control { padding-left: 2.4rem; }
-    .input-suffix { position: relative; }
-    .input-suffix span { position: absolute; right: 0.85rem; top: 50%; transform: translateY(-50%); font-size: var(--fs-sm); color: var(--text-muted); pointer-events: none; }
 
     /* ===== Presets ===== */
-    .presets-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 0.75rem; }
+    .presets-grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+    @media (min-width: 768px) { .presets-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
     .preset-btn {
       position: relative; text-align: left; padding: 0.95rem 1rem;
       border: 1.5px solid var(--hairline); border-radius: var(--radius); background: #fff;
@@ -293,8 +289,9 @@
 
     /* ===== KPIs ===== */
     .kpi-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin-bottom: 1rem; }
-    @media (min-width: 768px) { .kpi-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-    @media (min-width: 1200px) { .kpi-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+    @media (max-width: 639px) { .kpi-grid .kpi:last-child { grid-column: 1 / -1; } }
+    @media (min-width: 640px) { .kpi-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    @media (min-width: 1024px) { .kpi-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
     .kpi {
       background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--radius);
       padding: 0.95rem 1rem; box-shadow: var(--shadow-sm); min-width: 0;
@@ -309,10 +306,6 @@
     .kpi--alert.has-alerts { border-color: #FECACA; }
     .kpi--alert.has-alerts .kpi-label i { background: var(--danger-bg); color: var(--danger); }
     .kpi--alert.has-alerts .kpi-value { color: var(--danger); }
-    .kpi--cost { background: linear-gradient(135deg, #fff 0%, var(--light) 100%); border-color: rgba(228, 130, 36, 0.35); }
-    .kpi--cost .kpi-label i { background: rgba(228, 130, 36, 0.14); color: var(--dark-orange); }
-    .kpi--cost a { color: var(--dark-orange); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
-    .estimate-note { font-size: var(--fs-2xs); color: var(--text-muted); margin: -0.25rem 0 1rem; }
 
     /* ===== Tabela ===== */
     .table-scroll-hint { display: flex; align-items: center; gap: 0.4rem; font-size: var(--fs-xs); color: var(--text-muted); margin-bottom: 0.5rem; }
@@ -447,14 +440,12 @@
       .print-doc-meta { text-align: right; min-width: 220px; }
       .print-doc-meta h1 { font-size: 1.15rem; font-weight: 800; color: var(--dark-brown); margin-bottom: 0.15rem; }
       .print-doc-meta p { font-size: 0.72rem; color: var(--text-muted); }
-      .kpi-grid { grid-template-columns: repeat(6, 1fr) !important; gap: 0.45rem; margin-bottom: 0.4rem; break-inside: avoid; }
+      .kpi-grid { grid-template-columns: repeat(5, 1fr) !important; gap: 0.45rem; margin-bottom: 0.5rem; break-inside: avoid; }
       .kpi { padding: 0.4rem 0.55rem; border-radius: 0.5rem; gap: 0; }
       .kpi-label { font-size: 0.6rem; }
       .kpi-label i { display: none; }
       .kpi-value { font-size: 0.95rem; margin-top: 0.1rem; }
       .kpi-sub { font-size: 0.58rem; }
-      .kpi--cost a { text-decoration: none; color: var(--text-muted); font-weight: 500; }
-      .estimate-note { margin: 0 0 0.5rem; font-size: 0.6rem; }
       .table-scroll-hint { display: none !important; }
       .table-wrapper { overflow: visible; border-radius: 0.5rem; }
       .schedule-table { min-width: 0 !important; width: 100% !important; }
@@ -496,21 +487,21 @@
         </button>
       </div>
     </div>
-    <div id="mobileMenu" class="mobile-menu" aria-label="Menu mobile">
-      <button id="closeMenu" type="button" class="close-menu" aria-label="Fechar menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
-      <div style="display:flex; justify-content:center; margin-top:1rem;">
-        <a href="index.html" class="logo-link" aria-label="Contabilidade Líder - Página inicial"><img src="./assets/logo400p.png" alt="Contabilidade Líder - O sucesso da sua empresa começa aqui" class="logo-img" width="400" height="188" /></a>
-      </div>
-      <div class="mobile-nav-list">
-        <a href="index.html" class="mobile-link">Voltar ao site</a>
-        <a href="index.html#servicos" class="mobile-link">Serviços</a>
-        <a href="index.html#contato" class="mobile-link">Contato</a>
-        <button type="button" class="btn btn-primary" style="margin-top:0.75rem;" onclick="closeMobileMenu(); agendarConsultoria();">
-          <i class="fa-regular fa-calendar-check" aria-hidden="true"></i> Agendar consultoria
-        </button>
-      </div>
-    </div>
   </nav>
+  <div id="mobileMenu" class="mobile-menu" aria-label="Menu mobile">
+    <button id="closeMenu" type="button" class="close-menu" aria-label="Fechar menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    <div style="display:flex; justify-content:center; margin-top:1rem;">
+      <a href="index.html" class="logo-link" aria-label="Contabilidade Líder - Página inicial"><img src="./assets/logo400p.png" alt="Contabilidade Líder - O sucesso da sua empresa começa aqui" class="logo-img" width="400" height="188" /></a>
+    </div>
+    <div class="mobile-nav-list">
+      <a href="index.html" class="mobile-link">Voltar ao site</a>
+      <a href="index.html#servicos" class="mobile-link">Serviços</a>
+      <a href="index.html#contato" class="mobile-link">Contato</a>
+      <button type="button" class="btn btn-primary" style="margin-top:0.75rem;" onclick="closeMobileMenu(); agendarConsultoria();">
+        <i class="fa-regular fa-calendar-check" aria-hidden="true"></i> Agendar consultoria
+      </button>
+    </div>
+  </div>
 
   <section class="hero" aria-labelledby="hero-titulo">
     <svg class="hero-illustration" aria-hidden="true" viewBox="0 0 1440 360" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -525,11 +516,11 @@
     </svg>
     <div class="container">
       <div class="hero-inner">
-        <span class="eyebrow"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i> Ferramenta gratuita • Transição da escala 6x1</span>
-        <h1 id="hero-titulo">Simulador de <span>Escalas de Trabalho</span></h1>
-        <p>Monte ou importe a escala semanal da sua equipe nos modelos 6x1, 5x2, 4x3 ou 12x36. Veja horas, domingos trabalhados, alertas CLT e uma estimativa de custo da folha — e exporte para Excel ou PDF em segundos.</p>
+        <span class="eyebrow"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i> Ferramenta gratuita • Adequação à escala 5x2</span>
+        <h1 id="hero-titulo">Simulador de <span>Escala 5x2</span></h1>
+        <p>Monte ou importe a escala semanal da sua equipe para simular a adequação ao modelo 5x2 (Segunda a sexta, 5x2 com revezamento ou 12x36). Acompanhe horas semanais, domingos trabalhados e alertas — e exporte para Excel ou PDF em segundos.</p>
         <ul class="hero-chips" aria-label="Recursos">
-          <li class="chip"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> 6x1 · 5x2 · 4x3 · 12x36</li>
+          <li class="chip"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> 5x2 · 5x2 rev. · 12x36</li>
           <li class="chip"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Alertas CLT</li>
           <li class="chip"><i class="fa-solid fa-file-import" aria-hidden="true"></i> Importa planilhas</li>
           <li class="chip"><i class="fa-solid fa-file-export" aria-hidden="true"></i> Excel e PDF</li>
@@ -564,7 +555,7 @@
       </div>
       <div class="print-doc-meta">
         <h1 id="print-empresa-titulo">Escala Semanal de Trabalho</h1>
-        <p id="print-meta-detalhes">Modelo: 5x2 • Limite: 44h/sem</p>
+        <p id="print-meta-detalhes">Modelo: 5x2 • Limite: 42h/sem</p>
       </div>
     </div>
 
@@ -575,7 +566,7 @@
           <span class="step-badge" aria-hidden="true">1</span>
           <div>
             <h2 id="titulo-passo-1">Configurar escala</h2>
-            <p>Defina a empresa, o limite semanal e o modelo de escala base.</p>
+            <p>Defina a empresa, o limite semanal e o modelo de escala base para adequação à 5x2.</p>
           </div>
         </div>
       </div>
@@ -591,12 +582,12 @@
             </div>
             <div class="field">
               <label for="limiteSemanal">Limite de horas semanais</label>
-              <select id="limiteSemanal" class="form-control" onchange="renderTabela(); salvarDados();" aria-describedby="limiteHint">
-                <option value="44">44h por semana (CLT atual)</option>
+              <select id="limiteSemanal" class="form-control" onchange="atualizarLimiteSemanal();" aria-describedby="limiteHint">
+                <option value="42" selected>42h por semana</option>
                 <option value="40">40h por semana</option>
                 <option value="36">36h por semana</option>
               </select>
-              <span class="hint" id="limiteHint">Usado nos alertas CLT e no cálculo do custo/hora.</span>
+              <span class="hint" id="limiteHint">Usado como referência nos alertas de carga horária da equipe.</span>
             </div>
           </div>
         </div>
@@ -604,29 +595,17 @@
         <fieldset class="panel-section">
           <legend><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Modelo de escala <small>— aplica dias e horários padrão à equipe</small></legend>
           <div class="presets-grid">
-            <button type="button" class="preset-btn" data-preset="6x1" aria-pressed="false" onclick="aplicarPreset('6x1', this)">
-              <span class="preset-tag">6x1</span>
-              <strong>Seis por um</strong>
-              <span class="desc">6 dias de trabalho + 1 folga, com revezamento que cobre o domingo.</span>
-              <span class="meta">08:00–16:20 • 44h/sem</span>
-            </button>
             <button type="button" class="preset-btn" data-preset="5x2" aria-pressed="true" onclick="aplicarPreset('5x2', this)">
               <span class="preset-tag">5x2</span>
               <strong>Segunda a sexta</strong>
-              <span class="desc">5 dias + folga no sábado e DSR no domingo. Ideal para escritórios.</span>
-              <span class="meta">08:00–17:48 • 44h/sem</span>
+              <span class="desc">5 dias + folga no sábado e DSR no domingo. Ideal para escritórios e operações comerciais.</span>
+              <span class="meta" data-meta-5x2>08:00–17:24 • 42h/sem</span>
             </button>
             <button type="button" class="preset-btn" data-preset="5x2_rev" aria-pressed="false" onclick="aplicarPreset('5x2_rev', this)">
               <span class="preset-tag">5x2 rev.</span>
               <strong>5x2 com revezamento</strong>
-              <span class="desc">Folgas alternadas para comércio que abre aos sábados.</span>
-              <span class="meta">08:00–17:48 • 44h/sem</span>
-            </button>
-            <button type="button" class="preset-btn" data-preset="4x3" aria-pressed="false" onclick="aplicarPreset('4x3', this)">
-              <span class="preset-tag">4x3</span>
-              <strong>Jornada reduzida</strong>
-              <span class="desc">4 dias trabalhados + 3 dias de descanso na semana.</span>
-              <span class="meta">08:00–19:00 • 40h/sem</span>
+              <span class="desc">Folgas alternadas para comércio e empresas que operam aos sábados.</span>
+              <span class="meta" data-meta-5x2>08:00–17:24 • 42h/sem</span>
             </button>
             <button type="button" class="preset-btn" data-preset="12x36" aria-pressed="false" onclick="aplicarPreset('12x36', this)">
               <span class="preset-tag">12x36</span>
@@ -634,35 +613,6 @@
               <span class="desc">12h de jornada por 36h de descanso (dia sim, dia não).</span>
               <span class="meta">07:00–19:00 • média 42h</span>
             </button>
-          </div>
-        </fieldset>
-
-        <fieldset class="panel-section">
-          <legend><i class="fa-solid fa-coins" aria-hidden="true"></i> Estimativa de custo <small>— opcional</small></legend>
-          <div class="grid-3">
-            <div class="field">
-              <label for="salarioMedio">Salário médio mensal</label>
-              <div class="input-prefix">
-                <span aria-hidden="true">R$</span>
-                <input type="number" id="salarioMedio" class="form-control" min="0" step="0.01" inputmode="decimal" placeholder="Ex.: 2200,00" oninput="renderTabela(); salvarDados();" aria-describedby="salarioHint">
-              </div>
-              <span class="hint" id="salarioHint">Custo/hora = salário ÷ divisor (44h → 220).</span>
-            </div>
-            <div class="field">
-              <label for="custoHora">Custo por hora <small>(substitui o salário)</small></label>
-              <div class="input-prefix">
-                <span aria-hidden="true">R$</span>
-                <input type="number" id="custoHora" class="form-control" min="0" step="0.01" inputmode="decimal" placeholder="Ex.: 12,50" oninput="renderTabela(); salvarDados();">
-              </div>
-            </div>
-            <div class="field">
-              <label for="encargos">Encargos e provisões</label>
-              <div class="input-suffix">
-                <input type="number" id="encargos" class="form-control" min="0" max="200" step="1" inputmode="numeric" placeholder="Ex.: 68" oninput="renderTabela(); salvarDados();" aria-describedby="encargosHint">
-                <span aria-hidden="true">%</span>
-              </div>
-              <span class="hint" id="encargosHint">INSS, FGTS, férias, 13º… (deixe vazio para ignorar).</span>
-            </div>
           </div>
         </fieldset>
 
@@ -710,7 +660,7 @@
             </div>
             <div class="field">
               <label for="colabSaida">Saída</label>
-              <input type="time" id="colabSaida" class="form-control" value="17:48" required>
+              <input type="time" id="colabSaida" class="form-control" value="17:24" required>
             </div>
             <div class="field">
               <label for="colabIntervalo">Intervalo (minutos)</label>
@@ -790,7 +740,7 @@
         <div class="kpi">
           <span class="kpi-label"><i class="fa-solid fa-user-clock" aria-hidden="true"></i> Média / pessoa</span>
           <strong class="kpi-value" id="kpiMediaHoras">0h</strong>
-          <span class="kpi-sub" id="kpiLimite">Limite: 44h</span>
+          <span class="kpi-sub" id="kpiLimite">Limite: 42h</span>
         </div>
         <div class="kpi kpi--sunday">
           <span class="kpi-label"><i class="fa-solid fa-sun" aria-hidden="true"></i> Domingos trab.</span>
@@ -802,13 +752,7 @@
           <strong class="kpi-value" id="kpiAlertas">0</strong>
           <span class="kpi-sub" id="kpiAlertasSub">Nenhum alerta</span>
         </div>
-        <div class="kpi kpi--cost">
-          <span class="kpi-label"><i class="fa-solid fa-coins" aria-hidden="true"></i> Custo estimado*</span>
-          <strong class="kpi-value" id="kpiCustoMensal">—</strong>
-          <span class="kpi-sub" id="kpiCustoSub"><a href="#salarioMedio">Informe o salário médio</a></span>
-        </div>
       </div>
-      <p class="estimate-note">* Estimativa simplificada: horas semanais × custo/hora × 5 semanas (base do divisor mensal, inclui DSR) + encargos informados. Não considera horas extras, adicionais, benefícios nem convenção coletiva.</p>
 
       <div class="card">
         <p class="table-scroll-hint no-print"><i class="fa-solid fa-arrows-left-right" aria-hidden="true"></i> Deslize a tabela para ver a semana completa.</p>
@@ -854,31 +798,31 @@
   <section id="impactos" class="insights" aria-labelledby="titulo-impactos">
     <div class="container">
       <div class="insights-head">
-        <span class="eyebrow"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Transição da escala 6x1</span>
-        <h2 id="titulo-impactos">O que muda na folha da sua empresa ao sair da 6x1</h2>
-        <p>Empresários de João Monlevade e de todo o Médio Piracicaba estão revendo jornadas. Antes de alterar a escala, entenda o impacto real no custo da folha e no risco trabalhista.</p>
+        <span class="eyebrow"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Adequação à escala 5x2</span>
+        <h2 id="titulo-impactos">O que muda na folha da sua empresa ao adotar a escala 5x2</h2>
+        <p>Empresários de João Monlevade e de todo o Médio Piracicaba estão planejando a adequação de suas equipes à escala 5x2. Antes de alterar a jornada, entenda os principais pontos de atenção na legislação trabalhista e na rotina da folha.</p>
       </div>
       <div class="insight-grid">
         <article class="insight-card">
           <div class="insight-icon" aria-hidden="true"><i class="fa-solid fa-business-time"></i></div>
           <h3>Horas extras e banco de horas</h3>
-          <p>Redistribuir a jornada pode gerar horas extras (mínimo de 50%) ou exigir acordo de banco de horas formalizado. Um ajuste mal feito vira passivo trabalhista.</p>
+          <p>Ao migrar para a escala 5x2, redistribuir a jornada sem planejamento pode gerar horas extras (mínimo de 50%) ou exigir acordo de banco de horas formalizado. Um ajuste estruturado evita passivos trabalhistas.</p>
         </article>
         <article class="insight-card">
           <div class="insight-icon" aria-hidden="true"><i class="fa-solid fa-moon"></i></div>
           <h3>DSR, domingos e adicional noturno</h3>
-          <p>Domingos e feriados trabalhados, reflexos no DSR e adicional noturno (22h às 5h) mudam conforme a escala e pesam no custo mensal da equipe.</p>
+          <p>A organização das folgas semanais, o controle do DSR, o revezamento aos fins de semana na 5x2 e o adicional noturno (22h às 5h) exigem acompanhamento técnico para manter a operação em conformidade.</p>
         </article>
         <article class="insight-card">
           <div class="insight-icon" aria-hidden="true"><i class="fa-solid fa-file-signature"></i></div>
-          <h3>Convenção coletiva e encargos</h3>
-          <p>A convenção da sua categoria pode limitar escalas como 12x36 e 4x3. INSS, FGTS e provisões acompanham cada hora a mais na folha de pagamento.</p>
+          <h3>Convenção coletiva e acordos</h3>
+          <p>A convenção coletiva da sua categoria pode definir regras específicas para a escala 5x2 com revezamento, compensação de jornada ou adoção da 12x36. Validar cada detalhe antes da mudança protege a empresa.</p>
         </article>
       </div>
       <div class="cta-band">
         <div>
           <h3>O sucesso da sua empresa começa aqui.</h3>
-          <p>A Contabilidade Líder analisa sua escala, simula o custo real da folha e orienta a transição com segurança jurídica e economia — atendimento próximo em João Monlevade e região.</p>
+          <p>A Contabilidade Líder analisa a escala da sua equipe e orienta a adequação segura à escala 5x2, com conformidade trabalhista, organização de jornada e atendimento próximo em João Monlevade e região.</p>
         </div>
         <button type="button" class="btn btn-primary" onclick="agendarConsultoria()">
           <i class="fa-regular fa-calendar-check" aria-hidden="true"></i> Agendar consultoria
@@ -932,8 +876,14 @@
 </button>
 
 <script>
-  const STORAGE_KEY = 'lider_escala_v1';
+  const STORAGE_KEY = 'lider_escala_5x2_v2';
   const ESTADOS = ['T', 'F', 'D', 'A'];
+  const LIMITES_VALIDOS = ['42', '40', '36'];
+  const HORARIO_5X2_POR_LIMITE = {
+    42: { entrada: '08:00', saida: '17:24' },
+    40: { entrada: '08:00', saida: '17:00' },
+    36: { entrada: '08:00', saida: '16:12' }
+  };
   const DIAS_SEMANA = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'];
   const LABELS = {
     T: { titulo: 'Trabalho', desc: 'Turno ativo' },
@@ -942,10 +892,8 @@
     A: { titulo: 'Ausência', desc: 'Férias/Abono' }
   };
   const PRESET_NOMES = {
-    '6x1': '6x1',
     '5x2': '5x2',
     '5x2_rev': '5x2 com revezamento',
-    '4x3': '4x3',
     '12x36': '12x36'
   };
 
@@ -953,9 +901,9 @@
   let colaboradores = [];
 
   const dadosExemplo = [
-    { id: 1, nome: 'Carlos Eduardo', cargo: 'Atendimento', entrada: '08:00', saida: '17:48', intervalo: 60, dias: ['T', 'T', 'T', 'T', 'T', 'F', 'D'] },
-    { id: 2, nome: 'Fernanda Lima', cargo: 'Operação / Caixa', entrada: '08:00', saida: '17:48', intervalo: 60, dias: ['T', 'T', 'T', 'T', 'T', 'F', 'D'] },
-    { id: 3, nome: 'Rafael Mendes', cargo: 'Estoque / Logística', entrada: '09:00', saida: '18:48', intervalo: 60, dias: ['T', 'T', 'T', 'T', 'T', 'F', 'D'] }
+    { id: 1, nome: 'Carlos Eduardo', cargo: 'Atendimento', entrada: '08:00', saida: '17:24', intervalo: 60, dias: ['T', 'T', 'T', 'T', 'T', 'F', 'D'] },
+    { id: 2, nome: 'Fernanda Lima', cargo: 'Operação / Caixa', entrada: '08:00', saida: '17:24', intervalo: 60, dias: ['T', 'T', 'T', 'T', 'T', 'F', 'D'] },
+    { id: 3, nome: 'Rafael Mendes', cargo: 'Estoque / Logística', entrada: '09:00', saida: '18:24', intervalo: 60, dias: ['T', 'T', 'T', 'T', 'T', 'F', 'D'] }
   ];
 
   /* Menu mobile e sombra da navbar */
@@ -1005,6 +953,45 @@
     return PRESET_NOMES[presetAtual] || presetAtual.toUpperCase();
   }
 
+  function obterLimiteSemanal() {
+    const valor = String(document.getElementById('limiteSemanal').value || '42');
+    return LIMITES_VALIDOS.includes(valor) ? Number(valor) : 42;
+  }
+
+  function horarioPadrao5x2(limiteHoras = obterLimiteSemanal()) {
+    return HORARIO_5X2_POR_LIMITE[limiteHoras] || HORARIO_5X2_POR_LIMITE[42];
+  }
+
+  function atualizarMetasPresets() {
+    const limite = obterLimiteSemanal();
+    const { entrada, saida } = horarioPadrao5x2(limite);
+    document.querySelectorAll('[data-meta-5x2]').forEach(el => {
+      el.textContent = `${entrada}–${saida} • ${limite}h/sem`;
+    });
+  }
+
+  function sincronizarFormularioTurno() {
+    const entradaEl = document.getElementById('colabEntrada');
+    const saidaEl = document.getElementById('colabSaida');
+    if (!entradaEl || !saidaEl) return;
+
+    if (presetAtual === '12x36') {
+      entradaEl.value = '07:00';
+      saidaEl.value = '19:00';
+    } else {
+      const { entrada, saida } = horarioPadrao5x2();
+      entradaEl.value = entrada;
+      saidaEl.value = saida;
+    }
+  }
+
+  function atualizarLimiteSemanal() {
+    atualizarMetasPresets();
+    sincronizarFormularioTurno();
+    renderTabela();
+    salvarDados();
+  }
+
   function marcarPresetAtivo() {
     document.querySelectorAll('.preset-btn').forEach(b => {
       b.setAttribute('aria-pressed', b.dataset.preset === presetAtual ? 'true' : 'false');
@@ -1016,12 +1003,10 @@
     if (salvo) {
       try {
         const parsed = JSON.parse(salvo);
-        colaboradores = parsed.colaboradores || JSON.parse(JSON.stringify(dadosExemplo));
+        colaboradores = Array.isArray(parsed.colaboradores) ? parsed.colaboradores : JSON.parse(JSON.stringify(dadosExemplo));
         document.getElementById('nomeEmpresa').value = parsed.empresa || '';
-        document.getElementById('limiteSemanal').value = parsed.limite || '44';
-        document.getElementById('salarioMedio').value = parsed.salario || '';
-        document.getElementById('custoHora').value = parsed.custoHora || '';
-        document.getElementById('encargos').value = parsed.encargos || '';
+        const limiteSalvo = String(parsed.limite || '42');
+        document.getElementById('limiteSemanal').value = LIMITES_VALIDOS.includes(limiteSalvo) ? limiteSalvo : '42';
         if (parsed.preset && PRESET_NOMES[parsed.preset]) presetAtual = parsed.preset;
       } catch (e) {
         colaboradores = JSON.parse(JSON.stringify(dadosExemplo));
@@ -1030,6 +1015,8 @@
       colaboradores = JSON.parse(JSON.stringify(dadosExemplo));
     }
     marcarPresetAtivo();
+    atualizarMetasPresets();
+    sincronizarFormularioTurno();
     salvarDados();
     renderTabela();
     configurarDropzone();
@@ -1038,7 +1025,7 @@
 
   function salvarDados() {
     const empresa = document.getElementById('nomeEmpresa').value.trim();
-    const limite = document.getElementById('limiteSemanal').value;
+    const limite = String(obterLimiteSemanal());
     document.getElementById('print-empresa-titulo').textContent = empresa
       ? `Escala Semanal — ${empresa}`
       : 'Escala Semanal de Trabalho';
@@ -1053,16 +1040,13 @@
       empresa,
       limite,
       preset: presetAtual,
-      salario: document.getElementById('salarioMedio').value,
-      custoHora: document.getElementById('custoHora').value,
-      encargos: document.getElementById('encargos').value,
       colaboradores
     }));
   }
 
   function calcularHorasDiarias(entrada, saida, intervaloMin) {
     const [h1, m1] = String(entrada || '08:00').split(':').map(Number);
-    const [h2, m2] = String(saida || '17:48').split(':').map(Number);
+    const [h2, m2] = String(saida || '17:24').split(':').map(Number);
     if (isNaN(h1) || isNaN(m1) || isNaN(h2) || isNaN(m2)) return 0;
     let inicio = h1 * 60 + m1;
     let fim = h2 * 60 + m2;
@@ -1078,10 +1062,6 @@
     return `${h}h${m > 0 ? String(m).padStart(2, '0') : ''}`;
   }
 
-  function formatarMoeda(valor) {
-    return Number(valor || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
-  }
-
   function validarColaborador(c, limiteHoras) {
     const horasDia = calcularHorasDiarias(c.entrada, c.saida, c.intervalo);
     const diasTrabalhados = c.dias.filter(d => d === 'T').length;
@@ -1093,7 +1073,7 @@
     }
     if (diasTrabalhados >= 7) {
       alertas.push('Sem DSR na semana');
-    } else if (diasTrabalhados >= 6 && presetAtual !== '12x36' && presetAtual !== '6x1') {
+    } else if (diasTrabalhados >= 6 && presetAtual !== '12x36') {
       alertas.push('6+ dias seguidos');
     }
     if (horasDia > 10 && presetAtual !== '12x36') {
@@ -1105,7 +1085,7 @@
 
   /* Resumo da equipe usado pelos KPIs e pela exportação */
   function calcularResumo() {
-    const limiteHoras = Number(document.getElementById('limiteSemanal').value);
+    const limiteHoras = obterLimiteSemanal();
     let somaHoras = 0;
     let coberturaSab = 0;
     let domingosTrabalhados = 0;
@@ -1123,32 +1103,14 @@
     const total = colaboradores.length;
     const media = total ? somaHoras / total : 0;
 
-    // Custo: custo/hora informado OU salário ÷ divisor mensal (limite × 5; ex.: 44h → 220)
-    const custoHoraInformado = Number(document.getElementById('custoHora').value) || 0;
-    const salario = Number(document.getElementById('salarioMedio').value) || 0;
-    const encargosPct = Math.max(0, Number(document.getElementById('encargos').value) || 0);
-    const custoHora = custoHoraInformado > 0 ? custoHoraInformado : (salario > 0 ? salario / (limiteHoras * 5) : 0);
-    const custoMensal = custoHora > 0 ? somaHoras * custoHora * 5 * (1 + encargosPct / 100) : 0;
-    const custoSemanal = custoMensal * 7 / 30;
-
-    return { limiteHoras, total, somaHoras, media, coberturaSab, domingosTrabalhados, colabsComAlerta, totalAlertas, custoHora, encargosPct, custoMensal, custoSemanal };
+    return { limiteHoras, total, somaHoras, media, coberturaSab, domingosTrabalhados, colabsComAlerta, totalAlertas };
   }
 
   function diasPadraoPorPreset(idx = 0) {
-    if (presetAtual === '6x1') {
-      return idx % 2 === 0
-        ? ['T', 'T', 'T', 'T', 'T', 'T', 'D']
-        : ['T', 'T', 'F', 'T', 'T', 'T', 'T'];
-    }
     if (presetAtual === '5x2_rev') {
       return idx % 2 === 0
         ? ['T', 'T', 'T', 'T', 'T', 'F', 'D']
         : ['F', 'T', 'T', 'T', 'T', 'T', 'D'];
-    }
-    if (presetAtual === '4x3') {
-      return idx % 2 === 0
-        ? ['T', 'T', 'T', 'T', 'F', 'F', 'D']
-        : ['F', 'F', 'T', 'T', 'T', 'T', 'D'];
     }
     if (presetAtual === '12x36') {
       return idx % 2 === 0
@@ -1158,24 +1120,22 @@
     return ['T', 'T', 'T', 'T', 'T', 'F', 'D'];
   }
 
-  function aplicarPreset(tipo, btn) {
+  function aplicarPreset(tipo) {
+    if (!PRESET_NOMES[tipo]) return;
     presetAtual = tipo;
     marcarPresetAtivo();
+    sincronizarFormularioTurno();
+
+    const horario5x2 = horarioPadrao5x2();
 
     colaboradores = colaboradores.map((c, idx) => {
-      let dias = diasPadraoPorPreset(idx);
+      const dias = diasPadraoPorPreset(idx);
       let entrada = c.entrada;
       let saida = c.saida;
 
-      if (tipo === '6x1') {
-        entrada = '08:00';
-        saida = '16:20';
-      } else if (tipo === '5x2' || tipo === '5x2_rev') {
-        entrada = '08:00';
-        saida = '17:48';
-      } else if (tipo === '4x3') {
-        entrada = '08:00';
-        saida = '19:00';
+      if (tipo === '5x2' || tipo === '5x2_rev') {
+        entrada = horario5x2.entrada;
+        saida = horario5x2.saida;
       } else if (tipo === '12x36') {
         entrada = '07:00';
         saida = '19:00';
@@ -1239,14 +1199,19 @@
   }
 
   function resetarExemplo() {
+    presetAtual = '5x2';
+    document.getElementById('limiteSemanal').value = '42';
     colaboradores = JSON.parse(JSON.stringify(dadosExemplo));
+    marcarPresetAtivo();
+    atualizarMetasPresets();
+    sincronizarFormularioTurno();
     salvarDados();
     renderTabela();
   }
 
   function renderTabela() {
     const tbody = document.getElementById('tabelaEscalaBody');
-    const limiteHoras = Number(document.getElementById('limiteSemanal').value);
+    const limiteHoras = obterLimiteSemanal();
     tbody.innerHTML = '';
 
     if (!colaboradores.length) {
@@ -1302,7 +1267,7 @@
     document.getElementById('kpiSabado').textContent = `Sábado: ${r.coberturaSab} pessoa(s)`;
     document.getElementById('kpiHorasTotais').textContent = formatarHoras(r.somaHoras);
     document.getElementById('kpiMediaHoras').textContent = formatarHoras(r.media);
-    document.getElementById('kpiLimite').textContent = `Limite: ${r.limiteHoras}h/sem`;
+    document.getElementById('kpiLimite').textContent = `Limite: ${r.limiteHoras}h`;
     document.getElementById('kpiDomingo').textContent = r.domingosTrabalhados;
 
     document.getElementById('kpiAlertas').textContent = r.colabsComAlerta;
@@ -1310,16 +1275,6 @@
       ? `${r.totalAlertas} alerta(s) na equipe`
       : 'Nenhum alerta';
     document.getElementById('kpiAlertasBox').classList.toggle('has-alerts', r.colabsComAlerta > 0);
-
-    const custoEl = document.getElementById('kpiCustoMensal');
-    const custoSub = document.getElementById('kpiCustoSub');
-    if (r.custoMensal > 0) {
-      custoEl.textContent = `${formatarMoeda(r.custoMensal)}/mês`;
-      custoSub.textContent = `≈ ${formatarMoeda(r.custoSemanal)}/semana • ${r.custoHora.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}/h`;
-    } else {
-      custoEl.textContent = '—';
-      custoSub.innerHTML = '<a href="#salarioMedio">Informe o salário médio</a>';
-    }
   }
 
   /* =========================================================
@@ -1483,6 +1438,7 @@
       findCol(['domingo', 'dom'])
     ];
 
+    const fallbackTurno = horarioPadrao5x2();
     const importados = [];
     for (let r = headerIdx + 1; r < matriz.length; r++) {
       const row = matriz[r];
@@ -1493,16 +1449,16 @@
 
       const cargo = idxCargo >= 0 ? (String(row[idxCargo] ?? '').trim() || 'Colaborador') : 'Colaborador';
 
-      let entrada = '08:00';
-      let saida = '17:48';
+      let entrada = fallbackTurno.entrada;
+      let saida = fallbackTurno.saida;
       if (idxEntrada >= 0 || idxSaida >= 0) {
-        entrada = normalizarHora(idxEntrada >= 0 ? row[idxEntrada] : '', '08:00');
-        saida = normalizarHora(idxSaida >= 0 ? row[idxSaida] : '', '17:48');
+        entrada = normalizarHora(idxEntrada >= 0 ? row[idxEntrada] : '', fallbackTurno.entrada);
+        saida = normalizarHora(idxSaida >= 0 ? row[idxSaida] : '', fallbackTurno.saida);
       } else if (idxTurno >= 0 && row[idxTurno]) {
         const partes = String(row[idxTurno]).split(/às|as|-|a/i);
         if (partes.length >= 2) {
-          entrada = normalizarHora(partes[0], '08:00');
-          saida = normalizarHora(partes[1], '17:48');
+          entrada = normalizarHora(partes[0], fallbackTurno.entrada);
+          saida = normalizarHora(partes[1], fallbackTurno.saida);
         }
       }
 
@@ -1574,11 +1530,12 @@
   }
 
   function baixarModeloPlanilha() {
+    const { entrada, saida } = horarioPadrao5x2();
     const linhasModelo = [
       ['Colaborador', 'Cargo/Setor', 'Entrada', 'Saída', 'Intervalo (min)', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
-      ['Mariana Souza', 'Atendimento', '08:00', '17:48', 60, 'T', 'T', 'T', 'T', 'T', 'F', 'D'],
-      ['João Pedro', 'Caixa', '09:00', '18:48', 60, 'F', 'T', 'T', 'T', 'T', 'T', 'D'],
-      ['Ana Paula', 'Estoque', '08:00', '19:00', 60, 'T', 'T', 'T', 'T', 'F', 'F', 'D']
+      ['Mariana Souza', 'Atendimento', entrada, saida, 60, 'T', 'T', 'T', 'T', 'T', 'F', 'D'],
+      ['João Pedro', 'Caixa', entrada, saida, 60, 'F', 'T', 'T', 'T', 'T', 'T', 'D'],
+      ['Ana Paula', 'Estoque', entrada, saida, 60, 'T', 'T', 'T', 'T', 'T', 'F', 'D']
     ];
 
     if (typeof XLSX !== 'undefined') {
@@ -1605,7 +1562,7 @@
     }
 
     const empresa = document.getElementById('nomeEmpresa').value.trim() || 'Empresa Não Informada';
-    const limiteHoras = Number(document.getElementById('limiteSemanal').value);
+    const limiteHoras = obterLimiteSemanal();
     const resumo = calcularResumo();
     const dataAtual = new Date().toLocaleDateString('pt-BR');
 
@@ -1644,15 +1601,6 @@
       ['Domingos trabalhados', resumo.domingosTrabalhados],
       ['Colaboradores com alerta CLT', resumo.colabsComAlerta]
     );
-    if (resumo.custoMensal > 0) {
-      linhas.push(
-        ['Custo/hora considerado', resumo.custoHora.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })],
-        ['Encargos considerados', `${resumo.encargosPct}%`],
-        ['Custo semanal estimado', formatarMoeda(resumo.custoSemanal)],
-        ['Custo mensal estimado', formatarMoeda(resumo.custoMensal)],
-        ['Observação', 'Estimativa simplificada. Não inclui horas extras, adicionais, benefícios ou regras de convenção coletiva.']
-      );
-    }
 
     const csvConteudo = '\uFEFF' + linhas
       .map(row => row.map(campo => `"${String(campo).replace(/"/g, '""')}"`).join(';'))
@@ -1672,9 +1620,10 @@
 
   function agendarConsultoria() {
     const empresa = document.getElementById('nomeEmpresa').value.trim();
-    const texto = `Olá, equipe da Contabilidade Líder! Usei o Simulador de Escalas do site${empresa ? ` (empresa *${empresa}*)` : ''} ` +
-      `com ${colaboradores.length} colaborador(es), modelo base *${nomePreset()}*. ` +
-      `Gostaria de agendar uma consultoria sobre escalas, folha de pagamento e planejamento tributário.`;
+    const limite = obterLimiteSemanal();
+    const texto = `Olá, equipe da Contabilidade Líder! Usei o Simulador de Escala 5x2 do site${empresa ? ` (empresa *${empresa}*)` : ''} ` +
+      `com ${colaboradores.length} colaborador(es), modelo base *${nomePreset()}* (limite ${limite}h/sem). ` +
+      `Gostaria de agendar uma consultoria sobre adequação à escala 5x2 e folha de pagamento.`;
     window.open(`https://wa.me/5531988967713?text=${encodeURIComponent(texto)}`, '_blank', 'noopener,noreferrer');
   }
 
