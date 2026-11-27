@@ -3,262 +3,379 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simulador de Escala 5x2 e Adequação de Jornada | Contabilidade Líder</title>
-  <meta name="description" content="Ferramenta gratuita da Contabilidade Líder para simular a adequação da sua equipe à escala 5x2 (Segunda a sexta, 5x2 com revezamento ou 12x36), com cálculo automático de horas semanais, domingos trabalhados, alertas CLT e exportação para Excel e PDF." />
-  <meta name="theme-color" content="#59432B" />
+  <title>Simulador de Escala 5x2 (42h, 40h e 36h) | Contabilidade Líder</title>
+  <meta name="description" content="Ferramenta gratuita da Contabilidade Líder para simular a adequação à escala 5x2 (42h, 40h ou 36h), 5x2 com revezamento e 12x36 com cálculo automático de horas, alertas CLT e exportação para Excel e PDF." />
+  <meta name="theme-color" content="#3B2C1C" />
   <link rel="canonical" href="https://contabilidadelider.cnt.br/escala.html" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:site_name" content="Contabilidade Líder" />
   <meta property="og:url" content="https://contabilidadelider.cnt.br/escala.html" />
-  <meta property="og:title" content="Simulador de Escala 5x2 | Contabilidade Líder" />
-  <meta property="og:description" content="Ferramenta gratuita para simular a adequação da sua equipe à escala 5x2 (5x2, 5x2 com revezamento ou 12x36) com cálculo de horas, folgas, domingos trabalhados e alertas CLT. Contabilidade Líder, João Monlevade - MG." />
+  <meta property="og:title" content="Simulador e Gerador de Escalas de Trabalho | Contabilidade Líder" />
+  <meta property="og:description" content="Ferramenta gratuita para simular a adequação à escala 5x2 (42h, 40h ou 36h), 5x2 com revezamento e 12x36 com cálculo automático de horas, folgas e domingos. Contabilidade Líder, João Monlevade - MG." />
+  <meta name="twitter:card" content="summary" />
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"AccountingService","name":"Contabilidade Líder","url":"https://contabilidadelider.cnt.br/","email":"contato@contabilidadelider.cnt.br","telephone":"+55-31-3852-3355","slogan":"O sucesso da sua empresa começa aqui","address":{"@type":"PostalAddress","streetAddress":"Rua Fernão Dias, 303, 5º andar","addressLocality":"João Monlevade","addressRegion":"MG","postalCode":"35930-180","addressCountry":"BR"},"areaServed":["João Monlevade","Médio Piracicaba","MG"]}
+  {
+    "@context": "https://schema.org",
+    "@type": "AccountingService",
+    "name": "Escritório de Contabilidade Líder",
+    "url": "https://contabilidadelider.cnt.br/",
+    "email": "contato@contabilidadelider.cnt.br",
+    "telephone": "+55-31-3852-3355",
+    "slogan": "O sucesso da sua empresa começa aqui",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua Fernão Dias, 303, 5º andar - Nossa Senhora do Rosário",
+      "addressLocality": "João Monlevade",
+      "addressRegion": "MG",
+      "postalCode": "35930-180",
+      "addressCountry": "BR"
+    },
+    "areaServed": ["João Monlevade", "Médio Piracicaba", "MG"]
+  }
   </script>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FDF2E4'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='%23E8871E' stroke-width='7' stroke-dasharray='7 3'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%236B4E2E'/%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FAF8F4'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='%23E48224' stroke-width='7' stroke-dasharray='7 3'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%2359432B'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
   <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
   <style>
     :root {
+      /* Paleta oficial unificada com index.html */
+      --espresso: #231910;
+      --dark-brown: #3B2C1C;
+      --brown: #59432B;
       --orange: #E48224;
       --dark-orange: #C96E18;
-      --on-orange: #2B1F13;
-      --brown: #59432B;
-      --dark-brown: #3B2C1C;
-      --light: #FAF8F5;
-      --cream: #F8F7F4;
-      --hairline: #E5E0D8;
-      --silver: #A8AAAD;
+      --on-orange: #231910;
       --gold: #F59E0B;
       --gold-soft: #FEF3C7;
-      --bg: #FCFBF9;
+      --silver: #A8AAAD;
+
+      --paper: #FAF8F4;
+      --cream: #F3EFE7;
+      --bg: #FAF8F4;
       --surface: #FFFFFF;
-      --text: #1F2937;
-      --text-muted: #6B6358;
+      --ink: #231910;
+      --ink-muted: #5C5248;
+      --ink-subtle: #786E63;
+      --hairline: rgba(59, 44, 28, 0.11);
+      --hairline-strong: rgba(59, 44, 28, 0.20);
+      --hairline-dark: rgba(255, 255, 255, 0.12);
+
       --success: #15803D;
       --success-bg: #DCFCE7;
       --danger: #B91C1C;
       --danger-bg: #FEE2E2;
 
-      /* Escala tipográfica (base 16px, razão ~1.2) */
+      /* Tipografia */
+      --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+      /* Escala tipográfica */
       --fs-2xs: 0.6875rem;
       --fs-xs: 0.75rem;
       --fs-sm: 0.875rem;
       --fs-base: 1rem;
       --fs-lg: 1.125rem;
       --fs-xl: 1.375rem;
-      --fs-2xl: clamp(1.5rem, 2.6vw, 1.875rem);
-      --fs-3xl: clamp(1.75rem, 3.6vw, 2.5rem);
+      --fs-2xl: clamp(1.55rem, 2.8vw, 2.05rem);
+      --fs-3xl: clamp(1.95rem, 3.8vw, 2.9rem);
 
-      --radius-sm: 0.625rem;
-      --radius: 1rem;
-      --radius-lg: 1.25rem;
-      --shadow-sm: 0 1px 2px rgba(59, 44, 28, 0.06);
-      --shadow: 0 10px 30px -12px rgba(59, 44, 28, 0.14);
+      /* Motion tokens (Emil Kowalski design engineering) */
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+      --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+      --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+      --radius-sm: 10px;
+      --radius: 14px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 1px 2px rgba(35, 25, 16, 0.05), 0 4px 12px -4px rgba(35, 25, 16, 0.06);
+      --shadow: 0 2px 6px rgba(35, 25, 16, 0.04), 0 14px 32px -12px rgba(35, 25, 16, 0.10);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; overflow-x: clip; }
+    html { scroll-behavior: smooth; scroll-padding-top: 8.5rem; }
     body {
-      font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: var(--font-sans);
       font-size: var(--fs-base);
       background: var(--bg);
-      color: var(--text);
+      color: var(--ink);
       line-height: 1.55;
       overflow-x: clip;
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
     a { color: inherit; text-decoration: none; }
     ul, ol { list-style: none; }
     button, input, select { font: inherit; color: inherit; }
-    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, [tabindex]:focus-visible {
-      outline: 2px solid var(--orange);
-      outline-offset: 2px;
-    }
+    img, svg { display: block; }
+    :focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
     .sr-only {
       position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
       overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
     }
-    .svg-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 
-    .container { max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
-    @media (min-width: 640px) { .container { padding: 0 1.5rem; } }
-    @media (min-width: 1024px) { .container { padding: 0 2rem; } }
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 1.25rem; }
+    @media (min-width: 640px) { .container { padding: 0 1.75rem; } }
+    @media (min-width: 1024px) { .container { padding: 0 2.5rem; } }
 
-    /* ===== Navbar ===== */
+    .skip-link {
+      position: fixed; left: -9999px; top: 1rem; z-index: 120;
+      background: var(--orange); color: var(--on-orange); font-weight: 700; font-size: var(--fs-sm);
+      padding: 0.6rem 1.1rem; border-radius: 9999px; box-shadow: var(--shadow);
+    }
+    .skip-link:focus { left: 1rem; }
+
+    /* ===== Navbar unificada ===== */
     .navbar {
       position: sticky; top: 0; z-index: 50;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: saturate(1.4) blur(8px);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: saturate(1.4) blur(12px);
+      -webkit-backdrop-filter: saturate(1.4) blur(12px);
       border-bottom: 1px solid var(--hairline);
-      transition: box-shadow 0.3s ease;
+      transition: box-shadow 240ms var(--ease-out);
     }
-    .navbar.scrolled { box-shadow: 0 6px 24px rgba(59, 44, 28, 0.12); }
+    .navbar.scrolled { box-shadow: 0 8px 28px -12px rgba(35, 25, 16, 0.14); }
     .navbar-inner { display: flex; align-items: center; justify-content: space-between; height: 4.75rem; gap: 1rem; }
-    .logo-link { display: inline-flex; align-items: center; flex-shrink: 0; }
-    .logo-img { display: block; max-height: 40px; width: auto; height: auto; object-fit: contain; }
+    .logo-link { display: inline-flex; align-items: center; flex-shrink: 0; border-radius: 8px; }
+    .logo-img { max-height: 40px; width: auto; height: auto; object-fit: contain; }
     @media (min-width: 768px) { .logo-img { max-height: 52px; } }
-    .logo-img-print { display: block; max-height: 54px; width: auto; height: auto; object-fit: contain; }
-    .logo-img-footer { display: block; max-height: 54px; width: auto; height: auto; object-fit: contain; }
-    .nav-links { display: none; align-items: center; gap: 1.75rem; }
-    .nav-link { position: relative; color: var(--dark-brown); font-weight: 600; font-size: var(--fs-sm); transition: color 0.2s ease; }
-    .nav-link:hover { color: var(--dark-orange); }
-    .menu-btn { background: none; border: none; color: var(--dark-brown); font-size: 1.5rem; cursor: pointer; padding: 0.5rem; }
-    @media (min-width: 1024px) { .nav-links { display: flex; } .menu-btn, .mobile-menu { display: none; } }
+    .logo-img-print { max-height: 50px; width: auto; height: auto; object-fit: contain; }
+    .logo-img-footer { max-height: 52px; width: auto; height: auto; object-fit: contain; }
 
+    .nav-links { display: none; align-items: center; gap: 1.75rem; }
+    .nav-link {
+      position: relative; display: inline-flex; align-items: center; gap: 0.4rem;
+      color: var(--dark-brown); font-weight: 600; font-size: 0.9rem; padding: 0.35rem 0;
+      transition: color 180ms ease;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 1.5px;
+      background: var(--orange); transform: scaleX(0); transform-origin: left;
+      transition: transform 220ms var(--ease-out);
+    }
+    .menu-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 2.5rem; height: 2.5rem; border-radius: var(--radius-sm);
+      background: transparent; border: 1px solid var(--hairline); color: var(--dark-brown); cursor: pointer;
+      transition: background-color 160ms ease, transform 160ms var(--ease-out);
+    }
+    .menu-btn:active { transform: scale(0.95); }
+    @media (min-width: 1024px) { .nav-links { display: flex; } .menu-btn { display: none; } }
+
+    /* Drawer Mobile com backdrop + curva iOS */
+    .drawer-backdrop {
+      position: fixed; inset: 0; z-index: 55;
+      background: rgba(35, 25, 16, 0.44); backdrop-filter: blur(2px);
+      opacity: 0; visibility: hidden;
+      transition: opacity 220ms var(--ease-out), visibility 220ms;
+    }
+    .drawer-backdrop.open { opacity: 1; visibility: visible; }
     .mobile-menu {
-      position: fixed; top: 0; right: 0; width: min(18rem, 85vw); height: 100vh;
-      background: var(--light); box-shadow: -10px 0 30px rgba(0,0,0,0.15);
-      border-left: 1px solid var(--hairline); z-index: 60; padding: 1.5rem;
+      position: fixed; top: 0; right: 0; width: min(20rem, 86vw); height: 100dvh;
+      background: var(--paper); border-left: 1px solid var(--hairline);
+      box-shadow: -16px 0 40px rgba(35, 25, 16, 0.22);
+      z-index: 60; padding: 1.5rem; display: flex; flex-direction: column;
       transform: translateX(100%); visibility: hidden;
-      transition: transform 0.3s ease, visibility 0.3s;
+      transition: transform 360ms var(--ease-drawer), visibility 360ms;
     }
     .mobile-menu.open { transform: translateX(0); visibility: visible; }
-    .close-menu { position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: var(--dark-brown); font-size: 1.5rem; cursor: pointer; padding: 0.25rem; }
-    .mobile-nav-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.5rem; }
-    .mobile-link { color: var(--dark-brown); font-weight: 600; padding: 0.6rem 0; border-bottom: 1px solid var(--hairline); }
+    .mobile-menu-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 1.25rem; border-bottom: 1px solid var(--hairline); }
+    .close-menu {
+      width: 2.25rem; height: 2.25rem; display: inline-grid; place-items: center;
+      border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--hairline);
+      color: var(--dark-brown); cursor: pointer;
+      transition: background-color 160ms ease, transform 160ms var(--ease-out);
+    }
+    .close-menu:active { transform: scale(0.95); }
+    .mobile-nav-list { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.25rem; }
+    .mobile-link { color: var(--dark-brown); font-weight: 600; padding: 0.75rem 0.5rem; border-bottom: 1px solid var(--hairline); }
 
-    /* ===== Buttons ===== */
+    /* ===== Botões com press feedback ===== */
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-      padding: 0.7rem 1.2rem; border-radius: 9999px;
+      padding: 0.7rem 1.25rem; border-radius: 9999px;
       font-size: var(--fs-sm); font-weight: 700; line-height: 1.2;
-      cursor: pointer; border: 1.5px solid transparent;
-      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-      white-space: nowrap;
+      cursor: pointer; border: 1px solid transparent; white-space: nowrap;
+      transition:
+        background-color 180ms ease,
+        border-color 180ms ease,
+        color 180ms ease,
+        box-shadow 200ms var(--ease-out),
+        transform 160ms var(--ease-out);
     }
+    .btn:active { transform: scale(0.97); }
     .btn-rect { border-radius: var(--radius-sm); }
-    .btn-sm { padding: 0.5rem 0.85rem; font-size: var(--fs-xs); }
-    /* Laranja reservado ao CTA "Agendar consultoria" (texto escuro p/ contraste AA) */
-    .btn-primary { background: var(--orange); color: var(--on-orange); box-shadow: 0 4px 14px rgba(228, 130, 36, 0.28); }
-    .btn-primary:hover { background: var(--dark-orange); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(228, 130, 36, 0.35); }
-    .btn-brown { background: var(--brown); color: #fff; }
-    .btn-brown:hover { background: var(--dark-brown); transform: translateY(-1px); box-shadow: 0 8px 18px rgba(59, 44, 28, 0.25); }
-    .btn-secondary { background: #fff; border-color: var(--hairline); color: var(--dark-brown); }
-    .btn-secondary:hover { border-color: var(--orange); color: var(--dark-orange); }
-    .btn-secondary .fa-file-excel { color: var(--success); }
+    .btn-sm { padding: 0.5rem 0.9rem; font-size: var(--fs-xs); }
+    .btn-primary {
+      background: var(--orange); color: var(--on-orange);
+      box-shadow: 0 1px 2px rgba(35, 25, 16, 0.12), 0 8px 20px -8px rgba(228, 130, 36, 0.52);
+    }
+    .btn-brown { background: var(--espresso); color: #FFFFFF; }
+    .btn-secondary { background: var(--surface); border-color: var(--hairline-strong); color: var(--dark-brown); box-shadow: var(--shadow-sm); }
+    .btn-secondary .icon-excel { color: var(--success); }
 
-    /* ===== Hero ===== */
+    /* ===== Hero enxuto de produto ===== */
     .hero {
-      position: relative; overflow: hidden;
-      background: linear-gradient(135deg, var(--cream) 0%, var(--light) 55%, #F3EEE6 100%);
+      position: relative;
+      background-color: var(--paper);
+      background-image:
+        radial-gradient(ellipse 65% 70% at 92% 0%, rgba(228, 130, 36, 0.08), transparent 65%),
+        radial-gradient(ellipse 50% 60% at 5% 100%, rgba(89, 67, 43, 0.05), transparent 65%);
       border-bottom: 1px solid var(--hairline);
-      padding: 2.5rem 0 2.25rem;
+      padding: 2.25rem 0 2rem;
     }
-    .hero-illustration { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-    .hero-inner { position: relative; z-index: 1; max-width: 760px; }
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(228, 130, 36, 0.12); border: 1px solid rgba(228, 130, 36, 0.35);
-      color: var(--dark-brown); padding: 0.3rem 0.85rem; border-radius: 9999px;
-      font-size: var(--fs-xs); font-weight: 700; margin-bottom: 0.9rem;
+    .hero-inner { max-width: 780px; }
+    .hero-kicker {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--brown); margin-bottom: 0.85rem;
     }
-    .eyebrow i { color: var(--dark-orange); }
-    .hero h1 { font-size: var(--fs-3xl); font-weight: 800; color: var(--dark-brown); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 0.75rem; }
-    .hero h1 span { color: var(--dark-orange); }
-    .hero p { color: rgba(59, 44, 28, 0.85); font-size: var(--fs-base); line-height: 1.65; }
-    .hero-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+    .hero-kicker::before { content: ''; width: 1.5rem; height: 1.5px; background: var(--orange); }
+    .hero h1 {
+      font-family: var(--font-display); font-size: var(--fs-3xl); font-weight: 500;
+      color: var(--espresso); letter-spacing: -0.025em; line-height: 1.08;
+      text-wrap: balance; margin-bottom: 0.75rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--dark-orange); }
+    .hero p { color: var(--ink-muted); font-size: var(--fs-base); line-height: 1.65; max-width: 62ch; }
+    .hero-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.15rem; }
     .chip {
       display: inline-flex; align-items: center; gap: 0.4rem;
-      background: #fff; border: 1px solid var(--hairline); color: var(--dark-brown);
-      padding: 0.35rem 0.75rem; border-radius: 9999px; font-size: var(--fs-xs); font-weight: 600;
+      background: var(--surface); border: 1px solid var(--hairline); color: var(--dark-brown);
+      padding: 0.34rem 0.75rem; border-radius: 9999px; font-size: var(--fs-xs); font-weight: 600;
     }
-    .chip i { color: var(--dark-orange); }
+    .chip svg { color: var(--dark-orange); }
 
-    /* ===== Stepper ===== */
-    .stepper-wrap { position: sticky; top: 4.75rem; z-index: 40; background: rgba(252, 251, 249, 0.95); backdrop-filter: blur(6px); border-bottom: 1px solid var(--hairline); }
-    .stepper { display: flex; gap: 0.25rem; padding: 0.6rem 0; overflow-x: auto; scrollbar-width: none; }
+    /* ===== Stepper Sticky com progresso contínuo ===== */
+    .stepper-wrap {
+      position: sticky; top: 4.75rem; z-index: 40;
+      background: rgba(250, 248, 244, 0.94);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--hairline);
+    }
+    .stepper-progress {
+      position: absolute; left: 0; right: 0; bottom: -1px; height: 2px;
+      background: var(--orange); transform-origin: left; transform: scaleX(0);
+      pointer-events: none;
+    }
+    .stepper { display: flex; gap: 0.25rem; padding: 0.55rem 0; overflow-x: auto; scrollbar-width: none; }
     .stepper::-webkit-scrollbar { display: none; }
     .stepper li { display: flex; align-items: center; flex: 0 0 auto; }
-    .stepper li + li::before { content: ''; width: 1.5rem; height: 2px; background: var(--hairline); margin: 0 0.35rem; border-radius: 2px; }
+    .stepper li + li::before { content: ''; width: 1.25rem; height: 1px; background: var(--hairline-strong); margin: 0 0.35rem; }
     .stepper a {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.35rem 0.75rem 0.35rem 0.35rem; border-radius: 9999px;
-      font-size: var(--fs-sm); font-weight: 600; color: var(--text-muted);
-      transition: background 0.2s ease, color 0.2s ease;
+      padding: 0.32rem 0.8rem 0.32rem 0.35rem; border-radius: 9999px;
+      font-size: var(--fs-sm); font-weight: 600; color: var(--ink-subtle);
+      transition: background-color 200ms var(--ease-in-out), color 200ms ease, box-shadow 200ms var(--ease-out);
     }
-    .stepper a:hover { color: var(--dark-brown); background: var(--cream); }
     .stepper .num {
-      width: 1.6rem; height: 1.6rem; border-radius: 9999px; display: inline-grid; place-items: center;
-      background: #fff; border: 1.5px solid var(--hairline); font-size: var(--fs-xs); font-weight: 800; color: var(--brown);
+      width: 1.55rem; height: 1.55rem; border-radius: 9999px; display: inline-grid; place-items: center;
+      background: var(--surface); border: 1px solid var(--hairline-strong);
+      font-size: var(--fs-xs); font-weight: 700; color: var(--brown); font-variant-numeric: tabular-nums;
+      transition: background-color 220ms var(--ease-in-out), border-color 220ms var(--ease-in-out), color 220ms ease;
     }
-    .stepper a.is-active { color: var(--dark-brown); background: #fff; box-shadow: var(--shadow-sm); }
-    .stepper a.is-active .num { background: var(--brown); border-color: var(--brown); color: #fff; }
-    @media (min-width: 1024px) { .stepper-wrap { top: 4.75rem; } }
+    .stepper a.is-active { color: var(--espresso); background: var(--surface); box-shadow: var(--shadow-sm); }
+    .stepper a.is-active .num { background: var(--espresso); border-color: var(--espresso); color: #FFFFFF; }
 
-    /* ===== Steps ===== */
-    .main-content { padding: 2rem 0 3rem; }
-    .step { margin-bottom: 2.5rem; }
-    .step-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    /* ===== Etapas & Cards ===== */
+    .main-content { padding: 2.25rem 0 3.5rem; }
+    .step { margin-bottom: 2.75rem; }
+    .step-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.1rem; }
     .step-title { display: flex; gap: 0.85rem; align-items: flex-start; }
     .step-badge {
-      flex: 0 0 auto; width: 2.25rem; height: 2.25rem; border-radius: 0.75rem;
-      display: grid; place-items: center; background: var(--brown); color: #fff;
-      font-weight: 800; font-size: var(--fs-base);
+      flex: 0 0 auto; width: 2.15rem; height: 2.15rem; border-radius: 10px;
+      display: grid; place-items: center; background: var(--espresso); color: #F5A65B;
+      font-weight: 800; font-size: var(--fs-sm); font-variant-numeric: tabular-nums;
     }
-    .step-title h2 { font-size: var(--fs-xl); font-weight: 800; color: var(--dark-brown); letter-spacing: -0.01em; line-height: 1.25; }
-    .step-title p { font-size: var(--fs-sm); color: var(--text-muted); margin-top: 0.15rem; }
+    .step-title h2 { font-family: var(--font-display); font-size: clamp(1.35rem, 2.2vw, 1.65rem); font-weight: 500; color: var(--espresso); letter-spacing: -0.02em; line-height: 1.15; }
+    .step-title p { font-size: var(--fs-sm); color: var(--ink-muted); margin-top: 0.2rem; }
     .toolbar { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 
     .card {
       background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--radius-lg);
       padding: 1.25rem; box-shadow: var(--shadow);
     }
-    @media (min-width: 640px) { .card { padding: 1.5rem; } }
+    @media (min-width: 640px) { .card { padding: 1.65rem; } }
     .card + .card { margin-top: 1rem; }
-    .card-title { font-size: var(--fs-base); font-weight: 700; color: var(--dark-brown); display: flex; align-items: center; gap: 0.55rem; }
-    .card-title i { color: var(--dark-orange); }
-    .card-sub { font-size: var(--fs-xs); color: var(--text-muted); margin-top: 0.15rem; }
+    .card-title { font-size: var(--fs-base); font-weight: 700; color: var(--espresso); display: flex; align-items: center; gap: 0.5rem; }
+    .card-title svg { color: var(--dark-orange); }
+    .card-sub { font-size: var(--fs-xs); color: var(--ink-subtle); margin-top: 0.2rem; }
     .card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem; }
 
     .panel-section + .panel-section { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--hairline); }
     fieldset { border: none; min-width: 0; }
-    legend, .group-label { font-size: var(--fs-sm); font-weight: 700; color: var(--dark-brown); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
-    legend i, .group-label i { color: var(--dark-orange); }
-    legend small, .group-label small { font-weight: 500; color: var(--text-muted); font-size: var(--fs-xs); }
-
-    /* ===== Forms ===== */
-    .grid-2 { display: grid; grid-template-columns: 1fr; gap: 0.9rem; }
-    @media (min-width: 640px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
-    .field label { display: block; font-size: var(--fs-xs); font-weight: 600; color: var(--brown); margin-bottom: 0.35rem; }
-    .field .hint { display: block; font-size: var(--fs-2xs); color: var(--text-muted); margin-top: 0.3rem; }
-    .form-control {
-      width: 100%; min-height: 2.75rem; padding: 0.6rem 0.85rem;
-      border: 1.5px solid var(--hairline); border-radius: var(--radius-sm);
-      font-size: var(--fs-sm); background: #fff; color: var(--text);
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    legend, .group-label {
+      font-size: var(--fs-sm); font-weight: 700; color: var(--espresso);
+      margin-bottom: 0.85rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
     }
-    .form-control:hover { border-color: #D3CABD; }
+    legend svg, .group-label svg { color: var(--dark-orange); }
+    legend small, .group-label small { font-weight: 500; color: var(--ink-subtle); font-size: var(--fs-xs); }
+
+    /* ===== Formulários ===== */
+    .grid-2, .grid-3 { display: grid; grid-template-columns: 1fr; gap: 0.9rem; }
+    @media (min-width: 640px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+    .field label { display: block; font-size: var(--fs-xs); font-weight: 600; color: var(--dark-brown); margin-bottom: 0.35rem; }
+    .field .hint { display: block; font-size: var(--fs-2xs); color: var(--ink-subtle); margin-top: 0.3rem; }
+    .form-control {
+      width: 100%; min-height: 2.7rem; padding: 0.58rem 0.85rem;
+      border: 1.5px solid var(--hairline-strong); border-radius: var(--radius-sm);
+      font-size: var(--fs-sm); background: var(--surface); color: var(--ink);
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+    }
     .form-control:focus { outline: none; border-color: var(--orange); box-shadow: 0 0 0 3px rgba(228, 130, 36, 0.18); }
 
-    /* ===== Presets ===== */
-    .presets-grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
-    @media (min-width: 768px) { .presets-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    /* ===== Presets com Mini-Diagrama Semanal ===== */
+    .presets-grid { display: grid; grid-template-columns: 1fr; gap: 0.85rem; }
+    @media (min-width: 768px) { .presets-grid { grid-template-columns: repeat(3, 1fr); } }
     .preset-btn {
-      position: relative; text-align: left; padding: 0.95rem 1rem;
-      border: 1.5px solid var(--hairline); border-radius: var(--radius); background: #fff;
-      cursor: pointer; transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-      display: flex; flex-direction: column; gap: 0.3rem;
+      position: relative; text-align: left; padding: 1rem;
+      border: 1.5px solid var(--hairline); border-radius: var(--radius); background: var(--surface);
+      cursor: pointer; display: flex; flex-direction: column; gap: 0.35rem;
+      transition: border-color 180ms ease, background-color 180ms ease, box-shadow 200ms var(--ease-out), transform 160ms var(--ease-out);
     }
-    .preset-btn:hover { border-color: rgba(228, 130, 36, 0.6); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
-    .preset-btn[aria-pressed="true"] { border-color: var(--orange); background: var(--light); box-shadow: 0 0 0 3px rgba(228, 130, 36, 0.15); }
-    .preset-btn[aria-pressed="true"]::after {
-      content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
-      position: absolute; top: 0.75rem; right: 0.75rem; width: 1.35rem; height: 1.35rem;
-      border-radius: 9999px; background: var(--brown); color: #fff; font-size: 0.65rem;
+    .preset-btn:active { transform: scale(0.97); }
+    .preset-btn[aria-pressed="true"] {
+      border-color: var(--orange);
+      background: #FFFBF5;
+      box-shadow: 0 0 0 3px rgba(228, 130, 36, 0.16);
+    }
+    .preset-check {
+      position: absolute; top: 0.85rem; right: 0.85rem;
+      width: 1.3rem; height: 1.3rem; border-radius: 9999px;
+      background: var(--espresso); color: #FFFFFF;
       display: grid; place-items: center;
+      opacity: 0; transform: scale(0.85);
+      transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out);
     }
-    .preset-tag { align-self: flex-start; font-size: var(--fs-xs); font-weight: 800; color: var(--brown); background: var(--cream); border: 1px solid var(--hairline); padding: 0.1rem 0.5rem; border-radius: 0.4rem; letter-spacing: 0.02em; }
-    .preset-btn strong { font-size: var(--fs-sm); color: var(--dark-brown); font-weight: 700; }
-    .preset-btn span.desc { font-size: var(--fs-xs); color: var(--text-muted); line-height: 1.45; }
-    .preset-btn span.meta { font-size: var(--fs-2xs); color: var(--brown); font-weight: 600; margin-top: auto; padding-top: 0.25rem; }
+    .preset-btn[aria-pressed="true"] .preset-check { opacity: 1; transform: scale(1); }
+    .preset-tag {
+      align-self: flex-start; font-size: var(--fs-xs); font-weight: 800; color: var(--espresso);
+      background: var(--cream); border: 1px solid var(--hairline);
+      padding: 0.1rem 0.5rem; border-radius: 6px; letter-spacing: 0.02em; font-variant-numeric: tabular-nums;
+    }
+    .preset-btn strong { font-size: var(--fs-sm); color: var(--espresso); font-weight: 700; }
+    .preset-btn span.desc { font-size: var(--fs-xs); color: var(--ink-muted); line-height: 1.45; }
+    .preset-bars {
+      display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px;
+      margin-top: 0.45rem; padding-top: 0.5rem; border-top: 1px solid var(--hairline);
+    }
+    .preset-bars i {
+      display: block; height: 6px; border-radius: 3px; background: #E5E0D8;
+    }
+    .preset-bars i.on { background: var(--brown); }
+    .preset-bars i.dom { background: var(--orange); }
+    .preset-bars i.off { background: #BBF7D0; }
+    .preset-btn span.meta { font-size: var(--fs-2xs); color: var(--ink-subtle); font-weight: 600; font-variant-numeric: tabular-nums; }
 
-    .panel-footer { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--hairline); }
-    .panel-footer p { font-size: var(--fs-xs); color: var(--text-muted); max-width: 560px; }
+    .panel-footer {
+      display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+      margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--hairline);
+    }
+    .panel-footer p { font-size: var(--fs-xs); color: var(--ink-subtle); max-width: 560px; display: flex; align-items: center; gap: 0.45rem; }
 
     /* ===== Equipe ===== */
     .team-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
@@ -266,82 +383,114 @@
     .team-grid .card + .card { margin-top: 0; }
     .team-grid .card { display: flex; flex-direction: column; }
     .form-actions { display: flex; align-items: flex-end; }
-    .form-actions .btn { width: 100%; min-height: 2.75rem; }
+    .form-actions .btn { width: 100%; min-height: 2.7rem; }
 
     .import-dropzone {
-      border: 2px dashed rgba(228, 130, 36, 0.45); background: var(--light);
-      border-radius: var(--radius); padding: 1.25rem; text-align: center; cursor: pointer;
-      transition: border-color 0.2s ease, background 0.2s ease;
+      border: 1.5px dashed rgba(201, 110, 24, 0.5); background: var(--paper);
+      border-radius: var(--radius); padding: 1.35rem; text-align: center; cursor: pointer;
+      transition: border-color 180ms ease, background-color 180ms ease, transform 160ms var(--ease-out);
       flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.4rem;
     }
-    .import-dropzone:hover, .import-dropzone.dragover { border-color: var(--orange); background: var(--cream); }
-    .import-dropzone strong { color: var(--dark-brown); font-size: var(--fs-sm); }
-    .import-dropzone span { font-size: var(--fs-xs); color: var(--text-muted); }
-    .import-icon { width: 2.75rem; height: 2.75rem; border-radius: 9999px; background: rgba(228, 130, 36, 0.14); color: var(--dark-orange); display: grid; place-items: center; font-size: 1.2rem; }
+    .import-dropzone:active { transform: scale(0.99); }
+    .import-dropzone.dragover { border-color: var(--orange); background: var(--cream); }
+    .import-dropzone strong { color: var(--espresso); font-size: var(--fs-sm); }
+    .import-dropzone span { font-size: var(--fs-xs); color: var(--ink-subtle); }
+    .import-icon {
+      width: 2.6rem; height: 2.6rem; border-radius: 12px;
+      background: var(--surface); border: 1px solid var(--hairline); color: var(--dark-orange);
+      display: grid; place-items: center; margin-bottom: 0.2rem;
+    }
     .import-mode-group { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-top: 0.85rem; }
-    .import-mode-group legend { margin-bottom: 0.4rem; font-size: var(--fs-xs); }
     .import-mode-group label { display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer; font-weight: 600; font-size: var(--fs-xs); color: var(--dark-brown); }
-    .import-mode-group input { accent-color: var(--brown); }
-    .import-status { margin-top: 0.75rem; padding: 0.65rem 0.9rem; border-radius: var(--radius-sm); font-size: var(--fs-xs); font-weight: 600; display: none; }
+    .import-mode-group input { accent-color: var(--espresso); }
+    .import-status {
+      margin-top: 0.75rem; padding: 0.65rem 0.9rem; border-radius: var(--radius-sm);
+      font-size: var(--fs-xs); font-weight: 600; display: none;
+      transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out);
+    }
     .import-status.show { display: block; }
+    @starting-style {
+      .import-status.show { opacity: 0; transform: scale(0.97) translateY(6px); }
+    }
     .import-status.ok { background: var(--success-bg); color: var(--success); border: 1px solid #BBF7D0; }
     .import-status.err { background: var(--danger-bg); color: var(--danger); border: 1px solid #FECACA; }
 
     /* ===== KPIs ===== */
     .kpi-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin-bottom: 1rem; }
-    @media (max-width: 639px) { .kpi-grid .kpi:last-child { grid-column: 1 / -1; } }
-    @media (min-width: 640px) { .kpi-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-    @media (min-width: 1024px) { .kpi-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+    @media (min-width: 768px) { .kpi-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    @media (min-width: 1120px) { .kpi-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
     .kpi {
       background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--radius);
       padding: 0.95rem 1rem; box-shadow: var(--shadow-sm); min-width: 0;
       display: flex; flex-direction: column; gap: 0.2rem;
     }
-    .kpi-label { display: flex; align-items: center; gap: 0.45rem; font-size: var(--fs-2xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); }
-    .kpi-label i { width: 1.6rem; height: 1.6rem; border-radius: 0.5rem; display: grid; place-items: center; background: var(--cream); color: var(--brown); font-size: 0.75rem; flex: 0 0 auto; }
-    .kpi-value { font-size: var(--fs-xl); font-weight: 800; color: var(--dark-brown); font-variant-numeric: tabular-nums; line-height: 1.2; margin-top: 0.3rem; overflow-wrap: anywhere; }
-    .kpi-sub { font-size: var(--fs-2xs); color: var(--text-muted); }
-    .kpi--sunday .kpi-label i { background: var(--gold-soft); color: #92400E; }
-    .kpi--alert .kpi-label i { background: var(--success-bg); color: var(--success); }
+    .kpi-label {
+      display: flex; align-items: center; gap: 0.45rem;
+      font-size: var(--fs-2xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-subtle);
+    }
+    .kpi-label .kpi-ico {
+      width: 1.55rem; height: 1.55rem; border-radius: 7px;
+      display: grid; place-items: center; background: var(--cream); color: var(--brown); flex: 0 0 auto;
+    }
+    .kpi-value {
+      font-size: var(--fs-xl); font-weight: 800; color: var(--espresso);
+      font-variant-numeric: tabular-nums; line-height: 1.2; margin-top: 0.25rem; overflow-wrap: anywhere;
+    }
+    .kpi-sub { font-size: var(--fs-2xs); color: var(--ink-subtle); }
+    .kpi--sunday .kpi-label .kpi-ico { background: var(--gold-soft); color: #92400E; }
+    .kpi--alert .kpi-label .kpi-ico { background: var(--success-bg); color: var(--success); }
     .kpi--alert.has-alerts { border-color: #FECACA; }
-    .kpi--alert.has-alerts .kpi-label i { background: var(--danger-bg); color: var(--danger); }
+    .kpi--alert.has-alerts .kpi-label .kpi-ico { background: var(--danger-bg); color: var(--danger); }
     .kpi--alert.has-alerts .kpi-value { color: var(--danger); }
 
-    /* ===== Tabela ===== */
-    .table-scroll-hint { display: flex; align-items: center; gap: 0.4rem; font-size: var(--fs-xs); color: var(--text-muted); margin-bottom: 0.5rem; }
+    /* ===== Tabela com indicador condicional de scroll ===== */
+    .table-scroll-hint { display: flex; align-items: center; gap: 0.45rem; font-size: var(--fs-xs); color: var(--ink-subtle); margin-bottom: 0.5rem; }
     @media (min-width: 1200px) { .table-scroll-hint { display: none; } }
+    .table-shell { position: relative; }
+    .table-shell::after {
+      content: ''; position: absolute; top: 1px; right: 1px; bottom: 1px; width: 28px;
+      border-radius: 0 calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(35, 25, 16, 0.08));
+      pointer-events: none; opacity: 0; transition: opacity 180ms ease;
+    }
+    .table-shell.can-scroll-right::after { opacity: 1; }
     .table-wrapper {
       overflow-x: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;
-      scroll-behavior: smooth; border: 1px solid var(--hairline); border-radius: var(--radius);
-      max-width: 100%;
+      border: 1px solid var(--hairline); border-radius: var(--radius); max-width: 100%;
     }
-    .schedule-table { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 980px; background: #fff; }
+    .schedule-table { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 980px; background: var(--surface); }
     .schedule-table th, .schedule-table td {
       padding: 0.55rem 0.4rem; border-bottom: 1px solid var(--hairline); border-right: 1px solid var(--hairline);
-      text-align: center; font-size: var(--fs-sm); vertical-align: middle;
+      text-align: center; font-size: var(--fs-sm); vertical-align: middle; font-variant-numeric: tabular-nums;
     }
     .schedule-table th:last-child, .schedule-table td:last-child { border-right: none; }
-    .schedule-table tbody tr:last-child td { border-bottom: none; }
-    .schedule-table th { background: var(--cream); color: var(--dark-brown); font-weight: 700; font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.03em; padding-top: 0.75rem; padding-bottom: 0.75rem; }
+    .schedule-table tbody tr:last-child td, .schedule-table tbody tr:last-child th { border-bottom: none; }
+    .schedule-table th {
+      background: var(--paper); color: var(--dark-brown); font-weight: 700; font-size: var(--fs-xs);
+      text-transform: uppercase; letter-spacing: 0.04em; padding-top: 0.78rem; padding-bottom: 0.78rem;
+    }
     .schedule-table th.th-sunday { background: var(--gold-soft); color: #92400E; }
-    .col-colab { text-align: left !important; padding-left: 0.9rem !important; min-width: 170px; position: sticky; left: 0; background: #fff; z-index: 2; box-shadow: 1px 0 0 var(--hairline); }
+    .col-colab {
+      text-align: left !important; padding-left: 0.95rem !important; min-width: 175px;
+      position: sticky; left: 0; background: var(--surface); z-index: 2; box-shadow: 1px 0 0 var(--hairline);
+    }
     @media (min-width: 768px) { .col-colab { min-width: 220px; } }
-    th.col-colab { background: var(--cream); z-index: 3; }
-    .colab-name { font-weight: 700; color: var(--dark-brown); display: block; font-size: var(--fs-sm); }
-    .colab-meta { font-size: var(--fs-2xs); color: var(--text-muted); display: block; }
-    .row-alert td.col-colab { box-shadow: inset 3px 0 0 var(--danger), 1px 0 0 var(--hairline); }
+    th.col-colab { background: var(--paper); z-index: 3; }
+    .colab-name { font-weight: 700; color: var(--espresso); display: block; font-size: var(--fs-sm); text-transform: none; letter-spacing: 0; }
+    .colab-meta { font-size: var(--fs-2xs); color: var(--ink-subtle); display: block; text-transform: none; letter-spacing: 0; font-weight: 500; }
+    .row-alert th.col-colab { box-shadow: inset 3px 0 0 var(--danger), 1px 0 0 var(--hairline); }
 
     .pill-shift {
       display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
-      width: 100%; min-width: 72px; min-height: 2.6rem; padding: 0.3rem 0.25rem;
-      border-radius: 0.55rem; font-weight: 700; font-size: var(--fs-xs); line-height: 1.2;
+      width: 100%; min-width: 72px; min-height: 2.65rem; padding: 0.3rem 0.25rem;
+      border-radius: 8px; font-weight: 700; font-size: var(--fs-xs); line-height: 1.2;
       cursor: pointer; border: 1px solid transparent; background: none;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      transition: transform 140ms var(--ease-out), box-shadow 160ms ease, background-color 140ms ease;
     }
-    .pill-shift:hover { transform: translateY(-1px); box-shadow: var(--shadow-sm); }
-    .pill-shift small { font-weight: 500; font-size: var(--fs-2xs); opacity: 0.9; }
-    .pill-T { background: #F4EEE6; color: var(--dark-brown); border-color: #E3D6C4; }
-    .pill-DT { background: var(--gold-soft); color: #92400E; border-color: var(--gold); box-shadow: inset 0 0 0 1px rgba(245, 158, 11, 0.35); }
+    .pill-shift:active { transform: scale(0.95); }
+    .pill-shift small { font-weight: 500; font-size: var(--fs-2xs); opacity: 0.88; }
+    .pill-T { background: #F4EEE6; color: var(--espresso); border-color: #E3D6C4; }
+    .pill-DT { background: var(--gold-soft); color: #92400E; border-color: var(--gold); box-shadow: inset 0 0 0 1px rgba(245, 158, 11, 0.3); }
     .pill-F { background: var(--success-bg); color: var(--success); border-color: #BBF7D0; }
     .pill-D { background: #F1F2F3; color: #4B5563; border-color: #D9DBDE; }
     .pill-A { background: #F3E8FF; color: #6B21A8; border-color: #E9D5FF; }
@@ -349,73 +498,148 @@
     .alert-badge { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.25rem 0.55rem; border-radius: 9999px; font-size: var(--fs-2xs); font-weight: 700; white-space: nowrap; }
     .alert-ok { background: var(--success-bg); color: var(--success); }
     .alert-warn { background: var(--danger-bg); color: var(--danger); }
-    .btn-icon-del { background: transparent; border: none; color: #9CA3AF; cursor: pointer; padding: 0.5rem; font-size: 0.95rem; border-radius: 0.5rem; transition: color 0.15s, background 0.15s; }
-    .btn-icon-del:hover { color: var(--danger); background: var(--danger-bg); }
-    .empty-row td { padding: 2rem 1rem !important; color: var(--text-muted); font-size: var(--fs-sm); }
-
-    .legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; margin-top: 1rem; font-size: var(--fs-xs); color: var(--text-muted); }
-    .legend li { display: inline-flex; align-items: center; gap: 0.45rem; }
-    .legend .swatch { width: 0.9rem; height: 0.9rem; border-radius: 0.3rem; border: 1px solid; flex: 0 0 auto; }
-    .legend strong { color: var(--dark-brown); font-weight: 700; }
-
-    /* ===== Conteúdo estratégico ===== */
-    .insights { background: var(--light); border-top: 1px solid var(--hairline); padding: 3rem 0; }
-    .insights-head { max-width: 760px; margin-bottom: 1.75rem; }
-    .insights-head h2 { font-size: var(--fs-2xl); font-weight: 800; color: var(--dark-brown); letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 0.6rem; }
-    .insights-head p { color: var(--text-muted); font-size: var(--fs-base); }
-    .insight-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-    @media (min-width: 768px) { .insight-grid { grid-template-columns: repeat(3, 1fr); } }
-    .insight-card { background: #fff; border: 1px solid var(--hairline); border-radius: var(--radius-lg); padding: 1.35rem; box-shadow: var(--shadow-sm); }
-    .insight-icon { width: 2.6rem; height: 2.6rem; border-radius: 0.8rem; display: grid; place-items: center; background: rgba(228, 130, 36, 0.12); color: var(--dark-orange); font-size: 1.1rem; margin-bottom: 0.85rem; }
-    .insight-card h3 { font-size: var(--fs-base); font-weight: 700; color: var(--dark-brown); margin-bottom: 0.4rem; }
-    .insight-card p { font-size: var(--fs-sm); color: var(--text-muted); line-height: 1.6; }
-    .cta-band {
-      margin-top: 1.5rem; border-radius: var(--radius-lg); padding: 1.75rem;
-      background: linear-gradient(120deg, var(--brown) 0%, var(--dark-brown) 100%); color: #fff;
-      display: flex; justify-content: space-between; align-items: center; gap: 1.25rem; flex-wrap: wrap;
-      box-shadow: 0 20px 30px -14px rgba(59, 44, 28, 0.4);
+    .btn-icon-del {
+      background: transparent; border: none; color: #9CA3AF; cursor: pointer;
+      padding: 0.45rem; border-radius: 8px; display: inline-grid; place-items: center;
+      transition: color 150ms ease, background-color 150ms ease, transform 140ms var(--ease-out);
     }
-    .cta-band h3 { font-size: var(--fs-xl); font-weight: 800; margin-bottom: 0.35rem; }
-    .cta-band p { color: rgba(255, 255, 255, 0.88); font-size: var(--fs-sm); max-width: 640px; }
+    .btn-icon-del:active { transform: scale(0.92); }
+    .empty-row td { padding: 2.25rem 1rem !important; color: var(--ink-subtle); font-size: var(--fs-sm); }
 
-    /* ===== Footer ===== */
-    .footer { background: var(--cream); color: var(--dark-brown); padding: 3rem 0 2rem; border-top: 1px solid var(--hairline); }
-    .footer-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2rem; }
+    .legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; margin-top: 1rem; font-size: var(--fs-xs); color: var(--ink-subtle); }
+    .legend li { display: inline-flex; align-items: center; gap: 0.45rem; }
+    .legend .swatch { width: 0.85rem; height: 0.85rem; border-radius: 4px; border: 1px solid; flex: 0 0 auto; }
+    .legend strong { color: var(--espresso); font-weight: 700; }
+
+    /* ===== Bloco Estratégico Pós-Simulador ===== */
+    .insights { background: var(--surface); border-top: 1px solid var(--hairline); padding: 3.75rem 0; }
+    .insights-head { max-width: 760px; margin-bottom: 2rem; }
+    .insights-head h2 {
+      font-family: var(--font-display); font-size: var(--fs-2xl); font-weight: 500;
+      color: var(--espresso); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 0.6rem;
+    }
+    .insights-head p { color: var(--ink-muted); font-size: var(--fs-base); max-width: 60ch; }
+    .insight-matrix {
+      display: grid; grid-template-columns: 1fr; gap: 1px;
+      background: var(--hairline); border: 1px solid var(--hairline); border-radius: var(--radius-lg); overflow: hidden;
+    }
+    @media (min-width: 768px) { .insight-matrix { grid-template-columns: repeat(3, 1fr); } }
+    .insight-card { background: var(--paper); padding: 1.65rem; }
+    .insight-icon {
+      width: 2.4rem; height: 2.4rem; border-radius: 10px; display: grid; place-items: center;
+      background: var(--surface); border: 1px solid var(--hairline); color: var(--dark-orange); margin-bottom: 1rem;
+    }
+    .insight-card h3 { font-size: var(--fs-base); font-weight: 700; color: var(--espresso); margin-bottom: 0.4rem; }
+    .insight-card p { font-size: var(--fs-sm); color: var(--ink-muted); line-height: 1.6; }
+
+    .cta-band {
+      margin-top: 1.75rem; border-radius: var(--radius-lg); padding: 2rem;
+      background: var(--espresso);
+      background-image: radial-gradient(ellipse 55% 80% at 90% 20%, rgba(228, 130, 36, 0.16), transparent 65%);
+      color: #FFFFFF;
+      display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+      box-shadow: 0 24px 44px -18px rgba(35, 25, 16, 0.45);
+    }
+    .cta-band h3 { font-family: var(--font-display); font-size: clamp(1.35rem, 2.4vw, 1.75rem); font-weight: 500; margin-bottom: 0.35rem; letter-spacing: -0.015em; }
+    .cta-band p { color: #DDD6CC; font-size: var(--fs-sm); max-width: 60ch; }
+
+    /* ===== Footer Unificado (idêntico a index.html) ===== */
+    .footer {
+      background: var(--espresso); color: #DDD6CC; padding: 4rem 0 2rem;
+      border-top: 2px solid var(--orange);
+    }
+    .footer-logo-wrap {
+      display: inline-flex; align-items: center; background: var(--paper);
+      padding: 0.65rem 1rem; border-radius: 12px; margin-bottom: 1.15rem;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+    .footer-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 3rem; }
     @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1024px) { .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; } }
-    .footer h2 { font-size: var(--fs-base); font-weight: 700; color: var(--dark-orange); margin-bottom: 0.9rem; }
-    .footer ul { display: flex; flex-direction: column; gap: 0.6rem; font-size: var(--fs-sm); }
-    .footer a:hover { color: var(--dark-orange); }
-    .footer-about { font-size: var(--fs-sm); color: rgba(59, 44, 28, 0.82); margin: 0.85rem 0; max-width: 340px; }
-    .footer-crc { font-size: var(--fs-sm); display: flex; align-items: center; gap: 0.5rem; }
-    .footer-crc i { color: var(--dark-orange); }
-    .social-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.45rem 0.95rem; background: rgba(59, 44, 28, 0.08); border-radius: 9999px; font-size: var(--fs-sm); font-weight: 600; margin-top: 1rem; transition: background 0.2s ease; }
-    .social-pill:hover { background: rgba(228, 130, 36, 0.18); }
-    .footer-bottom { border-top: 1px solid rgba(89, 67, 43, 0.15); padding-top: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 0.5rem; font-size: var(--fs-xs); color: rgba(59, 44, 28, 0.75); text-align: center; }
+    @media (min-width: 1024px) { .footer-grid { grid-template-columns: 1.4fr 0.9fr 1.15fr; } }
+    .footer-about { font-size: 0.9rem; color: #CFC7BC; line-height: 1.65; max-width: 36ch; margin-bottom: 1rem; }
+    .footer-crc { font-size: 0.8125rem; color: #F3EFE7; font-weight: 600; display: inline-flex; align-items: center; gap: 0.45rem; }
+    .footer h2 { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #F5A65B; margin-bottom: 1.1rem; }
+    .footer ul { display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.9rem; }
+    .footer a { transition: color 160ms ease; }
+    .social-pill {
+      display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.48rem 0.95rem;
+      background: rgba(255, 255, 255, 0.08); color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 9999px; font-size: 0.85rem; font-weight: 600; margin-top: 1.15rem;
+      transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 160ms var(--ease-out);
+    }
+    .social-pill:active { transform: scale(0.97); }
+    .footer-bottom {
+      border-top: 1px solid var(--hairline-dark); padding-top: 1.5rem;
+      display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+      gap: 0.75rem; font-size: 0.8125rem; color: #B9AFA2; text-align: center;
+    }
     @media (min-width: 768px) { .footer-bottom { flex-direction: row; text-align: left; } }
 
-    /* ===== CTA flutuante (Agendar consultoria) ===== */
+    /* ===== CTA Flutuante (Agendar consultoria) ===== */
     .float-cta {
       position: fixed; bottom: 1.25rem; right: 1.25rem; z-index: 45;
       display: inline-flex; align-items: center; gap: 0.5rem;
-      height: 3.25rem; padding: 0 1.1rem; border-radius: 9999px; border: none; cursor: pointer;
+      height: 3.1rem; padding: 0 1.15rem; border-radius: 9999px; border: none; cursor: pointer;
       background: var(--orange); color: var(--on-orange); font-weight: 700; font-size: var(--fs-sm);
-      box-shadow: 0 14px 24px -8px rgba(59, 44, 28, 0.4);
-      transition: background 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 12px 26px -8px rgba(35, 25, 16, 0.45);
+      transition: background-color 180ms ease, transform 160ms var(--ease-out);
     }
-    .float-cta:hover { background: var(--dark-orange); transform: translateY(-2px); }
-    .float-cta i { font-size: 1.15rem; }
-    @media (max-width: 639px) { .float-cta { width: 3.25rem; padding: 0; justify-content: center; } .float-cta .label { display: none; } }
+    .float-cta:active { transform: scale(0.96); }
+    @media (max-width: 639px) { .float-cta { width: 3.1rem; padding: 0; justify-content: center; } .float-cta .label { display: none; } }
 
-    /* Animações do logo */
-    .gear-rotate { animation: gearSpin 20s linear infinite; }
-    .gear-rotate-reverse { animation: gearSpinReverse 25s linear infinite; }
-    @keyframes gearSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    @keyframes gearSpinReverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+    /* ===== Toast estilo Sonner (interruptível, entra e sai pela mesma borda) ===== */
+    .toast-region {
+      position: fixed; bottom: 1.25rem; left: 1.25rem; z-index: 70;
+      pointer-events: none; max-width: calc(100vw - 5.5rem);
+    }
+    .toast {
+      pointer-events: auto;
+      display: inline-flex; align-items: center; gap: 0.85rem;
+      background: var(--espresso); color: #FAF8F4;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 0.75rem 1rem; border-radius: 12px;
+      font-size: var(--fs-xs); font-weight: 600;
+      box-shadow: 0 18px 36px -12px rgba(35, 25, 16, 0.5);
+      opacity: 0; transform: translateY(100%) scale(0.96); visibility: hidden;
+      transition: transform 320ms var(--ease-out), opacity 240ms ease, visibility 320ms;
+    }
+    .toast.is-open { opacity: 1; transform: translateY(0) scale(1); visibility: visible; }
+    .toast-undo {
+      background: rgba(228, 130, 36, 0.18); color: #F5A65B; border: 1px solid rgba(228, 130, 36, 0.4);
+      padding: 0.3rem 0.65rem; border-radius: 7px; font-size: var(--fs-xs); font-weight: 700; cursor: pointer;
+      transition: background-color 150ms ease, color 150ms ease, transform 140ms var(--ease-out);
+    }
+    .toast-undo:active { transform: scale(0.96); }
+
+    /* Hovers espaciais protegidos para ponteiros finos */
+    @media (hover: hover) and (pointer: fine) {
+      .nav-link:hover { color: var(--dark-orange); }
+      .nav-link:hover::after { transform: scaleX(1); }
+      .menu-btn:hover, .close-menu:hover { background-color: var(--cream); }
+      .btn-primary:hover { background-color: var(--dark-orange); transform: translateY(-1px); box-shadow: 0 10px 24px -8px rgba(201, 110, 24, 0.55); }
+      .btn-primary:active { transform: scale(0.97); }
+      .btn-brown:hover { background-color: var(--brown); transform: translateY(-1px); }
+      .btn-brown:active { transform: scale(0.97); }
+      .btn-secondary:hover { border-color: var(--brown); color: var(--espresso); background-color: var(--paper); }
+      .stepper a:hover { color: var(--espresso); background-color: var(--cream); }
+      .form-control:hover { border-color: rgba(59, 44, 28, 0.32); }
+      .preset-btn:hover { border-color: rgba(201, 110, 24, 0.55); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+      .preset-btn:active { transform: scale(0.97); }
+      .import-dropzone:hover { border-color: var(--orange); background-color: var(--cream); }
+      .pill-shift:hover { box-shadow: var(--shadow-sm); filter: brightness(0.98); }
+      .btn-icon-del:hover { color: var(--danger); background-color: var(--danger-bg); }
+      .footer a:hover { color: #F5A65B; }
+      .social-pill:hover { background-color: var(--orange); border-color: var(--orange); color: var(--on-orange); }
+      .float-cta:hover { background-color: var(--dark-orange); transform: translateY(-2px); }
+      .float-cta:active { transform: scale(0.96); }
+      .toast-undo:hover { background-color: var(--orange); color: var(--on-orange); }
+    }
+
+    /* Reduced motion gentil */
     @media (prefers-reduced-motion: reduce) {
-      html, .table-wrapper { scroll-behavior: auto; }
-      .gear-rotate, .gear-rotate-reverse { animation: none !important; }
-      * { transition: none !important; }
+      html { scroll-behavior: auto; }
+      .mobile-menu, .toast { transform: none !important; transition: opacity 180ms ease, visibility 180ms; }
+      .preset-check { transform: none !important; }
     }
 
     /* ===== Impressão / PDF ===== */
@@ -423,49 +647,51 @@
     @page { size: A4 landscape; margin: 9mm 10mm; }
     @media print {
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; box-shadow: none !important; }
-      .no-print, .navbar, .hero, .stepper-wrap, .insights, .footer, .float-cta, .mobile-menu { display: none !important; }
-      html, body { background: #fff !important; font-size: 10.5px; }
-      .gear-rotate, .gear-rotate-reverse { animation: none !important; }
-      .container { max-width: 100%; padding: 0; margin: 0; }
+      .no-print, .navbar, .hero, .stepper-wrap, .insights, .footer, .float-cta, .mobile-menu, .drawer-backdrop, .toast-region { display: none !important; }
+      html, body { background: #FFFFFF !important; font-size: 10.5px; }
+      .container { max-width: 100%; padding: 0; }
       .main-content { padding: 0; }
       .step { margin: 0; }
-      .card { border: none; padding: 0; border-radius: 0; }
+      .card { border: none; padding: 0; background: #FFFFFF; }
       .print-header {
         display: flex !important; justify-content: space-between; align-items: center; gap: 1rem;
-        border-bottom: 3px solid var(--orange); padding: 0 0 0.6rem; margin-bottom: 0.75rem; break-inside: avoid;
+        border-bottom: 2px solid var(--brown); padding-bottom: 0.55rem; margin-bottom: 0.7rem; break-inside: avoid;
       }
-      .print-brand { display: flex; align-items: center; gap: 0.9rem; }
-      .print-office-info { font-size: 0.72rem; line-height: 1.45; color: var(--dark-brown); }
-      .print-office-info strong { font-size: 0.85rem; color: var(--brown); display: block; }
-      .print-doc-meta { text-align: right; min-width: 220px; }
-      .print-doc-meta h1 { font-size: 1.15rem; font-weight: 800; color: var(--dark-brown); margin-bottom: 0.15rem; }
-      .print-doc-meta p { font-size: 0.72rem; color: var(--text-muted); }
-      .kpi-grid { grid-template-columns: repeat(5, 1fr) !important; gap: 0.45rem; margin-bottom: 0.5rem; break-inside: avoid; }
-      .kpi { padding: 0.4rem 0.55rem; border-radius: 0.5rem; gap: 0; }
+      .print-brand { display: flex; align-items: center; gap: 0.85rem; }
+      .print-office { font-size: 0.72rem; line-height: 1.4; color: var(--dark-brown); }
+      .print-office strong { display: block; font-size: 0.85rem; color: var(--espresso); }
+      .print-meta { text-align: right; }
+      .print-meta h2 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--espresso); }
+      .print-meta p { font-size: 0.72rem; color: var(--ink-muted); }
+      .kpi-grid { grid-template-columns: repeat(5, 1fr) !important; gap: 0.45rem; margin-bottom: 0.4rem; break-inside: avoid; }
+      .kpi { padding: 0.4rem 0.55rem; border-radius: 8px; gap: 0; }
       .kpi-label { font-size: 0.6rem; }
-      .kpi-label i { display: none; }
+      .kpi-label .kpi-ico { display: none; }
       .kpi-value { font-size: 0.95rem; margin-top: 0.1rem; }
       .kpi-sub { font-size: 0.58rem; }
       .table-scroll-hint { display: none !important; }
-      .table-wrapper { overflow: visible; border-radius: 0.5rem; }
-      .schedule-table { min-width: 0 !important; width: 100% !important; }
-      .schedule-table th, .schedule-table td { padding: 0.3rem 0.2rem; font-size: 0.68rem; }
+      .table-shell::after { display: none !important; }
+      .table-wrapper { overflow: visible !important; border-radius: 0; }
+      .schedule-table { min-width: 0; width: 100%; }
+      .schedule-table th, .schedule-table td { padding: 0.32rem 0.25rem; font-size: 0.7rem; }
       .col-colab { position: static; min-width: 150px; padding-left: 0.5rem !important; }
       .colab-meta { font-size: 0.6rem; }
-      .pill-shift { min-width: 0; min-height: 0; padding: 0.2rem 0.15rem; font-size: 0.64rem; border-radius: 0.35rem; }
+      .pill-shift { min-width: 0; min-height: 0; padding: 0.2rem 0.15rem; font-size: 0.64rem; border-radius: 5px; }
       .pill-shift small { font-size: 0.56rem; }
       tr { break-inside: avoid; page-break-inside: avoid; }
       thead { display: table-header-group; }
       .legend { margin-top: 0.5rem; gap: 0.3rem 0.9rem; font-size: 0.62rem; break-inside: avoid; }
       .print-footer {
         display: flex !important; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;
-        margin-top: 0.6rem; padding-top: 0.4rem; border-top: 1px solid rgba(89, 67, 43, 0.25);
-        font-size: 0.62rem; color: var(--text-muted); break-inside: avoid;
+        margin-top: 0.6rem; padding-top: 0.4rem; border-top: 1px solid rgba(59, 44, 28, 0.25);
+        font-size: 0.62rem; color: var(--ink-muted); break-inside: avoid;
       }
     }
   </style>
 </head>
 <body>
+
+<a href="#conteudo" class="skip-link">Ir para o simulador</a>
 
 <header>
   <nav id="navbar" class="navbar" aria-label="Navegação principal">
@@ -475,55 +701,66 @@
           <img src="./assets/logo400p.png" alt="Contabilidade Líder - O sucesso da sua empresa começa aqui" class="logo-img" width="400" height="188" />
         </a>
         <div class="nav-links">
-          <a href="index.html" class="nav-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Voltar ao site</a>
+          <a href="index.html" class="nav-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Voltar ao site
+          </a>
           <a href="index.html#servicos" class="nav-link">Serviços</a>
           <a href="index.html#contato" class="nav-link">Contato</a>
-          <button type="button" class="btn btn-primary" onclick="agendarConsultoria()">
-            <i class="fa-regular fa-calendar-check" aria-hidden="true"></i> Agendar consultoria
+          <button type="button" class="btn btn-primary btn-sm" onclick="agendarConsultoria()">
+            Agendar consultoria
           </button>
         </div>
         <button id="menuBtn" type="button" class="menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
-          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
         </button>
       </div>
     </div>
   </nav>
-  <div id="mobileMenu" class="mobile-menu" aria-label="Menu mobile">
-    <button id="closeMenu" type="button" class="close-menu" aria-label="Fechar menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
-    <div style="display:flex; justify-content:center; margin-top:1rem;">
-      <a href="index.html" class="logo-link" aria-label="Contabilidade Líder - Página inicial"><img src="./assets/logo400p.png" alt="Contabilidade Líder - O sucesso da sua empresa começa aqui" class="logo-img" width="400" height="188" /></a>
+
+  <div id="drawerBackdrop" class="drawer-backdrop" aria-hidden="true"></div>
+  <div id="mobileMenu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu de navegação" aria-hidden="true">
+    <div class="mobile-menu-head">
+      <a href="index.html" class="logo-link" aria-label="Contabilidade Líder - Página inicial">
+        <img src="./assets/logo400p.png" alt="Contabilidade Líder - O sucesso da sua empresa começa aqui" class="logo-img" width="400" height="188" />
+      </a>
+      <button id="closeMenu" type="button" class="close-menu" aria-label="Fechar menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
     </div>
     <div class="mobile-nav-list">
       <a href="index.html" class="mobile-link">Voltar ao site</a>
       <a href="index.html#servicos" class="mobile-link">Serviços</a>
       <a href="index.html#contato" class="mobile-link">Contato</a>
-      <button type="button" class="btn btn-primary" style="margin-top:0.75rem;" onclick="closeMobileMenu(); agendarConsultoria();">
-        <i class="fa-regular fa-calendar-check" aria-hidden="true"></i> Agendar consultoria
+      <button type="button" class="btn btn-primary" style="margin-top:1rem; width:100%;" onclick="closeMobileMenu(); agendarConsultoria();">
+        Agendar consultoria
       </button>
     </div>
   </div>
 
   <section class="hero" aria-labelledby="hero-titulo">
-    <svg class="hero-illustration" aria-hidden="true" viewBox="0 0 1440 360" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-      <g class="gear-rotate" style="transform-origin: 1320px 92px;" opacity="0.12">
-        <path d="M 1313.4 10.3 L 1326.6 10.3 L 1329.1 27.6 L 1336.3 29.1 L 1345.2 14.0 L 1357.3 19.0 L 1353.0 36.0 L 1359.1 40.1 L 1373.2 29.6 L 1382.4 38.8 L 1371.9 52.9 L 1376.0 59.0 L 1393.0 54.7 L 1398.0 66.8 L 1382.9 75.7 L 1384.4 82.9 L 1401.7 85.4 L 1401.7 98.6 L 1384.4 101.1 L 1382.9 108.3 L 1398.0 117.2 L 1393.0 129.3 L 1376.0 125.0 L 1371.9 131.1 L 1382.4 145.2 L 1373.2 154.4 L 1359.1 143.9 L 1353.0 148.0 L 1357.3 165.0 L 1345.2 170.0 L 1336.3 154.9 L 1329.1 156.4 L 1326.6 173.7 L 1313.4 173.7 L 1310.9 156.4 L 1303.7 154.9 L 1294.8 170.0 L 1282.7 165.0 L 1287.0 148.0 L 1280.9 143.9 L 1266.8 154.4 L 1257.6 145.2 L 1268.1 131.1 L 1264.0 125.0 L 1247.0 129.3 L 1242.0 117.2 L 1257.1 108.3 L 1255.6 101.1 L 1238.3 98.6 L 1238.3 85.4 L 1255.6 82.9 L 1257.1 75.7 L 1242.0 66.8 L 1247.0 54.7 L 1264.0 59.0 L 1268.1 52.9 L 1257.6 38.8 L 1266.8 29.6 L 1280.9 40.1 L 1287.0 36.0 L 1282.7 19.0 L 1294.8 14.0 L 1303.7 29.1 L 1310.9 27.6 Z" fill="#E48224"/>
-        <circle cx="1320" cy="92" r="34" fill="#FFF8F0"/>
-      </g>
-      <g class="gear-rotate-reverse" style="transform-origin: 90px 300px;" opacity="0.10">
-        <circle cx="90" cy="300" r="56" fill="#59432B"/>
-        <circle cx="90" cy="300" r="24" fill="#FFF8F0"/>
-      </g>
-    </svg>
     <div class="container">
       <div class="hero-inner">
-        <span class="eyebrow"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i> Ferramenta gratuita • Adequação à escala 5x2</span>
-        <h1 id="hero-titulo">Simulador de <span>Escala 5x2</span></h1>
-        <p>Monte ou importe a escala semanal da sua equipe para simular a adequação ao modelo 5x2 (Segunda a sexta, 5x2 com revezamento ou 12x36). Acompanhe horas semanais, domingos trabalhados e alertas — e exporte para Excel ou PDF em segundos.</p>
+        <div class="hero-kicker">Ferramenta gratuita · Adequação à escala 5×2</div>
+        <h1 id="hero-titulo">Simulador de <em>Escala 5×2</em></h1>
+        <p>Monte ou importe a escala semanal da sua equipe para simular a adequação ao modelo 5×2 (Segunda a sexta, 5×2 com revezamento ou 12×36). Acompanhe horas líquidas, domingos trabalhados e alertas — pronto para exportar em Excel ou PDF.</p>
         <ul class="hero-chips" aria-label="Recursos">
-          <li class="chip"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> 5x2 · 5x2 rev. · 12x36</li>
-          <li class="chip"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Alertas CLT</li>
-          <li class="chip"><i class="fa-solid fa-file-import" aria-hidden="true"></i> Importa planilhas</li>
-          <li class="chip"><i class="fa-solid fa-file-export" aria-hidden="true"></i> Excel e PDF</li>
+          <li class="chip">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            5×2 · 5×2 rev. · 12×36
+          </li>
+          <li class="chip">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Alertas CLT
+          </li>
+          <li class="chip">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Importa planilhas
+          </li>
+          <li class="chip">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Excel e PDF
+          </li>
         </ul>
       </div>
     </div>
@@ -533,29 +770,30 @@
 <div class="stepper-wrap no-print">
   <div class="container">
     <ol class="stepper" aria-label="Etapas do simulador">
-      <li><a href="#passo-configurar" data-step="passo-configurar" class="is-active"><span class="num">1</span> Configurar</a></li>
+      <li><a href="#passo-configurar" data-step="passo-configurar" class="is-active" aria-current="step"><span class="num">1</span> Configurar</a></li>
       <li><a href="#passo-equipe" data-step="passo-equipe"><span class="num">2</span> Equipe</a></li>
       <li><a href="#passo-resultado" data-step="passo-resultado"><span class="num">3</span> Resultado</a></li>
     </ol>
   </div>
+  <div id="stepperProgress" class="stepper-progress" aria-hidden="true"></div>
 </div>
 
 <main class="main-content" id="conteudo">
   <div class="container">
 
-    <!-- Cabeçalho institucional exclusivo para impressão -->
+    <!-- Cabeçalho exclusivo para impressão / PDF -->
     <div class="print-header">
       <div class="print-brand">
         <img src="./assets/logo400p.png" alt="Contabilidade Líder - O sucesso da sua empresa começa aqui" class="logo-img-print" width="400" height="188" />
-        <div class="print-office-info">
-          <strong>Contabilidade Líder • contabilidadelider.cnt.br</strong>
-          <span>contato@contabilidadelider.cnt.br • Tel: (31) 3852-3355 • WhatsApp: (31) 98896-7713</span><br>
-          <span>Rua Fernão Dias, 303, 5º andar — João Monlevade - MG • CRC-MG 4623</span>
+        <div class="print-office">
+          <strong>Contabilidade Líder • CRC-MG 4623</strong>
+          <span>contabilidadelider.cnt.br | contato@contabilidadelider.cnt.br</span><br />
+          <span>Tel: (31) 3852-3355 • WhatsApp: (31) 98896-7713 • Rua Fernão Dias, 303, 5º andar, João Monlevade - MG</span>
         </div>
       </div>
-      <div class="print-doc-meta">
-        <h1 id="print-empresa-titulo">Escala Semanal de Trabalho</h1>
-        <p id="print-meta-detalhes">Modelo: 5x2 • Limite: 42h/sem</p>
+      <div class="print-meta">
+        <h2 id="print-empresa-titulo">Escala Semanal de Trabalho</h2>
+        <p id="print-meta-detalhes">Gerado pelo Simulador Gratuito da Contabilidade Líder</p>
       </div>
     </div>
 
@@ -566,60 +804,75 @@
           <span class="step-badge" aria-hidden="true">1</span>
           <div>
             <h2 id="titulo-passo-1">Configurar escala</h2>
-            <p>Defina a empresa, o limite semanal e o modelo de escala base para adequação à 5x2.</p>
+            <p>Defina a empresa, o limite semanal e o modelo de escala base para adequação à 5×2.</p>
           </div>
         </div>
       </div>
 
       <div class="card">
-        <div class="panel-section">
-          <div class="group-label"><i class="fa-solid fa-building" aria-hidden="true"></i> Dados da empresa</div>
+        <fieldset class="panel-section">
+          <legend>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/></svg>
+            Dados da empresa
+          </legend>
           <div class="grid-2">
             <div class="field">
               <label for="nomeEmpresa">Nome da empresa</label>
-              <input type="text" id="nomeEmpresa" class="form-control" placeholder="Ex.: Supermercado Monlevade Ltda." autocomplete="organization" oninput="salvarDados()" aria-describedby="nomeEmpresaHint">
-              <span class="hint" id="nomeEmpresaHint">Aparece no cabeçalho do Excel e do PDF.</span>
+              <input type="text" id="nomeEmpresa" class="form-control" placeholder="Ex.: Supermercado Monlevade Ltda." oninput="salvarDados()" />
+              <span class="hint">Aparece no cabeçalho do Excel e do PDF impresso.</span>
             </div>
             <div class="field">
               <label for="limiteSemanal">Limite de horas semanais</label>
-              <select id="limiteSemanal" class="form-control" onchange="atualizarLimiteSemanal();" aria-describedby="limiteHint">
+              <select id="limiteSemanal" class="form-control" onchange="atualizarLimiteSemanal();">
                 <option value="42" selected>42h por semana</option>
                 <option value="40">40h por semana</option>
                 <option value="36">36h por semana</option>
               </select>
-              <span class="hint" id="limiteHint">Usado como referência nos alertas de carga horária da equipe.</span>
+              <span class="hint">Usado como referência nos alertas de carga horária e nos turnos padrão 5×2.</span>
             </div>
           </div>
-        </div>
+        </fieldset>
 
         <fieldset class="panel-section">
-          <legend><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Modelo de escala <small>— aplica dias e horários padrão à equipe</small></legend>
-          <div class="presets-grid">
-            <button type="button" class="preset-btn" data-preset="5x2" aria-pressed="true" onclick="aplicarPreset('5x2', this)">
-              <span class="preset-tag">5x2</span>
+          <legend>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Modelo de escala <small>— aplica dias e horários padrão à equipe</small>
+          </legend>
+          <div class="presets-grid" role="group" aria-label="Modelos de escala">
+            <button type="button" class="preset-btn" data-preset="5x2" aria-pressed="true" onclick="aplicarPreset('5x2')">
+              <span class="preset-check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span class="preset-tag">5×2</span>
               <strong>Segunda a sexta</strong>
               <span class="desc">5 dias + folga no sábado e DSR no domingo. Ideal para escritórios e operações comerciais.</span>
-              <span class="meta" data-meta-5x2>08:00–17:24 • 42h/sem</span>
+              <div class="preset-bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i></i></div>
+              <span class="meta" data-meta-5x2>08:00–17:24 · 42h/sem</span>
             </button>
-            <button type="button" class="preset-btn" data-preset="5x2_rev" aria-pressed="false" onclick="aplicarPreset('5x2_rev', this)">
-              <span class="preset-tag">5x2 rev.</span>
-              <strong>5x2 com revezamento</strong>
+            <button type="button" class="preset-btn" data-preset="5x2_rev" aria-pressed="false" onclick="aplicarPreset('5x2_rev')">
+              <span class="preset-check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span class="preset-tag">5×2 rev.</span>
+              <strong>5×2 com revezamento</strong>
               <span class="desc">Folgas alternadas para comércio e empresas que operam aos sábados.</span>
-              <span class="meta" data-meta-5x2>08:00–17:24 • 42h/sem</span>
+              <div class="preset-bars" aria-hidden="true"><i class="off"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+              <span class="meta" data-meta-5x2>08:00–17:24 · 42h/sem</span>
             </button>
-            <button type="button" class="preset-btn" data-preset="12x36" aria-pressed="false" onclick="aplicarPreset('12x36', this)">
-              <span class="preset-tag">12x36</span>
+            <button type="button" class="preset-btn" data-preset="12x36" aria-pressed="false" onclick="aplicarPreset('12x36')">
+              <span class="preset-check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span class="preset-tag">12×36</span>
               <strong>Plantão alternado</strong>
               <span class="desc">12h de jornada por 36h de descanso (dia sim, dia não).</span>
-              <span class="meta">07:00–19:00 • média 42h</span>
+              <div class="preset-bars" aria-hidden="true"><i class="on"></i><i class="off"></i><i class="on"></i><i class="off"></i><i class="on"></i><i class="off"></i><i class="dom"></i></div>
+              <span class="meta">07:00–19:00 · média 42h</span>
             </button>
           </div>
         </fieldset>
 
         <div class="panel-footer">
-          <p><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Ao trocar o modelo, os dias e horários da equipe são recalculados. Depois, ajuste dia a dia clicando na grade.</p>
+          <p>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            Ao trocar o modelo, os dias e horários são recalculados. Depois, ajuste dia a dia clicando na grade.
+          </p>
           <button type="button" class="btn btn-brown btn-rect" onclick="gerarEscala()">
-            <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Gerar escala
+            Gerar escala e ir ao resultado
           </button>
         </div>
       </div>
@@ -632,7 +885,7 @@
           <span class="step-badge" aria-hidden="true">2</span>
           <div>
             <h2 id="titulo-passo-2">Equipe</h2>
-            <p>Cadastre colaboradores manualmente ou importe uma planilha.</p>
+            <p>Cadastre colaboradores manualmente ou importe uma planilha existente.</p>
           </div>
         </div>
       </div>
@@ -641,35 +894,40 @@
         <div class="card">
           <div class="card-head">
             <div>
-              <h3 class="card-title"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Adicionar colaborador</h3>
-              <p class="card-sub">Turno e intervalo definem as horas líquidas por dia.</p>
+              <h3 class="card-title">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+                Adicionar colaborador
+              </h3>
+              <p class="card-sub">Turno e intervalo definem automaticamente as horas líquidas por dia.</p>
             </div>
           </div>
-          <form id="formColab" class="grid-2" onsubmit="adicionarColaborador(event)">
-            <div class="field">
-              <label for="colabNome">Nome do colaborador *</label>
-              <input type="text" id="colabNome" class="form-control" placeholder="Ex.: Mariana Souza" required autocomplete="off">
-            </div>
-            <div class="field">
-              <label for="colabCargo">Cargo / setor</label>
-              <input type="text" id="colabCargo" class="form-control" placeholder="Ex.: Atendimento / Caixa" autocomplete="off">
-            </div>
-            <div class="field">
-              <label for="colabEntrada">Entrada</label>
-              <input type="time" id="colabEntrada" class="form-control" value="08:00" required>
-            </div>
-            <div class="field">
-              <label for="colabSaida">Saída</label>
-              <input type="time" id="colabSaida" class="form-control" value="17:24" required>
-            </div>
-            <div class="field">
-              <label for="colabIntervalo">Intervalo (minutos)</label>
-              <input type="number" id="colabIntervalo" class="form-control" value="60" min="0" max="180" required>
-            </div>
-            <div class="form-actions">
-              <button type="submit" class="btn btn-brown btn-rect">
-                <i class="fa-solid fa-plus" aria-hidden="true"></i> Adicionar colaborador
-              </button>
+          <form id="formColab" onsubmit="adicionarColaborador(event)">
+            <div class="grid-2">
+              <div class="field">
+                <label for="colabNome">Nome do colaborador *</label>
+                <input type="text" id="colabNome" class="form-control" placeholder="Ex.: Mariana Souza" required />
+              </div>
+              <div class="field">
+                <label for="colabCargo">Cargo / setor</label>
+                <input type="text" id="colabCargo" class="form-control" placeholder="Ex.: Atendimento / Caixa" />
+              </div>
+              <div class="field">
+                <label for="colabEntrada">Entrada</label>
+                <input type="time" id="colabEntrada" class="form-control" value="08:00" required />
+              </div>
+              <div class="field">
+                <label for="colabSaida">Saída</label>
+                <input type="time" id="colabSaida" class="form-control" value="17:24" required />
+              </div>
+              <div class="field">
+                <label for="colabIntervalo">Intervalo (minutos)</label>
+                <input type="number" id="colabIntervalo" class="form-control" value="60" min="0" max="240" step="15" required />
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-brown btn-rect">
+                  + Adicionar colaborador
+                </button>
+              </div>
             </div>
           </form>
         </div>
@@ -677,26 +935,30 @@
         <div class="card">
           <div class="card-head">
             <div>
-              <h3 class="card-title"><i class="fa-solid fa-file-import" aria-hidden="true"></i> Importar planilha</h3>
+              <h3 class="card-title">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                Importar planilha
+              </h3>
               <p class="card-sub">.XLSX, .XLS ou .CSV</p>
             </div>
-            <button type="button" class="btn btn-secondary btn-sm" onclick="baixarModeloPlanilha()">
-              <i class="fa-solid fa-download" aria-hidden="true"></i> Baixar modelo
+            <button type="button" class="btn btn-secondary btn-rect btn-sm" onclick="baixarModeloPlanilha()">
+              Baixar modelo
             </button>
           </div>
 
-          <input type="file" id="inputPlanilha" accept=".xlsx,.xls,.csv" hidden onchange="handleArquivoPlanilha(this.files[0])" aria-label="Selecionar planilha">
-
-          <div id="dropzonePlanilha" class="import-dropzone" tabindex="0" role="button" aria-label="Importar planilha Excel ou CSV" onclick="document.getElementById('inputPlanilha').click()">
-            <div class="import-icon" aria-hidden="true"><i class="fa-solid fa-file-excel"></i></div>
+          <input type="file" id="inputPlanilha" accept=".xlsx,.xls,.csv" style="display:none;" onchange="handleArquivoPlanilha(this.files[0])" />
+          <div id="dropzonePlanilha" class="import-dropzone" role="button" tabindex="0" aria-label="Selecionar ou arrastar planilha de colaboradores" onclick="document.getElementById('inputPlanilha').click()">
+            <div class="import-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
+            </div>
             <strong>Clique para selecionar ou arraste sua planilha</strong>
             <span>Colunas: Nome, Cargo, Entrada, Saída, Intervalo (e dias opcionais Seg–Dom).</span>
           </div>
 
           <fieldset class="import-mode-group">
-            <legend class="sr-only">Modo de importação</legend>
-            <label><input type="radio" name="modoImportacao" value="substituir" checked> Substituir equipe atual</label>
-            <label><input type="radio" name="modoImportacao" value="adicionar"> Adicionar à equipe</label>
+            <legend class="sr-only">Como importar colaboradores</legend>
+            <label><input type="radio" name="modoImportacao" value="substituir" checked /> Substituir equipe atual</label>
+            <label><input type="radio" name="modoImportacao" value="acrescentar" /> Adicionar à equipe</label>
           </fieldset>
           <div id="importStatus" class="import-status" role="status" aria-live="polite"></div>
         </div>
@@ -710,137 +972,174 @@
           <span class="step-badge" aria-hidden="true">3</span>
           <div>
             <h2 id="titulo-passo-3">Resultado</h2>
-            <p>Clique em um dia para alternar Trabalho → Folga → DSR → Ausência.</p>
+            <p>Clique em qualquer dia da grade para alternar Trabalho → Folga → DSR → Ausência.</p>
           </div>
         </div>
         <div class="toolbar">
           <button type="button" class="btn btn-secondary btn-rect btn-sm" onclick="exportarCSV()">
-            <i class="fa-solid fa-file-excel" aria-hidden="true"></i> Exportar CSV/Excel
+            <svg class="icon-excel" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
+            Exportar CSV/Excel
           </button>
           <button type="button" class="btn btn-secondary btn-rect btn-sm" onclick="window.print()">
-            <i class="fa-solid fa-print" aria-hidden="true"></i> Imprimir / PDF
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Imprimir / PDF
           </button>
           <button type="button" class="btn btn-secondary btn-rect btn-sm" onclick="resetarExemplo()">
-            <i class="fa-solid fa-rotate-left" aria-hidden="true"></i> Restaurar exemplo
+            Restaurar exemplo
           </button>
-        </div>
-      </div>
-
-      <div class="kpi-grid" role="region" aria-label="Resumo da escala" aria-live="polite">
-        <div class="kpi">
-          <span class="kpi-label"><i class="fa-solid fa-users" aria-hidden="true"></i> Colaboradores</span>
-          <strong class="kpi-value" id="kpiTotalColab">0</strong>
-          <span class="kpi-sub" id="kpiSabado">Sábado: 0 pessoa(s)</span>
-        </div>
-        <div class="kpi">
-          <span class="kpi-label"><i class="fa-regular fa-clock" aria-hidden="true"></i> Horas semanais</span>
-          <strong class="kpi-value" id="kpiHorasTotais">0h</strong>
-          <span class="kpi-sub">Total da equipe</span>
-        </div>
-        <div class="kpi">
-          <span class="kpi-label"><i class="fa-solid fa-user-clock" aria-hidden="true"></i> Média / pessoa</span>
-          <strong class="kpi-value" id="kpiMediaHoras">0h</strong>
-          <span class="kpi-sub" id="kpiLimite">Limite: 42h</span>
-        </div>
-        <div class="kpi kpi--sunday">
-          <span class="kpi-label"><i class="fa-solid fa-sun" aria-hidden="true"></i> Domingos trab.</span>
-          <strong class="kpi-value" id="kpiDomingo">0</strong>
-          <span class="kpi-sub">Colaboradores no domingo</span>
-        </div>
-        <div class="kpi kpi--alert" id="kpiAlertasBox">
-          <span class="kpi-label"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Alertas CLT</span>
-          <strong class="kpi-value" id="kpiAlertas">0</strong>
-          <span class="kpi-sub" id="kpiAlertasSub">Nenhum alerta</span>
         </div>
       </div>
 
       <div class="card">
-        <p class="table-scroll-hint no-print"><i class="fa-solid fa-arrows-left-right" aria-hidden="true"></i> Deslize a tabela para ver a semana completa.</p>
-        <div class="table-wrapper" tabindex="0" role="region" aria-label="Grade semanal de trabalho (rolável)">
-          <table class="schedule-table">
-            <caption class="sr-only">Grade semanal de trabalho por colaborador, com carga semanal e status CLT</caption>
-            <thead>
-              <tr>
-                <th scope="col" class="col-colab">Colaborador / turno</th>
-                <th scope="col">Seg</th>
-                <th scope="col">Ter</th>
-                <th scope="col">Qua</th>
-                <th scope="col">Qui</th>
-                <th scope="col">Sex</th>
-                <th scope="col">Sáb</th>
-                <th scope="col" class="th-sunday">Dom</th>
-                <th scope="col">Carga semanal</th>
-                <th scope="col">Status CLT</th>
-                <th scope="col" class="no-print"><span class="sr-only">Ações</span></th>
-              </tr>
-            </thead>
-            <tbody id="tabelaEscalaBody"></tbody>
-          </table>
+        <div class="kpi-grid" aria-label="Resumo da escala">
+          <div class="kpi">
+            <span class="kpi-label">
+              <span class="kpi-ico" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span>
+              Colaboradores
+            </span>
+            <span class="kpi-value" id="kpiTotalColab">0</span>
+            <span class="kpi-sub" id="kpiSabado">Sábado: 0 pessoas</span>
+          </div>
+          <div class="kpi">
+            <span class="kpi-label">
+              <span class="kpi-ico" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+              Horas semanais
+            </span>
+            <span class="kpi-value" id="kpiHorasTotais">0h</span>
+            <span class="kpi-sub">Total da equipe</span>
+          </div>
+          <div class="kpi">
+            <span class="kpi-label">
+              <span class="kpi-ico" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+              Média / pessoa
+            </span>
+            <span class="kpi-value" id="kpiMediaHoras">0h</span>
+            <span class="kpi-sub" id="kpiLimite">Limite: 42h/sem</span>
+          </div>
+          <div class="kpi kpi--sunday">
+            <span class="kpi-label">
+              <span class="kpi-ico" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg></span>
+              Domingos trab.
+            </span>
+            <span class="kpi-value" id="kpiDomingo">0</span>
+            <span class="kpi-sub">Colaboradores no domingo</span>
+          </div>
+          <div class="kpi kpi--alert" id="kpiAlertasBox">
+            <span class="kpi-label">
+              <span class="kpi-ico" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+              Alertas CLT
+            </span>
+            <span class="kpi-value" id="kpiAlertas">0</span>
+            <span class="kpi-sub" id="kpiAlertasSub">Nenhum alerta</span>
+          </div>
         </div>
 
-        <ul class="legend" aria-label="Legenda">
-          <li><span class="swatch pill-T" aria-hidden="true"></span><strong>Trabalho</strong> horas líquidas (sem intervalo)</li>
-          <li><span class="swatch pill-DT" aria-hidden="true"></span><strong>Domingo trabalhado</strong> exige folga compensatória</li>
-          <li><span class="swatch pill-F" aria-hidden="true"></span><strong>Folga</strong> compensatória semanal</li>
-          <li><span class="swatch pill-D" aria-hidden="true"></span><strong>DSR</strong> descanso semanal remunerado</li>
-          <li><span class="swatch pill-A" aria-hidden="true"></span><strong>Ausência</strong> férias, abono ou afastamento</li>
+        <p class="table-scroll-hint no-print">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          Arraste a tabela horizontalmente para ver todos os dias da semana.
+        </p>
+
+        <div id="tableShell" class="table-shell">
+          <div id="tableWrapper" class="table-wrapper" tabindex="0" role="region" aria-label="Grade semanal de escala de trabalho">
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th scope="col" class="col-colab">Colaborador / Turno</th>
+                  <th scope="col">Seg</th>
+                  <th scope="col">Ter</th>
+                  <th scope="col">Qua</th>
+                  <th scope="col">Qui</th>
+                  <th scope="col">Sex</th>
+                  <th scope="col">Sáb</th>
+                  <th scope="col" class="th-sunday">Dom</th>
+                  <th scope="col">Carga semanal</th>
+                  <th scope="col">Status CLT</th>
+                  <th scope="col" class="no-print"><span class="sr-only">Ações</span></th>
+                </tr>
+              </thead>
+              <tbody id="tabelaEscalaBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <ul class="legend" aria-label="Legenda da escala">
+          <li><span class="swatch pill-T" aria-hidden="true"></span> <strong>Trabalho</strong> horas líquidas (sem intervalo)</li>
+          <li><span class="swatch pill-DT" aria-hidden="true"></span> <strong>Domingo trabalhado</strong> exige folga compensatória</li>
+          <li><span class="swatch pill-F" aria-hidden="true"></span> <strong>Folga</strong> compensatória semanal</li>
+          <li><span class="swatch pill-D" aria-hidden="true"></span> <strong>DSR</strong> descanso semanal remunerado</li>
+          <li><span class="swatch pill-A" aria-hidden="true"></span> <strong>Ausência</strong> férias, abono ou afastamento</li>
         </ul>
 
         <div class="print-footer">
-          <span><strong>Contabilidade Líder</strong> • O sucesso da sua empresa começa aqui • CRC-MG 4623</span>
-          <span>contabilidadelider.cnt.br • contato@contabilidadelider.cnt.br • (31) 3852-3355</span>
+          <span><strong>Contabilidade Líder</strong> • Rua Fernão Dias, 303, 5º andar, João Monlevade - MG • CRC-MG 4623</span>
+          <span>contabilidadelider.cnt.br | contato@contabilidadelider.cnt.br • (31) 3852-3355 • (31) 98896-7713</span>
         </div>
       </div>
     </section>
-  </div>
 
-  <!-- Conteúdo estratégico -->
-  <section id="impactos" class="insights" aria-labelledby="titulo-impactos">
-    <div class="container">
-      <div class="insights-head">
-        <span class="eyebrow"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Adequação à escala 5x2</span>
-        <h2 id="titulo-impactos">O que muda na folha da sua empresa ao adotar a escala 5x2</h2>
-        <p>Empresários de João Monlevade e de todo o Médio Piracicaba estão planejando a adequação de suas equipes à escala 5x2. Antes de alterar a jornada, entenda os principais pontos de atenção na legislação trabalhista e na rotina da folha.</p>
-      </div>
-      <div class="insight-grid">
-        <article class="insight-card">
-          <div class="insight-icon" aria-hidden="true"><i class="fa-solid fa-business-time"></i></div>
-          <h3>Horas extras e banco de horas</h3>
-          <p>Ao migrar para a escala 5x2, redistribuir a jornada sem planejamento pode gerar horas extras (mínimo de 50%) ou exigir acordo de banco de horas formalizado. Um ajuste estruturado evita passivos trabalhistas.</p>
-        </article>
-        <article class="insight-card">
-          <div class="insight-icon" aria-hidden="true"><i class="fa-solid fa-moon"></i></div>
-          <h3>DSR, domingos e adicional noturno</h3>
-          <p>A organização das folgas semanais, o controle do DSR, o revezamento aos fins de semana na 5x2 e o adicional noturno (22h às 5h) exigem acompanhamento técnico para manter a operação em conformidade.</p>
-        </article>
-        <article class="insight-card">
-          <div class="insight-icon" aria-hidden="true"><i class="fa-solid fa-file-signature"></i></div>
-          <h3>Convenção coletiva e acordos</h3>
-          <p>A convenção coletiva da sua categoria pode definir regras específicas para a escala 5x2 com revezamento, compensação de jornada ou adoção da 12x36. Validar cada detalhe antes da mudança protege a empresa.</p>
-        </article>
-      </div>
-      <div class="cta-band">
-        <div>
-          <h3>O sucesso da sua empresa começa aqui.</h3>
-          <p>A Contabilidade Líder analisa a escala da sua equipe e orienta a adequação segura à escala 5x2, com conformidade trabalhista, organização de jornada e atendimento próximo em João Monlevade e região.</p>
-        </div>
-        <button type="button" class="btn btn-primary" onclick="agendarConsultoria()">
-          <i class="fa-regular fa-calendar-check" aria-hidden="true"></i> Agendar consultoria
-        </button>
-      </div>
-    </div>
-  </section>
+  </div>
 </main>
 
+<!-- Bloco estratégico pós-simulador -->
+<section class="insights no-print" aria-labelledby="titulo-impactos">
+  <div class="container">
+    <div class="insights-head">
+      <div class="hero-kicker">Adequação à escala 5×2</div>
+      <h2 id="titulo-impactos">O que muda na folha da sua empresa ao adotar a escala 5×2</h2>
+      <p>Empresários de João Monlevade e de todo o Médio Piracicaba estão planejando a adequação de suas equipes à escala 5×2. Antes de alterar a jornada, entenda os principais pontos de atenção na legislação trabalhista e na rotina da folha.</p>
+    </div>
+
+    <div class="insight-matrix">
+      <article class="insight-card">
+        <div class="insight-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Horas extras e banco de horas</h3>
+        <p>Ao migrar para a escala 5×2, redistribuir a jornada sem planejamento pode gerar horas extras (mínimo de 50%) ou exigir acordo de banco de horas formalizado. Um ajuste estruturado evita passivos trabalhistas.</p>
+      </article>
+      <article class="insight-card">
+        <div class="insight-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </div>
+        <h3>DSR, domingos e adicional noturno</h3>
+        <p>A organização das folgas semanais, o controle do DSR, o revezamento aos fins de semana na 5×2 e o adicional noturno (22h às 5h) exigem acompanhamento técnico para manter a operação em conformidade.</p>
+      </article>
+      <article class="insight-card">
+        <div class="insight-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+        </div>
+        <h3>Convenção coletiva e acordos</h3>
+        <p>A convenção coletiva da sua categoria pode definir regras específicas para a escala 5×2 com revezamento, compensação de jornada ou adoção da 12×36. Validar cada detalhe antes da mudança protege a empresa.</p>
+      </article>
+    </div>
+
+    <div class="cta-band">
+      <div>
+        <h3>O sucesso da sua empresa começa aqui.</h3>
+        <p>A Contabilidade Líder analisa a escala da sua equipe e orienta a adequação segura à escala 5×2, com conformidade trabalhista, organização de jornada e atendimento próximo em João Monlevade e região.</p>
+      </div>
+      <button type="button" class="btn btn-primary" onclick="agendarConsultoria()">
+        Agendar consultoria
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Footer unificado com index.html -->
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
       <div>
-        <a href="index.html" class="logo-link" aria-label="Contabilidade Líder - Voltar à página inicial">
+        <a href="index.html" class="footer-logo-wrap" aria-label="Contabilidade Líder - Voltar à página inicial">
           <img src="./assets/logo400p.png" alt="Contabilidade Líder - O sucesso da sua empresa começa aqui" class="logo-img-footer" width="400" height="188" />
         </a>
-        <p class="footer-about">O sucesso da sua empresa começa aqui. Mais de 45 anos oferecendo soluções contábeis, fiscais e trabalhistas em João Monlevade e no Médio Piracicaba.</p>
-        <div class="footer-crc"><i class="fa-solid fa-id-card" aria-hidden="true"></i> <span>CRC-MG: 4623</span></div>
+        <p class="footer-about">"O sucesso da sua empresa começa aqui." Mais de 45 anos oferecendo soluções contábeis, fiscais e trabalhistas em João Monlevade e no Médio Piracicaba – MG.</p>
+        <div class="footer-crc">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F5A65B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          <span>CRC-MG 4623</span>
+          <!-- TODO: inserir CNPJ -->
+        </div>
       </div>
       <nav aria-labelledby="footer-nav-titulo">
         <h2 id="footer-nav-titulo">Navegação</h2>
@@ -854,26 +1153,35 @@
       <div>
         <h2>Contato</h2>
         <ul>
-          <li>Rua Fernão Dias, 303, 5º andar, João Monlevade - MG</li>
+          <li>Rua Fernão Dias, 303, 5º andar, N. Sra. do Rosário, João Monlevade - MG, CEP 35930-180</li>
           <li><a href="tel:+553138523355">(31) 3852-3355</a></li>
-          <li>WhatsApp: (31) 98896-7713</li>
+          <li><a href="https://wa.me/5531988967713?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consultoria%20com%20a%20Contabilidade%20L%C3%ADder." target="_blank" rel="noopener noreferrer">WhatsApp: (31) 98896-7713</a></li>
           <li><a href="mailto:contato@contabilidadelider.cnt.br">contato@contabilidadelider.cnt.br</a></li>
         </ul>
-        <a href="https://instagram.com/lider.escritorio" target="_blank" rel="noopener noreferrer" class="social-pill">
-          <i class="fa-brands fa-instagram" aria-hidden="true"></i> @lider.escritorio
+        <a href="https://instagram.com/lider.escritorio" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Instagram da Contabilidade Líder">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          @lider.escritorio
         </a>
       </div>
     </div>
     <div class="footer-bottom">
       <p>© 2026 Escritório de Contabilidade Líder. Todos os direitos reservados.</p>
-      <p>João Monlevade - MG | CRC-MG 4623 | contabilidadelider.cnt.br</p>
+      <p>João Monlevade - MG · CRC-MG 4623 · <a href="mailto:contato@contabilidadelider.cnt.br" style="color:#F5A65B;">contato@contabilidadelider.cnt.br</a></p>
     </div>
   </div>
 </footer>
 
-<button type="button" class="float-cta no-print" onclick="agendarConsultoria()" aria-label="Agendar consultoria" title="Agendar consultoria">
-  <i class="fa-regular fa-calendar-check" aria-hidden="true"></i><span class="label">Agendar consultoria</span>
+<button type="button" class="float-cta no-print" onclick="agendarConsultoria()" aria-label="Agendar consultoria">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+  <span class="label">Agendar consultoria</span>
 </button>
+
+<div class="toast-region no-print" aria-live="polite" aria-atomic="true">
+  <div id="toast" class="toast" role="status">
+    <span id="toastMsg"></span>
+    <button type="button" id="toastUndo" class="toast-undo" hidden>Desfazer</button>
+  </div>
+</div>
 
 <script>
   const STORAGE_KEY = 'lider_escala_5x2_v2';
@@ -886,7 +1194,7 @@
   };
   const DIAS_SEMANA = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'];
   const LABELS = {
-    T: { titulo: 'Trabalho', desc: 'Turno ativo' },
+    T: { titulo: 'Trabalho', desc: '' },
     F: { titulo: 'Folga', desc: 'Compensação' },
     D: { titulo: 'DSR', desc: 'Descanso' },
     A: { titulo: 'Ausência', desc: 'Férias/Abono' }
@@ -897,8 +1205,14 @@
     '12x36': '12x36'
   };
 
+  function pluralizar(n, singular, plural) {
+    return `${n} ${n === 1 ? singular : plural}`;
+  }
+
   let presetAtual = '5x2';
   let colaboradores = [];
+  let ultimoSnapshot = null;
+  let toastTimer = null;
 
   const dadosExemplo = [
     { id: 1, nome: 'Carlos Eduardo', cargo: 'Atendimento', entrada: '08:00', saida: '17:24', intervalo: 60, dias: ['T', 'T', 'T', 'T', 'T', 'F', 'D'] },
@@ -906,19 +1220,86 @@
     { id: 3, nome: 'Rafael Mendes', cargo: 'Estoque / Logística', entrada: '09:00', saida: '18:24', intervalo: 60, dias: ['T', 'T', 'T', 'T', 'T', 'F', 'D'] }
   ];
 
-  /* Menu mobile e sombra da navbar */
+  /* Toast estilo Sonner (interruptível com Desfazer) */
+  const toastEl = document.getElementById('toast');
+  const toastMsg = document.getElementById('toastMsg');
+  const toastUndo = document.getElementById('toastUndo');
+
+  function mostrarToast(msg, onUndo = null) {
+    clearTimeout(toastTimer);
+    toastMsg.textContent = msg;
+    if (onUndo) {
+      toastUndo.hidden = false;
+      toastUndo.onclick = () => {
+        onUndo();
+        esconderToast();
+      };
+    } else {
+      toastUndo.hidden = true;
+      toastUndo.onclick = null;
+    }
+    toastEl.classList.add('is-open');
+    toastTimer = setTimeout(esconderToast, onUndo ? 5500 : 3200);
+  }
+  function esconderToast() {
+    clearTimeout(toastTimer);
+    toastEl.classList.remove('is-open');
+  }
+
+  /* Drawer Mobile com backdrop e restauração de foco */
   const menuBtn = document.getElementById('menuBtn');
   const closeMenu = document.getElementById('closeMenu');
   const mobileMenu = document.getElementById('mobileMenu');
-  function openMobileMenu() { mobileMenu.classList.add('open'); menuBtn.setAttribute('aria-expanded', 'true'); }
-  function closeMobileMenu() { mobileMenu.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); }
+  const drawerBackdrop = document.getElementById('drawerBackdrop');
+
+  function openMobileMenu() {
+    mobileMenu.classList.add('open');
+    drawerBackdrop.classList.add('open');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    menuBtn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    closeMenu.focus();
+  }
+  function closeMobileMenu() {
+    if (!mobileMenu.classList.contains('open')) return;
+    mobileMenu.classList.remove('open');
+    drawerBackdrop.classList.remove('open');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
   menuBtn.addEventListener('click', openMobileMenu);
-  closeMenu.addEventListener('click', closeMobileMenu);
+  closeMenu.addEventListener('click', () => { closeMobileMenu(); menuBtn.focus(); });
+  drawerBackdrop.addEventListener('click', closeMobileMenu);
   document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', closeMobileMenu));
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMobileMenu(); });
-  window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
-  }, { passive: true });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      closeMobileMenu();
+      menuBtn.focus();
+    }
+  });
+
+  /* Sombra navbar + barra de progresso do stepper */
+  const navbarEl = document.getElementById('navbar');
+  const progressEl = document.getElementById('stepperProgress');
+  function atualizarScrollUI() {
+    navbarEl.classList.toggle('scrolled', window.scrollY > 24);
+    const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const pct = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+    progressEl.style.transform = `scaleX(${pct})`;
+  }
+  window.addEventListener('scroll', atualizarScrollUI, { passive: true });
+
+  /* Sombra condicional de scroll horizontal na tabela */
+  const tableShell = document.getElementById('tableShell');
+  const tableWrapper = document.getElementById('tableWrapper');
+  function atualizarSombraTabela() {
+    if (!tableShell || !tableWrapper) return;
+    const canScrollRight = (tableWrapper.scrollWidth - tableWrapper.clientWidth - tableWrapper.scrollLeft) > 8;
+    tableShell.classList.toggle('can-scroll-right', canScrollRight);
+  }
+  tableWrapper.addEventListener('scroll', atualizarSombraTabela, { passive: true });
+  window.addEventListener('resize', atualizarSombraTabela, { passive: true });
 
   /* Indicador de etapa ativa (1 Configurar → 2 Equipe → 3 Resultado) */
   function configurarStepper() {
@@ -933,7 +1314,7 @@
           if (ativo) l.setAttribute('aria-current', 'step'); else l.removeAttribute('aria-current');
         });
       });
-    }, { rootMargin: '-40% 0px -55% 0px' });
+    }, { rootMargin: '-38% 0px -55% 0px' });
     links.forEach(l => {
       const alvo = document.getElementById(l.dataset.step);
       if (alvo) observer.observe(alvo);
@@ -966,7 +1347,7 @@
     const limite = obterLimiteSemanal();
     const { entrada, saida } = horarioPadrao5x2(limite);
     document.querySelectorAll('[data-meta-5x2]').forEach(el => {
-      el.textContent = `${entrada}–${saida} • ${limite}h/sem`;
+      el.textContent = `${entrada}–${saida} · ${limite}h/sem`;
     });
   }
 
@@ -974,7 +1355,6 @@
     const entradaEl = document.getElementById('colabEntrada');
     const saidaEl = document.getElementById('colabSaida');
     if (!entradaEl || !saidaEl) return;
-
     if (presetAtual === '12x36') {
       entradaEl.value = '07:00';
       saidaEl.value = '19:00';
@@ -1021,6 +1401,8 @@
     renderTabela();
     configurarDropzone();
     configurarStepper();
+    atualizarScrollUI();
+    atualizarSombraTabela();
   }
 
   function salvarDados() {
@@ -1062,6 +1444,7 @@
     return `${h}h${m > 0 ? String(m).padStart(2, '0') : ''}`;
   }
 
+
   function validarColaborador(c, limiteHoras) {
     const horasDia = calcularHorasDiarias(c.entrada, c.saida, c.intervalo);
     const diasTrabalhados = c.dias.filter(d => d === 'T').length;
@@ -1083,7 +1466,6 @@
     return { horasDia, diasTrabalhados, horasSemana, alertas };
   }
 
-  /* Resumo da equipe usado pelos KPIs e pela exportação */
   function calcularResumo() {
     const limiteHoras = obterLimiteSemanal();
     let somaHoras = 0;
@@ -1102,7 +1484,6 @@
 
     const total = colaboradores.length;
     const media = total ? somaHoras / total : 0;
-
     return { limiteHoras, total, somaHoras, media, coberturaSab, domingosTrabalhados, colabsComAlerta, totalAlertas };
   }
 
@@ -1146,6 +1527,7 @@
 
     salvarDados();
     renderTabela();
+    mostrarToast(`Modelo ${nomePreset()} aplicado à equipe.`);
   }
 
   function gerarEscala() {
@@ -1178,12 +1560,23 @@
     document.getElementById('colabNome').focus();
     salvarDados();
     renderTabela();
+    mostrarToast(`${nome} adicionado à escala.`);
   }
 
   function removerColaborador(id) {
+    const alvo = colaboradores.find(c => c.id === id);
+    if (!alvo) return;
+    ultimoSnapshot = JSON.parse(JSON.stringify(colaboradores));
     colaboradores = colaboradores.filter(c => c.id !== id);
     salvarDados();
     renderTabela();
+    mostrarToast(`${alvo.nome} removido da escala.`, () => {
+      if (!ultimoSnapshot) return;
+      colaboradores = ultimoSnapshot;
+      ultimoSnapshot = null;
+      salvarDados();
+      renderTabela();
+    });
   }
 
   function alternarDia(colabId, diaIndex) {
@@ -1199,6 +1592,7 @@
   }
 
   function resetarExemplo() {
+    ultimoSnapshot = JSON.parse(JSON.stringify(colaboradores));
     presetAtual = '5x2';
     document.getElementById('limiteSemanal').value = '42';
     colaboradores = JSON.parse(JSON.stringify(dadosExemplo));
@@ -1207,7 +1601,18 @@
     sincronizarFormularioTurno();
     salvarDados();
     renderTabela();
+    mostrarToast('Equipe de exemplo restaurada.', () => {
+      if (!ultimoSnapshot) return;
+      colaboradores = ultimoSnapshot;
+      ultimoSnapshot = null;
+      salvarDados();
+      renderTabela();
+    });
   }
+
+  const TRASH_SVG = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>';
+  const OK_SVG = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+  const WARN_SVG = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
 
   function renderTabela() {
     const tbody = document.getElementById('tabelaEscalaBody');
@@ -1222,8 +1627,8 @@
       const { horasDia, horasSemana, alertas } = validarColaborador(c, limiteHoras);
 
       const statusHtml = alertas.length === 0
-        ? `<span class="alert-badge alert-ok"><i class="fa-solid fa-check" aria-hidden="true"></i> Regular</span>`
-        : `<span class="alert-badge alert-warn" title="${escapeHtml(alertas.join(' | '))}"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> ${escapeHtml(alertas[0])}${alertas.length > 1 ? ` +${alertas.length - 1}` : ''}</span>`;
+        ? `<span class="alert-badge alert-ok">${OK_SVG} Regular</span>`
+        : `<span class="alert-badge alert-warn" title="${escapeHtml(alertas.join(' | '))}">${WARN_SVG} ${escapeHtml(alertas[0])}${alertas.length > 1 ? ` +${alertas.length - 1}` : ''}</span>`;
 
       const celulas = c.dias.map((estado, idx) => {
         const domingoTrabalhado = idx === 6 && estado === 'T';
@@ -1252,7 +1657,7 @@
         <td>${statusHtml}</td>
         <td class="no-print">
           <button type="button" class="btn-icon-del" onclick="removerColaborador(${c.id})" title="Remover" aria-label="Remover ${escapeHtml(c.nome)}">
-            <i class="fa-solid fa-trash" aria-hidden="true"></i>
+            ${TRASH_SVG}
           </button>
         </td>
       `;
@@ -1260,26 +1665,25 @@
     });
 
     atualizarKPIs(calcularResumo());
+    atualizarSombraTabela();
   }
 
   function atualizarKPIs(r) {
     document.getElementById('kpiTotalColab').textContent = r.total;
-    document.getElementById('kpiSabado').textContent = `Sábado: ${r.coberturaSab} pessoa(s)`;
+    document.getElementById('kpiSabado').textContent = `Sábado: ${pluralizar(r.coberturaSab, 'pessoa', 'pessoas')}`;
     document.getElementById('kpiHorasTotais').textContent = formatarHoras(r.somaHoras);
     document.getElementById('kpiMediaHoras').textContent = formatarHoras(r.media);
-    document.getElementById('kpiLimite').textContent = `Limite: ${r.limiteHoras}h`;
+    document.getElementById('kpiLimite').textContent = `Limite: ${r.limiteHoras}h/sem`;
     document.getElementById('kpiDomingo').textContent = r.domingosTrabalhados;
 
     document.getElementById('kpiAlertas').textContent = r.colabsComAlerta;
     document.getElementById('kpiAlertasSub').textContent = r.colabsComAlerta
-      ? `${r.totalAlertas} alerta(s) na equipe`
+      ? `${pluralizar(r.totalAlertas, 'alerta', 'alertas')} na equipe`
       : 'Nenhum alerta';
     document.getElementById('kpiAlertasBox').classList.toggle('has-alerts', r.colabsComAlerta > 0);
   }
 
-  /* =========================================================
-     IMPORTAÇÃO DE PLANILHA (.XLSX, .XLS, .CSV)
-     ========================================================= */
+  /* ===== Importação de planilha (.XLSX, .XLS, .CSV) ===== */
   function configurarDropzone() {
     const dropzone = document.getElementById('dropzonePlanilha');
     if (!dropzone) return;
@@ -1318,23 +1722,17 @@
   }
 
   function normalizarTexto(txt) {
-    return String(txt ?? '')
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .trim()
-      .toLowerCase();
+    return String(txt ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().toLowerCase();
   }
 
   function normalizarHora(valor, fallback = '08:00') {
     if (valor === undefined || valor === null || valor === '') return fallback;
-
     if (typeof valor === 'number' && valor >= 0 && valor < 1) {
       const totalMin = Math.round(valor * 24 * 60);
       const hh = String(Math.floor(totalMin / 60) % 24).padStart(2, '0');
       const mm = String(totalMin % 60).padStart(2, '0');
       return `${hh}:${mm}`;
     }
-
     const str = String(valor).trim();
     const match = str.match(/(\d{1,2})[:h](\d{2})?/i);
     if (match) {
@@ -1403,7 +1801,6 @@
       return;
     }
 
-    // Localiza a linha de cabeçalho (aceita planilhas com títulos nas primeiras linhas)
     let headerIdx = -1;
     for (let i = 0; i < Math.min(10, matriz.length); i++) {
       const rowNorm = matriz[i].map(normalizarTexto);
@@ -1470,12 +1867,7 @@
 
       importados.push({
         id: Date.now() + r + Math.floor(Math.random() * 1000),
-        nome,
-        cargo,
-        entrada,
-        saida,
-        intervalo,
-        dias
+        nome, cargo, entrada, saida, intervalo, dias
       });
     }
 
@@ -1485,15 +1877,11 @@
     }
 
     const modo = document.querySelector('input[name="modoImportacao"]:checked')?.value || 'substituir';
-    if (modo === 'substituir') {
-      colaboradores = importados;
-    } else {
-      colaboradores = [...colaboradores, ...importados];
-    }
+    colaboradores = modo === 'substituir' ? importados : [...colaboradores, ...importados];
 
     salvarDados();
     renderTabela();
-    mostrarStatusImportacao(`Sucesso! ${importados.length} colaborador(es) importado(s) e escala recalculada.`, true);
+    mostrarStatusImportacao(`Sucesso! ${pluralizar(importados.length, 'colaborador importado', 'colaboradores importados')} e escala recalculada.`, true);
   }
 
   function handleArquivoPlanilha(file) {
@@ -1517,10 +1905,7 @@
       reader.readAsArrayBuffer(file);
     } else if (ext === 'csv') {
       const reader = new FileReader();
-      reader.onload = (e) => {
-        const matriz = parseCSVFallback(e.target.result);
-        processarLinhasPlanilha(matriz);
-      };
+      reader.onload = (e) => processarLinhasPlanilha(parseCSVFallback(e.target.result));
       reader.readAsText(file, 'UTF-8');
     } else {
       mostrarStatusImportacao('Biblioteca Excel indisponível offline. Utilize um arquivo .CSV ou verifique sua conexão.', false);
@@ -1557,7 +1942,7 @@
 
   function exportarCSV() {
     if (!colaboradores.length) {
-      alert('Adicione pelo menos um colaborador antes de exportar.');
+      mostrarToast('Adicione pelo menos um colaborador antes de exportar.');
       return;
     }
 
@@ -1616,13 +2001,14 @@
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
+    mostrarToast('Planilha CSV exportada com sucesso.');
   }
 
   function agendarConsultoria() {
     const empresa = document.getElementById('nomeEmpresa').value.trim();
     const limite = obterLimiteSemanal();
     const texto = `Olá, equipe da Contabilidade Líder! Usei o Simulador de Escala 5x2 do site${empresa ? ` (empresa *${empresa}*)` : ''} ` +
-      `com ${colaboradores.length} colaborador(es), modelo base *${nomePreset()}* (limite ${limite}h/sem). ` +
+      `com ${pluralizar(colaboradores.length, 'colaborador', 'colaboradores')}, modelo base *${nomePreset()}* (limite ${limite}h/sem). ` +
       `Gostaria de agendar uma consultoria sobre adequação à escala 5x2 e folha de pagamento.`;
     window.open(`https://wa.me/5531988967713?text=${encodeURIComponent(texto)}`, '_blank', 'noopener,noreferrer');
   }

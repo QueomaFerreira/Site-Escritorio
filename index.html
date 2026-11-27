@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contabilidade Líder | Escritório de Contabilidade em João Monlevade - MG</title>
-<meta name="description" content="Escritório de Contabilidade Líder em João Monlevade - MG. Há mais de 45 anos oferecendo soluções contábeis, fiscais, trabalhistas e financeiras para o crescimento do seu negócio. CRC-MG 4623.">
-<meta name="theme-color" content="#59432B">
+<meta name="description" content="Escritório de Contabilidade Líder em João Monlevade - MG. Há mais de 45 anos oferecendo soluções contábeis, fiscais, trabalhistas e financeiras para empresas do Médio Piracicaba. CRC-MG 4623.">
+<meta name="theme-color" content="#3B2C1C">
 <link rel="canonical" href="https://contabilidadelider.cnt.br/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://contabilidadelider.cnt.br/">
 <meta property="og:site_name" content="Contabilidade Líder">
-<meta name="twitter:card" content="summary">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:title" content="Contabilidade Líder | João Monlevade - MG">
-<meta property="og:description" content="Mais de 45 anos de tradição e confiança em contabilidade, fiscal, trabalhista e consultoria financeira em João Monlevade - MG.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FAF8F5'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='%23E48224' stroke-width='7' stroke-dasharray='7 3'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%2359432B'/%3E%3C/svg%3E">
+<meta property="og:description" content="Mais de 45 anos de tradição e confiança em contabilidade, fiscal, trabalhista e consultoria financeira em João Monlevade e região do Médio Piracicaba.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FAF8F4'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='%23E48224' stroke-width='7' stroke-dasharray='7 3'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%2359432B'/%3E%3C/svg%3E">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -55,240 +55,357 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
 <style>
   :root {
+    /* Paleta oficial Contabilidade Líder */
+    --espresso: #231910;
+    --dark-brown: #3B2C1C;
+    --brown: #59432B;
     --orange: #E48224;
     --dark-orange: #C96E18;
-    --brown: #59432B;
-    --dark-brown: #3B2C1C;
-    --light: #FAF8F5;
-    --cream: #F8F7F4;
-    --gray-600: #4B5563;
-    --gray-200: #E5E7EB;
-    --hairline: #E5E0D8;
-    --silver: #A8AAAD;
+    --deep-orange: #A85710;
+    --on-orange: #231910;
     --gold: #F59E0B;
     --gold-soft: #FEF3C7;
+    --silver: #A8AAAD;
+
+    /* Superfícies & texto */
+    --paper: #FAF8F4;
+    --cream: #F3EFE7;
     --surface: #FFFFFF;
-    --radius-card: 16px;
-    --shadow-sm: 0 4px 16px rgba(59, 44, 28, 0.06);
-    --shadow-md: 0 12px 30px rgba(59, 44, 28, 0.10);
+    --ink: #231910;
+    --ink-muted: #5C5248;
+    --ink-subtle: #786E63;
+    --hairline: rgba(59, 44, 28, 0.11);
+    --hairline-strong: rgba(59, 44, 28, 0.20);
+    --hairline-dark: rgba(255, 255, 255, 0.12);
+
+    /* Tipografia */
+    --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    /* Motion tokens (Emil Kowalski design engineering) */
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+    --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+    /* Elevação quente em camadas */
+    --shadow-sm: 0 1px 2px rgba(35, 25, 16, 0.05), 0 4px 12px -4px rgba(35, 25, 16, 0.06);
+    --shadow-md: 0 2px 6px rgba(35, 25, 16, 0.05), 0 14px 32px -12px rgba(35, 25, 16, 0.12);
+    --shadow-lg: 0 4px 10px rgba(35, 25, 16, 0.06), 0 24px 56px -16px rgba(35, 25, 16, 0.18);
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 22px;
   }
+
   *, *::before, *::after { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 5.25rem; }
   body {
     margin: 0;
-    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: #ffffff;
-    color: #1F2937;
-    line-height: 1.5;
+    font-family: var(--font-sans);
+    background: var(--surface);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
   a { color: inherit; text-decoration: none; }
-  ul { list-style: none; margin: 0; padding: 0; }
+  ul, ol { list-style: none; margin: 0; padding: 0; }
   h1, h2, h3, h4, p { margin: 0; }
-  button, input, select, textarea { font-family: inherit; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  img, svg { display: block; }
 
   .container {
-    max-width: 1280px;
+    max-width: 1240px;
     margin: 0 auto;
     padding: 0 1.25rem;
   }
-  @media (min-width: 640px) { .container { padding: 0 1.5rem; } }
-  @media (min-width: 1024px) { .container { padding: 0 2rem; } }
+  @media (min-width: 640px) { .container { padding: 0 1.75rem; } }
+  @media (min-width: 1024px) { .container { padding: 0 2.5rem; } }
 
-  /* Accessibility */
+  /* Acessibilidade */
   .skip-link {
-    position: absolute;
+    position: fixed;
     left: -9999px;
     top: 1rem;
-    z-index: 100;
+    z-index: 120;
     background: var(--orange);
-    color: #2B1F13;
+    color: var(--on-orange);
     font-weight: 700;
-    padding: 0.5rem 1rem;
-    border-radius: 0.375rem;
-    font-weight: 700;
+    font-size: 0.875rem;
+    padding: 0.6rem 1.1rem;
+    border-radius: 9999px;
+    box-shadow: var(--shadow-md);
   }
   .skip-link:focus { left: 1rem; }
-  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, .service-card:focus-visible {
+  :focus-visible {
     outline: 2px solid var(--orange);
-    outline-offset: 2px;
+    outline-offset: 3px;
   }
 
-  /* Safe progressive fade-in */
-  html.has-js .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.65s ease, transform 0.65s ease;
+  /* Micro-textura orgânica sutil nas superfícies editoriais */
+  .surface-paper {
+    position: relative;
+    background-color: var(--paper);
+    background-image:
+      radial-gradient(ellipse 70% 55% at 88% 8%, rgba(228, 130, 36, 0.08), transparent 65%),
+      radial-gradient(ellipse 55% 45% at 8% 92%, rgba(89, 67, 43, 0.05), transparent 65%);
   }
-  html.has-js .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
+  .surface-paper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.022;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
+  .surface-paper > * { position: relative; z-index: 1; }
 
-  /* Navbar */
+  /* ===== Navbar unificada ===== */
   .navbar {
-    position: fixed;
-    top: 0; left: 0; right: 0;
+    position: sticky;
+    top: 0;
     z-index: 50;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 4px 20px rgba(59, 44, 28, 0.12);
-    border-bottom: 1px solid rgba(228, 130, 36, 0.15);
-    transition: box-shadow 0.3s ease;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: saturate(1.4) blur(12px);
+    -webkit-backdrop-filter: saturate(1.4) blur(12px);
+    border-bottom: 1px solid var(--hairline);
+    transition: box-shadow 240ms var(--ease-out), border-color 240ms var(--ease-out);
   }
-  .navbar.scrolled { box-shadow: 0 6px 24px rgba(59, 44, 28, 0.22); }
+  .navbar.scrolled {
+    box-shadow: 0 8px 28px -12px rgba(35, 25, 16, 0.14);
+    border-bottom-color: rgba(59, 44, 28, 0.14);
+  }
   .navbar-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 5rem;
+    height: 4.75rem;
+    gap: 1.5rem;
   }
-  .logo-link { display: inline-flex; align-items: center; flex-shrink: 0; }
-  .logo-img { display: block; max-height: 40px; width: auto; height: auto; object-fit: contain; }
+  .logo-link {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 8px;
+  }
+  .logo-img {
+    max-height: 40px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
   @media (min-width: 768px) { .logo-img { max-height: 52px; } }
-  .logo-img-about { display: block; max-width: 280px; width: 100%; height: auto; object-fit: contain; }
-  .logo-img-footer { display: block; max-height: 54px; width: auto; height: auto; object-fit: contain; }
+  .logo-img-about { max-width: 240px; width: 100%; height: auto; object-fit: contain; }
+  .logo-img-footer { max-height: 52px; width: auto; height: auto; object-fit: contain; }
+
   .nav-links {
     display: none;
     align-items: center;
-    gap: 2rem;
+    gap: 1.75rem;
   }
   .nav-link {
     position: relative;
     color: var(--dark-brown);
+    font-size: 0.9rem;
     font-weight: 600;
-    transition: color 0.2s ease;
+    padding: 0.35rem 0;
+    transition: color 180ms ease;
   }
-  .nav-link:hover { color: var(--orange); }
   .nav-link::after {
     content: '';
     position: absolute;
-    bottom: -4px;
     left: 0;
-    width: 0;
-    height: 2px;
+    right: 0;
+    bottom: -2px;
+    height: 1.5px;
     background: var(--orange);
-    transition: width 0.3s ease;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 220ms var(--ease-out);
   }
-  .nav-link:hover::after { width: 100%; }
+  .nav-link-tool {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--espresso);
+    font-weight: 700;
+  }
+  .nav-badge {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding: 0.12rem 0.5rem;
+    border-radius: 9999px;
+    background: var(--gold-soft);
+    color: #854D0E;
+    border: 1px solid rgba(245, 158, 11, 0.45);
+  }
   .menu-btn {
-    background: none;
-    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    border: 1px solid var(--hairline);
     color: var(--dark-brown);
-    font-size: 1.5rem;
     cursor: pointer;
-    padding: 0.25rem;
+    transition: background-color 160ms ease, transform 160ms var(--ease-out);
   }
+  .menu-btn:active { transform: scale(0.95); }
   @media (min-width: 1024px) {
     .nav-links { display: flex; }
     .menu-btn { display: none; }
   }
 
-  /* Mobile menu */
+  /* Drawer Mobile com backdrop + curva iOS */
+  .drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 55;
+    background: rgba(35, 25, 16, 0.44);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 220ms var(--ease-out), visibility 220ms;
+  }
+  .drawer-backdrop.open { opacity: 1; visibility: visible; }
   .mobile-menu {
     position: fixed;
-    top: 0; right: 0;
-    width: 18rem;
-    height: 100vh;
-    background: var(--light);
-    box-shadow: -10px 0 30px rgba(0,0,0,0.15);
-    border-left: 1px solid rgba(228, 130, 36, 0.2);
+    top: 0;
+    right: 0;
+    width: min(20rem, 86vw);
+    height: 100dvh;
+    background: var(--paper);
+    border-left: 1px solid var(--hairline);
+    box-shadow: -16px 0 40px rgba(35, 25, 16, 0.22);
     z-index: 60;
     padding: 1.5rem;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-  }
-  .mobile-menu.open { transform: translateX(0); }
-  .close-menu {
-    position: absolute;
-    top: 1rem; right: 1rem;
-    background: none; border: none;
-    color: var(--dark-brown);
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-  .mobile-nav-list {
-    margin-top: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform 360ms var(--ease-drawer), visibility 360ms;
   }
-  .mobile-link {
-    color: var(--dark-brown);
-    font-weight: 600;
-    font-size: 1.05rem;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(228, 130, 36, 0.2);
-  }
-
-  /* Buttons */
-  .btn-primary {
-    background: linear-gradient(135deg, #E48224 0%, #C96E18 100%);
-    color: #2B1F13;
-    font-weight: 700;
-    border: none;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    transition: all 0.3s ease;
-  }
-  .btn-primary:hover {
-    background: linear-gradient(135deg, #C96E18 0%, #B05D12 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(228, 130, 36, 0.35);
-  }
-  .btn-nav { padding: 0.625rem 1.5rem; border-radius: 9999px; font-weight: 600; }
-  .btn-lg { padding: 1rem 2rem; border-radius: 9999px; font-size: 1.05rem; }
-  .btn-secondary {
-    background: rgba(255, 255, 255, 0.75);
-    border: 2px solid rgba(89, 67, 43, 0.3);
-    color: var(--dark-brown);
-    padding: 1rem 2rem;
-    border-radius: 9999px;
-    font-weight: 700;
-    font-size: 1.05rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    transition: background 0.2s ease;
-  }
-  .btn-secondary:hover { background: #fff; }
-
-  /* Hero */
-  .hero-bg {
-    position: relative;
-    overflow: hidden;
-    min-height: 100vh;
+  .mobile-menu.open { transform: translateX(0); visibility: visible; }
+  .mobile-menu-head {
     display: flex;
     align-items: center;
-    padding: 6.5rem 0 4rem;
-    background: linear-gradient(135deg, var(--cream) 0%, var(--light) 50%, #F3EEE6 100%);
+    justify-content: space-between;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--hairline);
   }
-  .hero-bg::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(circle at 15% 80%, rgba(228, 130, 36, 0.12) 0%, transparent 40%),
-      radial-gradient(circle at 85% 20%, rgba(89, 67, 43, 0.10) 0%, transparent 40%);
-    z-index: 0;
+  .close-menu {
+    width: 2.25rem;
+    height: 2.25rem;
+    display: inline-grid;
+    place-items: center;
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    color: var(--dark-brown);
+    cursor: pointer;
+    transition: background-color 160ms ease, transform 160ms var(--ease-out);
   }
-  .hero-illustration {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    pointer-events: none;
+  .close-menu:active { transform: scale(0.95); }
+  .mobile-nav-list {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
   }
-  .hero-content { position: relative; z-index: 2; width: 100%; }
+  .mobile-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--dark-brown);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid var(--hairline);
+    transition: color 160ms ease;
+  }
+
+  /* ===== Botões com press feedback ===== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    line-height: 1.2;
+    padding: 0.85rem 1.5rem;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease,
+      box-shadow 200ms var(--ease-out),
+      transform 160ms var(--ease-out);
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn-sm { padding: 0.625rem 1.2rem; font-size: 0.875rem; }
+  .btn-primary {
+    background: var(--orange);
+    color: var(--on-orange);
+    box-shadow: 0 1px 2px rgba(35, 25, 16, 0.12), 0 8px 20px -8px rgba(228, 130, 36, 0.55);
+  }
+  .btn-secondary {
+    background: var(--surface);
+    color: var(--dark-brown);
+    border-color: var(--hairline-strong);
+    box-shadow: var(--shadow-sm);
+  }
+  .btn-dark {
+    background: var(--espresso);
+    color: #FFFFFF;
+  }
+  .btn-ghost-dark {
+    background: rgba(255, 255, 255, 0.08);
+    color: #FFFFFF;
+    border-color: rgba(255, 255, 255, 0.22);
+  }
+  .btn .icon-arrow {
+    transition: transform 200ms var(--ease-out);
+  }
+
+  /* Hover espacial protegido para ponteiros finos */
+  @media (hover: hover) and (pointer: fine) {
+    .nav-link:hover { color: var(--dark-orange); }
+    .nav-link:hover::after { transform: scaleX(1); }
+    .menu-btn:hover, .close-menu:hover { background-color: var(--cream); }
+    .btn-primary:hover {
+      background-color: var(--dark-orange);
+      box-shadow: 0 2px 4px rgba(35, 25, 16, 0.14), 0 12px 26px -8px rgba(201, 110, 24, 0.55);
+      transform: translateY(-1px);
+    }
+    .btn-primary:active { transform: scale(0.97); }
+    .btn-secondary:hover {
+      border-color: var(--brown);
+      background-color: var(--paper);
+      transform: translateY(-1px);
+    }
+    .btn-secondary:active { transform: scale(0.97); }
+    .btn-dark:hover { background-color: var(--brown); transform: translateY(-1px); }
+    .btn-dark:active { transform: scale(0.97); }
+    .btn-ghost-dark:hover { background-color: rgba(255, 255, 255, 0.14); border-color: rgba(255, 255, 255, 0.36); }
+    .btn:hover .icon-arrow { transform: translateX(3px); }
+  }
+
+  /* ===== Hero Editorial ===== */
+  .hero {
+    padding: clamp(3rem, 6vw, 5.25rem) 0 clamp(3.5rem, 6vw, 5.5rem);
+    border-bottom: 1px solid var(--hairline);
+    overflow: hidden;
+  }
   .hero-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -296,387 +413,803 @@
     align-items: center;
   }
   @media (min-width: 1024px) {
-    .hero-grid { grid-template-columns: 1.1fr 0.9fr; }
+    .hero-grid {
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 4rem;
+    }
   }
-  .hero-badge {
+  .hero-kicker {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    background: rgba(228, 130, 36, 0.15);
-    border: 1px solid rgba(228, 130, 36, 0.35);
-    color: var(--dark-brown);
-    padding: 0.4rem 1rem;
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    font-weight: 600;
+    gap: 0.65rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--brown);
     margin-bottom: 1.5rem;
   }
-  .hero-badge i { color: var(--dark-orange); }
+  .hero-kicker::before {
+    content: '';
+    width: 1.75rem;
+    height: 1.5px;
+    background: var(--orange);
+  }
   .hero-title {
-    font-size: clamp(2.25rem, 4.5vw, 3.75rem);
-    font-weight: 800;
-    line-height: 1.12;
-    letter-spacing: -0.02em;
-    color: var(--dark-brown);
+    font-family: var(--font-display);
+    font-size: clamp(2.45rem, 4.8vw, 4.1rem);
+    font-weight: 500;
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+    color: var(--espresso);
+    text-wrap: balance;
     margin-bottom: 1.5rem;
   }
-  .text-orange { color: var(--orange); }
-  .text-dark-orange { color: var(--dark-orange); }
-  .text-brown { color: var(--brown); }
+  .hero-title em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--dark-orange);
+  }
   .hero-desc {
-    font-size: 1.125rem;
-    color: rgba(59, 44, 28, 0.85);
-    line-height: 1.65;
-    max-width: 34rem;
+    font-size: 1.0625rem;
+    line-height: 1.68;
+    color: var(--ink-muted);
+    max-width: 54ch;
     margin-bottom: 2.25rem;
   }
   .hero-actions {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    align-items: center;
   }
-  @media (min-width: 640px) { .hero-actions { flex-direction: row; } }
-  .hero-stats {
+  .hero-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin-top: 3rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--hairline);
+    max-width: 34rem;
+  }
+  .metric-val {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 2.8vw, 2.25rem);
+    font-weight: 600;
+    line-height: 1.05;
+    color: var(--espresso);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+  .metric-val span { color: var(--dark-orange); }
+  .metric-lbl {
+    font-size: 0.8125rem;
+    color: var(--ink-subtle);
+    margin-top: 0.35rem;
+    line-height: 1.35;
+  }
+
+  /* Coreografia de entrada única do Hero (Lead -> Support -> Card) */
+  @keyframes heroRise {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes heroCardEnter {
+    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .hero-lead { animation: heroRise 480ms var(--ease-out) both; }
+  .hero-support-1 { animation: heroRise 440ms var(--ease-out) 70ms both; }
+  .hero-support-2 { animation: heroRise 420ms var(--ease-out) 120ms both; }
+  .hero-card-enter { animation: heroCardEnter 500ms var(--ease-out) 150ms both; }
+
+  /* ===== Cartão de Diagnóstico Rápido Interativo ===== */
+  .advisor-card {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+    padding: 1.65rem;
+    box-shadow: var(--shadow-lg);
+  }
+  @media (min-width: 640px) { .advisor-card { padding: 2rem; } }
+  .advisor-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .advisor-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dark-orange);
+  }
+  .advisor-title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--espresso);
+    margin-top: 0.2rem;
+    letter-spacing: -0.015em;
+  }
+  .advisor-mark {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 12px;
+    background: var(--paper);
+    border: 1px solid var(--hairline);
+    color: var(--brown);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+
+  /* Segmented Control com indicador deslizante via transform */
+  .advisor-tabs {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(89, 67, 43, 0.2);
+    gap: 0.25rem;
+    background: var(--paper);
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    padding: 0.25rem;
+    margin: 1.25rem 0;
   }
-  .stat-num { font-size: 2.25rem; font-weight: 900; color: var(--dark-orange); font-variant-numeric: tabular-nums; }
-  .stat-label { font-size: 0.875rem; color: rgba(59, 44, 28, 0.78); margin-top: 0.25rem; }
-
-  /* Hero Executive Card */
-  .hero-card-wrap { display: none; justify-content: center; }
-  @media (min-width: 1024px) { .hero-card-wrap { display: flex; } }
-  .hero-card {
+  .advisor-tab-indicator {
+    position: absolute;
+    top: 0.25rem;
+    bottom: 0.25rem;
+    left: 0.25rem;
+    width: calc((100% - 0.5rem) / 3);
+    background: var(--surface);
+    border-radius: 9px;
+    box-shadow: 0 1px 3px rgba(35, 25, 16, 0.08), 0 0 0 1px rgba(59, 44, 28, 0.08);
+    transform: translateX(calc(var(--active-idx, 0) * 100%));
+    transition: transform 240ms var(--ease-in-out);
+    pointer-events: none;
+  }
+  .advisor-tab {
     position: relative;
-    width: 100%;
-    max-width: 28rem;
-    background: rgba(255, 255, 255, 0.96);
-    padding: 2rem;
-    border-radius: 1.5rem;
-    box-shadow: 0 25px 50px -12px rgba(59, 44, 28, 0.18);
-    border: 1px solid rgba(228, 130, 36, 0.2);
+    z-index: 1;
+    background: transparent;
+    border: none;
+    padding: 0.55rem 0.35rem;
+    border-radius: 9px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ink-subtle);
+    cursor: pointer;
+    text-align: center;
+    transition: color 180ms ease, transform 140ms var(--ease-out);
   }
-  .hero-card-header {
+  .advisor-tab:active { transform: scale(0.97); }
+  .advisor-tab[aria-selected="true"] { color: var(--espresso); font-weight: 700; }
+
+  .advisor-panel {
+    min-height: 11.75rem;
+    transition: opacity 180ms var(--ease-out), filter 180ms var(--ease-out), transform 180ms var(--ease-out);
+  }
+  .advisor-panel.is-swapping {
+    opacity: 0;
+    filter: blur(2px);
+    transform: translateY(3px);
+  }
+  .advisor-panel-summary {
+    font-size: 0.925rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    margin-bottom: 1.1rem;
+  }
+  .advisor-deliverables {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 1.25rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid rgba(89, 67, 43, 0.1);
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-bottom: 1.35rem;
   }
-  .hero-card-kicker {
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--dark-orange);
+  .advisor-deliverables li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.875rem;
+    color: var(--espresso);
+    font-weight: 500;
   }
-  .hero-card-title { font-size: 1.25rem; font-weight: 700; color: var(--dark-brown); margin-top: 0.25rem; }
-  .hero-card-icon {
-    width: 3rem; height: 3rem;
-    border-radius: 1rem;
-    background: rgba(228, 130, 36, 0.15);
+  .advisor-deliverables svg {
     color: var(--dark-orange);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.25rem;
-  }
-  .hero-card-list { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
-  .hero-card-item { display: flex; align-items: flex-start; gap: 0.75rem; }
-  .hero-card-bullet {
-    width: 1.75rem; height: 1.75rem;
-    border-radius: 9999px;
-    background: rgba(228, 130, 36, 0.15);
-    color: var(--dark-orange);
-    display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
-    font-size: 0.75rem;
-    margin-top: 0.125rem;
+    margin-top: 0.15rem;
   }
-  .hero-card-item strong { display: block; color: var(--dark-brown); font-size: 0.9rem; }
-  .hero-card-item span { color: var(--gray-600); font-size: 0.8rem; }
-  .hero-card-footer {
-    background: rgba(253, 242, 228, 0.9);
-    border-radius: 1rem;
-    padding: 1rem;
+  .advisor-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
+    flex-wrap: wrap;
+    padding-top: 1.15rem;
+    border-top: 1px solid var(--hairline);
   }
-  .btn-wa-sm {
-    background: #16A34A;
-    color: #fff;
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 0.625rem 1rem;
-    border-radius: 9999px;
+  .advisor-location strong { display: block; font-size: 0.8125rem; color: var(--espresso); }
+  .advisor-location span { font-size: 0.75rem; color: var(--ink-subtle); }
+
+  /* ===== Seções editoriais ===== */
+  .section { padding: clamp(4rem, 7vw, 6.25rem) 0; }
+  .section-bordered { border-top: 1px solid var(--hairline); }
+  .eyebrow-row {
     display: inline-flex;
     align-items: center;
-    gap: 0.375rem;
-    white-space: nowrap;
-  }
-  .btn-wa-sm:hover { background: #15803D; }
-
-  /* Sections */
-  .section { padding: 5.5rem 0; }
-  .bg-white { background: #ffffff; }
-  .bg-cream { background: var(--cream); }
-  .section-header { text-align: center; margin-bottom: 4rem; }
-  .pill {
-    display: inline-block;
-    padding: 0.375rem 1rem;
-    border-radius: 9999px;
-    font-size: 0.85rem;
+    gap: 0.6rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--dark-orange);
+    margin-bottom: 0.9rem;
   }
-  .pill-cream { background: var(--cream); color: var(--dark-orange); }
-  .pill-orange { background: var(--orange); color: #2B1F13; }
-  .pill-brown { background: var(--brown); color: #fff; }
+  .eyebrow-row span.idx {
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-subtle);
+  }
+  .section-head-split {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    align-items: end;
+    margin-bottom: 3rem;
+  }
+  @media (min-width: 1024px) {
+    .section-head-split {
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3rem;
+      margin-bottom: 3.5rem;
+    }
+  }
   .section-title {
-    font-size: clamp(1.875rem, 3.5vw, 3rem);
-    font-weight: 900;
-    color: var(--brown);
-    margin-bottom: 1rem;
-    line-height: 1.15;
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 3.4vw, 2.85rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--espresso);
+    text-wrap: balance;
   }
-  .section-subtitle {
-    color: var(--gray-600);
-    font-size: 1.125rem;
-    max-width: 42rem;
-    margin: 0 auto;
+  .section-title em { font-style: italic; color: var(--dark-orange); }
+  .section-lead {
+    font-size: 1rem;
+    color: var(--ink-muted);
+    line-height: 1.65;
+    max-width: 52ch;
   }
 
-  /* About */
+  /* Revelação progressiva em grupo com stagger não-uniforme */
+  html.has-js .reveal {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 420ms var(--ease-out), transform 420ms var(--ease-out);
+    transition-delay: var(--delay, 0ms);
+  }
+  html.has-js .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== Sobre Nós ===== */
   .about-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 3.5rem;
-    align-items: center;
+    gap: 3rem;
+    align-items: start;
   }
-  @media (min-width: 1024px) { .about-grid { grid-template-columns: 1fr 1fr; } }
-  .about-box {
-    background: linear-gradient(135deg, var(--cream) 0%, #fff 100%);
-    padding: 2rem;
-    border-radius: 1.5rem;
-    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.08);
-    border: 1px solid rgba(228, 130, 36, 0.12);
+  @media (min-width: 1024px) {
+    .about-grid {
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 4.5rem;
+    }
   }
-  .about-stats-grid {
+  .about-copy p {
+    font-size: 1.025rem;
+    color: var(--ink-muted);
+    line-height: 1.72;
+    max-width: 58ch;
+    margin-top: 1.25rem;
+  }
+  .pillars-list {
+    margin-top: 2.25rem;
+    border-top: 1px solid var(--hairline);
+  }
+  .pillar-item {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2.5rem 1fr;
     gap: 1rem;
-    margin-top: 1.5rem;
+    padding: 1.15rem 0;
+    border-bottom: 1px solid var(--hairline);
+    align-items: start;
   }
-  .about-stat {
-    padding: 1.5rem;
-    border-radius: 1rem;
-    color: #fff;
-  }
-  .about-stat.orange { background: var(--orange); }
-  .about-stat.brown { background: var(--brown); }
-  .about-stat i { font-size: 2rem; margin-bottom: 0.75rem; display: block; }
-  .about-stat .num { font-size: 1.875rem; font-weight: 900; }
-  .about-stat .lbl { font-size: 0.875rem; opacity: 0.95; }
-  .about-text { color: var(--gray-600); font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.5rem; }
-  .check-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
-  .check-item { display: flex; align-items: flex-start; gap: 1rem; }
-  .check-icon {
-    width: 2.5rem; height: 2.5rem;
-    border-radius: 9999px;
-    background: rgba(228, 130, 36, 0.12);
+  .pillar-num {
+    font-size: 0.78rem;
+    font-weight: 700;
     color: var(--dark-orange);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+    padding-top: 0.15rem;
   }
-  .check-item h3 { font-size: 1.1rem; font-weight: 700; color: var(--brown); }
-  .check-item p { color: var(--gray-600); font-size: 0.95rem; }
+  .pillar-item h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--espresso);
+    margin-bottom: 0.2rem;
+  }
+  .pillar-item p {
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    margin-top: 0;
+    line-height: 1.55;
+  }
 
-  /* Services */
-  .services-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  @media (min-width: 768px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .services-grid { grid-template-columns: repeat(4, 1fr); } }
-  .service-card {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 0.75rem;
+  .about-panel {
+    background: var(--paper);
     border: 1px solid var(--hairline);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
-  }
-  .service-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px -6px rgba(0,0,0,0.1);
-    border-color: var(--orange);
-  }
-  .service-icon {
-    width: 3.5rem; height: 3.5rem;
-    border-radius: 0.5rem;
-    background: rgba(228, 130, 36, 0.12);
-    color: var(--orange);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem;
-    margin-bottom: 1.25rem;
-    transition: all 0.3s ease;
-  }
-  .service-card:hover .service-icon {
-    background: var(--orange);
-    color: #fff;
-    transform: rotate(-5deg) scale(1.06);
-  }
-  .service-card h3 { font-size: 1.125rem; font-weight: 700; color: var(--brown); margin-bottom: 0.75rem; }
-  .service-card p { font-size: 0.9rem; color: var(--gray-600); line-height: 1.6; margin-bottom: 1.25rem; }
-  .service-card ul { display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.875rem; color: var(--gray-600); }
-  .service-card li { display: flex; align-items: center; gap: 0.5rem; }
-  .service-card li i { color: var(--orange); }
-
-  /* Differentials */
-  .diff-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  @media (min-width: 768px) { .diff-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .diff-grid { grid-template-columns: repeat(3, 1fr); } }
-  .diff-card {
-    background: #fff;
+    border-radius: var(--radius-lg);
     padding: 2rem;
-    border-radius: 0.75rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .about-brand-box {
+    background: var(--surface);
     border: 1px solid var(--hairline);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-    height: 100%;
-    transition: box-shadow 0.25s ease;
-  }
-  .diff-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
-  .diff-icon {
-    width: 3rem; height: 3rem;
-    border-radius: 0.5rem;
-    background: rgba(228, 130, 36, 0.12);
-    color: var(--orange);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-  }
-  .diff-card h3 { font-size: 1.125rem; font-weight: 700; color: var(--brown); margin-bottom: 0.5rem; }
-  .diff-card p { font-size: 0.9rem; color: var(--gray-600); }
-
-  /* CTA Banner */
-  .cta-banner {
-    padding: 4rem 0;
-    background: linear-gradient(to right, var(--brown), var(--dark-brown));
-    color: #fff;
-  }
-  .cta-inner {
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
     text-align: center;
+    gap: 0.85rem;
+    margin-bottom: 1.25rem;
+  }
+  .about-brand-meta {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ink-subtle);
+    letter-spacing: 0.03em;
+  }
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+  }
+  .stat-tile {
+    padding: 1.35rem 1.25rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--hairline);
+    background: var(--surface);
+  }
+  .stat-tile.dark {
+    background: var(--espresso);
+    border-color: var(--espresso);
+    color: #FFFFFF;
+  }
+  .stat-tile .num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.05;
+    font-variant-numeric: tabular-nums;
+    color: var(--espresso);
+  }
+  .stat-tile.dark .num { color: #F5A65B; }
+  .stat-tile .lbl {
+    font-size: 0.8125rem;
+    color: var(--ink-muted);
+    margin-top: 0.35rem;
+  }
+  .stat-tile.dark .lbl { color: #DDD6CC; }
+
+  /* ===== Serviços (Editorial Cards 01–04) ===== */
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 768px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1120px) { .services-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .service-card {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-sm);
+    transition: border-color 200ms ease, box-shadow 220ms var(--ease-out), transform 220ms var(--ease-out);
+  }
+  .service-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+  .service-idx {
+    font-size: 0.78rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-subtle);
+    letter-spacing: 0.06em;
+  }
+  .service-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 10px;
+    background: var(--paper);
+    border: 1px solid var(--hairline);
+    color: var(--brown);
+    display: grid;
+    place-items: center;
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+  }
+  .service-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--espresso);
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.015em;
+  }
+  .service-card p {
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    line-height: 1.62;
+    margin-bottom: 1.5rem;
+  }
+  .service-list {
+    margin-top: auto;
+    padding-top: 1.15rem;
+    border-top: 1px solid var(--hairline);
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    font-size: 0.85rem;
+    color: var(--dark-brown);
+    font-weight: 500;
+  }
+  .service-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .service-list li::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 9999px;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .service-card:hover {
+      border-color: rgba(201, 110, 24, 0.45);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .service-card:hover .service-icon {
+      background-color: var(--orange);
+      border-color: var(--orange);
+      color: var(--on-orange);
+    }
+  }
+
+  /* ===== Product Showcase: Simulador de Escalas ===== */
+  .showcase {
+    background-color: var(--espresso);
+    background-image:
+      radial-gradient(ellipse 60% 60% at 85% 20%, rgba(228, 130, 36, 0.16), transparent 65%),
+      radial-gradient(ellipse 50% 50% at 15% 85%, rgba(89, 67, 43, 0.25), transparent 65%);
+    color: #FFFFFF;
+    padding: clamp(4rem, 7vw, 6rem) 0;
+  }
+  .showcase-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.75rem;
+    align-items: center;
   }
   @media (min-width: 1024px) {
-    .cta-inner { flex-direction: row; text-align: left; }
+    .showcase-grid {
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 3.5rem;
+    }
   }
-  .cta-banner h2 { font-size: 2.25rem; font-weight: 900; margin-bottom: 0.5rem; }
-  .cta-banner p { font-size: 1.125rem; color: rgba(255,255,255,0.9); }
-  .cta-actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
-  .btn-white {
-    background: #fff;
-    color: var(--dark-brown);
-    padding: 1rem 2rem;
-    border-radius: 9999px;
-    font-weight: 700;
-    font-size: 1.05rem;
+  .showcase-tag {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    transition: background 0.2s ease;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #F5A65B;
+    margin-bottom: 1rem;
   }
-  .btn-white:hover { background: var(--cream); }
+  .showcase h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.95rem, 3.6vw, 2.9rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: #FFFFFF;
+    text-wrap: balance;
+    margin-bottom: 1rem;
+  }
+  .showcase h2 em { font-style: italic; color: #F5A65B; }
+  .showcase-desc {
+    color: #DDD6CC;
+    font-size: 1rem;
+    line-height: 1.65;
+    max-width: 54ch;
+    margin-bottom: 1.5rem;
+  }
+  .showcase-points {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+    margin-bottom: 2rem;
+  }
+  @media (min-width: 640px) { .showcase-points { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .showcase-points li {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.875rem;
+    color: #F3EFE7;
+  }
+  .showcase-points svg { color: #F5A65B; flex-shrink: 0; }
 
-  /* Contact */
+  /* Preview fiel da ferramenta SaaS */
+  .preview-frame {
+    background: #2E2217;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    box-shadow: 0 28px 60px -20px rgba(0, 0, 0, 0.55);
+  }
+  .preview-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-bottom: 0.9rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .preview-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #F3EFE7;
+  }
+  .preview-pill {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: #15803D;
+    background: #DCFCE7;
+    padding: 0.15rem 0.55rem;
+    border-radius: 9999px;
+  }
+  .preview-kpis {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+  .preview-kpi {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 10px;
+    padding: 0.65rem 0.75rem;
+  }
+  .preview-kpi small { display: block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; color: #C2B8AC; }
+  .preview-kpi strong { display: block; font-size: 1.05rem; font-weight: 800; color: #FFFFFF; font-variant-numeric: tabular-nums; margin-top: 0.15rem; }
+  .preview-table {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 0.85rem;
+    color: var(--espresso);
+    font-size: 0.74rem;
+    overflow-x: auto;
+  }
+  .preview-row {
+    display: grid;
+    grid-template-columns: minmax(76px, 1.5fr) repeat(7, minmax(22px, 1fr));
+    gap: 0.25rem;
+    align-items: center;
+    padding: 0.38rem 0;
+  }
+  .preview-row + .preview-row { border-top: 1px solid var(--hairline); }
+  .preview-row.head {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--ink-subtle);
+    text-transform: uppercase;
+    padding-top: 0;
+  }
+  .preview-row .name { font-weight: 700; color: var(--espresso); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .p-cell {
+    display: grid;
+    place-items: center;
+    height: 1.55rem;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.66rem;
+  }
+  .p-t { background: #F4EEE6; color: var(--dark-brown); }
+  .p-f { background: #DCFCE7; color: #15803D; }
+  .p-d { background: #F1F2F3; color: #4B5563; }
+  .p-dt { background: #FEF3C7; color: #92400E; }
+
+  /* ===== Diferenciais (Grade Arquitetônica 1px) ===== */
+  .diff-matrix {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--hairline);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  @media (min-width: 768px) { .diff-matrix { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .diff-matrix { grid-template-columns: repeat(3, 1fr); } }
+  .diff-cell {
+    background: var(--surface);
+    padding: 2rem;
+    transition: background-color 180ms ease;
+  }
+  .diff-icon {
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 9px;
+    background: var(--paper);
+    border: 1px solid var(--hairline);
+    color: var(--dark-orange);
+    display: grid;
+    place-items: center;
+    margin-bottom: 1.25rem;
+  }
+  .diff-cell h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--espresso);
+    margin-bottom: 0.45rem;
+  }
+  .diff-cell p {
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .diff-cell:hover { background: var(--paper); }
+  }
+
+  /* ===== Contato & Mapa ===== */
   .contact-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2rem;
+    align-items: start;
   }
-  @media (min-width: 1024px) { .contact-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) {
+    .contact-grid { grid-template-columns: 0.95fr 1.05fr; gap: 2.5rem; }
+  }
   .contact-card {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 1.5rem;
-    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.08);
-    height: 100%;
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-sm);
   }
-  .contact-card h3 { font-size: 1.5rem; font-weight: 700; color: var(--brown); margin-bottom: 1rem; }
-  .contact-info-list { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1.5rem; }
-  .contact-info-item { display: flex; align-items: flex-start; gap: 1rem; }
-  .contact-info-icon {
-    width: 3rem; height: 3rem;
-    border-radius: 0.75rem;
-    background: rgba(228, 130, 36, 0.12);
+  @media (min-width: 640px) { .contact-card { padding: 2.25rem; } }
+  .contact-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--espresso);
+    letter-spacing: -0.015em;
+    margin-bottom: 0.4rem;
+  }
+  .contact-card-sub {
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    margin-bottom: 1.75rem;
+  }
+  .info-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--hairline);
+  }
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .info-icon {
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 10px;
+    background: var(--paper);
+    border: 1px solid var(--hairline);
     color: var(--dark-orange);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.25rem;
+    display: grid;
+    place-items: center;
     flex-shrink: 0;
   }
-  .contact-info-item h4 { font-weight: 700; color: var(--brown); margin-bottom: 0.25rem; }
-  .contact-info-item p { color: var(--gray-600); }
-  .contact-link { color: var(--dark-orange); font-weight: 600; word-break: break-word; }
-  .contact-link:hover { text-decoration: underline; }
+  .info-item h4 { font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-subtle); margin-bottom: 0.2rem; }
+  .info-item p, .info-item a { font-size: 0.95rem; color: var(--espresso); font-weight: 500; line-height: 1.5; }
+  .info-item a { color: var(--dark-orange); font-weight: 600; word-break: break-word; }
+  @media (hover: hover) and (pointer: fine) {
+    .info-item a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  }
 
-  /* Form */
-  .form-group { margin-bottom: 1.25rem; }
-  .form-row { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
-  @media (min-width: 768px) { .form-row { grid-template-columns: 1fr 1fr; } }
-  .form-label { display: block; font-size: 0.875rem; font-weight: 600; color: var(--brown); margin-bottom: 0.5rem; }
+  /* Formulário */
+  .form-group { margin-bottom: 1.1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr; gap: 1.1rem; }
+  @media (min-width: 640px) { .form-row { grid-template-columns: 1fr 1fr; } }
+  .form-label { display: block; font-size: 0.8125rem; font-weight: 600; color: var(--dark-brown); margin-bottom: 0.4rem; }
   .form-control {
     width: 100%;
-    padding: 0.75rem 1rem;
-    border-radius: 0.75rem;
-    border: 2px solid var(--gray-200);
-    font-size: 1rem;
-    background: #fff;
-    transition: border-color 0.2s ease;
+    padding: 0.72rem 0.95rem;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--hairline-strong);
+    font-size: 0.95rem;
+    background: var(--surface);
+    color: var(--ink);
+    transition: border-color 160ms ease, box-shadow 160ms ease;
   }
-  .form-control:focus { border-color: var(--orange); outline: none; }
-  .lgpd-row { display: flex; align-items: flex-start; gap: 0.625rem; margin-bottom: 1.25rem; }
-  .lgpd-row label { font-size: 0.78rem; color: var(--gray-600); line-height: 1.45; }
-  .btn-submit { width: 100%; padding: 1rem 2rem; border-radius: 0.75rem; font-size: 1.1rem; }
+  .form-control:focus {
+    outline: none;
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px rgba(228, 130, 36, 0.18);
+  }
+  .lgpd-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    margin: 0.25rem 0 1.25rem;
+  }
+  .lgpd-row input { margin-top: 0.2rem; accent-color: var(--brown); width: 1rem; height: 1rem; flex-shrink: 0; }
+  .lgpd-row label { font-size: 0.78rem; color: var(--ink-muted); line-height: 1.45; }
+  .btn-submit { width: 100%; border-radius: var(--radius-sm); padding: 0.95rem 1.5rem; }
+
   .form-status {
     margin-top: 1rem;
-    padding: 1rem;
-    border-radius: 0.75rem;
+    padding: 0.9rem 1rem;
+    border-radius: var(--radius-sm);
     background: #ECFDF5;
     border: 1px solid #A7F3D0;
     color: #065F46;
     font-size: 0.875rem;
+    transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out);
+  }
+  @starting-style {
+    .form-status { opacity: 0; transform: scale(0.97) translateY(6px); }
   }
   .hidden { display: none; }
 
-  /* Map + Fallback bar */
+  /* Mapa */
   .map-box {
-    margin-top: 3rem;
-    background: #fff;
-    padding: 0.75rem;
-    border-radius: 1.5rem;
-    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.08);
+    margin-top: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    padding: 0.65rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
   }
   .map-frame {
     width: 100%;
-    height: 380px;
+    height: 360px;
     border: 0;
-    border-radius: 1.1rem;
-    background: var(--light);
-    display: block;
+    border-radius: 15px;
+    background: var(--paper);
   }
   .map-footer {
     display: flex;
@@ -684,48 +1217,27 @@
     gap: 0.75rem;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 1rem 0.5rem 0.25rem;
+    padding: 0.95rem 0.65rem 0.35rem;
   }
-  @media (min-width: 640px) {
-    .map-footer { flex-direction: row; align-items: center; }
-  }
-  .map-address {
-    font-size: 0.9rem;
-    color: var(--gray-600);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .btn-map {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--cream);
-    color: var(--dark-brown);
-    border: 1px solid rgba(228, 130, 36, 0.35);
-    padding: 0.55rem 1.1rem;
-    border-radius: 9999px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    transition: background 0.2s ease;
-    white-space: nowrap;
-  }
-  .btn-map:hover { background: var(--orange); color: #2B1F13; }
+  @media (min-width: 640px) { .map-footer { flex-direction: row; align-items: center; } }
+  .map-address { display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: var(--ink-muted); }
+  .map-address svg { color: var(--dark-orange); flex-shrink: 0; }
 
-  /* Footer */
+  /* ===== Footer Unificado ===== */
   .footer {
-    background: var(--dark-brown);
-    color: #E5E0D8;
+    background: var(--espresso);
+    color: #DDD6CC;
     padding: 4rem 0 2rem;
-    border-top: 3px solid var(--orange);
+    border-top: 2px solid var(--orange);
   }
   .footer-logo-wrap {
-    display: inline-block;
-    background: #FAF8F5;
+    display: inline-flex;
+    align-items: center;
+    background: var(--paper);
     padding: 0.65rem 1rem;
     border-radius: 12px;
-    margin-bottom: 1rem;
-    border: 1px solid var(--hairline);
+    margin-bottom: 1.15rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
   }
   .footer-grid {
     display: grid;
@@ -734,293 +1246,296 @@
     margin-bottom: 3rem;
   }
   @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .footer-grid { grid-template-columns: repeat(4, 1fr); } }
-  .footer h4 { font-size: 1.05rem; font-weight: 700; color: #F5A65B; margin-bottom: 1.15rem; }
-  .footer ul { display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.925rem; }
-  .footer a { transition: color 0.2s ease; }
-  .footer a:hover { color: #F5A65B; }
-  .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.14);
-    padding-top: 1.75rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    font-size: 0.875rem;
-    color: #D1C9BE;
+  @media (min-width: 1024px) { .footer-grid { grid-template-columns: 1.35fr 0.9fr 0.9fr 1.15fr; } }
+  .footer-about { font-size: 0.9rem; color: #CFC7BC; line-height: 1.65; max-width: 34ch; margin-bottom: 1rem; }
+  .footer-crc { font-size: 0.8125rem; color: #F3EFE7; font-weight: 600; display: inline-flex; align-items: center; gap: 0.45rem; }
+  .footer h4 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #F5A65B;
+    margin-bottom: 1.1rem;
   }
-  @media (min-width: 768px) { .footer-bottom { flex-direction: row; } }
+  .footer ul { display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.9rem; }
+  .footer a { transition: color 160ms ease; }
+  @media (hover: hover) and (pointer: fine) {
+    .footer a:hover { color: #F5A65B; }
+  }
   .social-pill {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.1);
+    padding: 0.48rem 0.95rem;
+    background: rgba(255, 255, 255, 0.08);
     color: #FFFFFF;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: 9999px;
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     font-weight: 600;
-    margin-top: 1.25rem;
-    transition: all 0.2s ease;
+    margin-top: 1.15rem;
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 160ms var(--ease-out);
   }
-  .social-pill:hover { background: var(--orange); color: #2B1F13 !important; border-color: var(--orange); }
+  .social-pill:active { transform: scale(0.97); }
+  @media (hover: hover) and (pointer: fine) {
+    .social-pill:hover { background-color: var(--orange); border-color: var(--orange); color: var(--on-orange); }
+  }
+  .footer-bottom {
+    border-top: 1px solid var(--hairline-dark);
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    font-size: 0.8125rem;
+    color: #B9AFA2;
+  }
+  @media (min-width: 768px) { .footer-bottom { flex-direction: row; } }
 
-  /* Floating WhatsApp */
+  /* Botão flutuante WhatsApp (sóbrio, sem pulso infinito) */
   .float-whatsapp {
     position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    width: 4rem;
-    height: 4rem;
-    background: #22C55E;
-    color: #fff;
-    border-radius: 9999px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.875rem;
-    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.25);
+    bottom: 1.25rem;
+    right: 1.25rem;
     z-index: 40;
-    animation: pulse 2.4s infinite;
-    transition: background 0.2s ease;
+    width: 3.35rem;
+    height: 3.35rem;
+    border-radius: 9999px;
+    background: #15803D;
+    color: #FFFFFF;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 10px 24px -6px rgba(21, 128, 61, 0.5);
+    transition: background-color 180ms ease, transform 160ms var(--ease-out), box-shadow 200ms var(--ease-out);
   }
-  .float-whatsapp:hover { background: #16A34A; }
-  @keyframes pulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
-    50% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+  .float-whatsapp:active { transform: scale(0.94); }
+  @media (hover: hover) and (pointer: fine) {
+    .float-whatsapp:hover { background-color: #166534; transform: translateY(-2px); box-shadow: 0 14px 28px -6px rgba(21, 128, 61, 0.55); }
+    .float-whatsapp:active { transform: scale(0.94); }
   }
 
-  /* Animations */
-  .gear-rotate { animation: gearSpin 20s linear infinite; }
-  .gear-rotate-reverse { animation: gearSpinReverse 25s linear infinite; }
-  .gear-rotate-slow { animation: gearSpin 35s linear infinite; }
-  @keyframes gearSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-  @keyframes gearSpinReverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
-  .float-slow { animation: floatSlow 6s ease-in-out infinite; }
-  .float-medium { animation: floatMedium 4s ease-in-out infinite; }
-  .float-fast { animation: floatFast 3s ease-in-out infinite; }
-  @keyframes floatSlow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-  @keyframes floatMedium { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-  @keyframes floatFast { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-
+  /* Reduced motion gentil: remove deslocamento, preserva feedback de cor/opacidade */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .gear-rotate, .gear-rotate-reverse, .gear-rotate-slow, .float-slow, .float-medium, .float-fast, .float-whatsapp { animation: none !important; }
-    html.has-js .fade-in { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .hero-lead, .hero-support-1, .hero-support-2, .hero-card-enter {
+      animation: fadeOnly 200ms ease both;
+    }
+    html.has-js .reveal {
+      transform: none;
+      transition: opacity 200ms ease;
+      transition-delay: 0ms;
+    }
+    .advisor-tab-indicator { transition: transform 120ms ease; }
+    .advisor-panel { transition: opacity 150ms ease; filter: none !important; transform: none !important; }
+    .mobile-menu { transition: opacity 180ms ease, visibility 180ms; }
   }
-
-  .nav-highlight { color: var(--dark-brown); font-weight: 700; }
-  .nav-badge { background: var(--gold-soft); color: #92400E; border: 1px solid var(--gold); border-radius: 999px; font-size: .65rem; padding: .1rem .45rem; margin-left: .25rem; vertical-align: middle; font-weight: 700; }
-  .escala-banner { background: linear-gradient(135deg, var(--dark-brown) 0%, var(--brown) 100%); color: #fff; padding: 3.75rem 0; border-top: 1px solid rgba(255,255,255,0.08); }
-  .escala-banner-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 20px; padding: 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
-  .escala-banner .eyebrow { display: inline-flex; align-items: center; gap: .4rem; background: var(--gold-soft); color: #78350F; font-weight: 700; font-size: .75rem; padding: .28rem .8rem; border-radius: 999px; margin-bottom: .85rem; }
-  .escala-banner h2 { font-size: clamp(1.5rem, 3vw, 2.05rem); margin-bottom: .6rem; color: #fff; line-height: 1.25; }
-  .escala-banner p { max-width: 650px; color: #F3EEE6; font-size: .98rem; line-height: 1.6; }
-  .escala-bullets { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; margin-top: 1rem; font-size: .875rem; color: #FAF8F5; }
-  .escala-bullets span { display: inline-flex; align-items: center; gap: .4rem; }
-  .escala-bullets i { color: var(--orange); }
-  .escala-banner .btn-escala { display: inline-flex; align-items: center; gap: .55rem; background: var(--orange); color: #2B1F13; font-weight: 700; padding: .95rem 1.7rem; border-radius: 12px; text-decoration: none; white-space: nowrap; box-shadow: 0 10px 25px rgba(0,0,0,0.2); transition: background .2s, transform .2s; }
-  .escala-banner .btn-escala:hover { background: #F0963A; transform: translateY(-2px); }
+  @keyframes fadeOnly { from { opacity: 0; } to { opacity: 1; } }
 </style>
 </head>
 <body>
 
 <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
 
-<header><nav id="navbar" class="navbar" aria-label="Navegação principal">
-  <div class="container">
-    <div class="navbar-inner">
-      <a href="#home" class="logo-link" aria-label="Contabilidade Líder - Página Inicial">
+<header>
+  <nav id="navbar" class="navbar" aria-label="Navegação principal">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="#home" class="logo-link" aria-label="Contabilidade Líder - Página Inicial">
+          <img src="./assets/logo400p.png" alt="Contabilidade Líder - O sucesso da sua empresa começa aqui" class="logo-img" width="400" height="188">
+        </a>
+        <div class="nav-links">
+          <a href="#sobre" class="nav-link">Sobre</a>
+          <a href="#servicos" class="nav-link">Serviços</a>
+          <a href="#diferenciais" class="nav-link">Diferenciais</a>
+          <a href="escala.html" class="nav-link nav-link-tool">
+            Simulador de Escalas <span class="nav-badge">Grátis</span>
+          </a>
+          <a href="#contato" class="nav-link">Contato</a>
+          <a href="#contato" class="btn btn-primary btn-sm">Fale Conosco</a>
+        </div>
+        <button id="menuBtn" type="button" class="menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="drawerBackdrop" class="drawer-backdrop" aria-hidden="true"></div>
+  <div id="mobileMenu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu de navegação" aria-hidden="true">
+    <div class="mobile-menu-head">
+      <a href="#home" class="logo-link" onclick="closeMobileMenu()" aria-label="Contabilidade Líder - Página Inicial">
         <img src="./assets/logo400p.png" alt="Contabilidade Líder - O sucesso da sua empresa começa aqui" class="logo-img" width="400" height="188">
       </a>
-      <div class="nav-links">
-        <a href="#home" class="nav-link" aria-current="page">Início</a>
-        <a href="#sobre" class="nav-link">Sobre</a>
-        <a href="#servicos" class="nav-link">Serviços</a>
-        <a href="#diferenciais" class="nav-link">Diferenciais</a>
-        <a href="escala.html" class="nav-link nav-highlight"><i class="fas fa-calendar-check" aria-hidden="true"></i> Simulador de Escalas <span class="nav-badge">Grátis</span></a>
-        <a href="#contato" class="nav-link">Contato</a>
-        <a href="#contato" class="btn-primary btn-nav">Fale Conosco</a>
-      </div>
-      <button id="menuBtn" class="menu-btn" aria-label="Abrir menu mobile" aria-expanded="false">
-        <i class="fas fa-bars" aria-hidden="true"></i>
+      <button id="closeMenu" type="button" class="close-menu" aria-label="Fechar menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
-    </div>
-  </div>
-  <div id="mobileMenu" class="mobile-menu">
-    <button id="closeMenu" class="close-menu" aria-label="Fechar menu mobile"><i class="fas fa-times" aria-hidden="true"></i></button>
-    <div style="display:flex; justify-content:center; margin-top:1rem;">
-      <a href="#home" class="logo-link" onclick="closeMobileMenu()" aria-label="Contabilidade Líder - Página Inicial"><img src="./assets/logo400p.png" alt="Contabilidade Líder - O sucesso da sua empresa começa aqui" class="logo-img" width="400" height="188"></a>
     </div>
     <div class="mobile-nav-list">
       <a href="#home" class="mobile-link">Início</a>
-      <a href="#sobre" class="mobile-link">Sobre</a>
+      <a href="#sobre" class="mobile-link">Sobre Nós</a>
       <a href="#servicos" class="mobile-link">Serviços</a>
       <a href="#diferenciais" class="mobile-link">Diferenciais</a>
-      <a href="escala.html" class="mobile-link">Simulador de Escalas (grátis)</a>
+      <a href="escala.html" class="mobile-link"><span>Simulador de Escalas</span><span class="nav-badge">Grátis</span></a>
       <a href="#contato" class="mobile-link">Contato</a>
-      <a href="#contato" class="btn-primary btn-lg" style="margin-top:1rem;">Fale Conosco</a>
+      <a href="#contato" class="btn btn-primary" style="margin-top:1.25rem; width:100%;">Agendar consultoria</a>
     </div>
   </div>
-</nav></header>
+</header>
 
 <main id="main-content">
-  <!-- Hero Section -->
-  <section id="home" class="hero-bg" aria-labelledby="home-heading">
-    <svg class="hero-illustration" aria-hidden="true" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-      <!-- Grande engrenagem decorativa -->
-      <g class="gear-rotate" style="transform-origin: 1250px 150px;" opacity="0.15">
-        <path d="M 1243.4 30.3 L 1256.6 30.3 L 1259.1 47.6 L 1266.3 49.1 L 1275.2 34.0 L 1287.3 39.0 L 1283.0 56.0 L 1289.1 60.1 L 1303.2 49.6 L 1312.4 58.8 L 1301.9 72.9 L 1306.0 79.0 L 1323.0 74.7 L 1328.0 86.8 L 1312.9 95.7 L 1314.4 102.9 L 1331.7 105.4 L 1331.7 118.6 L 1314.4 121.1 L 1312.9 128.3 L 1328.0 137.2 L 1323.0 149.3 L 1306.0 145.0 L 1301.9 151.1 L 1312.4 165.2 L 1303.2 174.4 L 1289.1 163.9 L 1283.0 168.0 L 1287.3 185.0 L 1275.2 190.0 L 1266.3 174.9 L 1259.1 176.4 L 1256.6 193.7 L 1243.4 193.7 L 1240.9 176.4 L 1233.7 174.9 L 1224.8 190.0 L 1212.7 185.0 L 1217.0 168.0 L 1210.9 163.9 L 1196.8 174.4 L 1187.6 165.2 L 1198.1 151.1 L 1194.0 145.0 L 1177.0 149.3 L 1172.0 137.2 L 1187.1 128.3 L 1185.6 121.1 L 1168.3 118.6 L 1168.3 105.4 L 1185.6 102.9 L 1187.1 95.7 L 1172.0 86.8 L 1177.0 74.7 L 1194.0 79.0 L 1198.1 72.9 L 1187.6 58.8 L 1196.8 49.6 L 1210.9 60.1 L 1217.0 56.0 L 1212.7 39.0 L 1224.8 34.0 L 1233.7 49.1 L 1240.9 47.6 Z" fill="#E48224" stroke="#C96E18" stroke-width="2"/>
-        <circle cx="1250" cy="112" r="65" fill="#E48224" stroke="#C96E18" stroke-width="2"/>
-        <circle cx="1250" cy="112" r="35" fill="white" stroke="#E48224" stroke-width="2"/>
-        <circle cx="1250" cy="112" r="18" fill="#E48224" opacity="0.3"/>
-      </g>
-      <!-- Engrenagem inferior esquerda -->
-      <g class="gear-rotate-reverse" style="transform-origin: 180px 750px;" opacity="0.12">
-        <path d="M 173.8 670.3 L 186.2 670.3 L 188.6 685.3 L 196.2 687.3 L 205.7 675.5 L 216.5 681.8 L 211.1 695.9 L 216.6 701.4 L 230.7 696.0 L 237.0 706.8 L 225.2 716.3 L 227.2 723.9 L 242.2 726.3 L 242.2 738.7 L 227.2 741.1 L 225.2 748.7 L 237.0 758.2 L 230.7 769.0 L 216.6 763.6 L 211.1 769.1 L 216.5 783.2 L 205.7 789.5 L 196.2 777.7 L 188.6 779.7 L 186.2 794.7 L 173.8 794.7 L 171.4 779.7 L 163.8 777.7 L 154.3 789.5 L 143.5 783.2 L 148.9 769.1 L 143.4 763.6 L 129.3 769.0 L 123.0 758.2 L 134.8 748.7 L 132.8 741.1 L 117.8 738.7 L 117.8 726.3 L 132.8 723.9 L 134.8 716.3 L 123.0 706.8 L 129.3 696.0 L 143.4 701.4 L 148.9 695.9 L 143.5 681.8 L 154.3 675.5 L 163.8 687.3 L 171.4 685.3 Z" fill="#59432B" stroke="#3B2C1C" stroke-width="2"/>
-        <circle cx="180" cy="732.5" r="48" fill="#59432B" stroke="#3B2C1C" stroke-width="2"/>
-        <circle cx="180" cy="732.5" r="24" fill="white" stroke="#59432B" stroke-width="2"/>
-        <circle cx="180" cy="732.5" r="12" fill="#59432B" opacity="0.3"/>
-      </g>
-      <!-- Engrenagem média -->
-      <g class="gear-rotate-slow" style="transform-origin: 950px 600px;" opacity="0.10">
-        <path d="M 950.1 540.0 L 960.9 540.0 L 963.0 553.0 L 969.6 554.8 L 977.9 544.5 L 987.3 550.0 L 982.7 562.3 L 987.5 567.1 L 999.7 562.5 L 1005.2 571.9 L 995.0 580.2 L 996.8 586.8 L 1009.7 589.0 L 1009.7 600.0 L 996.8 602.2 L 995.0 608.8 L 1005.2 617.1 L 999.7 626.5 L 987.5 621.9 L 982.7 626.7 L 987.3 639.0 L 977.9 644.5 L 969.6 634.2 L 963.0 636.0 L 960.9 649.0 L 950.1 649.0 L 948.0 636.0 L 941.4 634.2 L 933.1 644.5 L 923.7 639.0 L 928.3 626.7 L 923.5 621.9 L 911.3 626.5 L 905.8 617.1 L 916.0 608.8 L 914.2 602.2 L 901.3 600.0 L 901.3 589.0 L 914.2 586.8 L 916.0 580.2 L 905.8 571.9 L 911.3 562.5 L 923.5 567.1 L 928.3 562.3 L 923.7 550.0 L 933.1 544.5 L 941.4 554.8 L 948.0 553.0 Z" fill="#59432B" stroke="#3B2C1C" stroke-width="2"/>
-        <circle cx="955.5" cy="594.5" r="42" fill="#59432B" stroke="#3B2C1C" stroke-width="2"/>
-        <circle cx="955.5" cy="594.5" r="20" fill="#ffffff" stroke="#3B2C1C" stroke-width="2"/>
-        <circle cx="955.5" cy="594.5" r="10" fill="#59432B" opacity="0.35"/>
-      </g>
-      <!-- Gráfico de barras -->
-      <g class="float-slow" opacity="0.22">
-        <rect x="1050" y="620" width="50" height="100" rx="8" fill="#E48224"/>
-        <rect x="1120" y="545" width="50" height="175" rx="8" fill="#E48224"/>
-        <rect x="1190" y="470" width="50" height="250" rx="8" fill="#59432B"/>
-        <rect x="1260" y="395" width="50" height="325" rx="8" fill="#59432B"/>
-        <rect x="1330" y="320" width="50" height="400" rx="8" fill="#E48224"/>
-      </g>
-      <!-- Calculadora -->
-      <g class="float-medium" opacity="0.18">
-        <rect x="980" y="680" width="120" height="160" rx="12" fill="#59432B"/>
-        <rect x="992" y="692" width="96" height="36" rx="6" fill="#FDF2E4"/>
-        <text x="1040" y="718" font-family="Plus Jakarta Sans, Inter, Arial" font-size="18" font-weight="bold" fill="#59432B" text-anchor="middle">1.250</text>
-        <rect x="992" y="740" width="22" height="22" rx="4" fill="#E48224"/>
-        <rect x="1022" y="740" width="22" height="22" rx="4" fill="#E48224"/>
-        <rect x="1052" y="740" width="22" height="22" rx="4" fill="#E48224"/>
-        <rect x="992" y="770" width="22" height="22" rx="4" fill="#E48224"/>
-        <rect x="1022" y="770" width="22" height="22" rx="4" fill="#E48224"/>
-        <rect x="1052" y="770" width="22" height="22" rx="4" fill="#E48224"/>
-        <rect x="992" y="800" width="22" height="22" rx="4" fill="#E48224"/>
-        <rect x="1022" y="800" width="22" height="22" rx="4" fill="#E48224"/>
-        <rect x="1052" y="800" width="22" height="22" rx="4" fill="#E48224"/>
-      </g>
-      <!-- Moedas empilhadas -->
-      <g class="float-fast" opacity="0.22">
-        <ellipse cx="280" cy="620" rx="55" ry="14" fill="#E48224" stroke="#C96E18" stroke-width="2"/>
-        <ellipse cx="280" cy="605" rx="55" ry="14" fill="#E48224" stroke="#C96E18" stroke-width="2"/>
-        <ellipse cx="280" cy="590" rx="55" ry="14" fill="#E48224" stroke="#C96E18" stroke-width="2"/>
-        <ellipse cx="280" cy="575" rx="55" ry="14" fill="#E48224" stroke="#C96E18" stroke-width="2"/>
-        <text x="280" y="580" font-family="Plus Jakarta Sans, Inter, Arial" font-size="20" font-weight="bold" fill="#59432B" text-anchor="middle">$</text>
-      </g>
-      <!-- Documento -->
-      <g class="float-slow" opacity="0.18">
-        <rect x="420" y="120" width="140" height="180" rx="10" fill="white" stroke="#E48224" stroke-width="3"/>
-        <line x1="440" y1="150" x2="540" y2="150" stroke="#E48224" stroke-width="3" stroke-linecap="round"/>
-        <line x1="440" y1="175" x2="520" y2="175" stroke="#59432B" stroke-width="3" stroke-linecap="round"/>
-        <line x1="440" y1="200" x2="530" y2="200" stroke="#59432B" stroke-width="3" stroke-linecap="round"/>
-        <line x1="440" y1="225" x2="510" y2="225" stroke="#E48224" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="540" cy="270" r="22" fill="#E48224"/>
-        <path d="M532 270 L538 276 L550 264" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-      </g>
-      <!-- Porcentagem e Pizza -->
-      <g class="float-medium" opacity="0.15">
-        <circle cx="700" cy="700" r="50" fill="#E48224"/>
-        <text x="700" y="718" font-family="Plus Jakarta Sans, Inter, Arial" font-size="40" font-weight="900" fill="white" text-anchor="middle">%</text>
-      </g>
-      <g class="float-slow" opacity="0.18">
-        <circle cx="380" cy="400" r="60" fill="#E48224" opacity="0.3"/>
-        <path d="M380 400 L380 340 A60 60 0 0 1 432 430 Z" fill="#E48224"/>
-        <path d="M380 400 L432 430 A60 60 0 0 1 328 430 Z" fill="#59432B"/>
-        <path d="M380 400 L328 430 A60 60 0 0 1 380 340 Z" fill="#FDF2E4" stroke="#59432B" stroke-width="1.5"/>
-      </g>
-      <!-- Linhas e pontos -->
-      <circle cx="150" cy="200" r="6" fill="#E48224" opacity="0.3"/>
-      <circle cx="800" cy="150" r="8" fill="#59432B" opacity="0.2"/>
-      <circle cx="1100" cy="500" r="5" fill="#E48224" opacity="0.3"/>
-      <path d="M100 400 Q200 350 300 400 T500 400" stroke="#E48224" stroke-width="2" fill="none" opacity="0.15" stroke-dasharray="6 4"/>
-      <path d="M900 100 Q1000 150 1100 100 T1300 100" stroke="#59432B" stroke-width="2" fill="none" opacity="0.12" stroke-dasharray="6 4"/>
-    </svg>
-    <div class="container hero-content">
+  <!-- Hero Editorial -->
+  <section id="home" class="hero surface-paper" aria-labelledby="home-heading">
+    <div class="container">
       <div class="hero-grid">
         <div>
-          <div class="hero-badge">
-            <i class="fas fa-award" aria-hidden="true"></i> Mais de 45 anos de experiência • CRC-MG 4623
-          </div>
-          <h1 id="home-heading" class="hero-title">
-            O sucesso da sua empresa <span class="text-orange">começa aqui</span>
+          <p class="hero-kicker hero-lead">João Monlevade &amp; Médio Piracicaba · CRC-MG 4623</p>
+          <h1 id="home-heading" class="hero-title hero-lead">
+            O sucesso da sua empresa <em>começa aqui.</em>
           </h1>
-          <p class="hero-desc">
-            Há mais de 45 anos apoiando empresários, indústrias, comércios e prestadores de serviço de João Monlevade e região do Médio Piracicaba com contabilidade estratégica, fiscal, trabalhista e financeira.
+          <p class="hero-desc hero-support-1">
+            Há mais de 45 anos assessorando empresários, indústrias, comércios e prestadores de serviço com contabilidade consultiva, planejamento tributário e gestão trabalhista segura.
           </p>
-          <div class="hero-actions">
-            <a href="#contato" class="btn-primary btn-lg"><i class="fas fa-phone" aria-hidden="true"></i> Agende uma consulta</a>
-            <a href="#servicos" class="btn-secondary">Conheça nossos serviços <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+          <div class="hero-actions hero-support-2">
+            <a href="#contato" class="btn btn-primary">
+              Agendar consultoria
+              <svg class="icon-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a href="#servicos" class="btn btn-secondary">Conhecer serviços</a>
           </div>
-          <div class="hero-stats">
+
+          <div class="hero-metrics hero-support-2" aria-label="Indicadores do escritório">
             <div>
-              <div class="stat-num counter" data-target="45">45+</div>
-              <div class="stat-label">Anos de experiência</div>
+              <div class="metric-val">45<span>+</span></div>
+              <div class="metric-lbl">Anos de atuação em João Monlevade</div>
             </div>
             <div>
-              <div class="stat-num counter" data-target="500">500+</div>
-              <div class="stat-label">Clientes atendidos</div>
+              <div class="metric-val">500<span>+</span></div>
+              <div class="metric-lbl">Empresas atendidas na região</div>
             </div>
             <div>
-              <div class="stat-num counter" data-target="100">100%</div>
-              <div class="stat-label">Comprometimento</div>
+              <div class="metric-val">100<span>%</span></div>
+              <div class="metric-lbl">Foco em conformidade fiscal e CLT</div>
             </div>
           </div>
         </div>
-        <div class="hero-card-wrap">
-          <div class="hero-card">
-            <div class="hero-card-header">
-              <div>
-                <div class="hero-card-kicker">Atendimento Estratégico</div>
-                <h2 class="hero-card-title">Para cada fase da sua empresa</h2>
-              </div>
-              <div class="hero-card-icon"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
+
+        <!-- Cartão de Diagnóstico Rápido Interativo -->
+        <aside class="advisor-card hero-card-enter" aria-label="Diagnóstico rápido por momento da empresa">
+          <div class="advisor-head">
+            <div>
+              <div class="advisor-eyebrow">Atendimento Estratégico</div>
+              <h2 class="advisor-title">Para cada fase do seu negócio</h2>
             </div>
-            <ul class="hero-card-list">
-              <li class="hero-card-item">
-                <span class="hero-card-bullet"><i class="fas fa-building" aria-hidden="true"></i></span>
-                <div>
-                  <strong>Abertura e Legalização</strong>
-                  <span>Constituição ágil de empresas, alterações e alvarás.</span>
-                </div>
+            <div class="advisor-mark" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            </div>
+          </div>
+
+          <div class="advisor-tabs" role="tablist" aria-label="Selecione a necessidade da sua empresa" style="--active-idx: 0;">
+            <div class="advisor-tab-indicator" aria-hidden="true"></div>
+            <button type="button" class="advisor-tab" role="tab" aria-selected="true" data-tab="0">Abrir empresa</button>
+            <button type="button" class="advisor-tab" role="tab" aria-selected="false" data-tab="1">Trocar contador</button>
+            <button type="button" class="advisor-tab" role="tab" aria-selected="false" data-tab="2">Tributário</button>
+          </div>
+
+          <div id="advisorPanel" class="advisor-panel" role="tabpanel" aria-live="polite">
+            <p class="advisor-panel-summary" id="advisorSummary">
+              Estruturamos sua empresa do zero com enquadramento tributário correto, contrato social sólido e liberação ágil de registros.
+            </p>
+            <ul class="advisor-deliverables" id="advisorList">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Estudo de CNAEs e regime ideal (MEI, Simples, Presumido ou Real)</span>
               </li>
-              <li class="hero-card-item">
-                <span class="hero-card-bullet"><i class="fas fa-exchange-alt" aria-hidden="true"></i></span>
-                <div>
-                  <strong>Troca de Contabilidade</strong>
-                  <span>Migração segura e sem burocracia para o seu negócio.</span>
-                </div>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Constituição na Junta Comercial, CNPJ, inscrições e alvarás</span>
               </li>
-              <li class="hero-card-item">
-                <span class="hero-card-bullet"><i class="fas fa-chart-pie" aria-hidden="true"></i></span>
-                <div>
-                  <strong>Planejamento Tributário</strong>
-                  <span>Enquadramento ideal: MEI, Simples, Lucro Presumido ou Real.</span>
-                </div>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Orientação completa para emissão de notas fiscais e pró-labore</span>
               </li>
             </ul>
-            <div class="hero-card-footer">
+          </div>
+
+          <div class="advisor-footer">
+            <div class="advisor-location">
+              <strong>João Monlevade – MG</strong>
+              <span>Atendimento presencial e digital</span>
+            </div>
+            <a id="advisorCta" href="https://wa.me/5531988967713?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20sobre%20abertura%20de%20empresa%20com%20a%20Contabilidade%20L%C3%ADder." target="_blank" rel="noopener noreferrer" class="btn btn-dark btn-sm">
+              Falar sobre abertura
+              <svg class="icon-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sobre Nós -->
+  <section id="sobre" class="section" aria-labelledby="sobre-heading">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-copy reveal">
+          <div class="eyebrow-row"><span class="idx">01</span><span>Sobre o Escritório</span></div>
+          <h2 id="sobre-heading" class="section-title">
+            Tradição construída com <em>proximidade e rigor técnico.</em>
+          </h2>
+          <p>
+            O <strong style="color:var(--espresso);">Escritório de Contabilidade Líder</strong> atua há mais de 45 anos em João Monlevade e em todo o Médio Piracicaba – MG, atendendo indústrias, comércios e prestadores de serviço com soluções contábeis, fiscais, trabalhistas e financeiras.
+          </p>
+          <p>
+            Nossa missão é atuar como braço estratégico do empresário — traduzindo obrigações fiscais e trabalhistas em decisões seguras, previsibilidade de caixa e tranquilidade para crescer.
+          </p>
+
+          <div class="pillars-list">
+            <div class="pillar-item">
+              <span class="pillar-num">01</span>
               <div>
-                <strong style="display:block; font-size:0.8rem; color:#3B2C1C;">João Monlevade – MG</strong>
-                <span style="font-size:0.75rem; color:#59432B;">Atendimento presencial e digital</span>
+                <h3>Atendimento próximo e consultivo</h3>
+                <p>Você fala diretamente com especialistas que conhecem a realidade e o histórico da sua empresa.</p>
               </div>
-              <a href="https://wa.me/5531988967713?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Contabilidade%20L%C3%ADder." target="_blank" rel="noopener noreferrer" class="btn-wa-sm">
-                <i class="fab fa-whatsapp" aria-hidden="true"></i> Falar agora
-              </a>
+            </div>
+            <div class="pillar-item">
+              <span class="pillar-num">02</span>
+              <div>
+                <h3>Equipe em atualização contínua</h3>
+                <p>Acompanhamento rigoroso das mudanças na legislação tributária, trabalhista e no eSocial.</p>
+              </div>
+            </div>
+            <div class="pillar-item">
+              <span class="pillar-num">03</span>
+              <div>
+                <h3>Processos digitais com precisão</h3>
+                <p>Integração moderna de documentos, guias e indicadores para agilidade no dia a dia.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-panel reveal" style="--delay: 80ms;">
+          <div class="about-brand-box">
+            <img src="./assets/logo400p.png" alt="Contabilidade Líder - O sucesso da sua empresa começa aqui" class="logo-img-about" width="400" height="188">
+            <span class="about-brand-meta">CRC-MG 4623 · Rua Fernão Dias, 303, 5º andar · João Monlevade – MG</span>
+          </div>
+          <div class="about-stats">
+            <div class="stat-tile dark">
+              <div class="num">45+</div>
+              <div class="lbl">Anos de mercado</div>
+            </div>
+            <div class="stat-tile">
+              <div class="num">500+</div>
+              <div class="lbl">Clientes atendidos</div>
+            </div>
+            <div class="stat-tile">
+              <div class="num">4</div>
+              <div class="lbl">Áreas integradas</div>
+            </div>
+            <div class="stat-tile dark">
+              <div class="num">100%</div>
+              <div class="lbl">Comprometimento</div>
             </div>
           </div>
         </div>
@@ -1028,171 +1543,295 @@
     </div>
   </section>
 
-  <!-- About Section -->
-  <section id="sobre" class="section bg-white" aria-labelledby="sobre-heading">
+  <!-- Serviços -->
+  <section id="servicos" class="section surface-paper section-bordered" aria-labelledby="servicos-heading">
     <div class="container">
-      <div class="about-grid">
-        <div class="about-box fade-in">
-          <div style="display:flex; justify-content:center;">
-            <img src="./assets/logo400p.png" alt="Contabilidade Líder - O sucesso da sua empresa começa aqui" class="logo-img-about" width="400" height="188">
-          </div>
-          <div class="about-stats-grid">
-            <div class="about-stat orange"><i class="fas fa-calendar-alt" aria-hidden="true"></i><div class="num">45+</div><div class="lbl">Anos no mercado</div></div>
-            <div class="about-stat brown"><i class="fas fa-users" aria-hidden="true"></i><div class="num">500+</div><div class="lbl">Clientes atendidos</div></div>
-            <div class="about-stat brown"><i class="fas fa-building" aria-hidden="true"></i><div class="num">100%</div><div class="lbl">Comprometimento</div></div>
-            <div class="about-stat orange"><i class="fas fa-handshake" aria-hidden="true"></i><div class="num">4</div><div class="lbl">Áreas de atuação</div></div>
-          </div>
-        </div>
-        <div class="fade-in">
-          <span class="pill pill-cream">SOBRE NÓS</span>
-          <h2 id="sobre-heading" class="section-title" style="text-align:left; margin-bottom:1.5rem;">
-            Tradição e confiança em <span class="text-orange">contabilidade</span>
+      <div class="section-head-split reveal">
+        <div>
+          <div class="eyebrow-row"><span class="idx">02</span><span>Áreas de Atuação</span></div>
+          <h2 id="servicos-heading" class="section-title">
+            Soluções integradas para <em>cada pilar da empresa.</em>
           </h2>
-          <p class="about-text">
-            O <strong class="text-brown">Escritório de Contabilidade Líder</strong> atua há mais de <strong class="text-dark-orange">45 anos</strong> em João Monlevade e em todo o Médio Piracicaba – MG, atendendo indústrias, comércios e prestadores de serviço com soluções contábeis, fiscais, trabalhistas e financeiras.
-          </p>
-          <p class="about-text">
-            Nossa missão é ser parceiro estratégico dos clientes, com segurança, transparência e resultados que impulsionam o crescimento dos negócios.
-          </p>
-          <div class="check-list">
-            <div class="check-item"><div class="check-icon"><i class="fas fa-check" aria-hidden="true"></i></div><div><h3>Atendimento personalizado</h3><p>Cada cliente recebe atenção dedicada</p></div></div>
-            <div class="check-item"><div class="check-icon"><i class="fas fa-check" aria-hidden="true"></i></div><div><h3>Equipe especializada</h3><p>Profissionais qualificados e em constante atualização</p></div></div>
-            <div class="check-item"><div class="check-icon"><i class="fas fa-check" aria-hidden="true"></i></div><div><h3>Tecnologia de ponta</h3><p>Sistemas modernos para agilidade e precisão</p></div></div>
-          </div>
         </div>
+        <p class="section-lead">
+          Atendimento contábil, fiscal, trabalhista e financeiro sob medida para empresas de João Monlevade e região do Médio Piracicaba.
+        </p>
       </div>
-    </div>
-  </section>
 
-  <!-- Services Section -->
-  <section id="servicos" class="section bg-cream" aria-labelledby="servicos-heading">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="pill pill-orange">NOSSOS SERVIÇOS</span>
-        <h2 id="servicos-heading" class="section-title">Soluções completas para o seu negócio</h2>
-        <p class="section-subtitle">Atendimento contábil, fiscal, trabalhista e financeiro sob medida para empresas de João Monlevade e região do Médio Piracicaba</p>
-      </div>
       <div class="services-grid">
-        <article class="service-card fade-in" tabindex="0" aria-label="Serviço Contábil">
-          <div class="service-icon"><i class="fas fa-calculator" aria-hidden="true"></i></div>
+        <article class="service-card reveal" style="--delay: 0ms;">
+          <div class="service-top">
+            <span class="service-idx">01</span>
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="11" x2="10" y2="11"/><line x1="14" y1="11" x2="16" y2="11"/><line x1="8" y1="16" x2="10" y2="16"/><line x1="14" y1="16" x2="16" y2="16"/></svg>
+            </div>
+          </div>
           <h3>Contábil</h3>
-          <p>Escrituração contábil, balanços patrimoniais, demonstrações financeiras e relatórios gerenciais.</p>
-          <ul>
-            <li><i class="fas fa-check" aria-hidden="true"></i> Balanço Patrimonial</li>
-            <li><i class="fas fa-check" aria-hidden="true"></i> DRE e Fluxo de Caixa</li>
-            <li><i class="fas fa-check" aria-hidden="true"></i> Conciliação Bancária</li>
+          <p>Escrituração completa, demonstrações claras e leitura gerencial para sustentar decisões e acesso a crédito.</p>
+          <ul class="service-list">
+            <li>Balanço Patrimonial</li>
+            <li>DRE e Fluxo de Caixa</li>
+            <li>Conciliação Bancária</li>
           </ul>
         </article>
-        <article class="service-card fade-in" tabindex="0" aria-label="Serviço Fiscal">
-          <div class="service-icon"><i class="fas fa-file-invoice-dollar" aria-hidden="true"></i></div>
-          <h3>Fiscal</h3>
-          <p>Apuração de impostos, obrigações fiscais, planejamento tributário e recuperação de créditos.</p>
-          <ul>
-            <li><i class="fas fa-check" aria-hidden="true"></i> Apuração de Impostos</li>
-            <li><i class="fas fa-check" aria-hidden="true"></i> Planejamento Tributário</li>
-            <li><i class="fas fa-check" aria-hidden="true"></i> SPED e EFD</li>
+
+        <article class="service-card reveal" style="--delay: 50ms;">
+          <div class="service-top">
+            <span class="service-idx">02</span>
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+            </div>
+          </div>
+          <h3>Fiscal &amp; Tributário</h3>
+          <p>Apuração rigorosa de tributos, revisão de enquadramento e conformidade permanente com o Fisco.</p>
+          <ul class="service-list">
+            <li>Apuração de Impostos</li>
+            <li>Planejamento Tributário</li>
+            <li>SPED e EFD</li>
           </ul>
         </article>
-        <article class="service-card fade-in" tabindex="0" aria-label="Serviço Trabalhista">
-          <div class="service-icon"><i class="fas fa-users-cog" aria-hidden="true"></i></div>
-          <h3>Trabalhista</h3>
-          <p>Folha de pagamento, admissões, rescisões, férias e outras obrigações trabalhistas.</p>
-          <ul>
-            <li><i class="fas fa-check" aria-hidden="true"></i> Folha de Pagamento</li>
-            <li><i class="fas fa-check" aria-hidden="true"></i> eSocial</li>
-            <li><i class="fas fa-check" aria-hidden="true"></i> FGTS e INSS</li>
+
+        <article class="service-card reveal" style="--delay: 90ms;">
+          <div class="service-top">
+            <span class="service-idx">03</span>
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+          </div>
+          <h3>Trabalhista &amp; DP</h3>
+          <p>Gestão de folha, escalas, convenções coletivas e rotinas de Departamento Pessoal sem passivos ocultos.</p>
+          <ul class="service-list">
+            <li>Folha de Pagamento</li>
+            <li>eSocial e SST</li>
+            <li>FGTS, INSS e Escalas</li>
           </ul>
         </article>
-        <article class="service-card fade-in" tabindex="0" aria-label="Serviço Financeiro">
-          <div class="service-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
+
+        <article class="service-card reveal" style="--delay: 130ms;">
+          <div class="service-top">
+            <span class="service-idx">04</span>
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            </div>
+          </div>
           <h3>Financeiro</h3>
-          <p>Consultoria financeira, análise de custos, orçamento e planejamento financeiro empresarial.</p>
-          <ul>
-            <li><i class="fas fa-check" aria-hidden="true"></i> Análise de Custos</li>
-            <li><i class="fas fa-check" aria-hidden="true"></i> Orçamento Empresarial</li>
-            <li><i class="fas fa-check" aria-hidden="true"></i> Consultoria Financeira</li>
+          <p>Apoio gerencial para enxergar margens reais, organizar custos fixos e planejar expansão com clareza.</p>
+          <ul class="service-list">
+            <li>Análise de Custos</li>
+            <li>Orçamento Empresarial</li>
+            <li>Consultoria Financeira</li>
           </ul>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Differentials Section -->
-  <section id="diferenciais" class="section bg-white" aria-labelledby="diferenciais-heading">
+  <!-- Product Showcase: Simulador de Escalas -->
+  <section class="showcase" aria-labelledby="escala-banner-heading">
     <div class="container">
-      <div class="section-header fade-in">
-        <span class="pill pill-brown">POR QUE NOS ESCOLHER</span>
-        <h2 id="diferenciais-heading" class="section-title">Nossos <span class="text-orange">diferenciais</span></h2>
-        <p class="section-subtitle">Mais de quatro décadas de história ao lado do empresariado de João Monlevade e região</p>
-      </div>
-      <div class="diff-grid">
-        <div class="diff-card fade-in"><div class="diff-icon"><i class="fas fa-medal" aria-hidden="true"></i></div><h3>Experiência comprovada</h3><p>Mais de 45 anos de atuação no mercado contábil, com casos de sucesso em diversos segmentos.</p></div>
-        <div class="diff-card fade-in"><div class="diff-icon"><i class="fas fa-headset" aria-hidden="true"></i></div><h3>Atendimento próximo</h3><p>Relacionamento próximo e personalizado, atendendo às necessidades de cada cliente.</p></div>
-        <div class="diff-card fade-in"><div class="diff-icon"><i class="fas fa-shield-alt" aria-hidden="true"></i></div><h3>Segurança e conformidade</h3><p>Conformidade com a legislação vigente, garantindo segurança jurídica para o seu negócio.</p></div>
-        <div class="diff-card fade-in"><div class="diff-icon"><i class="fas fa-laptop-code" aria-hidden="true"></i></div><h3>Tecnologia moderna</h3><p>Ferramentas e sistemas modernos para agilidade e precisão.</p></div>
-        <div class="diff-card fade-in"><div class="diff-icon"><i class="fas fa-lightbulb" aria-hidden="true"></i></div><h3>Consultoria estratégica</h3><p>Consultoria estratégica para o crescimento do seu negócio.</p></div>
-        <div class="diff-card fade-in"><div class="diff-icon"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></div><h3>Presença local</h3><p>Sede no coração de João Monlevade – MG, com atendimento presencial para todo o Médio Piracicaba.</p></div>
-      </div>
-    </div>
-  </section>
+      <div class="showcase-grid">
+        <div class="reveal">
+          <div class="showcase-tag">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Ferramenta gratuita · Adequação à escala 5×2
+          </div>
+          <h2 id="escala-banner-heading">
+            Simule a escala 5×2 da sua equipe <em>antes de mexer na folha.</em>
+          </h2>
+          <p class="showcase-desc">
+            Criamos uma ferramenta aberta para empresários e gestores de RH de João Monlevade e região testarem a adequação à escala 5×2 (42h, 40h ou 36h), 5×2 com revezamento ou 12×36, com alertas CLT e exportação imediata.
+          </p>
+          <ul class="showcase-points">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Modelos 5×2, 5×2 rev. e 12×36
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Limites semanais de 42h, 40h e 36h
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Importação de planilhas e alertas CLT
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Exportação limpa em Excel e PDF
+            </li>
+          </ul>
+          <a href="escala.html" class="btn btn-primary">
+            Abrir Simulador de Escala 5×2
+            <svg class="icon-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
 
-  <!-- CTA Banner -->
-  <!-- Banner Simulador de Escalas -->
-  <section class="escala-banner" aria-labelledby="escala-banner-heading">
-    <div class="container">
-      <div class="escala-banner-card">
-        <div>
-          <span class="eyebrow"><i class="fas fa-bolt" aria-hidden="true"></i> Ferramenta gratuita para empresários e gestores de RH</span>
-          <h2 id="escala-banner-heading">Simulador e Gerador de Escalas de Trabalho</h2>
-          <p>Planeje a transição da escala 6x1 para 5x2, 4x3 ou 12x36 com segurança. Calcule horas semanais, domingos trabalhados, alertas trabalhistas e exporte sua escala em segundos.</p>
-          <div class="escala-bullets">
-            <span><i class="fas fa-check-circle" aria-hidden="true"></i> Modelos 6x1, 5x2, 4x3 e 12x36</span>
-            <span><i class="fas fa-check-circle" aria-hidden="true"></i> Resumo de horas e custo estimado</span>
-            <span><i class="fas fa-check-circle" aria-hidden="true"></i> Exportação para Excel (CSV) e PDF</span>
+        <div class="preview-frame reveal" style="--delay: 90ms;" aria-hidden="true">
+          <div class="preview-bar">
+            <span class="preview-title">Escala Semanal · Modelo 5×2 com Revezamento</span>
+            <span class="preview-pill">CLT Regular</span>
+          </div>
+          <div class="preview-kpis">
+            <div class="preview-kpi"><small>Equipe</small><strong>3</strong></div>
+            <div class="preview-kpi"><small>Horas / sem</small><strong>126h</strong></div>
+            <div class="preview-kpi"><small>Média</small><strong>42h</strong></div>
+          </div>
+          <div class="preview-table">
+            <div class="preview-row head">
+              <span>Colaborador</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span><span>Dom</span>
+            </div>
+            <div class="preview-row">
+              <span class="name">Carlos Eduardo</span>
+              <span class="p-cell p-t">T</span><span class="p-cell p-t">T</span><span class="p-cell p-t">T</span><span class="p-cell p-t">T</span><span class="p-cell p-t">T</span><span class="p-cell p-f">F</span><span class="p-cell p-d">D</span>
+            </div>
+            <div class="preview-row">
+              <span class="name">Fernanda Lima</span>
+              <span class="p-cell p-f">F</span><span class="p-cell p-t">T</span><span class="p-cell p-t">T</span><span class="p-cell p-t">T</span><span class="p-cell p-t">T</span><span class="p-cell p-t">T</span><span class="p-cell p-d">D</span>
+            </div>
+            <div class="preview-row">
+              <span class="name">Rafael Mendes</span>
+              <span class="p-cell p-t">T</span><span class="p-cell p-t">T</span><span class="p-cell p-f">F</span><span class="p-cell p-t">T</span><span class="p-cell p-t">T</span><span class="p-cell p-t">T</span><span class="p-cell p-dt">Dom</span>
+            </div>
           </div>
         </div>
-        <a href="escala.html" class="btn-escala"><i class="fas fa-calendar-check" aria-hidden="true"></i> Gerar escala grátis</a>
       </div>
     </div>
   </section>
 
-  <section class="cta-banner">
+  <!-- Diferenciais (Grade Arquitetônica) -->
+  <section id="diferenciais" class="section" aria-labelledby="diferenciais-heading">
     <div class="container">
-      <div class="cta-inner">
+      <div class="section-head-split reveal">
         <div>
-          <h2>Pronto para começar?</h2>
-          <p>Fale com nossos especialistas e descubra como podemos ajudar o seu negócio a crescer.</p>
+          <div class="eyebrow-row"><span class="idx">03</span><span>Por que nos escolher</span></div>
+          <h2 id="diferenciais-heading" class="section-title">
+            O padrão de atendimento que <em>sustenta parcerias longas.</em>
+          </h2>
         </div>
-        <div class="cta-actions">
-          <a href="#contato" class="btn-primary btn-lg"><i class="fas fa-envelope" aria-hidden="true"></i> Entre em contato</a>
-          <a href="https://wa.me/5531988967713?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20a%20Contabilidade%20L%C3%ADder." target="_blank" rel="noopener noreferrer" class="btn-white"><i class="fab fa-whatsapp" style="color:#16A34A; font-size:1.25rem;" aria-hidden="true"></i> WhatsApp</a>
+        <p class="section-lead">
+          Mais de quatro décadas de história ao lado do empresariado de João Monlevade e do Médio Piracicaba.
+        </p>
+      </div>
+
+      <div class="diff-matrix reveal" style="--delay: 60ms;">
+        <div class="diff-cell">
+          <div class="diff-icon" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+          </div>
+          <h3>Experiência comprovada</h3>
+          <p>Mais de 45 anos de atuação contínua no mercado contábil, atendendo diferentes regimes e segmentos.</p>
+        </div>
+        <div class="diff-cell">
+          <div class="diff-icon" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3>Relacionamento direto</h3>
+          <p>Atendimento humano e dedicado, sem robôs intermináveis quando sua empresa precisa decidir rápido.</p>
+        </div>
+        <div class="diff-cell">
+          <div class="diff-icon" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Segurança e conformidade</h3>
+          <p>Processos auditáveis e conformidade fiscal e trabalhista para blindar o patrimônio do seu negócio.</p>
+        </div>
+        <div class="diff-cell">
+          <div class="diff-icon" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Tecnologia aplicada</h3>
+          <p>Sistemas integrados e ferramentas práticas — como nosso simulador de escalas — para dar velocidade à rotina.</p>
+        </div>
+        <div class="diff-cell">
+          <div class="diff-icon" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <h3>Visão consultiva</h3>
+          <p>Mais do que entregar guias: analisamos carga tributária, custos de pessoal e cenários de crescimento.</p>
+        </div>
+        <div class="diff-cell">
+          <div class="diff-icon" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h3>Presença local</h3>
+          <p>Sede no coração de João Monlevade – MG, com atendimento presencial para todo o Médio Piracicaba.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contato" class="section bg-cream" aria-labelledby="contato-heading">
+  <!-- Contato -->
+  <section id="contato" class="section surface-paper section-bordered" aria-labelledby="contato-heading">
     <div class="container">
-      <div class="section-header fade-in">
-        <span class="pill pill-orange">CONTATO</span>
-        <h2 id="contato-heading" class="section-title">Fale com a <span class="text-orange">Contabilidade Líder</span></h2>
-        <p class="section-subtitle">Estamos prontos para atender você. Entre em contato pelos canais abaixo ou visite nosso escritório.</p>
+      <div class="section-head-split reveal">
+        <div>
+          <div class="eyebrow-row"><span class="idx">04</span><span>Contato</span></div>
+          <h2 id="contato-heading" class="section-title">
+            Converse com a <em>Contabilidade Líder.</em>
+          </h2>
+        </div>
+        <p class="section-lead">
+          Agende uma conversa presencial em nosso escritório ou inicie o atendimento direto pelo WhatsApp da nossa equipe.
+        </p>
       </div>
+
       <div class="contact-grid">
-        <div class="contact-card fade-in">
-          <h3>Informações de contato</h3>
-          <div class="contact-info-list">
-            <div class="contact-info-item"><div class="contact-info-icon"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></div><div><h4>Endereço</h4><p>Rua Fernão Dias, 303, 5º andar<br>Bairro Nossa Senhora do Rosário<br>João Monlevade - MG<br>CEP: 35930-180</p></div></div>
-            <div class="contact-info-item"><div class="contact-info-icon"><i class="fas fa-phone" aria-hidden="true"></i></div><div><h4>Telefone</h4><a href="tel:+553138523355" class="contact-link">(31) 3852-3355</a></div></div>
-            <div class="contact-info-item"><div class="contact-info-icon"><i class="fab fa-whatsapp" aria-hidden="true"></i></div><div><h4>WhatsApp</h4><a href="https://wa.me/5531988967713?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20a%20Contabilidade%20L%C3%ADder." target="_blank" rel="noopener noreferrer" class="contact-link">(31) 98896-7713</a></div></div>
-            <div class="contact-info-item"><div class="contact-info-icon"><i class="fas fa-envelope" aria-hidden="true"></i></div><div><h4>E-mail</h4><a href="mailto:contato@contabilidadelider.cnt.br" class="contact-link">contato@contabilidadelider.cnt.br</a></div></div>
-            <div class="contact-info-item"><div class="contact-info-icon"><i class="fas fa-clock" aria-hidden="true"></i></div><div><h4>Horário de Atendimento</h4><p>Segunda a Sexta: 8h às 18h<br>Sábado: 8h às 12h</p></div></div>
+        <div class="contact-card reveal">
+          <h3>Canais diretos</h3>
+          <p class="contact-card-sub">Atendimento ágil para empresas de João Monlevade e região.</p>
+
+          <div class="info-list">
+            <div class="info-item">
+              <div class="info-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <h4>Endereço</h4>
+                <p>Rua Fernão Dias, 303, 5º andar<br>Nossa Senhora do Rosário · João Monlevade - MG<br>CEP 35930-180</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <h4>Telefone</h4>
+                <a href="tel:+553138523355">(31) 3852-3355</a>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              </div>
+              <div>
+                <h4>WhatsApp</h4>
+                <a href="https://wa.me/5531988967713?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20a%20Contabilidade%20L%C3%ADder." target="_blank" rel="noopener noreferrer">(31) 98896-7713</a>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <h4>E-mail</h4>
+                <a href="mailto:contato@contabilidadelider.cnt.br">contato@contabilidadelider.cnt.br</a>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <h4>Horário de Atendimento</h4>
+                <p>Segunda a Sexta: 8h às 18h · Sábado: 8h às 12h</p>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="contact-card fade-in">
-          <h3>Envie uma mensagem</h3>
-          <p style="color:#4B5563; font-size:0.9rem; margin-bottom:1.5rem;">Preencha os dados abaixo para iniciar seu atendimento direto pelo WhatsApp da nossa equipe.</p>
+
+        <div class="contact-card reveal" style="--delay: 80ms;">
+          <h3>Agende uma consultoria</h3>
+          <p class="contact-card-sub">Preencha os dados abaixo para iniciar seu atendimento direto pelo WhatsApp com o contexto da sua empresa.</p>
+
           <form id="contactForm">
             <div class="form-group">
               <label for="nome" class="form-label">Nome completo *</label>
@@ -1201,7 +1840,7 @@
             <div class="form-row">
               <div class="form-group">
                 <label for="email" class="form-label">E-mail *</label>
-                <input type="email" id="email" name="email" required aria-required="true" class="form-control" placeholder="seu@email.com">
+                <input type="email" id="email" name="email" required aria-required="true" class="form-control" placeholder="seu@empresa.com.br">
               </div>
               <div class="form-group">
                 <label for="telefone" class="form-label">Telefone / WhatsApp *</label>
@@ -1215,39 +1854,44 @@
                 <option>Troca de Contabilidade</option>
                 <option>Contabilidade</option>
                 <option>Fiscal / Tributário</option>
-                <option>Trabalhista / eSocial</option>
-                <option>Financeiro</option>
+                <option>Trabalhista / Escalas e eSocial</option>
+                <option>Consultoria Financeira</option>
                 <option>Outros</option>
               </select>
             </div>
             <div class="form-group">
               <label for="mensagem" class="form-label">Mensagem *</label>
-              <textarea id="mensagem" name="mensagem" required aria-required="true" rows="4" class="form-control" style="resize:none;" placeholder="Como podemos ajudar sua empresa?"></textarea>
+              <textarea id="mensagem" name="mensagem" required aria-required="true" rows="4" class="form-control" style="resize:vertical;" placeholder="Conte brevemente sobre sua empresa ou necessidade."></textarea>
             </div>
             <div class="lgpd-row">
-              <input type="checkbox" id="lgpd" required aria-required="true" style="margin-top:0.2rem;">
-              <label for="lgpd">Concordo em enviar meus dados para contato de atendimento comercial, conforme a Lei Geral de Proteção de Dados (LGPD).</label>
+              <input type="checkbox" id="lgpd" required aria-required="true">
+              <label for="lgpd">Concordo em enviar meus dados para retorno comercial, conforme a Lei Geral de Proteção de Dados (LGPD).</label>
             </div>
-            <button type="submit" class="btn-primary btn-submit"><i class="fab fa-whatsapp" aria-hidden="true"></i> Enviar via WhatsApp</button>
+            <button type="submit" class="btn btn-primary btn-submit">
+              Iniciar atendimento via WhatsApp
+              <svg class="icon-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
             <div id="form-status" class="form-status hidden" role="status" aria-live="polite"></div>
           </form>
         </div>
       </div>
-      <div class="map-box fade-in">
+
+      <div class="map-box reveal" style="--delay: 80ms;">
         <iframe
           class="map-frame"
-          title="Mapa de localização do Escritório de Contabilidade Líder"
+          loading="lazy"
+          title="Mapa de localização do Escritório de Contabilidade Líder em João Monlevade - MG"
           src="https://maps.google.com/maps?q=Rua%20Fern%C3%A3o%20Dias%2C%20303%2C%20Jo%C3%A3o%20Monlevade%20-%20MG%2C%2035930-180&t=&z=16&ie=UTF8&iwloc=&output=embed"
           allowfullscreen=""
           referrerpolicy="no-referrer-when-downgrade">
         </iframe>
         <div class="map-footer">
           <div class="map-address">
-            <i class="fas fa-map-marker-alt text-dark-orange" aria-hidden="true"></i>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             <span>Rua Fernão Dias, 303, 5º andar — Nossa Senhora do Rosário, João Monlevade - MG</span>
           </div>
-          <a href="https://www.google.com/maps/search/?api=1&query=Rua+Fern%C3%A3o+Dias+303+Jo%C3%A3o+Monlevade+MG+35930-180" target="_blank" rel="noopener noreferrer" class="btn-map">
-            <i class="fas fa-external-link-alt" aria-hidden="true"></i> Abrir no Google Maps
+          <a href="https://www.google.com/maps/search/?api=1&query=Rua+Fern%C3%A3o+Dias+303+Jo%C3%A3o+Monlevade+MG+35930-180" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+            Abrir no Google Maps
           </a>
         </div>
       </div>
@@ -1262,14 +1906,15 @@
         <a href="#home" class="footer-logo-wrap" aria-label="Contabilidade Líder - Voltar ao topo">
           <img src="./assets/logo400p.png" alt="Contabilidade Líder - O sucesso da sua empresa começa aqui" class="logo-img-footer" width="400" height="188">
         </a>
-        <p style="font-size:0.95rem; color:#E5E0D8; margin-bottom:1rem;">"O sucesso da sua empresa começa aqui." Mais de 45 anos oferecendo soluções contábeis em João Monlevade e região do Médio Piracicaba - MG.</p>
-        <div style="font-size:0.875rem; color:#F3EEE6; display:flex; align-items:center; gap:0.5rem;">
-          <i class="fas fa-id-card" style="color:#F5A65B;" aria-hidden="true"></i> <span>CRC-MG: 4623</span>
+        <p class="footer-about">"O sucesso da sua empresa começa aqui." Mais de 45 anos oferecendo soluções contábeis em João Monlevade e região do Médio Piracicaba – MG.</p>
+        <div class="footer-crc">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F5A65B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          <span>CRC-MG 4623</span>
           <!-- TODO: inserir CNPJ -->
         </div>
       </div>
       <div>
-        <h4>Links Rápidos</h4>
+        <h4>Navegação</h4>
         <ul>
           <li><a href="#home">Início</a></li>
           <li><a href="#sobre">Sobre Nós</a></li>
@@ -1297,33 +1942,52 @@
           <li><a href="mailto:contato@contabilidadelider.cnt.br">contato@contabilidadelider.cnt.br</a></li>
         </ul>
         <a href="https://instagram.com/lider.escritorio" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Instagram da Contabilidade Líder">
-          <i class="fab fa-instagram" aria-hidden="true"></i> @lider.escritorio
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          @lider.escritorio
         </a>
       </div>
     </div>
     <div class="footer-bottom">
       <p>© 2026 Escritório de Contabilidade Líder. Todos os direitos reservados.</p>
-      <p>João Monlevade - MG | CRC-MG 4623 | <a href="mailto:contato@contabilidadelider.cnt.br" style="color:#F5A65B;">contato@contabilidadelider.cnt.br</a></p>
+      <p>João Monlevade - MG · CRC-MG 4623 · <a href="mailto:contato@contabilidadelider.cnt.br" style="color:#F5A65B;">contato@contabilidadelider.cnt.br</a></p>
     </div>
   </div>
 </footer>
 
-<a href="https://wa.me/5531988967713?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20a%20Contabilidade%20L%C3%ADder." target="_blank" rel="noopener noreferrer" class="float-whatsapp" aria-label="Fale conosco pelo WhatsApp">
-  <i class="fab fa-whatsapp" aria-hidden="true"></i>
+<a href="https://wa.me/5531988967713?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20a%20Contabilidade%20L%C3%ADder." target="_blank" rel="noopener noreferrer" class="float-whatsapp" aria-label="Falar com a Contabilidade Líder pelo WhatsApp">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
 </a>
 
 <script>
   document.documentElement.classList.add('has-js');
 
+  /* Drawer Mobile com backdrop e restauração de foco */
   const menuBtn = document.getElementById('menuBtn');
   const closeMenu = document.getElementById('closeMenu');
   const mobileMenu = document.getElementById('mobileMenu');
-  const mobileLinks = document.querySelectorAll('.mobile-link');
-  const openMobileMenu = () => { mobileMenu.classList.add('open'); menuBtn.setAttribute('aria-expanded', 'true'); };
-  const closeMobileMenu = () => { mobileMenu.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); };
+  const drawerBackdrop = document.getElementById('drawerBackdrop');
+
+  function openMobileMenu() {
+    mobileMenu.classList.add('open');
+    drawerBackdrop.classList.add('open');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    menuBtn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    closeMenu.focus();
+  }
+  function closeMobileMenu() {
+    if (!mobileMenu.classList.contains('open')) return;
+    mobileMenu.classList.remove('open');
+    drawerBackdrop.classList.remove('open');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
   menuBtn.addEventListener('click', openMobileMenu);
-  closeMenu.addEventListener('click', closeMobileMenu);
-  mobileLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
+  closeMenu.addEventListener('click', () => { closeMobileMenu(); menuBtn.focus(); });
+  drawerBackdrop.addEventListener('click', closeMobileMenu);
+  document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', closeMobileMenu));
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
       closeMobileMenu();
@@ -1331,34 +1995,88 @@
     }
   });
 
+  /* Sombra sutil da navbar ao rolar */
   const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); }, { passive: true });
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 24);
+  }, { passive: true });
 
-  const counters = document.querySelectorAll('.counter');
-  const animateCounter = (counter) => {
-    const target = +counter.getAttribute('data-target');
-    const step = target / (1800 / 16);
-    let current = 0;
-    const update = () => {
-      current += step;
-      if (current < target) { counter.textContent = Math.floor(current) + (target === 100 ? '%' : '+'); requestAnimationFrame(update); }
-      else { counter.textContent = target + (target === 100 ? '%' : '+'); }
-    };
-    update();
-  };
+  /* Cartão de Diagnóstico Rápido interativo (indicador deslizante + crossfade mascarado) */
+  const ADVISOR_STATES = [
+    {
+      summary: 'Estruturamos sua empresa do zero com enquadramento tributário correto, contrato social sólido e liberação ágil de registros.',
+      items: [
+        'Estudo de CNAEs e regime ideal (MEI, Simples, Presumido ou Real)',
+        'Constituição na Junta Comercial, CNPJ, inscrições e alvarás',
+        'Orientação completa para emissão de notas fiscais e pró-labore'
+      ],
+      ctaLabel: 'Falar sobre abertura',
+      waMsg: 'Olá! Gostaria de conversar sobre abertura de empresa com a Contabilidade Líder.'
+    },
+    {
+      summary: 'Conduzimos toda a migração contábil sem parar sua operação, com revisão completa de pendências fiscais e trabalhistas.',
+      items: [
+        'Transição organizada junto ao escritório anterior, sem burocracia',
+        'Diagnóstico inicial de obrigações acessórias, eSocial e certidões',
+        'Cronograma mensal transparente com atendimento direto ao contador'
+      ],
+      ctaLabel: 'Falar sobre migração',
+      waMsg: 'Olá! Gostaria de saber como funciona a troca de contabilidade para a Contabilidade Líder.'
+    },
+    {
+      summary: 'Revisamos seu faturamento, folha e regime tributário para reduzir riscos e evitar pagamento indevido de impostos.',
+      items: [
+        'Comparativo anual entre Simples Nacional, Lucro Presumido e Real',
+        'Avaliação de Fator R, impactos de folha e transições de escala',
+        'Acompanhamento consultivo periódico com indicadores claros'
+      ],
+      ctaLabel: 'Agendar diagnóstico',
+      waMsg: 'Olá! Gostaria de agendar um diagnóstico tributário com a Contabilidade Líder.'
+    }
+  ];
 
-  const observer = new IntersectionObserver((entries, obs) => {
+  const advisorTabsWrap = document.querySelector('.advisor-tabs');
+  const advisorTabs = document.querySelectorAll('.advisor-tab');
+  const advisorPanel = document.getElementById('advisorPanel');
+  const advisorSummary = document.getElementById('advisorSummary');
+  const advisorList = document.getElementById('advisorList');
+  const advisorCta = document.getElementById('advisorCta');
+  const CHECK_SVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+  const ARROW_SVG = '<svg class="icon-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+  let swapTimer = null;
+
+  function selectAdvisorTab(index) {
+    const data = ADVISOR_STATES[index];
+    if (!data) return;
+    advisorTabsWrap.style.setProperty('--active-idx', index);
+    advisorTabs.forEach((btn, i) => btn.setAttribute('aria-selected', i === index ? 'true' : 'false'));
+
+    clearTimeout(swapTimer);
+    advisorPanel.classList.add('is-swapping');
+    swapTimer = setTimeout(() => {
+      advisorSummary.textContent = data.summary;
+      advisorList.innerHTML = data.items.map(item => `<li>${CHECK_SVG}<span>${item}</span></li>`).join('');
+      advisorCta.href = `https://wa.me/5531988967713?text=${encodeURIComponent(data.waMsg)}`;
+      advisorCta.innerHTML = `${data.ctaLabel} ${ARROW_SVG}`;
+      advisorPanel.classList.remove('is-swapping');
+    }, 110);
+  }
+
+  advisorTabs.forEach(btn => {
+    btn.addEventListener('click', () => selectAdvisorTab(Number(btn.dataset.tab)));
+  });
+
+  /* Revelação progressiva limpa por seção */
+  const revealObserver = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        if (entry.target.classList.contains('counter')) animateCounter(entry.target);
-        obs.unobserve(entry.target);
-      }
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      obs.unobserve(entry.target);
     });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  counters.forEach(c => observer.observe(c));
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+  /* Máscara de telefone */
   const telefoneInput = document.getElementById('telefone');
   telefoneInput.addEventListener('input', (e) => {
     let v = e.target.value.replace(/\D/g, '').slice(0, 11);
@@ -1368,6 +2086,7 @@
     e.target.value = v;
   });
 
+  /* Envio do formulário */
   document.getElementById('contactForm').addEventListener('submit', (e) => {
     e.preventDefault();
     const nome = document.getElementById('nome').value.trim();
@@ -1375,7 +2094,15 @@
     const telefone = document.getElementById('telefone').value.trim();
     const assunto = document.getElementById('assunto').value;
     const mensagem = document.getElementById('mensagem').value.trim();
-    const texto = ['Olá! Gostaria de falar com a Contabilidade Líder.', '', `*Nome:* ${nome}`, `*E-mail:* ${email}`, `*Telefone:* ${telefone}`, `*Assunto:* ${assunto}`, `*Mensagem:* ${mensagem}`].join('\n');
+    const texto = [
+      'Olá! Gostaria de agendar uma consultoria com a Contabilidade Líder.',
+      '',
+      `*Nome:* ${nome}`,
+      `*E-mail:* ${email}`,
+      `*Telefone:* ${telefone}`,
+      `*Assunto:* ${assunto}`,
+      `*Mensagem:* ${mensagem}`
+    ].join('\n');
     const waUrl = `https://wa.me/5531988967713?text=${encodeURIComponent(texto)}`;
     const mailUrl = `mailto:contato@contabilidadelider.cnt.br?subject=${encodeURIComponent('[Site] ' + assunto + ' - ' + nome)}&body=${encodeURIComponent(texto.replace(/\*/g, ''))}`;
     window.open(waUrl, '_blank', 'noopener,noreferrer');
